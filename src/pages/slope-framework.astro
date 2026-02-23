@@ -224,9 +224,9 @@ import '../styles/global.css';
             <p>A Par 4, Slope 3 sprint is meaningfully harder than a Par 4, Slope 0. Both have 3-4 tickets, but the slope factors compound difficulty in ways that ticket count alone doesn't capture.</p>
             <p>The handicap system accounts for this: <strong class="text-text-primary">handicap = avg(score - par)</strong> over a rolling window. A bogey on a Slope 3 sprint is more forgivable than a bogey on Slope 0. The framework doesn't penalize you for taking on hard work.</p>
             <p class="p-3 rounded-lg bg-bg-primary border border-border-subtle font-mono text-xs text-text-muted">
-              Example: Sprint 167 — Par 4, Slope 2 (cross-package + schema migration)<br/>
-              Score: 5 (Bogey) — but given the slope, this is a solid result.<br/>
-              The handicap computation weights this appropriately.
+              Example: Sprint 22 — Par 4, Slope 2 (cross-package + new area)<br/>
+              Score: 4 (Par) — clean execution despite the slope factors.<br/>
+              The handicap computation weights slope difficulty appropriately.
             </p>
           </div>
         </details>
@@ -531,8 +531,8 @@ import '../styles/global.css';
             <span class="text-text-muted text-xs">— Why routine beats talent</span>
           </summary>
           <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
-            <p>The #1 insight from 175 sprints: <strong class="text-text-primary">routine beats talent</strong>. An agent that follows the pre-shot routine every time will outperform an agent that's "smarter" but inconsistent. Golf pros know this — they don't skip their routine even when they're playing well.</p>
-            <p>The 19th Hole is the most underrated part. It captures what metrics can't: <em>momentum</em>, <em>energy</em>, <em>intuition</em>. After 50 sprints of 19th Hole notes, patterns emerge that no stat can show: "we always feel drained after OAuth work," "infrastructure sprints are energizing."</p>
+            <p>The #1 insight from 27 sprints: <strong class="text-text-primary">routine beats talent</strong>. An agent that follows the pre-shot routine every time will outperform an agent that's "smarter" but inconsistent. Golf pros know this — they don't skip their routine even when they're playing well.</p>
+            <p>The 19th Hole is the most underrated part. It captures what metrics can't: <em>momentum</em>, <em>energy</em>, <em>intuition</em>. After many sprints of 19th Hole notes, patterns emerge that no stat can show: "infrastructure sprints are energizing," "cross-package work is draining."</p>
             <p>For AI agents specifically, the routines solve the <strong class="text-text-primary">context compaction problem</strong>. When an agent's context window fills up and old messages get compressed, the routine artifacts on disk preserve everything. The next session reads the sprint file and the scorecard, and it's as if no context was lost.</p>
           </div>
         </details>
@@ -606,11 +606,11 @@ import '../styles/global.css';
               </tr>
             </thead>
             <tbody class="divide-y divide-border-subtle">
-              <tr><td class="px-5 py-3 text-text-primary font-medium">Handicap</td><td class="px-5 py-3 text-center text-emerald font-mono font-bold">+1.2</td><td class="px-5 py-3 text-center text-gold font-mono">+1.8</td><td class="px-5 py-3 text-center text-text-secondary font-mono">+2.1</td></tr>
-              <tr><td class="px-5 py-3 text-text-primary font-medium">Fairways</td><td class="px-5 py-3 text-center font-mono text-text-secondary">71%</td><td class="px-5 py-3 text-center font-mono text-text-secondary">65%</td><td class="px-5 py-3 text-center font-mono text-text-muted">62%</td></tr>
-              <tr><td class="px-5 py-3 text-text-primary font-medium">GIR</td><td class="px-5 py-3 text-center font-mono text-text-secondary">68%</td><td class="px-5 py-3 text-center font-mono text-text-secondary">61%</td><td class="px-5 py-3 text-center font-mono text-text-muted">58%</td></tr>
-              <tr><td class="px-5 py-3 text-text-primary font-medium">Avg putts</td><td class="px-5 py-3 text-center font-mono text-text-secondary">1.3</td><td class="px-5 py-3 text-center font-mono text-text-secondary">1.5</td><td class="px-5 py-3 text-center font-mono text-text-muted">1.6</td></tr>
-              <tr><td class="px-5 py-3 text-text-primary font-medium">Miss pattern</td><td class="px-5 py-3 text-center text-text-secondary">Slightly long</td><td class="px-5 py-3 text-center text-text-secondary">Long + right</td><td class="px-5 py-3 text-center text-text-muted">Right</td></tr>
+              <tr><td class="px-5 py-3 text-text-primary font-medium">Handicap</td><td class="px-5 py-3 text-center text-emerald font-mono font-bold">+1.0</td><td class="px-5 py-3 text-center text-gold font-mono">+1.2</td><td class="px-5 py-3 text-center text-text-secondary font-mono">+1.5</td></tr>
+              <tr><td class="px-5 py-3 text-text-primary font-medium">Fairways</td><td class="px-5 py-3 text-center font-mono text-text-secondary">90%</td><td class="px-5 py-3 text-center font-mono text-text-secondary">86%</td><td class="px-5 py-3 text-center font-mono text-text-muted">80%</td></tr>
+              <tr><td class="px-5 py-3 text-text-primary font-medium">GIR</td><td class="px-5 py-3 text-center font-mono text-text-secondary">82%</td><td class="px-5 py-3 text-center font-mono text-text-secondary">78%</td><td class="px-5 py-3 text-center font-mono text-text-muted">74%</td></tr>
+              <tr><td class="px-5 py-3 text-text-primary font-medium">Avg putts</td><td class="px-5 py-3 text-center font-mono text-text-secondary">1.3</td><td class="px-5 py-3 text-center font-mono text-text-secondary">1.4</td><td class="px-5 py-3 text-center font-mono text-text-muted">1.5</td></tr>
+              <tr><td class="px-5 py-3 text-text-primary font-medium">Miss pattern</td><td class="px-5 py-3 text-center text-text-secondary">Slightly long</td><td class="px-5 py-3 text-center text-text-secondary">Long</td><td class="px-5 py-3 text-center text-text-muted">Long</td></tr>
             </tbody>
           </table>
         </div>
@@ -667,49 +667,234 @@ import '../styles/global.css';
 
         <div class="rounded-xl border border-border bg-bg-primary p-6 font-mono text-xs leading-relaxed">
           <div class="flex items-center justify-between mb-3">
-            <span class="text-text-primary font-bold text-sm">Sprint 167 — Par 4, Slope 2</span>
+            <span class="text-text-primary font-bold text-sm">Sprint 26 — Par 4, Slope 1</span>
             <span class="text-text-muted">Conditions: Clear</span>
           </div>
           <div class="border-t border-border-subtle pt-4 space-y-4">
             <div>
               <div class="flex items-center gap-2">
                 <span class="w-5 h-5 rounded-full bg-emerald/10 flex items-center justify-center text-emerald text-[10px] font-bold">1</span>
-                <span class="text-emerald">Driver → Fairway</span>
+                <span class="text-emerald">Short iron → Fairway</span>
               </div>
-              <p class="text-text-muted pl-7 mt-1">S167-1: Schema migration — Clean drive, landed where planned.</p>
+              <p class="text-text-muted pl-7 mt-1">S26-1: Roadmap validation — Clean implementation, schema + validator.</p>
             </div>
             <div>
               <div class="flex items-center gap-2">
                 <span class="w-5 h-5 rounded-full bg-emerald/10 flex items-center justify-center text-emerald text-[10px] font-bold">2</span>
-                <span class="text-emerald">Long iron → Green</span>
+                <span class="text-emerald">Short iron → Green</span>
               </div>
-              <p class="text-text-muted pl-7 mt-1">S167-2: API endpoints — On target, no hazards.</p>
+              <p class="text-text-muted pl-7 mt-1">S26-2: Critical path computation — On target, dependency graph works.</p>
             </div>
             <div>
               <div class="flex items-center gap-2">
-                <span class="w-5 h-5 rounded-full bg-gold/10 flex items-center justify-center text-gold text-[10px] font-bold">3</span>
-                <span class="text-gold">Short iron → Missed right</span>
+                <span class="w-5 h-5 rounded-full bg-emerald/10 flex items-center justify-center text-emerald text-[10px] font-bold">3</span>
+                <span class="text-emerald">Short iron → Green</span>
               </div>
-              <p class="text-text-muted pl-7 mt-1">S167-3: Mobile wiring — Right approach, wrong integration point.</p>
-              <p class="text-gold/60 pl-7">Hazard: Bunker (gotcha #39 — nvm sourcing)</p>
+              <p class="text-text-muted pl-7 mt-1">S26-3: Parallel opportunities finder — Clean, followed existing patterns.</p>
             </div>
             <div>
               <div class="flex items-center gap-2">
                 <span class="w-5 h-5 rounded-full bg-emerald/10 flex items-center justify-center text-emerald text-[10px] font-bold">4</span>
                 <span class="text-emerald">Wedge → In the hole</span>
               </div>
-              <p class="text-text-muted pl-7 mt-1">S167-3 fix: Rewired to correct hook — Recovery shot, clean finish.</p>
+              <p class="text-text-muted pl-7 mt-1">S26-4: CLI commands (roadmap show/validate/review) — Straightforward wiring.</p>
             </div>
           </div>
           <div class="border-t border-border-subtle pt-4 mt-4 grid grid-cols-2 gap-2">
-            <div><span class="text-text-muted">Score:</span> <span class="text-gold font-bold">Bogey (+1)</span></div>
-            <div><span class="text-text-muted">Fairways:</span> <span class="text-text-secondary">2/3 (67%)</span></div>
-            <div><span class="text-text-muted">GIR:</span> <span class="text-text-secondary">2/3 (67%)</span></div>
+            <div><span class="text-text-muted">Score:</span> <span class="text-emerald font-bold">Par (0)</span></div>
+            <div><span class="text-text-muted">Fairways:</span> <span class="text-text-secondary">4/4 (100%)</span></div>
+            <div><span class="text-text-muted">GIR:</span> <span class="text-text-secondary">3/4 (75%)</span></div>
             <div><span class="text-text-muted">Putts:</span> <span class="text-text-secondary">1</span></div>
-            <div><span class="text-text-muted">Hazards:</span> <span class="text-gold">1 bunker</span></div>
-            <div><span class="text-text-muted">Misses:</span> <span class="text-gold">1 right</span></div>
+            <div><span class="text-text-muted">Hazards:</span> <span class="text-emerald">0</span></div>
+            <div><span class="text-text-muted">Misses:</span> <span class="text-emerald">0</span></div>
           </div>
         </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════ -->
+      <!-- CLI COMMANDS -->
+      <!-- ═══════════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">CLI Commands</h2>
+        <p class="text-text-secondary mb-6">26 commands covering the full sprint lifecycle — from init to tournament review.</p>
+
+        <div class="grid sm:grid-cols-2 gap-2 mb-6">
+          {[
+            { cmd: 'init', desc: 'Initialize SLOPE in a project' },
+            { cmd: 'briefing', desc: 'Pre-round briefing with hazard index' },
+            { cmd: 'plan', desc: 'Create sprint plan from backlog' },
+            { cmd: 'session', desc: 'Start/resume a scoring session' },
+            { cmd: 'claim', desc: 'Claim a ticket for execution' },
+            { cmd: 'next', desc: 'Get next recommended ticket' },
+            { cmd: 'classify', desc: 'Classify shot from CI/PR signals' },
+            { cmd: 'validate', desc: 'Validate scorecard JSON' },
+            { cmd: 'review', desc: 'Generate sprint review markdown' },
+            { cmd: 'card', desc: 'Compute handicap card' },
+            { cmd: 'report', desc: 'Generate HTML performance report' },
+            { cmd: 'dashboard', desc: 'Interactive HTML dashboard' },
+            { cmd: 'standup', desc: 'Generate standup from session data' },
+            { cmd: 'escalate', desc: 'Detect escalation triggers' },
+            { cmd: 'guard', desc: 'Manage guard framework' },
+            { cmd: 'hook', desc: 'Install/remove hook integrations' },
+            { cmd: 'extract', desc: 'Extract events from sessions' },
+            { cmd: 'distill', desc: 'Distill common issues from sprints' },
+            { cmd: 'map', desc: 'Generate/update codebase map' },
+            { cmd: 'plugin', desc: 'Manage plugins' },
+            { cmd: 'release', desc: 'Automate package releases' },
+            { cmd: 'roadmap', desc: 'Validate and review roadmaps' },
+            { cmd: 'tournament', desc: 'Multi-sprint tournament review' },
+            { cmd: 'status', desc: 'Show current sprint status' },
+            { cmd: 'auto-card', desc: 'Build scorecards from git history' },
+            { cmd: 'review-state', desc: 'Manage plan review state' },
+          ].map(({ cmd, desc }) => (
+            <div class="flex items-center gap-3 p-2.5 rounded-lg bg-bg-card border border-border-subtle">
+              <code class="text-emerald text-xs font-mono shrink-0">slope {cmd}</code>
+              <span class="text-text-muted text-xs">{desc}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════ -->
+      <!-- GUARD FRAMEWORK -->
+      <!-- ═══════════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Guard Framework</h2>
+        <p class="text-text-secondary mb-6">10 built-in guards that enforce discipline automatically via Claude Code hooks. Guards fire on tool use events and provide real-time warnings.</p>
+
+        <div class="rounded-xl border border-border bg-bg-card overflow-hidden mb-6">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-border bg-bg-surface/50">
+                <th class="text-left px-5 py-3 text-text-muted text-xs uppercase tracking-wider font-medium">Guard</th>
+                <th class="text-left px-5 py-3 text-text-muted text-xs uppercase tracking-wider font-medium">Trigger</th>
+                <th class="text-left px-5 py-3 text-text-muted text-xs uppercase tracking-wider font-medium">Purpose</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border-subtle">
+              <tr><td class="px-5 py-3 text-emerald font-mono text-xs">explore</td><td class="px-5 py-3 text-text-muted text-xs">Read/Glob/Grep</td><td class="px-5 py-3 text-text-secondary text-xs">Check codebase map before deep exploration</td></tr>
+              <tr><td class="px-5 py-3 text-emerald font-mono text-xs">hazard</td><td class="px-5 py-3 text-text-muted text-xs">Edit/Write</td><td class="px-5 py-3 text-text-secondary text-xs">Warn about known issues in file areas</td></tr>
+              <tr><td class="px-5 py-3 text-emerald font-mono text-xs">commit-nudge</td><td class="px-5 py-3 text-text-muted text-xs">Edit/Write</td><td class="px-5 py-3 text-text-secondary text-xs">Nudge to commit after prolonged editing</td></tr>
+              <tr><td class="px-5 py-3 text-emerald font-mono text-xs">scope-drift</td><td class="px-5 py-3 text-text-muted text-xs">Edit/Write</td><td class="px-5 py-3 text-text-secondary text-xs">Warn when editing outside ticket scope</td></tr>
+              <tr><td class="px-5 py-3 text-emerald font-mono text-xs">compaction</td><td class="px-5 py-3 text-text-muted text-xs">PreCompact</td><td class="px-5 py-3 text-text-secondary text-xs">Extract events before context compaction</td></tr>
+              <tr><td class="px-5 py-3 text-emerald font-mono text-xs">stop-check</td><td class="px-5 py-3 text-text-muted text-xs">Stop</td><td class="px-5 py-3 text-text-secondary text-xs">Check for uncommitted work before exit</td></tr>
+              <tr><td class="px-5 py-3 text-emerald font-mono text-xs">subagent-gate</td><td class="px-5 py-3 text-text-muted text-xs">Task</td><td class="px-5 py-3 text-text-secondary text-xs">Cap subagent model and turns</td></tr>
+              <tr><td class="px-5 py-3 text-emerald font-mono text-xs">push-nudge</td><td class="px-5 py-3 text-text-muted text-xs">Bash (git)</td><td class="px-5 py-3 text-text-secondary text-xs">Nudge to push when unpushed count is high</td></tr>
+              <tr><td class="px-5 py-3 text-emerald font-mono text-xs">workflow-gate</td><td class="px-5 py-3 text-text-muted text-xs">ExitPlanMode</td><td class="px-5 py-3 text-text-secondary text-xs">Block plan exit until review rounds complete</td></tr>
+              <tr><td class="px-5 py-3 text-emerald font-mono text-xs">review-tier</td><td class="px-5 py-3 text-text-muted text-xs">ExitPlanMode</td><td class="px-5 py-3 text-text-secondary text-xs">Recommend review tier based on plan scope</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-text-muted text-sm">Guards are installed via <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">slope hook install</code> and can be extended with custom guards through the plugin system.</p>
+      </section>
+
+      <!-- ═══════════════════════════════════════════ -->
+      <!-- METAPHOR ENGINE -->
+      <!-- ═══════════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Metaphor Engine</h2>
+        <p class="text-text-secondary mb-6">Golf is the default, but SLOPE's scoring engine is metaphor-agnostic. Six built-in metaphors translate the same internal types into different vocabularies.</p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+          {[
+            { id: 'golf', name: 'Golf', sprint: 'Hole', ticket: 'Shot', perfect: 'Hole-in-one', review: '19th Hole' },
+            { id: 'tennis', name: 'Tennis', sprint: 'Set', ticket: 'Point', perfect: 'Ace', review: 'Post-match' },
+            { id: 'baseball', name: 'Baseball', sprint: 'Inning', ticket: 'At-bat', perfect: 'Home run', review: 'Dugout' },
+            { id: 'gaming', name: 'Gaming', sprint: 'Level', ticket: 'Quest', perfect: 'S-rank', review: 'Save point' },
+            { id: 'dnd', name: 'D&D', sprint: 'Encounter', ticket: 'Action', perfect: 'Natural 20', review: 'Long rest' },
+            { id: 'matrix', name: 'Matrix', sprint: 'Simulation', ticket: 'Operation', perfect: 'Bullettime', review: 'Debrief' },
+          ].map(({ name, sprint, ticket, perfect, review }) => (
+            <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+              <div class="font-heading font-bold text-sm text-emerald mb-2">{name}</div>
+              <div class="space-y-1 text-xs">
+                <div class="flex justify-between"><span class="text-text-muted">Sprint:</span><span class="text-text-secondary">{sprint}</span></div>
+                <div class="flex justify-between"><span class="text-text-muted">Ticket:</span><span class="text-text-secondary">{ticket}</span></div>
+                <div class="flex justify-between"><span class="text-text-muted">Perfect:</span><span class="text-text-secondary">{perfect}</span></div>
+                <div class="flex justify-between"><span class="text-text-muted">Review:</span><span class="text-text-secondary">{review}</span></div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-text-muted text-sm">Set via <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">slope init --metaphor=gaming</code> or the <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">metaphor</code> field in <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">.slope/config.json</code>. CLI commands accept <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">--metaphor=&lt;id&gt;</code> to override per-command. Plugins can register custom metaphors.</p>
+      </section>
+
+      <!-- ═══════════════════════════════════════════ -->
+      <!-- PLUGIN SYSTEM -->
+      <!-- ═══════════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Plugin System</h2>
+        <p class="text-text-secondary mb-6">Extend SLOPE with custom metaphors, guards, and scoring logic. Plugins are discovered automatically from <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">node_modules</code> or local paths.</p>
+
+        <div class="space-y-3 mb-6">
+          {[
+            { type: 'metaphor', desc: 'Register custom vocabulary mappings for any domain' },
+            { type: 'guard', desc: 'Add custom guards that fire on tool use events' },
+          ].map(({ type, desc }) => (
+            <div class="flex items-start gap-3 p-4 rounded-lg bg-bg-card border border-border-subtle">
+              <code class="text-emerald text-xs font-mono shrink-0 mt-0.5">{type}</code>
+              <span class="text-text-secondary text-sm">{desc}</span>
+            </div>
+          ))}
+        </div>
+
+        <div class="rounded-lg border border-border-subtle bg-bg-primary p-4 font-mono text-xs text-text-muted">
+          <div class="text-text-secondary mb-2">Plugin manifest (<code>slope-plugin.json</code>):</div>
+          <pre class="text-text-muted">{`{
+  "name": "slope-plugin-scrum",
+  "version": "1.0.0",
+  "types": ["metaphor", "guard"],
+  "metaphors": ["./metaphors/scrum.js"],
+  "guards": ["./guards/standup-check.js"]
+}`}</pre>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════ -->
+      <!-- FLOW TRACKING -->
+      <!-- ═══════════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Flow Tracking</h2>
+        <p class="text-text-secondary mb-6">Map user-facing workflows (OAuth, checkout, onboarding) to code paths so agents can navigate by intent, not just by file.</p>
+
+        <div class="space-y-3 mb-6">
+          {[
+            { cmd: 'slope flows init', desc: 'Create a flows template at .slope/flows.json' },
+            { cmd: 'slope flows list', desc: 'Show all defined flows with their file mappings' },
+            { cmd: 'slope flows check', desc: 'Validate flow definitions and detect stale mappings' },
+          ].map(({ cmd, desc }) => (
+            <div class="flex items-center gap-3 p-3 rounded-lg bg-bg-card border border-border-subtle">
+              <code class="text-emerald text-xs font-mono shrink-0">{cmd}</code>
+              <span class="text-text-muted text-sm">{desc}</span>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-text-muted text-sm">Flows are also accessible via MCP: <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">search({'{'} module: 'flows' {'}'})</code> returns all flows, filtered by id, title, or tags. The <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">stale-flows</code> guard warns when editing files belonging to a stale flow.</p>
+      </section>
+
+      <!-- ═══════════════════════════════════════════ -->
+      <!-- ROADMAP TOOLS -->
+      <!-- ═══════════════════════════════════════════ -->
+      <section class="mb-16">
+        <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Roadmap Tools</h2>
+        <p class="text-text-secondary mb-6">Plan multi-sprint projects with dependency tracking, critical path analysis, and parallel execution opportunities.</p>
+
+        <div class="space-y-3 mb-6">
+          {[
+            { cmd: 'slope roadmap validate', desc: 'Check for structural issues, dependency cycles, numbering gaps' },
+            { cmd: 'slope roadmap show', desc: 'Display dependency graph and parallel tracks' },
+            { cmd: 'slope roadmap review', desc: 'Automated architect review: scope balance, bottlenecks' },
+          ].map(({ cmd, desc }) => (
+            <div class="flex items-center gap-3 p-3 rounded-lg bg-bg-card border border-border-subtle">
+              <code class="text-emerald text-xs font-mono shrink-0">{cmd}</code>
+              <span class="text-text-muted text-sm">{desc}</span>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-text-muted text-sm">Roadmaps are defined in <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">docs/backlog/roadmap.json</code> with sprints, tickets, dependencies, and phases. The critical path computation identifies which sprints block the most downstream work.</p>
       </section>
 
       <!-- Back to main -->
