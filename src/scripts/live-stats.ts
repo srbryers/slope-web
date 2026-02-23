@@ -54,7 +54,9 @@ interface ScorecardSummary {
   theme: string;
 }
 
-// Fallback data baked at build time
+// Fallback data baked at build time — single source of truth for initial render
+export const FALLBACK_SPRINTS = 28;
+
 const FALLBACK: SlopeStats = {
   sprints_completed: 28,
   total_tests: 1091,
