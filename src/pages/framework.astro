@@ -147,8 +147,8 @@ import '../styles/global.css';
             <tbody class="divide-y divide-border-subtle">
               <tr><td class="px-5 py-3 text-gold font-medium">Tournament</td><td class="px-5 py-3 text-text-secondary">Project</td><td class="px-5 py-3 text-text-muted">The whole thing, all phases</td></tr>
               <tr><td class="px-5 py-3 text-gold font-medium">Round</td><td class="px-5 py-3 text-text-secondary">Phase</td><td class="px-5 py-3 text-text-muted">Multi-sprint milestone (6 rounds total)</td></tr>
-              <tr><td class="px-5 py-3 text-emerald font-medium">Hole</td><td class="px-5 py-3 text-text-secondary">Sprint</td><td class="px-5 py-3 text-text-muted">Self-contained, has a par</td></tr>
-              <tr><td class="px-5 py-3 text-emerald font-medium">Shot</td><td class="px-5 py-3 text-text-secondary">Ticket</td><td class="px-5 py-3 text-text-muted">One deliberate action</td></tr>
+              <tr><td class="px-5 py-3 text-emerald font-medium" data-term="vocabulary.sprint">Hole</td><td class="px-5 py-3 text-text-secondary">Sprint</td><td class="px-5 py-3 text-text-muted">Self-contained, has a par</td></tr>
+              <tr><td class="px-5 py-3 text-emerald font-medium" data-term="vocabulary.ticket">Shot</td><td class="px-5 py-3 text-text-secondary">Ticket</td><td class="px-5 py-3 text-text-muted">One deliberate action</td></tr>
               <tr><td class="px-5 py-3 text-text-secondary font-medium">Stroke</td><td class="px-5 py-3 text-text-secondary">Commit</td><td class="px-5 py-3 text-text-muted">The atomic unit of work</td></tr>
             </tbody>
           </table>
@@ -249,11 +249,11 @@ import '../styles/global.css';
               </tr>
             </thead>
             <tbody class="divide-y divide-border-subtle">
-              <tr><td class="px-5 py-3 text-red-400 font-medium">Driver</td><td class="px-5 py-3 text-text-secondary">New infrastructure, big architectural move</td><td class="px-5 py-3 text-text-muted">Starting something from scratch</td></tr>
-              <tr><td class="px-5 py-3 text-gold font-medium">Long iron</td><td class="px-5 py-3 text-text-secondary">Standard feature implementation</td><td class="px-5 py-3 text-text-muted">Well-understood pattern, moderate scope</td></tr>
-              <tr><td class="px-5 py-3 text-emerald font-medium">Short iron</td><td class="px-5 py-3 text-text-secondary">Targeted implementation</td><td class="px-5 py-3 text-text-muted">Precise scope, clear target</td></tr>
-              <tr><td class="px-5 py-3 text-emerald font-medium">Wedge</td><td class="px-5 py-3 text-text-secondary">Precision fix, surgical refactor</td><td class="px-5 py-3 text-text-muted">Small area, high accuracy</td></tr>
-              <tr><td class="px-5 py-3 text-text-secondary font-medium">Putter</td><td class="px-5 py-3 text-text-secondary">Polish, final testing, cleanup</td><td class="px-5 py-3 text-text-muted">Last mile, closing it out</td></tr>
+              <tr><td class="px-5 py-3 text-red-400 font-medium" data-term="clubs.driver">Driver</td><td class="px-5 py-3 text-text-secondary">New infrastructure, big architectural move</td><td class="px-5 py-3 text-text-muted">Starting something from scratch</td></tr>
+              <tr><td class="px-5 py-3 text-gold font-medium" data-term="clubs.long_iron">Long iron</td><td class="px-5 py-3 text-text-secondary">Standard feature implementation</td><td class="px-5 py-3 text-text-muted">Well-understood pattern, moderate scope</td></tr>
+              <tr><td class="px-5 py-3 text-emerald font-medium" data-term="clubs.short_iron">Short iron</td><td class="px-5 py-3 text-text-secondary">Targeted implementation</td><td class="px-5 py-3 text-text-muted">Precise scope, clear target</td></tr>
+              <tr><td class="px-5 py-3 text-emerald font-medium" data-term="clubs.wedge">Wedge</td><td class="px-5 py-3 text-text-secondary">Precision fix, surgical refactor</td><td class="px-5 py-3 text-text-muted">Small area, high accuracy</td></tr>
+              <tr><td class="px-5 py-3 text-text-secondary font-medium" data-term="clubs.putter">Putter</td><td class="px-5 py-3 text-text-secondary">Polish, final testing, cleanup</td><td class="px-5 py-3 text-text-muted">Last mile, closing it out</td></tr>
               <tr class="bg-bg-surface/30"><td class="px-5 py-3 text-text-muted font-medium italic">Provisional</td><td class="px-5 py-3 text-text-secondary">Fallback approach declared upfront</td><td class="px-5 py-3 text-text-muted">"If this doesn't work in 2 shots..."</td></tr>
             </tbody>
           </table>
@@ -335,15 +335,15 @@ import '../styles/global.css';
         <!-- Hazard cards -->
         <div class="space-y-3 mb-6">
           {[
-            { name: 'Bunker', maps: 'Known gotcha', penalty: 'Recovery costs an extra shot but you\'re still in play. The gotcha was documented — you just didn\'t check the yardage book.', color: 'text-gold', bg: 'bg-gold/5', border: 'border-gold/15' },
-            { name: 'Water', maps: 'Breaking change or data loss', penalty: 'Penalty stroke + re-tee from safe position. Irreversible damage — you need to revert and approach from a safer angle.', color: 'text-blue-400', bg: 'bg-blue-500/5', border: 'border-blue-500/15' },
-            { name: 'OB (Out of Bounds)', maps: 'Scope creep', penalty: 'Stroke + distance. You left the sprint boundary entirely. Go back to where you were and re-approach.', color: 'text-red-400', bg: 'bg-red-500/5', border: 'border-red-500/15' },
-            { name: 'Rough', maps: 'Technical debt', penalty: 'No penalty, just slower going. The code works but it\'s harder to navigate. Budget extra time.', color: 'text-text-secondary', bg: 'bg-bg-surface', border: 'border-border-subtle' },
-            { name: 'Trees', maps: 'Blocking dependency', penalty: 'Can\'t go direct. Must punch out sideways — unblock the dependency first, then approach the target.', color: 'text-emerald', bg: 'bg-emerald/5', border: 'border-emerald/15' },
-          ].map(({ name, maps, penalty, color, bg, border }) => (
+            { name: 'Bunker', term: 'hazards.bunker', maps: 'Known gotcha', penalty: 'Recovery costs an extra shot but you\'re still in play. The gotcha was documented — you just didn\'t check the yardage book.', color: 'text-gold', bg: 'bg-gold/5', border: 'border-gold/15' },
+            { name: 'Water', term: 'hazards.water', maps: 'Breaking change or data loss', penalty: 'Penalty stroke + re-tee from safe position. Irreversible damage — you need to revert and approach from a safer angle.', color: 'text-blue-400', bg: 'bg-blue-500/5', border: 'border-blue-500/15' },
+            { name: 'OB (Out of Bounds)', term: 'hazards.ob', maps: 'Scope creep', penalty: 'Stroke + distance. You left the sprint boundary entirely. Go back to where you were and re-approach.', color: 'text-red-400', bg: 'bg-red-500/5', border: 'border-red-500/15' },
+            { name: 'Rough', term: 'hazards.rough', maps: 'Technical debt', penalty: 'No penalty, just slower going. The code works but it\'s harder to navigate. Budget extra time.', color: 'text-text-secondary', bg: 'bg-bg-surface', border: 'border-border-subtle' },
+            { name: 'Trees', term: 'hazards.trees', maps: 'Blocking dependency', penalty: 'Can\'t go direct. Must punch out sideways — unblock the dependency first, then approach the target.', color: 'text-emerald', bg: 'bg-emerald/5', border: 'border-emerald/15' },
+          ].map(({ name, term, maps, penalty, color, bg, border }) => (
             <div class={`rounded-lg border ${border} ${bg} p-4`}>
               <div class="flex items-center gap-2 mb-1">
-                <span class={`font-heading font-bold ${color}`}>{name}</span>
+                <span class={`font-heading font-bold ${color}`} data-term={term}>{name}</span>
                 <span class="text-text-muted text-xs">/ {maps}</span>
               </div>
               <p class="text-text-muted text-sm">{penalty}</p>
@@ -501,7 +501,7 @@ import '../styles/global.css';
         <!-- 19th Hole -->
         <div class="mb-6 rounded-xl border border-gold/10 bg-gradient-to-br from-[#1a1610]/50 to-bg-card overflow-hidden">
           <div class="px-6 py-3 border-b border-gold/10">
-            <h3 class="font-heading font-bold text-lg text-gold">19th Hole <span class="text-text-muted font-normal text-sm">— Informal Reflection</span></h3>
+            <h3 class="font-heading font-bold text-lg text-gold"><span data-term="vocabulary.review">19th Hole</span> <span class="text-text-muted font-normal text-sm">— Informal Reflection</span></h3>
           </div>
           <div class="p-6">
             <p class="text-text-muted text-sm mb-4">The bar after the round. Honest, unstructured, human.</p>
