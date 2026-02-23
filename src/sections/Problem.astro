@@ -9,7 +9,7 @@
         AI Agents Are Powerful. <span class="text-text-muted">But Chaotic.</span>
       </h2>
       <p class="text-text-secondary max-w-2xl mx-auto">
-        Without structure, agent sprints become unpredictable. Work gets lost. Patterns repeat. Nobody knows if the team is improving.
+        Without structure, sprint 27 looks exactly like sprint 1. Work gets lost. Patterns repeat. Nobody knows if the team is improving.
       </p>
     </div>
 
@@ -39,18 +39,18 @@
           <span class="text-emerald text-sm font-medium uppercase tracking-wider">With SLOPE</span>
         </div>
         <div class="font-mono text-xs leading-relaxed space-y-1">
-          <p class="text-emerald/80">Sprint 27 — Par 4 — Score: 4 (Par)</p>
-          <p class="text-text-secondary">Fairways: 4/4 (100%) | GIR: 3/4 (75%)</p>
-          <p class="text-text-secondary">Hazards: 1 (bunker) — guard caught & logged</p>
-          <p class="text-gold">Handicap trending: 1.5 → 1.0 (last 5)</p>
-          <p class="text-text-secondary">Miss pattern: long (43%) — dashboard tracks it</p>
-          <p class="text-emerald/60">Next: guided by briefing + guards + plugin hooks</p>
+          <p class="text-emerald/80">Sprint 27 — Expected: 4 tickets — Delivered: 4 (on target)</p>
+          <p class="text-text-secondary">Clean starts: 4/4 | Completed as planned: 3/4</p>
+          <p class="text-text-secondary">Known issues hit: 1 — caught by automated guard</p>
+          <p class="text-gold">Trending: improving (last 5 better than all-time)</p>
+          <p class="text-text-secondary">Recurring pattern flagged → won't happen again</p>
+          <p class="text-emerald/60">Next sprint: guided by briefing + performance history</p>
         </div>
       </div>
     </div>
 
     <!-- Live stats bar -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4" data-stagger>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4" data-stagger>
       <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
         <div id="stat-sprints" class="font-heading font-bold text-2xl text-emerald">27</div>
         <div class="text-text-muted text-xs mt-1">Sprints</div>
@@ -64,16 +64,8 @@
         <div class="text-text-muted text-xs mt-1">CLI Commands</div>
       </div>
       <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
-        <div id="stat-guards" class="font-heading font-bold text-2xl text-text-primary">10</div>
-        <div class="text-text-muted text-xs mt-1">Guards</div>
-      </div>
-      <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
         <div id="stat-packages" class="font-heading font-bold text-2xl text-text-secondary">5</div>
         <div class="text-text-muted text-xs mt-1">Packages</div>
-      </div>
-      <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
-        <div id="stat-metaphors" class="font-heading font-bold text-2xl text-text-secondary">6</div>
-        <div class="text-text-muted text-xs mt-1">Metaphors</div>
       </div>
     </div>
   </div>
@@ -86,18 +78,14 @@
   const statEls = {
     tests: document.getElementById('stat-tests'),
     commands: document.getElementById('stat-commands'),
-    guards: document.getElementById('stat-guards'),
     packages: document.getElementById('stat-packages'),
-    metaphors: document.getElementById('stat-metaphors'),
     sprints: document.getElementById('stat-sprints'),
   };
 
   onStatsUpdate((stats) => {
     if (statEls.tests) animateCounter(statEls.tests, stats.total_tests);
     if (statEls.commands) animateCounter(statEls.commands, stats.cli_commands);
-    if (statEls.guards) animateCounter(statEls.guards, stats.guards);
     if (statEls.packages) animateCounter(statEls.packages, stats.packages);
-    if (statEls.metaphors) animateCounter(statEls.metaphors, stats.metaphors);
     if (statEls.sprints) animateCounter(statEls.sprints, stats.sprints_completed);
   });
 </script>
