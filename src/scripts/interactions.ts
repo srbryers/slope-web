@@ -73,6 +73,60 @@ export function initShotCycle(): void {
   }
 }
 
+/** Install command tab toggle */
+export function initInstallToggle(): void {
+  const commands: Record<string, string> = {
+    npm: 'npm install -g @srbryers/cli',
+    pnpm: 'pnpm add -g @srbryers/cli',
+    bun: 'bun add -g @srbryers/cli',
+  };
+
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-pkg]');
+  const cmdEl = document.querySelector<HTMLElement>('[data-install-cmd]');
+  const copyBtn = document.querySelector<HTMLButtonElement>('[data-install-copy]');
+
+  if (!buttons.length || !cmdEl) return;
+
+  const saved = localStorage.getItem('slope-pkg-manager');
+  const initial = saved && commands[saved] ? saved : 'npm';
+
+  function activate(id: string) {
+    buttons.forEach((btn) => {
+      const isActive = btn.dataset.pkg === id;
+      btn.classList.toggle('bg-emerald/10', isActive);
+      btn.classList.toggle('text-emerald', isActive);
+      btn.classList.toggle('border', isActive);
+      btn.classList.toggle('border-emerald/20', isActive);
+      btn.classList.toggle('text-text-muted', !isActive);
+    });
+    if (cmdEl) cmdEl.textContent = commands[id];
+    localStorage.setItem('slope-pkg-manager', id);
+  }
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const pkg = btn.dataset.pkg;
+      if (pkg) activate(pkg);
+    });
+  });
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      const text = cmdEl?.textContent ?? '';
+      navigator.clipboard.writeText(text).then(() => {
+        const svg = copyBtn.querySelector('svg');
+        if (svg) {
+          const original = svg.innerHTML;
+          svg.innerHTML = '<path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />';
+          setTimeout(() => { svg.innerHTML = original; }, 1500);
+        }
+      });
+    });
+  }
+
+  activate(initial);
+}
+
 /** Initialize all interactions */
 export function initInteractions(): void {
   initParCalculator();
