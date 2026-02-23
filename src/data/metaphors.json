@@ -1,0 +1,392 @@
+{
+  "golf": {
+    "id": "golf",
+    "name": "Golf",
+    "vocabulary": {
+      "sprint": "hole",
+      "ticket": "shot",
+      "scorecard": "scorecard",
+      "handicapCard": "handicap card",
+      "briefing": "pre-round briefing",
+      "perfectScore": "hole-in-one",
+      "onTarget": "par",
+      "review": "19th hole"
+    },
+    "clubs": {
+      "driver": "Driver",
+      "long_iron": "Long Iron",
+      "short_iron": "Short Iron",
+      "wedge": "Wedge",
+      "putter": "Putter"
+    },
+    "shotResults": {
+      "fairway": "Fairway",
+      "green": "Green",
+      "in_the_hole": "In the Hole",
+      "missed_long": "Missed Long",
+      "missed_short": "Missed Short",
+      "missed_left": "Missed Left",
+      "missed_right": "Missed Right"
+    },
+    "hazards": {
+      "bunker": "Bunker",
+      "water": "Water",
+      "ob": "Out of Bounds",
+      "rough": "Rough",
+      "trees": "Trees"
+    },
+    "conditions": {
+      "wind": "Wind",
+      "rain": "Rain",
+      "frost_delay": "Frost Delay",
+      "altitude": "Altitude",
+      "pin_position": "Pin Position"
+    },
+    "specialPlays": {
+      "gimme": "Gimme",
+      "mulligan": "Mulligan",
+      "provisional": "Provisional",
+      "lay_up": "Lay Up",
+      "scramble": "Scramble"
+    },
+    "missDirections": {
+      "long": "Long",
+      "short": "Short",
+      "left": "Left",
+      "right": "Right"
+    },
+    "scoreLabels": {
+      "eagle": "Eagle",
+      "birdie": "Birdie",
+      "par": "Par",
+      "bogey": "Bogey",
+      "double_bogey": "Double Bogey",
+      "triple_plus": "Triple+"
+    }
+  },
+  "tennis": {
+    "id": "tennis",
+    "name": "Tennis",
+    "vocabulary": {
+      "sprint": "set",
+      "ticket": "point",
+      "scorecard": "match report",
+      "handicapCard": "player ranking",
+      "briefing": "pre-match scouting",
+      "perfectScore": "ace",
+      "onTarget": "game point",
+      "review": "post-match"
+    },
+    "clubs": {
+      "driver": "Power Serve",
+      "long_iron": "Baseline Rally",
+      "short_iron": "Approach Shot",
+      "wedge": "Drop Shot",
+      "putter": "Tap-in"
+    },
+    "shotResults": {
+      "fairway": "In Play",
+      "green": "Winner",
+      "in_the_hole": "Ace",
+      "missed_long": "Long (out of bounds)",
+      "missed_short": "Short (into net)",
+      "missed_left": "Wide Left",
+      "missed_right": "Wide Right"
+    },
+    "hazards": {
+      "bunker": "Double Fault",
+      "water": "Unforced Error",
+      "ob": "Foot Fault",
+      "rough": "Bad Bounce",
+      "trees": "Net Cord"
+    },
+    "conditions": {
+      "wind": "Wind",
+      "rain": "Rain Delay",
+      "frost_delay": "Schedule Delay",
+      "altitude": "Surface Change",
+      "pin_position": "Opponent Shift"
+    },
+    "specialPlays": {
+      "gimme": "Walkover",
+      "mulligan": "Let (replay)",
+      "provisional": "Challenge",
+      "lay_up": "Moonball",
+      "scramble": "Doubles Rally"
+    },
+    "missDirections": {
+      "long": "Long",
+      "short": "Short",
+      "left": "Wide Left",
+      "right": "Wide Right"
+    },
+    "scoreLabels": {
+      "eagle": "Bagel Set",
+      "birdie": "Break of Serve",
+      "par": "Game Point",
+      "bogey": "Deuce",
+      "double_bogey": "Broken Serve",
+      "triple_plus": "Bageled"
+    }
+  },
+  "baseball": {
+    "id": "baseball",
+    "name": "Baseball",
+    "vocabulary": {
+      "sprint": "inning",
+      "ticket": "at-bat",
+      "scorecard": "box score",
+      "handicapCard": "batting average",
+      "briefing": "scouting report",
+      "perfectScore": "home run",
+      "onTarget": "on base",
+      "review": "dugout"
+    },
+    "clubs": {
+      "driver": "Power Swing",
+      "long_iron": "Line Drive",
+      "short_iron": "Contact Hit",
+      "wedge": "Bunt",
+      "putter": "Sacrifice"
+    },
+    "shotResults": {
+      "fairway": "Single",
+      "green": "Double",
+      "in_the_hole": "Home Run",
+      "missed_long": "Fly Out",
+      "missed_short": "Ground Out",
+      "missed_left": "Foul Left",
+      "missed_right": "Foul Right"
+    },
+    "hazards": {
+      "bunker": "Pickle",
+      "water": "Error",
+      "ob": "Strikeout",
+      "rough": "Bad Hop",
+      "trees": "Obstruction"
+    },
+    "conditions": {
+      "wind": "Wind",
+      "rain": "Rain Delay",
+      "frost_delay": "Delayed Start",
+      "altitude": "High Altitude",
+      "pin_position": "Shift"
+    },
+    "specialPlays": {
+      "gimme": "Intentional Walk",
+      "mulligan": "Pinch Hitter",
+      "provisional": "Switch Hitter",
+      "lay_up": "Sacrifice Bunt",
+      "scramble": "Double Play"
+    },
+    "missDirections": {
+      "long": "Fly Out",
+      "short": "Ground Out",
+      "left": "Foul Left",
+      "right": "Foul Right"
+    },
+    "scoreLabels": {
+      "eagle": "Grand Slam",
+      "birdie": "Triple",
+      "par": "On Base",
+      "bogey": "Strikeout",
+      "double_bogey": "Double Play",
+      "triple_plus": "Shutout"
+    }
+  },
+  "gaming": {
+    "id": "gaming",
+    "name": "Gaming",
+    "vocabulary": {
+      "sprint": "level",
+      "ticket": "quest",
+      "scorecard": "score screen",
+      "handicapCard": "player stats",
+      "briefing": "quest log",
+      "perfectScore": "S-rank",
+      "onTarget": "clear",
+      "review": "save point"
+    },
+    "clubs": {
+      "driver": "Boss Fight",
+      "long_iron": "Dungeon",
+      "short_iron": "Side Quest",
+      "wedge": "Fetch Quest",
+      "putter": "Tutorial"
+    },
+    "shotResults": {
+      "fairway": "Progress",
+      "green": "Clear",
+      "in_the_hole": "S-Rank",
+      "missed_long": "Over-leveled",
+      "missed_short": "Under-leveled",
+      "missed_left": "Wrong Path",
+      "missed_right": "Side-tracked"
+    },
+    "hazards": {
+      "bunker": "Trap",
+      "water": "Glitch",
+      "ob": "Soft Lock",
+      "rough": "Lag",
+      "trees": "Maze"
+    },
+    "conditions": {
+      "wind": "RNG",
+      "rain": "Server Issues",
+      "frost_delay": "Loading Screen",
+      "altitude": "Difficulty Spike",
+      "pin_position": "Meta Shift"
+    },
+    "specialPlays": {
+      "gimme": "Skip Cutscene",
+      "mulligan": "Quick Load",
+      "provisional": "Save Scum",
+      "lay_up": "Grind",
+      "scramble": "Co-op"
+    },
+    "missDirections": {
+      "long": "Over-leveled",
+      "short": "Under-leveled",
+      "left": "Wrong Path",
+      "right": "Side-tracked"
+    },
+    "scoreLabels": {
+      "eagle": "S-Rank",
+      "birdie": "A-Rank",
+      "par": "B-Rank",
+      "bogey": "C-Rank",
+      "double_bogey": "D-Rank",
+      "triple_plus": "Game Over"
+    }
+  },
+  "dnd": {
+    "id": "dnd",
+    "name": "D&D",
+    "vocabulary": {
+      "sprint": "encounter",
+      "ticket": "action",
+      "scorecard": "adventure log",
+      "handicapCard": "character sheet",
+      "briefing": "quest briefing",
+      "perfectScore": "natural 20",
+      "onTarget": "hit",
+      "review": "long rest"
+    },
+    "clubs": {
+      "driver": "Fireball",
+      "long_iron": "Greatsword",
+      "short_iron": "Longsword",
+      "wedge": "Dagger",
+      "putter": "Cantrip"
+    },
+    "shotResults": {
+      "fairway": "Hit",
+      "green": "Critical Hit",
+      "in_the_hole": "Natural 20",
+      "missed_long": "Overshoot",
+      "missed_short": "Whiff",
+      "missed_left": "Fumble",
+      "missed_right": "Distracted"
+    },
+    "hazards": {
+      "bunker": "Trap",
+      "water": "Curse",
+      "ob": "TPK Risk",
+      "rough": "Difficult Terrain",
+      "trees": "Fog of War"
+    },
+    "conditions": {
+      "wind": "Wild Magic",
+      "rain": "Environmental Hazard",
+      "frost_delay": "Long Rest Required",
+      "altitude": "Level Scaling",
+      "pin_position": "DM Adjustment"
+    },
+    "specialPlays": {
+      "gimme": "Inspiration",
+      "mulligan": "Lucky Feat",
+      "provisional": "Held Action",
+      "lay_up": "Dodge Action",
+      "scramble": "Party Assist"
+    },
+    "missDirections": {
+      "long": "Overshoot",
+      "short": "Whiff",
+      "left": "Fumble",
+      "right": "Distracted"
+    },
+    "scoreLabels": {
+      "eagle": "Natural 20",
+      "birdie": "Critical Hit",
+      "par": "Hit",
+      "bogey": "Miss",
+      "double_bogey": "Critical Fail",
+      "triple_plus": "Natural 1"
+    }
+  },
+  "matrix": {
+    "id": "matrix",
+    "name": "Matrix",
+    "vocabulary": {
+      "sprint": "simulation",
+      "ticket": "operation",
+      "scorecard": "mission debrief",
+      "handicapCard": "operator rating",
+      "briefing": "operator briefing",
+      "perfectScore": "bullettime",
+      "onTarget": "connected",
+      "review": "debrief"
+    },
+    "clubs": {
+      "driver": "Red Pill",
+      "long_iron": "Upload",
+      "short_iron": "Patch",
+      "wedge": "Hotfix",
+      "putter": "Tweak"
+    },
+    "shotResults": {
+      "fairway": "Connected",
+      "green": "Decoded",
+      "in_the_hole": "Bullettime",
+      "missed_long": "Overload",
+      "missed_short": "Dropout",
+      "missed_left": "Glitch",
+      "missed_right": "Drift"
+    },
+    "hazards": {
+      "bunker": "Firewall",
+      "water": "Memory Leak",
+      "ob": "System Crash",
+      "rough": "Latency",
+      "trees": "Encryption"
+    },
+    "conditions": {
+      "wind": "Signal Noise",
+      "rain": "Cascade Failure",
+      "frost_delay": "Boot Sequence",
+      "altitude": "Stack Overflow",
+      "pin_position": "Protocol Shift"
+    },
+    "specialPlays": {
+      "gimme": "Auto-complete",
+      "mulligan": "System Restore",
+      "provisional": "Fork",
+      "lay_up": "Safe Mode",
+      "scramble": "Swarm"
+    },
+    "missDirections": {
+      "long": "Overload",
+      "short": "Dropout",
+      "left": "Glitch",
+      "right": "Drift"
+    },
+    "scoreLabels": {
+      "eagle": "The One",
+      "birdie": "Bullettime",
+      "par": "Connected",
+      "bogey": "Lag",
+      "double_bogey": "Blue Screen",
+      "triple_plus": "Unplugged"
+    }
+  }
+}

@@ -127,6 +127,45 @@ export function initInstallToggle(): void {
   activate(initial);
 }
 
+/** Metaphor switcher — swaps data-term elements based on selected metaphor */
+export function initMetaphorSwitcher(): void {
+  const dropdown = document.getElementById('metaphor-select') as HTMLSelectElement | null;
+  if (!dropdown) return;
+
+  // Dynamic import keeps the JSON out of other bundles
+  import('../data/metaphors.json').then((mod) => {
+    const metaphors: Record<string, Record<string, Record<string, string>>> = mod.default;
+
+    function resolve(metaphorId: string, path: string): string | undefined {
+      const parts = path.split('.');
+      let obj: unknown = metaphors[metaphorId];
+      for (const p of parts) {
+        if (obj && typeof obj === 'object') obj = (obj as Record<string, unknown>)[p];
+        else return undefined;
+      }
+      return typeof obj === 'string' ? obj : undefined;
+    }
+
+    function apply(metaphorId: string) {
+      const els = document.querySelectorAll<HTMLElement>('[data-term]');
+      els.forEach((el) => {
+        const term = el.dataset.term;
+        if (!term) return;
+        const value = resolve(metaphorId, term);
+        if (value) el.textContent = value;
+      });
+      dropdown!.value = metaphorId;
+      localStorage.setItem('slope-metaphor', metaphorId);
+      document.documentElement.dataset.metaphor = metaphorId;
+    }
+
+    dropdown.addEventListener('change', () => apply(dropdown.value));
+
+    const saved = localStorage.getItem('slope-metaphor') ?? 'golf';
+    if (metaphors[saved]) apply(saved);
+  });
+}
+
 /** Initialize all interactions */
 export function initInteractions(): void {
   initParCalculator();

@@ -1,16 +1,16 @@
 ---
 const mappings = [
-  { golf: 'Round', dev: 'Sprint' },
-  { golf: 'Hole', dev: 'Ticket' },
-  { golf: 'Par', dev: 'Expected complexity' },
-  { golf: 'Club selection', dev: 'Approach complexity' },
-  { golf: 'Fairway', dev: 'Clean execution path' },
-  { golf: 'Bunker', dev: 'Known gotcha' },
-  { golf: 'Water hazard', dev: 'Breaking change' },
-  { golf: 'Handicap', dev: 'Rolling performance average' },
-  { golf: 'Scorecard', dev: 'Sprint retrospective' },
-  { golf: 'Yardage book', dev: 'Codebase map' },
-  { golf: '19th Hole', dev: 'Post-sprint reflection' },
+  { golf: 'Round', dev: 'Sprint', term: '' },
+  { golf: 'Hole', dev: 'Ticket', term: 'vocabulary.sprint' },
+  { golf: 'Par', dev: 'Expected complexity', term: 'vocabulary.onTarget' },
+  { golf: 'Club selection', dev: 'Approach complexity', term: '' },
+  { golf: 'Fairway', dev: 'Clean execution path', term: 'shotResults.fairway' },
+  { golf: 'Bunker', dev: 'Known gotcha', term: 'hazards.bunker' },
+  { golf: 'Water hazard', dev: 'Breaking change', term: 'hazards.water' },
+  { golf: 'Handicap', dev: 'Rolling performance average', term: 'vocabulary.handicapCard' },
+  { golf: 'Scorecard', dev: 'Sprint retrospective', term: 'vocabulary.scorecard' },
+  { golf: 'Yardage book', dev: 'Codebase map', term: '' },
+  { golf: '19th Hole', dev: 'Post-sprint reflection', term: 'vocabulary.review' },
 ];
 ---
 
@@ -81,9 +81,9 @@ const mappings = [
 
         <!-- Right: mapping table -->
         <div class="lg:col-span-3 grid sm:grid-cols-2 gap-2" data-stagger>
-          {mappings.map(({ golf, dev }) => (
+          {mappings.map(({ golf, dev, term }) => (
             <div class="flex items-center gap-3 p-2.5 rounded-lg bg-bg-card/60 border border-border-subtle/50 hover:border-emerald/15 transition-colors">
-              <span class="text-text-muted text-sm flex-1">{golf}</span>
+              {term ? <span class="text-text-muted text-sm flex-1" data-term={term}>{golf}</span> : <span class="text-text-muted text-sm flex-1">{golf}</span>}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-text-muted/50 shrink-0" aria-hidden="true">
                 <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>

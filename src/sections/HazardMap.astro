@@ -2,6 +2,7 @@
 const hazards = [
   {
     name: 'Bunker',
+    term: 'hazards.bunker',
     label: 'Known Gotcha',
     description: 'A known issue logged in previous sprints. Sand trap — recoverable but costly.',
     color: 'text-gold',
@@ -10,6 +11,7 @@ const hazards = [
   },
   {
     name: 'Water',
+    term: 'hazards.water',
     label: 'Breaking Change',
     description: 'Drop a stroke. Breaking changes force rework and downstream fixes.',
     color: 'text-blue-400',
@@ -18,6 +20,7 @@ const hazards = [
   },
   {
     name: 'OB',
+    term: 'hazards.ob',
     label: 'Scope Creep',
     description: 'Out of bounds. Work that extends beyond the ticket boundary.',
     color: 'text-red-400',
@@ -26,6 +29,7 @@ const hazards = [
   },
   {
     name: 'Rough',
+    term: 'hazards.rough',
     label: 'Tech Debt',
     description: 'Playable but slower. Existing debt that drags down execution speed.',
     color: 'text-text-secondary',
@@ -34,6 +38,7 @@ const hazards = [
   },
   {
     name: 'Trees',
+    term: 'hazards.trees',
     label: 'Blocking Deps',
     description: 'Can\'t take a direct shot. Dependencies that force detours.',
     color: 'text-emerald',
@@ -56,10 +61,10 @@ const hazards = [
 
     <!-- Hazard taxonomy -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16" data-stagger>
-      {hazards.map(({ name, label, description, color, bg, border }) => (
+      {hazards.map(({ name, term, label, description, color, bg, border }) => (
         <div class={`rounded-xl border ${border} ${bg} p-5 hover:scale-[1.02] transition-transform`}>
           <div class="flex items-center gap-2 mb-3">
-            <span class={`font-heading font-bold text-lg ${color}`}>{name}</span>
+            <span class={`font-heading font-bold text-lg ${color}`} data-term={term}>{name}</span>
             <span class="text-text-muted text-xs">/ {label}</span>
           </div>
           <p class="text-text-secondary text-sm leading-relaxed">{description}</p>

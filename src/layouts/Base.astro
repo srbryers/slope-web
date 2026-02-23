@@ -52,6 +52,11 @@ const ogImageURL = `${SITE_URL}/og-image.svg`;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
 
+    <!-- FOUC prevention: apply saved metaphor before first paint -->
+    <script is:inline>
+      (function(){var m=localStorage.getItem('slope-metaphor');if(m)document.documentElement.dataset.metaphor=m;})();
+    </script>
+
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
@@ -67,6 +72,30 @@ const ogImageURL = `${SITE_URL}/og-image.svg`;
     })} />
   </head>
   <body>
+    <!-- Metaphor switcher — fixed top-right -->
+    <div class="fixed top-4 right-4 z-50">
+      <select
+        id="metaphor-select"
+        class="appearance-none bg-bg-card border border-border rounded-lg px-3 py-1.5 pr-8 text-xs font-mono text-text-secondary hover:border-emerald/40 focus:border-emerald focus:outline-none transition-colors cursor-pointer"
+        aria-label="Switch metaphor"
+      >
+        <option value="golf">Golf</option>
+        <option value="tennis">Tennis</option>
+        <option value="baseball">Baseball</option>
+        <option value="gaming">Gaming</option>
+        <option value="dnd">D&D</option>
+        <option value="matrix">Matrix</option>
+      </select>
+      <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-text-muted" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+
     <slot />
+
+    <script>
+      import { initMetaphorSwitcher } from '../scripts/interactions';
+      initMetaphorSwitcher();
+    </script>
   </body>
 </html>
