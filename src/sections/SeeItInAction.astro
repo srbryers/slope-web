@@ -40,22 +40,31 @@ const metaphors = [
       ))}
     </div>
 
-    <!-- Sprint summary card -->
-    <div class="rounded-xl border border-emerald/20 bg-bg-card p-6 sm:p-8" data-reveal>
-      <div class="flex items-center gap-2 mb-4">
-        <span class="w-2 h-2 rounded-full bg-emerald"></span>
-        <span id="inline-card-header" class="text-text-muted text-xs font-mono uppercase tracking-wider">Sprint 28 Summary</span>
-      </div>
-      <div class="font-mono text-sm sm:text-base space-y-2">
-        <p id="inline-card-line1" class="text-emerald font-bold">Par 4, Score 4</p>
-        <p id="inline-card-line2" class="text-text-secondary">Fairway: 4/4 | GIR: 3/4 | Bunkers: 1</p>
-        <p id="inline-card-line3" class="text-gold">Handicap: 1.2 — trending down</p>
-      </div>
-      <div class="mt-6 pt-4 border-t border-border">
-        <p class="text-text-muted text-xs">
-          Same underlying data. Different vocabulary. The engine is identical — the language is a skin.
-        </p>
-      </div>
+    <!-- Terminology table -->
+    <div class="rounded-xl border border-emerald/20 bg-bg-card overflow-hidden" data-reveal>
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-border">
+            <th class="text-left px-4 sm:px-6 py-3 text-text-muted text-xs font-mono uppercase tracking-wider">Concept</th>
+            <th class="text-left px-4 sm:px-6 py-3 text-emerald text-xs font-mono uppercase tracking-wider">Metaphor Term</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-border/50">
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Sprint</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.sprint">Hole</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Ticket</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.ticket">Shot</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Scorecard</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.scorecard">Scorecard</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Performance Card</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.handicapCard">Handicap Card</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Briefing</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.briefing">Pre-round Briefing</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Perfect Score</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.perfectScore">Hole-in-one</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">On Target</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.onTarget">Par</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Review</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.review">19th Hole</td></tr>
+          <tr class="border-t border-border"><td class="px-4 sm:px-6 py-2.5 text-text-secondary">High-risk approach</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="clubs.driver">Driver</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Precision approach</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="clubs.wedge">Wedge</td></tr>
+          <tr class="border-t border-border"><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Known gotcha</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="hazards.bunker">Bunker</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Breaking change</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="hazards.water">Water</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Scope creep</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="hazards.ob">Out of Bounds</td></tr>
+        </tbody>
+      </table>
     </div>
 
     <!-- CTA -->

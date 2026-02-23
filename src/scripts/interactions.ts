@@ -179,120 +179,12 @@ export function initMetaphorSwitcher(): void {
   });
 }
 
-/** Metaphor vocabulary for card line generation */
-interface MetaphorVocab {
-  header: (sprint: number) => string;
-  line1: (par: number, score: number, label: string) => string;
-  line2: (fh: number, ft: number, gir: number, par: number, hazards: number) => string;
-  line3: (handicap: number) => string;
-}
-
-const metaphorVocabs: Record<string, MetaphorVocab> = {
-  golf: {
-    header: (s) => `Sprint ${s} Summary`,
-    line1: (par, score, _label) => `Par ${par}, Score ${score}`,
-    line2: (fh, ft, gir, par, hz) => `Fairway: ${fh}/${ft} | GIR: ${gir}/${par} | Bunkers: ${hz}`,
-    line3: (h) => `Handicap: ${h.toFixed(1)} \u2014 trending down`,
-  },
-  tennis: {
-    header: (s) => `Match ${s} Summary`,
-    line1: (_par, _score, label) => `Game Point, ${label === 'par' || label === 'birdie' || label === 'eagle' ? 'Set Won' : 'Deuce'}`,
-    line2: (fh, ft, gir, par, hz) => `In Play: ${fh}/${ft} | Winners: ${gir}/${par} | Double Faults: ${hz}`,
-    line3: (h) => `Ranking: ${h.toFixed(1)} \u2014 trending up`,
-  },
-  baseball: {
-    header: (s) => `Game ${s} Box Score`,
-    line1: (par, _score, label) => `Inning ${par}, ${label === 'par' || label === 'birdie' || label === 'eagle' ? 'On Base' : 'Strikeout'}`,
-    line2: (fh, ft, gir, par, hz) => `Singles: ${fh}/${ft} | Doubles: ${gir}/${par} | Pickles: ${hz}`,
-    line3: (h) => `Batting Avg: ${h.toFixed(1)} \u2014 trending up`,
-  },
-  gaming: {
-    header: (s) => `Level ${s} Report`,
-    line1: (par, score, _label) => `Level ${par}, ${score <= par ? 'S' : 'B'}-Rank Clear`,
-    line2: (fh, ft, gir, par, hz) => `Progress: ${fh}/${ft} | Clears: ${gir}/${par} | Traps: ${hz}`,
-    line3: (h) => `Player Stats: ${h.toFixed(1)} \u2014 leveling up`,
-  },
-  dnd: {
-    header: (s) => `Encounter ${s} Log`,
-    line1: (par, _score, label) => `CR ${par}, ${label === 'par' || label === 'birdie' || label === 'eagle' ? 'Hit' : 'Miss'}`,
-    line2: (fh, ft, gir, par, hz) => `Hits: ${fh}/${ft} | Crits: ${gir}/${par} | Traps: ${hz}`,
-    line3: (h) => `Character Level: ${h.toFixed(1)} \u2014 gaining XP`,
-  },
-  matrix: {
-    header: (s) => `Simulation ${s} Debrief`,
-    line1: (par, _score, label) => `Simulation ${par}, ${label === 'par' || label === 'birdie' || label === 'eagle' ? 'Connected' : 'Disrupted'}`,
-    line2: (fh, ft, gir, par, hz) => `Connected: ${fh}/${ft} | Decoded: ${gir}/${par} | Firewalls: ${hz}`,
-    line3: (h) => `Operator Rating: ${h.toFixed(1)} \u2014 signal strong`,
-  },
-};
-
-/** Inline metaphor showcase — pills in "See It In Action" that re-render a sprint card */
+/** Inline metaphor showcase — pills in "See It In Action" that switch data-term elements */
 export function initInlineSwitcher(): void {
   const pills = document.querySelectorAll<HTMLElement>('[data-inline-metaphor]');
-  const line1 = document.getElementById('inline-card-line1');
-  const line2 = document.getElementById('inline-card-line2');
-  const line3 = document.getElementById('inline-card-line3');
-  const headerEl = document.getElementById('inline-card-header');
-
-  if (!pills.length || !line1 || !line2 || !line3) return;
-
-  // Live scorecard data — updated from API
-  let scorecard = {
-    sprint: 28,
-    par: 4,
-    score: 4,
-    score_label: 'par',
-    handicap: 1.2,
-    stats: { fairway_hits: 4, fairway_total: 4, gir: 3, hazards_hit: 1 },
-  };
-
-  // Subscribe to live stats for real scorecard data
-  import('../scripts/live-stats').then(({ onStatsUpdate, getStats }) => {
-    function applyScorecard(stats: ReturnType<typeof getStats>) {
-      if (stats.latest_scorecard) {
-        const sc = stats.latest_scorecard;
-        scorecard = {
-          sprint: sc.sprint,
-          par: sc.par,
-          score: sc.score,
-          score_label: sc.score_label,
-          handicap: stats.handicap.all_time.handicap,
-          stats: sc.stats,
-        };
-        // Re-render with current metaphor (header updated by renderCard)
-        const current = localStorage.getItem('slope-metaphor') ?? 'golf';
-        renderCard(current);
-      }
-    }
-
-    // Apply from current stats immediately
-    applyScorecard(getStats());
-    // Subscribe to future updates
-    onStatsUpdate(applyScorecard);
-  });
-
-  function buildCardLines(metaphorId: string): { line1: string; line2: string; line3: string } {
-    const vocab = metaphorVocabs[metaphorId] ?? metaphorVocabs.golf;
-    const { par, score, score_label, handicap, stats } = scorecard;
-    return {
-      line1: vocab.line1(par, score, score_label),
-      line2: vocab.line2(stats.fairway_hits, stats.fairway_total, stats.gir, par, stats.hazards_hit),
-      line3: vocab.line3(handicap),
-    };
-  }
-
-  function renderCard(metaphorId: string) {
-    const vocab = metaphorVocabs[metaphorId] ?? metaphorVocabs.golf;
-    const card = buildCardLines(metaphorId);
-    if (headerEl) headerEl.textContent = vocab.header(scorecard.sprint);
-    line1!.textContent = card.line1;
-    line2!.textContent = card.line2;
-    line3!.textContent = card.line3;
-  }
+  if (!pills.length) return;
 
   function activate(metaphorId: string) {
-    renderCard(metaphorId);
-
     // Update pill styles
     pills.forEach((pill) => {
       const isActive = pill.dataset.inlineMetaphor === metaphorId;
