@@ -1,0 +1,70 @@
+{
+  "sprint_number": 30,
+  "theme": "Content Audit Remediation",
+  "par": 4,
+  "slope": 1,
+  "score": 4,
+  "score_label": "par",
+  "date": "2026-02-23",
+  "shots": [
+    {
+      "ticket_key": "S30-1",
+      "title": "Unify sprint count data around live API FALLBACK",
+      "club": "short_iron",
+      "result": "fairway",
+      "hazards": [],
+      "notes": "Exported FALLBACK_SPRINTS constant, updated 4 files with hardcoded sprint numbers."
+    },
+    {
+      "ticket_key": "S30-2",
+      "title": "Fix metaphor switcher + label example data",
+      "club": "short_iron",
+      "result": "green",
+      "hazards": [],
+      "notes": "Added header() to MetaphorVocab, fixed 3 line1 signatures, added EXAMPLE badge."
+    },
+    {
+      "ticket_key": "S30-3",
+      "title": "Fix SEO meta descriptions",
+      "club": "wedge",
+      "result": "in_the_hole",
+      "hazards": [],
+      "notes": "Removed overclaiming language from meta descriptions and JSON-LD."
+    },
+    {
+      "ticket_key": "S30-4",
+      "title": "Accessibility fixes for interactive elements",
+      "club": "short_iron",
+      "result": "green",
+      "hazards": [],
+      "notes": "Added focus-visible styles and aria-live regions to dynamic containers."
+    }
+  ],
+  "conditions": [],
+  "special_plays": [],
+  "stats": {
+    "fairways_hit": 4,
+    "fairways_total": 4,
+    "greens_in_regulation": 3,
+    "greens_total": 4,
+    "putts": 1,
+    "penalties": 0,
+    "hazards_hit": 0,
+    "hazard_penalties": 0,
+    "miss_directions": {
+      "long": 0,
+      "short": 0,
+      "left": 0,
+      "right": 0
+    }
+  },
+  "yardage_book_updates": [
+    "FALLBACK_SPRINTS exported as single source of truth for build-time rendering",
+    "MetaphorVocab interface now requires header() function"
+  ],
+  "bunker_locations": [],
+  "course_management_notes": [
+    "Broad file surface (10 files) but all changes were surgical — no hazards hit.",
+    "Metaphor switcher fix was the most complex; line1 signature inconsistency was subtle."
+  ]
+}
