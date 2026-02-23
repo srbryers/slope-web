@@ -1,0 +1,113 @@
+---
+const metaphors = [
+  { id: 'golf', name: 'Golf', desc: 'You vs the course' },
+  { id: 'tennis', name: 'Tennis', desc: 'Serve, rally, match point' },
+  { id: 'baseball', name: 'Baseball', desc: 'Innings and home runs' },
+  { id: 'gaming', name: 'Gaming', desc: 'XP and boss fights' },
+  { id: 'dnd', name: 'D&D', desc: 'Quests and encounters' },
+  { id: 'matrix', name: 'Matrix', desc: 'Red pill, blue pill' },
+];
+
+// Sprint card data per metaphor — same underlying data, different vocabulary
+const cards: Record<string, { line1: string; line2: string; line3: string }> = {
+  golf: {
+    line1: 'Par 4, Score 4',
+    line2: 'Fairway: 4/4 | GIR: 3/4 | Bunkers: 1',
+    line3: 'Handicap: 1.2 — trending down',
+  },
+  tennis: {
+    line1: 'Game Point, Set Won',
+    line2: 'In Play: 4/4 | Winners: 3/4 | Double Faults: 1',
+    line3: 'Ranking: 1.2 — trending up',
+  },
+  baseball: {
+    line1: 'Inning 4, On Base',
+    line2: 'Singles: 4/4 | Doubles: 3/4 | Pickles: 1',
+    line3: 'Batting Avg: 1.2 — trending up',
+  },
+  gaming: {
+    line1: 'Level 4, B-Rank Clear',
+    line2: 'Progress: 4/4 | Clears: 3/4 | Traps: 1',
+    line3: 'Player Stats: 1.2 — leveling up',
+  },
+  dnd: {
+    line1: 'CR 4, Hit',
+    line2: 'Hits: 4/4 | Crits: 3/4 | Traps: 1',
+    line3: 'Character Level: 1.2 — gaining XP',
+  },
+  matrix: {
+    line1: 'Simulation 4, Connected',
+    line2: 'Connected: 4/4 | Decoded: 3/4 | Firewalls: 1',
+    line3: 'Operator Rating: 1.2 — signal strong',
+  },
+};
+---
+
+<section id="see-it-in-action" class="py-24 sm:py-32 bg-bg-surface/30">
+  <div class="max-w-4xl mx-auto px-6">
+    <!-- Section header -->
+    <div class="text-center mb-12" data-reveal>
+      <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">See It In Action</p>
+      <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
+        Pick the language your team already speaks
+      </h2>
+      <p class="text-text-secondary max-w-xl mx-auto">
+        Same sprint. Same engine. Same data. Watch the vocabulary change.
+      </p>
+    </div>
+
+    <!-- Inline metaphor picker — 2×3 grid on mobile, single row on desktop -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mb-10" data-stagger>
+      {metaphors.map(({ id, name, desc }) => (
+        <button
+          data-inline-metaphor={id}
+          class:list={[
+            'inline-metaphor-pill rounded-lg border p-3 sm:p-4 text-center transition-all cursor-pointer min-h-[44px]',
+            id === 'golf'
+              ? 'border-emerald/40 bg-emerald/10 text-emerald'
+              : 'border-border bg-bg-card text-text-muted hover:border-emerald/20 hover:text-text-secondary',
+          ]}
+        >
+          <div class="font-heading font-bold text-sm">{name}</div>
+          <div class="text-[10px] sm:text-xs mt-0.5 opacity-70 leading-tight">{desc}</div>
+        </button>
+      ))}
+    </div>
+
+    <!-- Sprint summary card -->
+    <div class="rounded-xl border border-emerald/20 bg-bg-card p-6 sm:p-8" data-reveal>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-2 h-2 rounded-full bg-emerald"></span>
+        <span class="text-text-muted text-xs font-mono uppercase tracking-wider">Sprint 27 Summary</span>
+      </div>
+      <div class="font-mono text-sm sm:text-base space-y-2">
+        <p id="inline-card-line1" class="text-emerald font-bold">Par 4, Score 4</p>
+        <p id="inline-card-line2" class="text-text-secondary">Fairway: 4/4 | GIR: 3/4 | Bunkers: 1</p>
+        <p id="inline-card-line3" class="text-gold">Handicap: 1.2 — trending down</p>
+      </div>
+      <div class="mt-6 pt-4 border-t border-border">
+        <p class="text-text-muted text-xs">
+          Same underlying data. Different vocabulary. The engine is identical — the language is a skin.
+        </p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-10" data-reveal>
+      <a
+        href="/slope-framework"
+        class="inline-flex items-center gap-2 text-emerald hover:text-emerald/80 transition-colors font-heading font-bold text-sm"
+      >
+        Explore the full framework
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initInlineSwitcher } from '../scripts/interactions';
+  initInlineSwitcher();
+</script>
