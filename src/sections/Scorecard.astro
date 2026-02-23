@@ -1,0 +1,134 @@
+---
+---
+
+<section id="scorecard" class="py-24 sm:py-32 bg-bg-surface/50">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16" data-reveal>
+      <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
+        The Scorecard
+      </h2>
+      <p class="text-text-secondary max-w-2xl mx-auto">
+        Real data from real sprints. Every scorecard is computed automatically from ticket outcomes — no manual counting.
+      </p>
+    </div>
+
+    <!-- Live scorecard table -->
+    <div class="rounded-xl border border-border bg-bg-card overflow-hidden mb-12" data-reveal>
+      <!-- Header -->
+      <div class="bg-forest/10 border-b border-border px-6 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald animate-pulse"></span>
+          <span class="font-heading font-bold text-sm text-emerald">Live Scorecards</span>
+        </div>
+        <span class="font-mono text-xs text-text-muted">live reference data</span>
+      </div>
+
+      <!-- Table -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-border-subtle text-text-muted">
+              <th class="text-left px-6 py-3 font-medium text-xs uppercase tracking-wider">Sprint</th>
+              <th class="text-left px-4 py-3 font-medium text-xs uppercase tracking-wider">Theme</th>
+              <th class="text-center px-4 py-3 font-medium text-xs uppercase tracking-wider">Par</th>
+              <th class="text-center px-4 py-3 font-medium text-xs uppercase tracking-wider">Score</th>
+              <th class="text-center px-4 py-3 font-medium text-xs uppercase tracking-wider">Result</th>
+            </tr>
+          </thead>
+          <tbody id="scorecard-body">
+            <!-- Populated by JS from live data -->
+            <tr class="border-b border-border-subtle/50">
+              <td class="px-6 py-3 font-mono text-text-primary">#175</td>
+              <td class="px-4 py-3 text-text-secondary">demo exploration</td>
+              <td class="px-4 py-3 text-center font-mono">3</td>
+              <td class="px-4 py-3 text-center font-mono font-bold">3</td>
+              <td class="px-4 py-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-emerald/10 text-emerald">Par</span></td>
+            </tr>
+            <tr class="border-b border-border-subtle/50">
+              <td class="px-6 py-3 font-mono text-text-primary">#174</td>
+              <td class="px-4 py-3 text-text-secondary">guided first-project</td>
+              <td class="px-4 py-3 text-center font-mono">3</td>
+              <td class="px-4 py-3 text-center font-mono font-bold">4</td>
+              <td class="px-4 py-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-medium bg-gold/10 text-gold">Bogey</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Handicap trending -->
+    <div class="grid sm:grid-cols-3 gap-6" data-stagger>
+      <div class="rounded-xl border border-border bg-bg-card p-6 text-center">
+        <div class="text-text-muted text-xs uppercase tracking-wider mb-2">Last 5 Rounds</div>
+        <div id="handicap-5" class="font-heading font-bold text-3xl text-emerald mb-1">1.2</div>
+        <div class="text-text-muted text-xs font-mono">
+          <span id="fairway-5">85%</span> FW | <span id="gir-5">78%</span> GIR
+        </div>
+      </div>
+      <div class="rounded-xl border border-border bg-bg-card p-6 text-center">
+        <div class="text-text-muted text-xs uppercase tracking-wider mb-2">Last 10 Rounds</div>
+        <div id="handicap-10" class="font-heading font-bold text-3xl text-gold mb-1">1.5</div>
+        <div class="text-text-muted text-xs font-mono">
+          <span id="fairway-10">82%</span> FW | <span id="gir-10">75%</span> GIR
+        </div>
+      </div>
+      <div class="rounded-xl border border-border bg-bg-card p-6 text-center">
+        <div class="text-text-muted text-xs uppercase tracking-wider mb-2">All Time</div>
+        <div id="handicap-all" class="font-heading font-bold text-3xl text-text-secondary mb-1">2.1</div>
+        <div class="text-text-muted text-xs font-mono">
+          <span id="fairway-all">76%</span> FW | <span id="gir-all">70%</span> GIR
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { onStatsUpdate, type SlopeStats } from '../scripts/live-stats';
+
+  function scoreLabelColor(label: string): string {
+    const l = label.toLowerCase();
+    if (l === 'eagle' || l === 'birdie') return 'bg-emerald/10 text-emerald';
+    if (l === 'par') return 'bg-emerald/10 text-emerald';
+    if (l === 'bogey') return 'bg-gold/10 text-gold';
+    return 'bg-red-500/10 text-red-400';
+  }
+
+  function updateScorecard(stats: SlopeStats) {
+    const body = document.getElementById('scorecard-body');
+    if (!body || !stats.recent_scorecards.length) return;
+
+    body.innerHTML = stats.recent_scorecards.map((sc) => `
+      <tr class="border-b border-border-subtle/50">
+        <td class="px-6 py-3 font-mono text-text-primary">#${sc.sprint}</td>
+        <td class="px-4 py-3 text-text-secondary">${sc.theme}</td>
+        <td class="px-4 py-3 text-center font-mono">${sc.par}</td>
+        <td class="px-4 py-3 text-center font-mono font-bold">${sc.score}</td>
+        <td class="px-4 py-3 text-center">
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-medium ${scoreLabelColor(sc.score_label)}">${sc.score_label}</span>
+        </td>
+      </tr>
+    `).join('');
+
+    // Update handicap cards
+    const h = stats.handicap;
+    const set = (id: string, val: string | number) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = String(val);
+    };
+
+    set('handicap-5', h.last_5.handicap.toFixed(1));
+    set('fairway-5', h.last_5.fairway_pct.toFixed(0) + '%');
+    set('gir-5', h.last_5.gir_pct.toFixed(0) + '%');
+
+    set('handicap-10', h.last_10.handicap.toFixed(1));
+    set('fairway-10', h.last_10.fairway_pct.toFixed(0) + '%');
+    set('gir-10', h.last_10.gir_pct.toFixed(0) + '%');
+
+    set('handicap-all', h.all_time.handicap.toFixed(1));
+    set('fairway-all', h.all_time.fairway_pct.toFixed(0) + '%');
+    set('gir-all', h.all_time.gir_pct.toFixed(0) + '%');
+  }
+
+  onStatsUpdate(updateScorecard);
+</script>

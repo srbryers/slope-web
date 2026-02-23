@@ -1,0 +1,139 @@
+---
+---
+
+<section id="nineteenth-hole" class="py-24 sm:py-32 relative overflow-hidden">
+  <!-- Warm gradient background -->
+  <div class="absolute inset-0 bg-gradient-to-b from-bg-primary via-[#1a1610] to-bg-primary opacity-50"></div>
+
+  <div class="relative z-10 max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16" data-reveal>
+      <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
+        The 19th Hole
+      </h2>
+      <p class="text-text-secondary max-w-2xl mx-auto">
+        In golf, the 19th hole is where you sit down after the round and talk about what happened. In SLOPE, it's where improvement actually happens.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+      <!-- Retrospective process -->
+      <div class="rounded-xl border border-gold/10 bg-bg-card/80 p-8" data-reveal>
+        <h3 class="font-heading font-bold text-xl mb-6 text-gold">Post-Round Reflection</h3>
+        <div class="space-y-5">
+          <div class="flex gap-4">
+            <div class="w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center shrink-0 text-gold text-sm font-bold">1</div>
+            <div>
+              <div class="text-text-primary font-medium text-sm">Score the hole</div>
+              <div class="text-text-muted text-xs">Audit commits, compute final score vs par, assign a score label</div>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center shrink-0 text-gold text-sm font-bold">2</div>
+            <div>
+              <div class="text-text-primary font-medium text-sm">Build the scorecard</div>
+              <div class="text-text-muted text-xs">Auto-computed stats: fairways, GIR, putts, penalties, miss directions</div>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center shrink-0 text-gold text-sm font-bold">3</div>
+            <div>
+              <div class="text-text-primary font-medium text-sm">Distill learnings</div>
+              <div class="text-text-muted text-xs">New gotchas become bunker locations. Patterns become training drills.</div>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center shrink-0 text-gold text-sm font-bold">4</div>
+            <div>
+              <div class="text-text-primary font-medium text-sm">Update the handicap</div>
+              <div class="text-text-muted text-xs">Rolling averages recalculate. The trajectory becomes visible.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Training focus — what the data teaches you -->
+      <div class="rounded-xl border border-emerald/10 bg-bg-card/80 p-8" data-reveal>
+        <h3 class="font-heading font-bold text-xl mb-6 text-emerald">What the Data Teaches</h3>
+        <div class="space-y-6">
+          <!-- Miss pattern insight -->
+          <div class="p-4 rounded-lg bg-bg-primary/50 border border-border-subtle">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-text-muted text-xs uppercase tracking-wider">Dominant miss</span>
+              <span class="flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald animate-pulse"></span>
+                <span class="text-text-muted text-xs font-mono">live</span>
+              </span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span id="nh-miss-dir" class="font-heading font-bold text-2xl text-gold">Long</span>
+              <span class="text-text-muted text-sm">— overscoping is the #1 pattern</span>
+            </div>
+            <p class="text-text-muted text-xs mt-2">When most misses go long, sprints are being underestimated. The fix: tighter scoping, more wedge shots, fewer drivers.</p>
+          </div>
+
+          <!-- Trend insight -->
+          <div class="p-4 rounded-lg bg-bg-primary/50 border border-border-subtle">
+            <div class="text-text-muted text-xs uppercase tracking-wider mb-2">Handicap trajectory</div>
+            <div class="flex items-baseline gap-3 mb-2">
+              <span class="font-mono text-text-muted text-lg line-through" id="nh-hc-all">2.1</span>
+              <svg width="20" height="12" viewBox="0 0 20 12" class="text-emerald" aria-hidden="true">
+                <path d="M2 10 L10 5 L18 2" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" />
+              </svg>
+              <span class="font-heading font-bold text-2xl text-emerald" id="nh-hc-5">1.2</span>
+            </div>
+            <p class="text-text-muted text-xs">Consistent routines compound. The yardage book gets richer every sprint. Bunker locations prevent repeat mistakes.</p>
+          </div>
+
+          <!-- Training types -->
+          <div class="p-4 rounded-lg bg-bg-primary/50 border border-border-subtle">
+            <div class="text-text-muted text-xs uppercase tracking-wider mb-3">Training program</div>
+            <div class="grid grid-cols-2 gap-2">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald"></span>
+                <span class="text-text-secondary text-xs">Driving range</span>
+                <span class="text-text-muted text-xs font-mono ml-auto">research</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-gold"></span>
+                <span class="text-text-secondary text-xs">Chipping</span>
+                <span class="text-text-muted text-xs font-mono ml-auto">feedback</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                <span class="text-text-secondary text-xs">Putting</span>
+                <span class="text-text-muted text-xs font-mono ml-auto">tests</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-text-secondary"></span>
+                <span class="text-text-secondary text-xs">Lessons</span>
+                <span class="text-text-muted text-xs font-mono ml-auto">specs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { onStatsUpdate, type SlopeStats } from '../scripts/live-stats';
+
+  function updateNineteenthHole(stats: SlopeStats) {
+    const mp = stats.miss_pattern;
+    const directions = Object.entries(mp).sort((a, b) => b[1] - a[1]);
+    const dominant = directions[0];
+
+    const dirEl = document.getElementById('nh-miss-dir');
+    if (dirEl && dominant) {
+      dirEl.textContent = dominant[0].charAt(0).toUpperCase() + dominant[0].slice(1);
+    }
+
+    const hcAll = document.getElementById('nh-hc-all');
+    const hc5 = document.getElementById('nh-hc-5');
+    if (hcAll) hcAll.textContent = stats.handicap.all_time.handicap.toFixed(1);
+    if (hc5) hc5.textContent = stats.handicap.last_5.handicap.toFixed(1);
+  }
+
+  onStatsUpdate(updateNineteenthHole);
+</script>

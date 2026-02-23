@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/global.css';
+---
+
+<Base title="Page Not Found — SLOPE" description="The page you're looking for doesn't exist.">
+  <main class="min-h-screen flex items-center justify-center px-6">
+    <div class="text-center max-w-md">
+      <p class="font-mono text-6xl text-emerald mb-4">OB</p>
+      <h1 class="font-heading font-bold text-2xl mb-3">Out of Bounds</h1>
+      <p class="text-text-secondary mb-8">
+        That shot went wide. The page you're looking for doesn't exist or has been moved.
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-emerald text-bg-primary font-heading font-bold text-sm hover:bg-emerald/90 transition-colors"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        Back to the Fairway
+      </a>
+    </div>
+  </main>
+</Base>

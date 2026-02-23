@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+/* ===== Brand Tokens ===== */
+@theme {
+  --color-forest: #1B5E3B;
+  --color-emerald: #4AE68A;
+  --color-gold: #D4A843;
+
+  --color-bg-primary: #0F1210;
+  --color-bg-surface: #161B17;
+  --color-bg-card: #1C221D;
+  --color-bg-card-hover: #232A24;
+
+  --color-text-primary: #F0EDE6;
+  --color-text-secondary: #8B9A8E;
+  --color-text-muted: #849784;
+
+  --color-border: #2A332C;
+  --color-border-subtle: #1F2721;
+
+  --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
+}
+
+/* ===== Base ===== */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===== Selection ===== */
+::selection {
+  background-color: rgba(74, 230, 138, 0.25);
+  color: var(--color-text-primary);
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ===== Read the Green (deep-dive details) ===== */
+details.read-the-green {
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, rgba(27, 94, 59, 0.06), var(--color-bg-card));
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+details.read-the-green:hover {
+  border-color: var(--color-border);
+}
+
+details.read-the-green[open] {
+  border-color: rgba(74, 230, 138, 0.15);
+}
+
+details.read-the-green summary {
+  cursor: pointer;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  list-style: none;
+  user-select: none;
+}
+
+details.read-the-green summary::-webkit-details-marker { display: none; }
+details.read-the-green summary::marker { display: none; content: ''; }
+
+details.read-the-green summary .chevron {
+  transition: transform 0.2s;
+  color: var(--color-text-muted);
+}
+
+details.read-the-green[open] summary .chevron {
+  transform: rotate(90deg);
+  color: var(--color-emerald);
+}
+
+details.read-the-green .deep-content {
+  padding: 1.25rem;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+/* ===== Flow diagram nodes ===== */
+.flow-node {
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.flow-node:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}

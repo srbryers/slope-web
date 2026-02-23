@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#0F1210"/>
+  <!-- Subtle grid -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="0.5" fill="#1F2721"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <!-- Emerald accent line -->
+  <rect x="80" y="200" width="4" height="230" rx="2" fill="#4AE68A"/>
+  <!-- Title -->
+  <text x="108" y="260" fill="#F0EDE6" font-family="system-ui, sans-serif" font-size="64" font-weight="800">SLOPE</text>
+  <!-- Subtitle -->
+  <text x="108" y="320" fill="#8B9A8E" font-family="system-ui, sans-serif" font-size="28" font-weight="500">Sprint Lifecycle &amp; Operational</text>
+  <text x="108" y="360" fill="#8B9A8E" font-family="system-ui, sans-serif" font-size="28" font-weight="500">Performance Engine</text>
+  <!-- Tagline -->
+  <text x="108" y="420" fill="#5A6B5E" font-family="system-ui, sans-serif" font-size="20" font-weight="400">A framework for measuring AI agent performance</text>
+  <!-- Flag icon -->
+  <line x1="1040" y1="160" x2="1040" y2="470" stroke="#4AE68A" stroke-width="3" stroke-linecap="round"/>
+  <path d="M1040 160 L1100 190 L1040 220" fill="#4AE68A" opacity="0.8"/>
+  <circle cx="1040" cy="470" r="6" fill="#4AE68A" opacity="0.4"/>
+  <!-- Bottom bar -->
+  <rect x="0" y="610" width="1200" height="20" fill="#1B5E3B"/>
+</svg>

@@ -1,0 +1,119 @@
+---
+const preShot = [
+  { step: 'Read yardage book', detail: 'Check codebase map for target files' },
+  { step: 'Select club', detail: 'Declare approach: driver → putter' },
+  { step: 'Scan hazards', detail: 'Check bunker locations from past sprints' },
+];
+
+const execute = [
+  { step: 'Write code', detail: 'Implement the ticket on a feature branch' },
+  { step: 'Run tests', detail: 'Pre-PR checklist: typecheck + unit + e2e' },
+  { step: 'Commit & push', detail: 'Recovery point every 30 minutes' },
+];
+
+const postShot = [
+  { step: 'Score the shot', detail: 'Fairway? Green? In the hole? Miss?' },
+  { step: 'Record hazards', detail: 'Log gotchas for future yardage books' },
+  { step: 'Log miss direction', detail: 'Long? Short? Left? Right?' },
+];
+---
+
+<section id="shot-cycle" class="py-24 sm:py-32">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16" data-reveal>
+      <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
+        The Shot Cycle
+      </h2>
+      <p class="text-text-secondary max-w-2xl mx-auto">
+        Every ticket follows a routine. Preparation, execution, and review — so nothing falls through the cracks.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6" data-stagger>
+      <!-- Pre-Shot -->
+      <div data-cycle-step class="rounded-xl border border-border bg-bg-card p-6 transition-all duration-300 opacity-100 scale-100">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-lg bg-forest/20 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-emerald" aria-hidden="true">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" stroke="currentColor" stroke-width="2" />
+              <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-heading font-bold text-lg text-emerald">Pre-Shot</h3>
+            <p class="text-text-muted text-xs">Before writing code</p>
+          </div>
+        </div>
+        <div class="space-y-3">
+          {preShot.map(({ step, detail }, i) => (
+            <div class="flex gap-3 items-start">
+              <span class="font-mono text-xs text-text-muted mt-0.5">{i + 1}.</span>
+              <div>
+                <div class="text-text-primary text-sm font-medium">{step}</div>
+                <div class="text-text-muted text-xs">{detail}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Execute -->
+      <div data-cycle-step class="rounded-xl border border-border bg-bg-card p-6 transition-all duration-300 opacity-40 scale-100">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-lg bg-forest/20 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-emerald" aria-hidden="true">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-heading font-bold text-lg text-emerald">Execute</h3>
+            <p class="text-text-muted text-xs">Writing code</p>
+          </div>
+        </div>
+        <div class="space-y-3">
+          {execute.map(({ step, detail }, i) => (
+            <div class="flex gap-3 items-start">
+              <span class="font-mono text-xs text-text-muted mt-0.5">{i + 1}.</span>
+              <div>
+                <div class="text-text-primary text-sm font-medium">{step}</div>
+                <div class="text-text-muted text-xs">{detail}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Post-Shot -->
+      <div data-cycle-step class="rounded-xl border border-border bg-bg-card p-6 transition-all duration-300 opacity-40 scale-100">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-lg bg-forest/20 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-emerald" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M22 4L12 14.01l-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-heading font-bold text-lg text-emerald">Post-Shot</h3>
+            <p class="text-text-muted text-xs">After completing a ticket</p>
+          </div>
+        </div>
+        <div class="space-y-3">
+          {postShot.map(({ step, detail }, i) => (
+            <div class="flex gap-3 items-start">
+              <span class="font-mono text-xs text-text-muted mt-0.5">{i + 1}.</span>
+              <div>
+                <div class="text-text-primary text-sm font-medium">{step}</div>
+                <div class="text-text-muted text-xs">{detail}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initShotCycle } from '../scripts/interactions';
+  initShotCycle();
+</script>

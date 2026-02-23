@@ -1,0 +1,94 @@
+---
+const mappings = [
+  { golf: 'Round', dev: 'Sprint' },
+  { golf: 'Hole', dev: 'Ticket' },
+  { golf: 'Par', dev: 'Expected complexity' },
+  { golf: 'Club selection', dev: 'Approach complexity' },
+  { golf: 'Fairway', dev: 'Clean execution path' },
+  { golf: 'Bunker', dev: 'Known gotcha' },
+  { golf: 'Water hazard', dev: 'Breaking change' },
+  { golf: 'Handicap', dev: 'Rolling performance average' },
+  { golf: 'Scorecard', dev: 'Sprint retrospective' },
+  { golf: 'Yardage book', dev: 'Codebase map' },
+  { golf: '19th Hole', dev: 'Post-sprint reflection' },
+];
+---
+
+<section id="why-golf" class="py-24 sm:py-32 relative overflow-hidden">
+  <!-- Full-bleed dark background with subtle green tint -->
+  <div class="absolute inset-0 bg-gradient-to-b from-bg-primary via-[#0d1510] to-bg-primary"></div>
+
+  <div class="relative z-10">
+    <!-- Full-width golf course diagram — no container constraint -->
+    <div class="mb-16 px-6" data-reveal>
+      <svg viewBox="0 0 1200 250" class="w-full max-w-6xl mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ground fill -->
+        <path d="M0,200 C150,195 250,150 400,140 C550,130 650,100 800,90 C950,80 1050,55 1150,50 L1200,45 L1200,250 L0,250 Z" fill="var(--color-emerald)" opacity="0.03" />
+
+        <!-- Course path -->
+        <path data-draw d="M60,200 C150,195 250,150 400,140 C550,130 650,100 800,90 C950,80 1050,55 1150,50" stroke="var(--color-emerald)" stroke-width="2" opacity="0.3" />
+
+        <!-- Tee box -->
+        <rect x="35" y="190" width="50" height="18" rx="4" fill="var(--color-emerald)" opacity="0.15" stroke="var(--color-emerald)" stroke-width="1" />
+        <text x="60" y="228" text-anchor="middle" fill="var(--color-emerald)" font-size="12" font-family="var(--font-mono)" font-weight="500">Tee Box</text>
+        <text x="60" y="244" text-anchor="middle" fill="var(--color-text-muted)" font-size="10" font-family="var(--font-mono)">Sprint Start</text>
+
+        <!-- Fairway -->
+        <ellipse cx="350" cy="145" rx="80" ry="25" fill="var(--color-emerald)" opacity="0.06" stroke="var(--color-emerald)" stroke-width="1" stroke-dasharray="4 4" />
+        <text x="350" y="185" text-anchor="middle" fill="var(--color-text-secondary)" font-size="12" font-family="var(--font-mono)">Fairway</text>
+        <text x="350" y="201" text-anchor="middle" fill="var(--color-text-muted)" font-size="10" font-family="var(--font-mono)">Clean Path</text>
+
+        <!-- Bunker -->
+        <ellipse cx="580" cy="120" rx="35" ry="14" fill="var(--color-gold)" opacity="0.15" stroke="var(--color-gold)" stroke-width="1" />
+        <text x="580" y="150" text-anchor="middle" fill="var(--color-gold)" font-size="12" font-family="var(--font-mono)" font-weight="500">Bunker</text>
+        <text x="580" y="166" text-anchor="middle" fill="var(--color-text-muted)" font-size="10" font-family="var(--font-mono)">Known Gotcha</text>
+
+        <!-- Water -->
+        <path d="M740,85 Q770,72 800,85 Q830,98 860,85" stroke="#4488CC" stroke-width="2" opacity="0.4" fill="none" />
+        <path d="M745,95 Q775,82 805,95 Q835,108 855,95" stroke="#4488CC" stroke-width="1.5" opacity="0.25" fill="none" />
+        <text x="800" y="120" text-anchor="middle" fill="#6699CC" font-size="12" font-family="var(--font-mono)" font-weight="500">Water</text>
+        <text x="800" y="136" text-anchor="middle" fill="var(--color-text-muted)" font-size="10" font-family="var(--font-mono)">Breaking Change</text>
+
+        <!-- Green + Flag -->
+        <circle cx="1100" cy="50" r="40" fill="var(--color-emerald)" opacity="0.08" stroke="var(--color-emerald)" stroke-width="1" />
+        <line x1="1100" y1="50" x2="1100" y2="15" stroke="var(--color-emerald)" stroke-width="2" />
+        <path d="M1100,15 L1125,24 L1100,33" fill="var(--color-emerald)" opacity="0.5" />
+        <text x="1100" y="105" text-anchor="middle" fill="var(--color-text-secondary)" font-size="12" font-family="var(--font-mono)">Green</text>
+        <text x="1100" y="121" text-anchor="middle" fill="var(--color-text-muted)" font-size="10" font-family="var(--font-mono)">Sprint Complete</text>
+      </svg>
+    </div>
+
+    <!-- Content below diagram -->
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid lg:grid-cols-5 gap-8 items-start">
+        <!-- Left: explanation -->
+        <div class="lg:col-span-2" data-reveal>
+          <p class="text-gold text-xs font-mono uppercase tracking-widest mb-3">The Metaphor</p>
+          <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
+            Why Golf?
+          </h2>
+          <p class="text-text-secondary leading-relaxed">
+            Golf is the only sport where you compete against yourself and the course — not an opponent.
+            Software development is the same.
+          </p>
+          <p class="text-text-muted mt-3 leading-relaxed text-sm">
+            SLOPE borrows golf's vocabulary because it maps perfectly: known difficulty (par), personal benchmarking (handicap), hazard tracking (bunkers), and structured routines (pre-shot, post-shot) that elite players use to improve consistently.
+          </p>
+        </div>
+
+        <!-- Right: mapping table -->
+        <div class="lg:col-span-3 grid sm:grid-cols-2 gap-2" data-stagger>
+          {mappings.map(({ golf, dev }) => (
+            <div class="flex items-center gap-3 p-2.5 rounded-lg bg-bg-card/60 border border-border-subtle/50 hover:border-emerald/15 transition-colors">
+              <span class="text-text-muted text-sm flex-1">{golf}</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-text-muted/50 shrink-0" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span class="text-emerald text-sm font-medium flex-1 text-right">{dev}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

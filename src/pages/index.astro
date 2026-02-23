@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../sections/Hero.astro';
+import Problem from '../sections/Problem.astro';
+import Framework from '../sections/Framework.astro';
+import WhyGolf from '../sections/WhyGolf.astro';
+import ParSystem from '../sections/ParSystem.astro';
+import ShotCycle from '../sections/ShotCycle.astro';
+import Scorecard from '../sections/Scorecard.astro';
+import Results from '../sections/Results.astro';
+import HazardMap from '../sections/HazardMap.astro';
+import NineteenthHole from '../sections/NineteenthHole.astro';
+import CTA from '../sections/CTA.astro';
+import '../styles/global.css';
+---
+
+<Base>
+  <main>
+    <Hero />
+    <Problem />
+    <Framework />
+    <WhyGolf />
+    <ParSystem />
+    <ShotCycle />
+    <Scorecard />
+    <Results />
+    <HazardMap />
+    <NineteenthHole />
+    <CTA />
+  </main>
+</Base>
+
+<script>
+  import { initAnimations } from '../scripts/animations';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initAnimations();
+  });
+</script>

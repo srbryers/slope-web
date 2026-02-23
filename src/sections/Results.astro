@@ -1,0 +1,44 @@
+---
+---
+
+<section id="results" class="py-16 sm:py-20">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="relative rounded-2xl border border-emerald/20 bg-gradient-to-br from-forest/10 via-bg-card to-bg-card p-10 sm:p-14 text-center overflow-hidden" data-reveal>
+      <!-- Glow effect -->
+      <div class="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-emerald/5 blur-3xl"></div>
+      <div class="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-gold/5 blur-3xl"></div>
+
+      <div class="relative z-10">
+        <p class="text-text-muted text-xs uppercase tracking-widest mb-4 font-mono">After 175 sprints</p>
+
+        <!-- Big number -->
+        <div class="flex items-center justify-center gap-4 sm:gap-8 mb-8">
+          <div class="text-center">
+            <div class="font-heading font-extrabold text-4xl sm:text-5xl text-text-muted line-through decoration-text-muted/30">2.1</div>
+            <div class="text-text-muted text-xs mt-1">All-time handicap</div>
+          </div>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="text-emerald shrink-0" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <div class="text-center">
+            <div id="results-handicap" class="font-heading font-extrabold text-4xl sm:text-5xl text-emerald">1.2</div>
+            <div class="text-emerald/60 text-xs mt-1">Last 5 sprints</div>
+          </div>
+        </div>
+
+        <p class="text-text-secondary text-lg max-w-lg mx-auto leading-relaxed">
+          Every hazard logged. Every miss direction tracked. The framework doesn't just measure — it <span class="text-text-primary font-medium">teaches</span>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { onStatsUpdate } from '../scripts/live-stats';
+
+  onStatsUpdate((stats) => {
+    const el = document.getElementById('results-handicap');
+    if (el) el.textContent = stats.handicap.last_5.handicap.toFixed(1);
+  });
+</script>

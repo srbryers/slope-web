@@ -1,0 +1,168 @@
+---
+const hazards = [
+  {
+    name: 'Bunker',
+    label: 'Known Gotcha',
+    description: 'A known issue logged in previous sprints. Sand trap — recoverable but costly.',
+    color: 'text-gold',
+    bg: 'bg-gold/10',
+    border: 'border-gold/20',
+  },
+  {
+    name: 'Water',
+    label: 'Breaking Change',
+    description: 'Drop a stroke. Breaking changes force rework and downstream fixes.',
+    color: 'text-blue-400',
+    bg: 'bg-blue-500/10',
+    border: 'border-blue-500/20',
+  },
+  {
+    name: 'OB',
+    label: 'Scope Creep',
+    description: 'Out of bounds. Work that extends beyond the ticket boundary.',
+    color: 'text-red-400',
+    bg: 'bg-red-500/10',
+    border: 'border-red-500/20',
+  },
+  {
+    name: 'Rough',
+    label: 'Tech Debt',
+    description: 'Playable but slower. Existing debt that drags down execution speed.',
+    color: 'text-text-secondary',
+    bg: 'bg-text-muted/10',
+    border: 'border-text-muted/20',
+  },
+  {
+    name: 'Trees',
+    label: 'Blocking Deps',
+    description: 'Can\'t take a direct shot. Dependencies that force detours.',
+    color: 'text-emerald',
+    bg: 'bg-emerald/10',
+    border: 'border-emerald/20',
+  },
+];
+---
+
+<section id="hazard-map" class="py-24 sm:py-32">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16" data-reveal>
+      <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
+        The Hazard Map
+      </h2>
+      <p class="text-text-secondary max-w-2xl mx-auto">
+        Track what trips you up. Every hazard is categorized, logged, and mapped so future sprints can avoid the same traps.
+      </p>
+    </div>
+
+    <!-- Hazard taxonomy -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16" data-stagger>
+      {hazards.map(({ name, label, description, color, bg, border }) => (
+        <div class={`rounded-xl border ${border} ${bg} p-5 hover:scale-[1.02] transition-transform`}>
+          <div class="flex items-center gap-2 mb-3">
+            <span class={`font-heading font-bold text-lg ${color}`}>{name}</span>
+            <span class="text-text-muted text-xs">/ {label}</span>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed">{description}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Miss direction scatter plot -->
+    <div class="rounded-xl border border-border bg-bg-card p-8" data-reveal>
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="font-heading font-bold text-lg">Miss Direction Pattern</h3>
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald animate-pulse"></span>
+          <span class="text-text-muted text-xs font-mono">live data</span>
+        </div>
+      </div>
+
+      <!-- Target visualization -->
+      <div class="relative max-w-xs mx-auto aspect-square">
+        <!-- Concentric rings -->
+        <svg viewBox="0 0 200 200" class="w-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="var(--color-border)" stroke-width="1" />
+          <circle cx="100" cy="100" r="60" fill="none" stroke="var(--color-border)" stroke-width="1" />
+          <circle cx="100" cy="100" r="30" fill="none" stroke="var(--color-border)" stroke-width="1" />
+          <circle cx="100" cy="100" r="6" fill="var(--color-emerald)" opacity="0.3" />
+
+          <!-- Axis labels -->
+          <text x="100" y="12" text-anchor="middle" fill="var(--color-text-muted)" font-size="10" font-family="var(--font-mono)">Long</text>
+          <text x="100" y="198" text-anchor="middle" fill="var(--color-text-muted)" font-size="10" font-family="var(--font-mono)">Short</text>
+          <text x="8" y="104" text-anchor="start" fill="var(--color-text-muted)" font-size="10" font-family="var(--font-mono)">Left</text>
+          <text x="192" y="104" text-anchor="end" fill="var(--color-text-muted)" font-size="10" font-family="var(--font-mono)">Right</text>
+
+          <!-- Crosshair -->
+          <line x1="100" y1="15" x2="100" y2="185" stroke="var(--color-border-subtle)" stroke-width="1" stroke-dasharray="3 3" />
+          <line x1="15" y1="100" x2="185" y2="100" stroke="var(--color-border-subtle)" stroke-width="1" stroke-dasharray="3 3" />
+
+          <!-- Miss dots — positioned by JS from live data -->
+          <g id="miss-dots">
+            <!-- Long misses (top) -->
+            <circle cx="105" cy="35" r="4" fill="var(--color-gold)" opacity="0.7" />
+            <circle cx="95" cy="40" r="4" fill="var(--color-gold)" opacity="0.7" />
+            <circle cx="110" cy="45" r="4" fill="var(--color-gold)" opacity="0.7" />
+            <!-- Short misses (bottom) -->
+            <circle cx="98" cy="155" r="4" fill="var(--color-gold)" opacity="0.5" />
+            <circle cx="103" cy="160" r="4" fill="var(--color-gold)" opacity="0.5" />
+            <!-- Left misses -->
+            <circle cx="40" cy="95" r="4" fill="var(--color-gold)" opacity="0.4" />
+            <circle cx="45" cy="105" r="4" fill="var(--color-gold)" opacity="0.4" />
+            <!-- Right misses -->
+            <circle cx="160" cy="100" r="4" fill="var(--color-gold)" opacity="0.3" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Legend -->
+      <div class="flex justify-center gap-6 mt-6 text-xs font-mono text-text-muted" id="miss-legend">
+        <span>Long: <span id="miss-long" class="text-gold">12</span></span>
+        <span>Short: <span id="miss-short" class="text-gold">8</span></span>
+        <span>Left: <span id="miss-left" class="text-gold">5</span></span>
+        <span>Right: <span id="miss-right" class="text-gold">3</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { onStatsUpdate, type SlopeStats } from '../scripts/live-stats';
+
+  function updateMissPattern(stats: SlopeStats) {
+    const mp = stats.miss_pattern;
+    const set = (id: string, val: number) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = String(val);
+    };
+    set('miss-long', mp.long);
+    set('miss-short', mp.short);
+    set('miss-left', mp.left);
+    set('miss-right', mp.right);
+
+    // Generate scatter dots from miss data
+    const dotsEl = document.getElementById('miss-dots');
+    if (!dotsEl) return;
+
+    const dots: string[] = [];
+    const total = mp.long + mp.short + mp.left + mp.right;
+    if (total === 0) return;
+
+    function addDots(count: number, cx: number, cy: number, spread: number, opacity: number) {
+      const scaled = Math.min(Math.round((count / total) * 12), 8);
+      for (let i = 0; i < scaled; i++) {
+        const x = cx + (Math.random() - 0.5) * spread;
+        const y = cy + (Math.random() - 0.5) * spread;
+        dots.push(`<circle cx="${x}" cy="${y}" r="4" fill="var(--color-gold)" opacity="${opacity}" />`);
+      }
+    }
+
+    addDots(mp.long, 100, 40, 30, 0.7);
+    addDots(mp.short, 100, 160, 30, 0.5);
+    addDots(mp.left, 40, 100, 30, 0.5);
+    addDots(mp.right, 160, 100, 30, 0.4);
+
+    dotsEl.innerHTML = dots.join('');
+  }
+
+  onStatsUpdate(updateMissPattern);
+</script>

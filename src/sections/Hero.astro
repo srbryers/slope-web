@@ -1,0 +1,74 @@
+---
+---
+
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background grid -->
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, var(--color-emerald) 1px, transparent 1px); background-size: 32px 32px;"></div>
+
+  <!-- Gradient overlay -->
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-bg-primary"></div>
+
+  <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+    <!-- Badge -->
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-bg-surface/50 backdrop-blur-sm mb-8" data-reveal>
+      <span class="w-2 h-2 rounded-full bg-emerald animate-pulse"></span>
+      <span class="text-text-secondary text-sm font-body">Open Source Sprint Scoring</span>
+    </div>
+
+    <!-- Golf course silhouette SVG -->
+    <div class="mb-10" data-reveal>
+      <svg viewBox="0 0 800 120" class="w-full max-w-3xl mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Fairway path -->
+        <path data-draw d="M0,100 C100,95 150,60 250,65 C350,70 400,40 500,45 C600,50 650,30 750,35 L800,30" stroke="var(--color-emerald)" stroke-width="2" opacity="0.5" />
+        <!-- Flag -->
+        <line data-draw x1="750" y1="35" x2="750" y2="5" stroke="var(--color-emerald)" stroke-width="2" />
+        <path data-draw d="M750,5 L780,15 L750,25" fill="var(--color-emerald)" opacity="0.6" stroke="var(--color-emerald)" stroke-width="1" />
+        <!-- Bunker -->
+        <ellipse cx="380" cy="80" rx="30" ry="8" fill="var(--color-gold)" opacity="0.15" />
+        <!-- Tee box -->
+        <rect x="20" y="92" width="30" height="6" rx="2" fill="var(--color-emerald)" opacity="0.3" />
+      </svg>
+    </div>
+
+    <!-- Title -->
+    <h1 class="font-heading font-extrabold text-5xl sm:text-6xl lg:text-7xl tracking-tight mb-6" data-reveal>
+      AI agents don't learn from their mistakes.
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="text-text-secondary text-lg sm:text-xl max-w-2xl mx-auto mb-4 leading-relaxed" data-reveal>
+      <span class="text-emerald font-heading font-bold">SLOPE</span> changes that.
+    </p>
+    <p class="text-text-muted text-base max-w-xl mx-auto mb-10 leading-relaxed" data-reveal>
+      A sprint scoring framework — inspired by golf — that turns every AI agent session into measurable, improvable data.
+    </p>
+
+    <!-- Live counter -->
+    <div class="flex items-center justify-center gap-2 text-text-muted mb-12" data-reveal>
+      <span class="w-2 h-2 rounded-full bg-emerald/60 animate-pulse"></span>
+      <span class="font-mono text-sm">
+        <span id="hero-sprint-count" class="text-emerald font-medium">175</span> sprints and counting
+      </span>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="animate-bounce" data-reveal>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="mx-auto text-text-muted" aria-hidden="true">
+        <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initLiveStats, onStatsUpdate } from '../scripts/live-stats';
+  import { animateCounter } from '../scripts/animations';
+
+  const counter = document.getElementById('hero-sprint-count');
+  if (counter) {
+    onStatsUpdate((stats) => {
+      animateCounter(counter, stats.sprints_completed, 1.5);
+    });
+  }
+  initLiveStats();
+</script>

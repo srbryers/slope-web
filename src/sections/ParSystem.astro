@@ -1,0 +1,90 @@
+---
+const slopeFactors = [
+  { name: 'Cross-package', description: 'Changes span multiple packages', icon: '📦' },
+  { name: 'Schema migration', description: 'Database migration required', icon: '🗄️' },
+  { name: 'New area', description: 'First time touching this code', icon: '🗺️' },
+  { name: 'External dependency', description: 'Depends on external service', icon: '🔗' },
+  { name: 'Concurrent agents', description: 'Multiple agents working', icon: '🤖' },
+];
+---
+
+<section id="par-system" class="py-24 sm:py-32 bg-bg-surface/50">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16" data-reveal>
+      <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
+        The Par System
+      </h2>
+      <p class="text-text-secondary max-w-2xl mx-auto">
+        Know your difficulty before you start. Par is determined by ticket count.
+        Slope factors add terrain difficulty on top.
+      </p>
+    </div>
+
+    <!-- Interactive par calculator -->
+    <div class="max-w-lg mx-auto mb-16 p-8 rounded-xl bg-bg-card border border-border" data-reveal>
+      <div class="text-center mb-6">
+        <label for="par-slider" class="text-text-secondary text-sm block mb-2">Ticket Count</label>
+        <div class="font-heading font-bold text-5xl text-text-primary mb-1">
+          <span id="par-ticket-count">3</span>
+        </div>
+        <input
+          type="range"
+          id="par-slider"
+          min="1"
+          max="8"
+          value="3"
+          step="1"
+          class="w-full h-2 rounded-full appearance-none cursor-pointer mt-4"
+          style="background: linear-gradient(to right, var(--color-emerald) 0%, var(--color-gold) 50%, #ef4444 100%); accent-color: var(--color-emerald);"
+        />
+        <div class="flex justify-between text-text-muted text-xs mt-1">
+          <span>1</span>
+          <span>8</span>
+        </div>
+      </div>
+
+      <div class="text-center pt-4 border-t border-border-subtle">
+        <div class="text-text-muted text-xs uppercase tracking-wider mb-1">Par</div>
+        <div id="par-value" class="text-emerald font-bold text-4xl font-heading transition-all">Par 4</div>
+      </div>
+    </div>
+
+    <!-- Slope factors -->
+    <div class="mb-8" data-reveal>
+      <h3 class="font-heading font-bold text-xl text-center mb-6">
+        Slope Factors <span class="text-text-muted font-normal text-base">(each adds +1 difficulty)</span>
+      </h3>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" data-stagger>
+      {slopeFactors.map(({ name, description }) => (
+        <div class="flex items-start gap-3 p-4 rounded-lg bg-bg-card border border-border-subtle hover:border-gold/30 transition-colors">
+          <div class="w-8 h-8 rounded-md bg-gold/10 flex items-center justify-center shrink-0">
+            <span class="text-gold text-sm font-bold">+1</span>
+          </div>
+          <div>
+            <div class="text-text-primary text-sm font-medium">{name}</div>
+            <div class="text-text-muted text-xs mt-0.5">{description}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Terrain visual -->
+    <div id="slope-visual" data-terrain="hilly" class="mt-12 rounded-xl bg-bg-card border border-border p-6 text-center" data-reveal>
+      <div class="text-text-muted text-xs uppercase tracking-wider mb-3">Course Terrain</div>
+      <svg viewBox="0 0 400 80" class="w-full max-w-md mx-auto" fill="none" aria-hidden="true">
+        <path id="terrain-line" d="M0,60 C50,55 100,50 150,45 C200,40 250,35 300,30 C350,25 375,20 400,15" stroke="var(--color-emerald)" stroke-width="2" opacity="0.4" />
+        <path id="terrain-fill" d="M0,60 C50,55 100,50 150,45 C200,40 250,35 300,30 C350,25 375,20 400,15 L400,80 L0,80 Z" fill="var(--color-emerald)" opacity="0.05" />
+      </svg>
+      <div class="text-text-secondary text-sm mt-2">
+        Moderate terrain — 3-4 tickets with slope factors
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initParCalculator } from '../scripts/interactions';
+  initParCalculator();
+</script>

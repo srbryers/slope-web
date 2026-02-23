@@ -1,0 +1,103 @@
+---
+---
+
+<section id="problem" class="py-24 sm:py-32">
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Section header -->
+    <div class="text-center mb-16" data-reveal>
+      <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
+        AI Agents Are Powerful. <span class="text-text-muted">But Chaotic.</span>
+      </h2>
+      <p class="text-text-secondary max-w-2xl mx-auto">
+        Without structure, agent sprints become unpredictable. Work gets lost. Patterns repeat. Nobody knows if the team is improving.
+      </p>
+    </div>
+
+    <!-- Before / After comparison -->
+    <div class="grid md:grid-cols-2 gap-6 mb-16" data-stagger>
+      <!-- Chaos side -->
+      <div class="rounded-xl border border-red-900/30 bg-bg-surface p-6 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500/50 to-red-500/0"></div>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-red-400 text-sm font-medium uppercase tracking-wider">Without SLOPE</span>
+        </div>
+        <div class="font-mono text-xs text-text-muted leading-relaxed space-y-1 opacity-80">
+          <p class="text-red-400/70">ERROR: Agent crashed mid-sprint, no recovery point</p>
+          <p>$ git log --oneline | wc -l → 47 commits, no pattern</p>
+          <p class="text-red-400/70">WARN: Same bug as 3 sprints ago</p>
+          <p>$ how many tests? → "not sure, maybe 200?"</p>
+          <p class="text-red-400/70">ERROR: Context lost on compaction</p>
+          <p>$ what improved? → "hard to say"</p>
+          <p class="text-text-muted/50">... (scrolls for 500 more lines)</p>
+        </div>
+      </div>
+
+      <!-- Order side -->
+      <div class="rounded-xl border border-emerald/20 bg-bg-surface p-6 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald/50 to-emerald/0"></div>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-emerald text-sm font-medium uppercase tracking-wider">With SLOPE</span>
+        </div>
+        <div class="font-mono text-xs leading-relaxed space-y-1">
+          <p class="text-emerald/80">Sprint 175 — Par 3 — Score: 3 (Par)</p>
+          <p class="text-text-secondary">Fairways: 3/3 (100%) | GIR: 3/3 (100%)</p>
+          <p class="text-text-secondary">Hazards: 1 (ordering bug) — logged & recoverable</p>
+          <p class="text-gold">Handicap trending: 2.1 → 1.2 (last 5)</p>
+          <p class="text-text-secondary">Miss pattern: long (43%) — training focus set</p>
+          <p class="text-emerald/60">Next: guided by yardage book + hazard map</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live stats bar -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4" data-stagger>
+      <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
+        <div id="stat-sprints" class="font-heading font-bold text-2xl text-emerald">175</div>
+        <div class="text-text-muted text-xs mt-1">Sprints</div>
+      </div>
+      <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
+        <div id="stat-tests" class="font-heading font-bold text-2xl text-text-primary">3,333</div>
+        <div class="text-text-muted text-xs mt-1">Tests</div>
+      </div>
+      <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
+        <div id="stat-endpoints" class="font-heading font-bold text-2xl text-text-primary">172</div>
+        <div class="text-text-muted text-xs mt-1">Endpoints</div>
+      </div>
+      <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
+        <div id="stat-screens" class="font-heading font-bold text-2xl text-text-primary">50</div>
+        <div class="text-text-muted text-xs mt-1">Screens</div>
+      </div>
+      <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
+        <div id="stat-rules" class="font-heading font-bold text-2xl text-text-secondary">21</div>
+        <div class="text-text-muted text-xs mt-1">Rules</div>
+      </div>
+      <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
+        <div id="stat-migrations" class="font-heading font-bold text-2xl text-text-secondary">48</div>
+        <div class="text-text-muted text-xs mt-1">Migrations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { onStatsUpdate } from '../scripts/live-stats';
+  import { animateCounter } from '../scripts/animations';
+
+  const statEls = {
+    tests: document.getElementById('stat-tests'),
+    endpoints: document.getElementById('stat-endpoints'),
+    screens: document.getElementById('stat-screens'),
+    rules: document.getElementById('stat-rules'),
+    migrations: document.getElementById('stat-migrations'),
+    sprints: document.getElementById('stat-sprints'),
+  };
+
+  onStatsUpdate((stats) => {
+    if (statEls.tests) animateCounter(statEls.tests, stats.total_tests);
+    if (statEls.endpoints) animateCounter(statEls.endpoints, stats.endpoints);
+    if (statEls.screens) animateCounter(statEls.screens, stats.mobile_screens);
+    if (statEls.rules) animateCounter(statEls.rules, stats.rules);
+    if (statEls.migrations) animateCounter(statEls.migrations, stats.migrations);
+    if (statEls.sprints) animateCounter(statEls.sprints, stats.sprints_completed);
+  });
+</script>

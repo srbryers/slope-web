@@ -1,0 +1,74 @@
+---
+const letters = [
+  {
+    letter: 'S',
+    word: 'Sprint Lifecycle',
+    description: 'Every sprint is a hole with a par. Ticket count determines expected difficulty. Score against par, not against perfection.',
+    detail: '1-2 tickets = Par 3 | 3-4 tickets = Par 4 | 5+ tickets = Par 5',
+  },
+  {
+    letter: 'L',
+    word: 'Leverage',
+    description: 'Club selection maps to approach complexity. A driver for risky new infrastructure. A putter for trivial fixes. Declare your club before the shot.',
+    detail: 'Driver → Long Iron → Short Iron → Wedge → Putter',
+  },
+  {
+    letter: 'O',
+    word: 'Operational Performance',
+    description: 'Track hazards hit, miss directions, and penalties. Every gotcha gets logged. Patterns emerge from data, not memory.',
+    detail: 'Fairway % | GIR % | Putts | Penalties | Miss Direction',
+  },
+  {
+    letter: 'P',
+    word: 'Predictive Engine',
+    description: 'Rolling handicap averages predict future performance. Last-5 and last-10 windows show trajectory. Getting better or worse?',
+    detail: 'Handicap = avg(score - par) over rolling window',
+  },
+  {
+    letter: 'E',
+    word: 'Execution Routines',
+    description: 'Pre-shot, post-shot, and 19th hole routines ensure nothing is skipped. Every sprint starts with the yardage book. Every ticket ends with scoring.',
+    detail: 'Pre-Round → Pre-Shot → Execute → Post-Shot → 19th Hole',
+  },
+];
+---
+
+<section id="framework" class="py-24 sm:py-32 relative">
+  <!-- Distinct background: subtle emerald gradient strip on the left -->
+  <div class="absolute left-0 top-0 bottom-0 w-1 sm:w-1.5 bg-gradient-to-b from-emerald/0 via-emerald/30 to-emerald/0"></div>
+
+  <div class="max-w-5xl mx-auto px-6 sm:pl-10">
+    <div class="mb-20" data-reveal>
+      <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">The Framework</p>
+      <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
+        Five dimensions. One scoring system.
+      </h2>
+      <p class="text-text-secondary max-w-xl">
+        Each letter maps to a measurable aspect of sprint execution. Together they create a complete picture of agent performance.
+      </p>
+    </div>
+
+    <!-- SLOPE acronym -->
+    <div class="space-y-8">
+      {letters.map(({ letter, word, description, detail }, i) => (
+        <div class="flex gap-6 items-start group" data-reveal>
+          <div
+            data-acronym-letter
+            class="shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-bg-card border border-border flex items-center justify-center group-hover:border-emerald/40 transition-colors"
+          >
+            <span class="font-heading font-extrabold text-3xl sm:text-4xl text-emerald">{letter}</span>
+          </div>
+          <div data-acronym-desc class="flex-1 pt-1">
+            <h3 class="font-heading font-bold text-xl sm:text-2xl mb-2">
+              <span class="text-emerald">{letter}</span>{word.slice(1)}
+            </h3>
+            <p class="text-text-secondary mb-2">{description}</p>
+            <code class="text-xs font-mono text-text-muted bg-bg-primary/50 px-3 py-1 rounded border border-border-subtle inline-block">
+              {detail}
+            </code>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
