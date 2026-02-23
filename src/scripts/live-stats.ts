@@ -4,10 +4,10 @@ const POLL_INTERVAL = 60_000;
 export interface SlopeStats {
   sprints_completed: number;
   total_tests: number;
-  endpoints: number;
-  mobile_screens: number;
-  rules: number;
-  migrations: number;
+  cli_commands: number;
+  guards: number;
+  packages: number;
+  metaphors: number;
   handicap: {
     last_5: RollingStats;
     last_10: RollingStats;
@@ -35,29 +35,29 @@ interface ScorecardSummary {
 
 // Fallback data baked at build time
 const FALLBACK: SlopeStats = {
-  sprints_completed: 175,
-  total_tests: 3333,
-  endpoints: 172,
-  mobile_screens: 50,
-  rules: 21,
-  migrations: 48,
+  sprints_completed: 27,
+  total_tests: 1091,
+  cli_commands: 26,
+  guards: 10,
+  packages: 5,
+  metaphors: 6,
   handicap: {
-    last_5: { handicap: 1.2, fairway_pct: 85, gir_pct: 78, avg_putts: 1.4 },
-    last_10: { handicap: 1.5, fairway_pct: 82, gir_pct: 75, avg_putts: 1.5 },
-    all_time: { handicap: 2.1, fairway_pct: 76, gir_pct: 70, avg_putts: 1.6 },
+    last_5: { handicap: 1.0, fairway_pct: 90, gir_pct: 82, avg_putts: 1.3 },
+    last_10: { handicap: 1.2, fairway_pct: 86, gir_pct: 78, avg_putts: 1.4 },
+    all_time: { handicap: 1.5, fairway_pct: 80, gir_pct: 74, avg_putts: 1.5 },
   },
   recent_scorecards: [
-    { sprint: 175, par: 3, score: 3, score_label: 'Par', theme: 'demo exploration' },
-    { sprint: 174, par: 3, score: 4, score_label: 'Bogey', theme: 'guided first-project' },
+    { sprint: 27, par: 4, score: 4, score_label: 'Par', theme: 'web + tokens' },
+    { sprint: 26, par: 4, score: 4, score_label: 'Par', theme: 'roadmap tools' },
   ],
-  miss_pattern: { long: 12, short: 8, left: 5, right: 3 },
+  miss_pattern: { long: 10, short: 6, left: 4, right: 3 },
   phase_status: {
     phase_1: 'COMPLETE',
     phase_2: 'COMPLETE',
     phase_3: 'COMPLETE',
     phase_4: 'COMPLETE',
-    phase_5: '~60%',
-    phase_6: 'NOT STARTED',
+    phase_5: '~75%',
+    phase_6: '~20%',
   },
 };
 

@@ -39,12 +39,12 @@
           <span class="text-emerald text-sm font-medium uppercase tracking-wider">With SLOPE</span>
         </div>
         <div class="font-mono text-xs leading-relaxed space-y-1">
-          <p class="text-emerald/80">Sprint 175 — Par 3 — Score: 3 (Par)</p>
-          <p class="text-text-secondary">Fairways: 3/3 (100%) | GIR: 3/3 (100%)</p>
-          <p class="text-text-secondary">Hazards: 1 (ordering bug) — logged & recoverable</p>
-          <p class="text-gold">Handicap trending: 2.1 → 1.2 (last 5)</p>
-          <p class="text-text-secondary">Miss pattern: long (43%) — training focus set</p>
-          <p class="text-emerald/60">Next: guided by yardage book + hazard map</p>
+          <p class="text-emerald/80">Sprint 27 — Par 4 — Score: 4 (Par)</p>
+          <p class="text-text-secondary">Fairways: 4/4 (100%) | GIR: 3/4 (75%)</p>
+          <p class="text-text-secondary">Hazards: 1 (bunker) — guard caught & logged</p>
+          <p class="text-gold">Handicap trending: 1.5 → 1.0 (last 5)</p>
+          <p class="text-text-secondary">Miss pattern: long (43%) — dashboard tracks it</p>
+          <p class="text-emerald/60">Next: guided by briefing + guards + plugin hooks</p>
         </div>
       </div>
     </div>
@@ -52,28 +52,28 @@
     <!-- Live stats bar -->
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4" data-stagger>
       <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
-        <div id="stat-sprints" class="font-heading font-bold text-2xl text-emerald">175</div>
+        <div id="stat-sprints" class="font-heading font-bold text-2xl text-emerald">27</div>
         <div class="text-text-muted text-xs mt-1">Sprints</div>
       </div>
       <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
-        <div id="stat-tests" class="font-heading font-bold text-2xl text-text-primary">3,333</div>
+        <div id="stat-tests" class="font-heading font-bold text-2xl text-text-primary">1,091</div>
         <div class="text-text-muted text-xs mt-1">Tests</div>
       </div>
       <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
-        <div id="stat-endpoints" class="font-heading font-bold text-2xl text-text-primary">172</div>
-        <div class="text-text-muted text-xs mt-1">Endpoints</div>
+        <div id="stat-commands" class="font-heading font-bold text-2xl text-text-primary">26</div>
+        <div class="text-text-muted text-xs mt-1">CLI Commands</div>
       </div>
       <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
-        <div id="stat-screens" class="font-heading font-bold text-2xl text-text-primary">50</div>
-        <div class="text-text-muted text-xs mt-1">Screens</div>
+        <div id="stat-guards" class="font-heading font-bold text-2xl text-text-primary">10</div>
+        <div class="text-text-muted text-xs mt-1">Guards</div>
       </div>
       <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
-        <div id="stat-rules" class="font-heading font-bold text-2xl text-text-secondary">21</div>
-        <div class="text-text-muted text-xs mt-1">Rules</div>
+        <div id="stat-packages" class="font-heading font-bold text-2xl text-text-secondary">5</div>
+        <div class="text-text-muted text-xs mt-1">Packages</div>
       </div>
       <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
-        <div id="stat-migrations" class="font-heading font-bold text-2xl text-text-secondary">48</div>
-        <div class="text-text-muted text-xs mt-1">Migrations</div>
+        <div id="stat-metaphors" class="font-heading font-bold text-2xl text-text-secondary">6</div>
+        <div class="text-text-muted text-xs mt-1">Metaphors</div>
       </div>
     </div>
   </div>
@@ -85,19 +85,19 @@
 
   const statEls = {
     tests: document.getElementById('stat-tests'),
-    endpoints: document.getElementById('stat-endpoints'),
-    screens: document.getElementById('stat-screens'),
-    rules: document.getElementById('stat-rules'),
-    migrations: document.getElementById('stat-migrations'),
+    commands: document.getElementById('stat-commands'),
+    guards: document.getElementById('stat-guards'),
+    packages: document.getElementById('stat-packages'),
+    metaphors: document.getElementById('stat-metaphors'),
     sprints: document.getElementById('stat-sprints'),
   };
 
   onStatsUpdate((stats) => {
     if (statEls.tests) animateCounter(statEls.tests, stats.total_tests);
-    if (statEls.endpoints) animateCounter(statEls.endpoints, stats.endpoints);
-    if (statEls.screens) animateCounter(statEls.screens, stats.mobile_screens);
-    if (statEls.rules) animateCounter(statEls.rules, stats.rules);
-    if (statEls.migrations) animateCounter(statEls.migrations, stats.migrations);
+    if (statEls.commands) animateCounter(statEls.commands, stats.cli_commands);
+    if (statEls.guards) animateCounter(statEls.guards, stats.guards);
+    if (statEls.packages) animateCounter(statEls.packages, stats.packages);
+    if (statEls.metaphors) animateCounter(statEls.metaphors, stats.metaphors);
     if (statEls.sprints) animateCounter(statEls.sprints, stats.sprints_completed);
   });
 </script>
