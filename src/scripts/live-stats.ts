@@ -1,6 +1,25 @@
 const API_URL = 'https://caddystack.fly.dev/public/slope-stats';
 const POLL_INTERVAL = 60_000;
 
+export interface LatestScorecard {
+  sprint: number;
+  par: number;
+  score: number;
+  score_label: string;
+  theme: string;
+  stats: {
+    fairway_hits: number;
+    fairway_total: number;
+    gir: number;
+    hazards_hit: number;
+  };
+}
+
+export interface HandicapMilestone {
+  sprint: number;
+  handicap: number;
+}
+
 export interface SlopeStats {
   sprints_completed: number;
   total_tests: number;
@@ -16,6 +35,8 @@ export interface SlopeStats {
   recent_scorecards: ScorecardSummary[];
   miss_pattern: { long: number; short: number; left: number; right: number };
   phase_status: Record<string, string>;
+  latest_scorecard: LatestScorecard | null;
+  handicap_milestones: HandicapMilestone[];
 }
 
 interface RollingStats {
@@ -35,7 +56,7 @@ interface ScorecardSummary {
 
 // Fallback data baked at build time
 const FALLBACK: SlopeStats = {
-  sprints_completed: 27,
+  sprints_completed: 28,
   total_tests: 1091,
   cli_commands: 26,
   guards: 10,
@@ -47,8 +68,8 @@ const FALLBACK: SlopeStats = {
     all_time: { handicap: 1.5, fairway_pct: 80, gir_pct: 74, avg_putts: 1.5 },
   },
   recent_scorecards: [
-    { sprint: 27, par: 4, score: 4, score_label: 'Par', theme: 'web + tokens' },
-    { sprint: 26, par: 4, score: 4, score_label: 'Par', theme: 'roadmap tools' },
+    { sprint: 28, par: 4, score: 4, score_label: 'par', theme: 'The Pro Tour' },
+    { sprint: 27, par: 4, score: 4, score_label: 'par', theme: 'web + tokens' },
   ],
   miss_pattern: { long: 10, short: 6, left: 4, right: 3 },
   phase_status: {
@@ -59,6 +80,22 @@ const FALLBACK: SlopeStats = {
     phase_5: '~75%',
     phase_6: '~20%',
   },
+  latest_scorecard: {
+    sprint: 28,
+    par: 4,
+    score: 4,
+    score_label: 'par',
+    theme: 'The Pro Tour',
+    stats: { fairway_hits: 4, fairway_total: 4, gir: 3, hazards_hit: 1 },
+  },
+  handicap_milestones: [
+    { sprint: 5, handicap: 3.2 },
+    { sprint: 10, handicap: 2.5 },
+    { sprint: 15, handicap: 2.0 },
+    { sprint: 20, handicap: 1.8 },
+    { sprint: 25, handicap: 1.4 },
+    { sprint: 28, handicap: 1.2 },
+  ],
 };
 
 type StatsListener = (stats: SlopeStats) => void;

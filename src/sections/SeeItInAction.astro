@@ -7,40 +7,6 @@ const metaphors = [
   { id: 'dnd', name: 'D&D', desc: 'Quests and encounters' },
   { id: 'matrix', name: 'Matrix', desc: 'Red pill, blue pill' },
 ];
-
-// Sprint card data per metaphor — same underlying data, different vocabulary
-const cards: Record<string, { line1: string; line2: string; line3: string }> = {
-  golf: {
-    line1: 'Par 4, Score 4',
-    line2: 'Fairway: 4/4 | GIR: 3/4 | Bunkers: 1',
-    line3: 'Handicap: 1.2 — trending down',
-  },
-  tennis: {
-    line1: 'Game Point, Set Won',
-    line2: 'In Play: 4/4 | Winners: 3/4 | Double Faults: 1',
-    line3: 'Ranking: 1.2 — trending up',
-  },
-  baseball: {
-    line1: 'Inning 4, On Base',
-    line2: 'Singles: 4/4 | Doubles: 3/4 | Pickles: 1',
-    line3: 'Batting Avg: 1.2 — trending up',
-  },
-  gaming: {
-    line1: 'Level 4, B-Rank Clear',
-    line2: 'Progress: 4/4 | Clears: 3/4 | Traps: 1',
-    line3: 'Player Stats: 1.2 — leveling up',
-  },
-  dnd: {
-    line1: 'CR 4, Hit',
-    line2: 'Hits: 4/4 | Crits: 3/4 | Traps: 1',
-    line3: 'Character Level: 1.2 — gaining XP',
-  },
-  matrix: {
-    line1: 'Simulation 4, Connected',
-    line2: 'Connected: 4/4 | Decoded: 3/4 | Firewalls: 1',
-    line3: 'Operator Rating: 1.2 — signal strong',
-  },
-};
 ---
 
 <section id="see-it-in-action" class="py-24 sm:py-32 bg-bg-surface/30">
@@ -78,7 +44,7 @@ const cards: Record<string, { line1: string; line2: string; line3: string }> = {
     <div class="rounded-xl border border-emerald/20 bg-bg-card p-6 sm:p-8" data-reveal>
       <div class="flex items-center gap-2 mb-4">
         <span class="w-2 h-2 rounded-full bg-emerald"></span>
-        <span class="text-text-muted text-xs font-mono uppercase tracking-wider">Sprint 27 Summary</span>
+        <span id="inline-card-header" class="text-text-muted text-xs font-mono uppercase tracking-wider">Sprint 28 Summary</span>
       </div>
       <div class="font-mono text-sm sm:text-base space-y-2">
         <p id="inline-card-line1" class="text-emerald font-bold">Par 4, Score 4</p>
