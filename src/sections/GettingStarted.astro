@@ -1,0 +1,65 @@
+---
+const steps = [
+  {
+    num: '1',
+    cmd: 'slope init',
+    title: 'Initialize',
+    detail: 'Set up SLOPE in your project — creates .slope/ config, installs guards, picks a metaphor.',
+    color: 'text-emerald',
+    bg: 'bg-emerald/10',
+  },
+  {
+    num: '2',
+    cmd: 'slope briefing',
+    title: 'Get briefed',
+    detail: 'Pre-round briefing surfaces hazard index, handicap snapshot, nutrition alerts, and filtered gotchas.',
+    color: 'text-emerald',
+    bg: 'bg-emerald/10',
+  },
+  {
+    num: '3',
+    cmd: 'slope card',
+    title: 'Check your card',
+    detail: 'Compute your handicap card — rolling stats across last 5, last 10, and all-time windows.',
+    color: 'text-gold',
+    bg: 'bg-gold/10',
+  },
+  {
+    num: '4',
+    cmd: 'slope review',
+    title: 'Review the sprint',
+    detail: 'Generate a sprint review with shot-by-shot breakdown, miss analysis, and improvement recommendations.',
+    color: 'text-gold',
+    bg: 'bg-gold/10',
+  },
+];
+---
+
+<section id="getting-started" class="py-24 sm:py-32">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16" data-reveal>
+      <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">Quick Start</p>
+      <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
+        Four commands to start scoring
+      </h2>
+      <p class="text-text-secondary max-w-2xl mx-auto">
+        From zero to your first handicap card in one sprint. No configuration required — SLOPE ships with sensible defaults.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-6" data-stagger>
+      {steps.map(({ num, cmd, title, detail, color, bg }) => (
+        <div class="rounded-xl border border-border bg-bg-card p-6 hover:border-emerald/20 transition-colors">
+          <div class="flex items-center gap-3 mb-4">
+            <div class={`w-8 h-8 rounded-lg ${bg} flex items-center justify-center shrink-0`}>
+              <span class={`${color} text-sm font-bold`}>{num}</span>
+            </div>
+            <code class="text-emerald text-sm font-mono">{cmd}</code>
+          </div>
+          <h3 class="font-heading font-bold text-lg text-text-primary mb-1">{title}</h3>
+          <p class="text-text-muted text-sm leading-relaxed">{detail}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+---
+const packages = [
+  {
+    name: '@srbryers/core',
+    description: 'Scoring engine, types, config, metaphor engine, handicap computation, guards, dashboard, reports.',
+    stats: '38 source files · 29 test files',
+    icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5',
+  },
+  {
+    name: '@srbryers/cli',
+    description: '26 CLI commands covering the full sprint lifecycle — from init and briefing to dashboard and tournament.',
+    stats: '47 source files · 12 test files',
+    icon: 'M4 17l6-6-6-6M12 19h8',
+  },
+  {
+    name: '@srbryers/tokens',
+    description: 'Shared design tokens — colors, typography, spacing. Powers consistent theming across reports, dashboards, and web.',
+    stats: 'CSS generation · JSON export',
+    icon: 'M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20',
+  },
+  {
+    name: '@srbryers/mcp-tools',
+    description: 'MCP server exposing SLOPE advisory tools — search the API, execute scoring code, manage sessions and claims.',
+    stats: '4 source files · 3 test files',
+    icon: 'M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z',
+  },
+];
+---
+
+<section id="packages" class="py-24 sm:py-32 bg-bg-surface/50">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16" data-reveal>
+      <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">npm packages</p>
+      <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
+        Published Packages
+      </h2>
+      <p class="text-text-secondary max-w-2xl mx-auto">
+        SLOPE is a monorepo with focused packages. Use the CLI for the full experience, or import core directly for custom integrations.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-6" data-stagger>
+      {packages.map(({ name, description, stats, icon }) => (
+        <div class="rounded-xl border border-border bg-bg-card p-6 hover:border-emerald/20 transition-colors">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-forest/20 flex items-center justify-center shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-emerald" aria-hidden="true">
+                <path d={icon} stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <code class="text-emerald text-sm font-mono">{name}</code>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed mb-3">{description}</p>
+          <p class="text-text-muted text-xs font-mono">{stats}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
