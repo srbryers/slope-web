@@ -1,0 +1,81 @@
+---
+---
+
+<section id="proof" class="py-24 sm:py-32">
+  <div class="max-w-4xl mx-auto px-6">
+    <!-- Section header -->
+    <div class="text-center mb-12" data-reveal>
+      <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">It Works</p>
+      <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
+        Consistent routines compound.
+      </h2>
+    </div>
+
+    <!-- Trend timeline -->
+    <div class="rounded-xl border border-border bg-bg-card p-6 sm:p-8 mb-10" data-reveal>
+      <div class="flex items-center gap-2 mb-6">
+        <span class="w-2 h-2 rounded-full bg-emerald animate-pulse"></span>
+        <span class="text-text-muted text-xs font-mono uppercase tracking-wider">Performance Trajectory</span>
+      </div>
+
+      <!-- Step timeline -->
+      <div class="flex items-end justify-between gap-2 sm:gap-4 mb-6 h-32 sm:h-40">
+        <div class="flex-1 flex flex-col items-center gap-2">
+          <div class="w-full bg-emerald/20 rounded-t-md" style="height: 40%"></div>
+          <div class="text-center">
+            <div class="font-mono text-xs text-text-muted">S5</div>
+            <div id="proof-s5" class="font-heading font-bold text-sm text-text-secondary">3.2</div>
+          </div>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-2">
+          <div class="w-full bg-emerald/30 rounded-t-md" style="height: 55%"></div>
+          <div class="text-center">
+            <div class="font-mono text-xs text-text-muted">S10</div>
+            <div id="proof-s10" class="font-heading font-bold text-sm text-text-secondary">2.5</div>
+          </div>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-2">
+          <div class="w-full bg-emerald/50 rounded-t-md" style="height: 75%"></div>
+          <div class="text-center">
+            <div class="font-mono text-xs text-text-muted">S20</div>
+            <div id="proof-s20" class="font-heading font-bold text-sm text-text-secondary">1.8</div>
+          </div>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-2">
+          <div class="w-full bg-emerald rounded-t-md" style="height: 92%"></div>
+          <div class="text-center">
+            <div class="font-mono text-xs text-text-muted">S27</div>
+            <div id="proof-s27" class="font-heading font-bold text-emerald text-sm">1.2</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center text-text-muted text-xs font-mono">
+        Lower is better — rolling performance average over <span id="proof-sprint-count" class="text-emerald">27</span> sprints
+      </div>
+    </div>
+
+    <!-- Anecdote -->
+    <div class="text-center max-w-2xl mx-auto" data-reveal>
+      <p class="text-text-secondary leading-relaxed mb-4">
+        In Sprint 12, the same bug appeared for the third time. SLOPE flagged it as a recurring hazard. It never appeared again.
+      </p>
+      <p class="text-text-muted text-sm italic">
+        Every metric on this page comes from the reference implementation — <span id="proof-sprint-total" class="text-emerald">27</span> sprints of real work.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { onStatsUpdate } from '../scripts/live-stats';
+  import { animateCounter } from '../scripts/animations';
+
+  const countEl = document.getElementById('proof-sprint-count');
+  const totalEl = document.getElementById('proof-sprint-total');
+
+  onStatsUpdate((stats) => {
+    if (countEl) animateCounter(countEl, stats.sprints_completed);
+    if (totalEl) animateCounter(totalEl, stats.sprints_completed);
+  });
+</script>

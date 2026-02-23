@@ -4,7 +4,7 @@ const steps = [
     num: '1',
     cmd: 'slope init',
     title: 'Initialize',
-    detail: 'Set up SLOPE in your project — creates .slope/ config, installs guards, picks a metaphor.',
+    detail: 'Set up SLOPE in your project. Pick a metaphor. Configure guards.',
     color: 'text-emerald',
     bg: 'bg-emerald/10',
   },
@@ -12,7 +12,7 @@ const steps = [
     num: '2',
     cmd: 'slope briefing',
     title: 'Get briefed',
-    detail: 'Pre-round briefing surfaces hazard index, handicap snapshot, nutrition alerts, and filtered gotchas.',
+    detail: 'Get a pre-sprint briefing: risk index, performance snapshot, known issues.',
     color: 'text-emerald',
     bg: 'bg-emerald/10',
   },
@@ -20,7 +20,7 @@ const steps = [
     num: '3',
     cmd: 'slope card',
     title: 'Check your card',
-    detail: 'Compute your handicap card — rolling stats across last 5, last 10, and all-time windows.',
+    detail: 'Check your performance card — rolling stats across multiple windows.',
     color: 'text-gold',
     bg: 'bg-gold/10',
   },
@@ -28,7 +28,7 @@ const steps = [
     num: '4',
     cmd: 'slope review',
     title: 'Review the sprint',
-    detail: 'Generate a sprint review with shot-by-shot breakdown, miss analysis, and improvement recommendations.',
+    detail: 'Generate a sprint review with ticket-by-ticket analysis and improvement recommendations.',
     color: 'text-gold',
     bg: 'bg-gold/10',
   },
@@ -37,14 +37,33 @@ const steps = [
 
 <section id="getting-started" class="py-24 sm:py-32">
   <div class="max-w-5xl mx-auto px-6">
-    <div class="text-center mb-16" data-reveal>
+    <div class="text-center mb-12" data-reveal>
       <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">Quick Start</p>
       <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
-        Four commands to start scoring
+        Four commands. First sprint.
       </h2>
       <p class="text-text-secondary max-w-2xl mx-auto">
-        From zero to your first handicap card in one sprint. No configuration required — SLOPE ships with sensible defaults.
+        From zero to your first scored sprint. No configuration required — SLOPE ships with sensible defaults.
       </p>
+    </div>
+
+    <!-- Install toggle -->
+    <div class="flex flex-col items-center gap-3 mb-12" data-reveal>
+      <div class="inline-flex rounded-lg border border-border bg-bg-surface/50 p-0.5">
+        <button data-pkg="npm" class="px-4 py-1.5 rounded-md text-xs font-mono font-medium transition-colors bg-emerald/10 text-emerald border border-emerald/20">npm</button>
+        <button data-pkg="pnpm" class="px-4 py-1.5 rounded-md text-xs font-mono font-medium transition-colors text-text-muted hover:text-text-secondary">pnpm</button>
+        <button data-pkg="bun" class="px-4 py-1.5 rounded-md text-xs font-mono font-medium transition-colors text-text-muted hover:text-text-secondary">bun</button>
+      </div>
+      <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-lg border border-border bg-bg-card font-mono text-sm">
+        <span class="text-text-muted">$</span>
+        <code data-install-cmd class="text-emerald">npm install -g @srbryers/cli</code>
+        <button data-install-copy class="ml-2 p-1 rounded hover:bg-bg-surface transition-colors text-text-muted hover:text-emerald" aria-label="Copy install command">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="pointer-events-none" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2" />
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2" />
+          </svg>
+        </button>
+      </div>
     </div>
 
     <div class="grid sm:grid-cols-2 gap-6" data-stagger>
@@ -63,3 +82,8 @@ const steps = [
     </div>
   </div>
 </section>
+
+<script>
+  import { initInstallToggle } from '../scripts/interactions';
+  initInstallToggle();
+</script>

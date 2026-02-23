@@ -1,79 +1,56 @@
 ---
-const phases = [
-  { name: 'Phase 1: Core Engine', key: 'phase_1', fallback: 'COMPLETE' },
-  { name: 'Phase 2: CLI & Storage', key: 'phase_2', fallback: 'COMPLETE' },
-  { name: 'Phase 3: Advisory Intelligence', key: 'phase_3', fallback: 'COMPLETE' },
-  { name: 'Phase 4: Guard Framework', key: 'phase_4', fallback: 'COMPLETE' },
-  { name: 'Phase 5: Ecosystem', key: 'phase_5', fallback: '~75%' },
-  { name: 'Phase 6: Team & Scale', key: 'phase_6', fallback: '~20%' },
-];
 ---
 
 <section id="cta" class="py-24 sm:py-32 bg-bg-surface/50">
   <div class="max-w-4xl mx-auto px-6">
     <div class="text-center mb-12" data-reveal>
       <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
-        Start Scoring Your Sprints
+        Go Deeper
       </h2>
       <p class="text-text-secondary max-w-xl mx-auto">
-        SLOPE is open methodology. Read the framework, adopt what fits, and start turning your agent sessions into measurable progress.
+        Ready to score your sprints? Start with the CLI. Want the full technical breakdown? Read the framework.
       </p>
     </div>
 
-    <!-- Install command -->
-    <div class="flex flex-col items-center gap-4 mb-16" data-reveal>
-      <div class="inline-flex items-center gap-3 px-6 py-3 rounded-lg border border-border bg-bg-card font-mono text-sm">
-        <span class="text-text-muted">$</span>
-        <code class="text-emerald">npm install -g @srbryers/cli</code>
+    <!-- Two paths -->
+    <div class="grid sm:grid-cols-2 gap-6 mb-12" data-stagger>
+      <!-- Primary: action -->
+      <div class="rounded-xl border border-emerald/20 bg-bg-card p-6 text-center">
+        <h3 class="font-heading font-bold text-lg text-text-primary mb-2">Start scoring your sprints</h3>
+        <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-lg border border-border bg-bg-surface font-mono text-sm mb-4">
+          <span class="text-text-muted">$</span>
+          <code class="text-emerald">npm install -g @srbryers/cli</code>
+        </div>
+        <p class="text-text-muted text-xs">Then run <code class="text-emerald">slope init</code> in your project</p>
       </div>
-      <a
-        href="/slope-framework"
-        class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-emerald text-bg-primary font-heading font-bold text-sm hover:bg-emerald/90 transition-colors"
-      >
-        Read the SLOPE Framework
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </a>
+
+      <!-- Secondary: education -->
+      <div class="rounded-xl border border-border bg-bg-card p-6 text-center">
+        <h3 class="font-heading font-bold text-lg text-text-primary mb-2">Read the full framework</h3>
+        <p class="text-text-muted text-sm mb-4">
+          Scoring engine, metaphor system, guards, routines, and the complete methodology.
+        </p>
+        <a
+          href="/slope-framework"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-emerald text-bg-primary font-heading font-bold text-sm hover:bg-emerald/90 transition-colors"
+        >
+          The SLOPE Framework
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
     </div>
 
-    <!-- Phase progress bars -->
-    <div class="rounded-xl border border-border bg-bg-card p-8" data-reveal>
-      <div class="flex items-center justify-between mb-6">
-        <h3 class="font-heading font-bold text-lg">Development Progress</h3>
-        <div class="flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-emerald animate-pulse"></span>
-          <span class="text-text-muted text-xs font-mono">live</span>
-        </div>
-      </div>
-      <div class="space-y-4" id="phase-progress">
-        {phases.map(({ name, key, fallback }) => {
-          const isComplete = fallback === 'COMPLETE';
-          const pct = isComplete ? 100 : fallback.includes('%') ? parseInt(fallback) : 0;
-
-          return (
-            <div data-phase={key}>
-              <div class="flex justify-between text-sm mb-1">
-                <span class="text-text-secondary">{name}</span>
-                <span class={`font-mono text-xs ${isComplete ? 'text-emerald' : pct > 0 ? 'text-gold' : 'text-text-muted'}`} data-phase-label>
-                  {fallback}
-                </span>
-              </div>
-              <div class="h-2 rounded-full bg-bg-primary overflow-hidden">
-                <div
-                  class={`h-full rounded-full transition-all duration-1000 ${isComplete ? 'bg-emerald' : pct > 0 ? 'bg-gold' : 'bg-text-muted/20'}`}
-                  style={`width: ${pct}%`}
-                  data-phase-bar
-                />
-              </div>
-            </div>
-          );
-        })}
-      </div>
+    <!-- Packages inline mention -->
+    <div class="text-center mb-8" data-reveal>
+      <p class="text-text-muted text-xs font-mono">
+        @srbryers/core · @srbryers/cli · @srbryers/tokens · @srbryers/mcp-tools
+      </p>
     </div>
 
     <!-- Footer -->
-    <div class="mt-16 text-center text-text-muted text-xs" data-reveal>
+    <div class="text-center text-text-muted text-xs" data-reveal>
       <p>
         SLOPE is an open-source sprint scoring framework for AI agent teams.
       </p>
@@ -83,37 +60,3 @@ const phases = [
     </div>
   </div>
 </section>
-
-<script>
-  import { onStatsUpdate, type SlopeStats } from '../scripts/live-stats';
-
-  function updatePhases(stats: SlopeStats) {
-    const ps = stats.phase_status;
-    if (!ps) return;
-
-    for (const [key, value] of Object.entries(ps)) {
-      const el = document.querySelector(`[data-phase="${key}"]`);
-      if (!el) continue;
-
-      const label = el.querySelector('[data-phase-label]');
-      const bar = el.querySelector('[data-phase-bar]') as HTMLElement;
-      if (!label || !bar) continue;
-
-      const val = String(value);
-      label.textContent = val;
-
-      const isComplete = val === 'COMPLETE';
-      const pct = isComplete ? 100 : val.includes('%') ? parseInt(val) || 0 : 0;
-
-      bar.style.width = `${pct}%`;
-      bar.className = `h-full rounded-full transition-all duration-1000 ${
-        isComplete ? 'bg-emerald' : pct > 0 ? 'bg-gold' : 'bg-text-muted/20'
-      }`;
-      label.className = `font-mono text-xs ${
-        isComplete ? 'text-emerald' : pct > 0 ? 'text-gold' : 'text-text-muted'
-      }`;
-    }
-  }
-
-  onStatsUpdate(updatePhases);
-</script>
