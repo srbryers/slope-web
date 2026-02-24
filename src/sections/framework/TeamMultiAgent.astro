@@ -1,0 +1,60 @@
+---
+import { generalist, backend, frontend, architect, devops } from '@slope-dev/slope';
+
+const roles = [generalist, backend, frontend, architect, devops];
+---
+
+<!-- Team & Multi-Agent -->
+<section class="mb-16">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Team & Multi-Agent</h2>
+  <p class="text-text-secondary mb-6">SLOPE supports multi-agent sprints with {roles.length} built-in roles. Each role gets a filtered briefing, preferred clubs, and separate handicap tracking.</p>
+
+  <!-- Built-in Roles -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Built-in Roles</h3>
+  <div class="space-y-3 mb-6">
+    {roles.map((role) => (
+      <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+        <div class="flex items-center gap-3 mb-2">
+          <code class="text-emerald text-xs font-mono bg-emerald/5 px-2 py-0.5 rounded">{role.id}</code>
+          <span class="text-text-primary text-sm font-bold">{role.name}</span>
+        </div>
+        <p class="text-text-secondary text-sm mb-2">{role.description}</p>
+        {role.focusAreas.length > 0 && (
+          <div class="flex flex-wrap gap-1.5">
+            {role.focusAreas.map((area: string) => (
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-bg-primary border border-border-subtle text-text-muted">{area}</span>
+            ))}
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+
+  <!-- Multi-agent concepts -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Multi-Agent Coordination</h3>
+  <div class="grid sm:grid-cols-2 gap-3 mb-6">
+    {[
+      { concept: 'Team Handicap', desc: 'Weighted average of all agents\' handicaps, adjusted for role distribution' },
+      { concept: 'Agent Breakdowns', desc: 'Per-agent stats within a sprint — who took which shots, individual accuracy' },
+      { concept: 'Claims & Conflicts', desc: 'Ticket claiming system prevents two agents from working the same shot' },
+      { concept: 'Standups', desc: 'Auto-generated team standups from session data across all agents' },
+    ].map(({ concept, desc }) => (
+      <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+        <span class="text-text-primary text-sm font-medium">{concept}</span>
+        <p class="text-text-muted text-xs mt-1">{desc}</p>
+      </div>
+    ))}
+  </div>
+
+  <details class="read-the-green">
+    <summary>
+      <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      <span class="text-emerald text-sm font-medium">Read the Green</span>
+      <span class="text-text-muted text-xs">— How roles change the game</span>
+    </summary>
+    <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
+      <p>Roles aren't just labels — they change the <strong class="text-text-primary">briefing content</strong>. A backend agent gets hazards about database migrations surfaced prominently; a frontend agent gets accessibility gotchas. The same pre-round briefing is filtered through the role's lens.</p>
+      <p>In a multi-agent sprint, the team handicap is more useful than individual handicaps. It tells you: "when these agents work together on this kind of sprint, they average X over par." This predicts team performance better than any individual metric.</p>
+    </div>
+  </details>
+</section>

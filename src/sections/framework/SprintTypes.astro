@@ -1,0 +1,38 @@
+---
+import { golf } from '@slope-dev/slope';
+import { SPRINT_TYPE_METADATA } from '../../data/framework';
+
+const sprintTypes = golf.sprintTypes as Record<string, string>;
+---
+
+<!-- Sprint Types -->
+<section class="mb-16">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Sprint Types</h2>
+  <p class="text-text-secondary mb-6">Not all sprints are the same. SLOPE classifies {SPRINT_TYPE_METADATA.length} sprint types, each with different expectations and scoring context.</p>
+
+  <div class="space-y-3 mb-6">
+    {SPRINT_TYPE_METADATA.map(({ type, description, whenToUse }) => (
+      <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+        <div class="flex items-center gap-3 mb-2">
+          <code class="text-emerald text-xs font-mono bg-emerald/5 px-2 py-0.5 rounded">{type}</code>
+          <span class="text-text-primary text-sm font-medium">{sprintTypes[type] ?? type}</span>
+        </div>
+        <p class="text-text-secondary text-sm mb-1">{description}</p>
+        <p class="text-text-muted text-xs italic">When to use: {whenToUse}</p>
+      </div>
+    ))}
+  </div>
+
+  <details class="read-the-green">
+    <summary>
+      <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      <span class="text-emerald text-sm font-medium">Read the Green</span>
+      <span class="text-text-muted text-xs">— Why sprint type matters for scoring</span>
+    </summary>
+    <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
+      <p>Sprint type affects how you interpret the score. A <strong class="text-text-primary">research</strong> sprint that scores bogey isn't a failure — exploration takes more strokes by nature. A <strong class="text-text-primary">bugfix</strong> sprint that scores bogey might indicate deeper issues, since bug fixes should be precise.</p>
+      <p>The handicap system tracks sprint types to normalize scoring. If your handicap improves but you're only doing feedback and bugfix sprints, the improvement is less meaningful than if you're consistently improving on feature sprints.</p>
+      <p>Sprint type also drives the training recommendation engine: "long" misses on feature sprints recommend research training. "Right" misses on infra sprints recommend feedback training.</p>
+    </div>
+  </details>
+</section>

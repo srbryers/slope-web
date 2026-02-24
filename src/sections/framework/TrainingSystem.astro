@@ -1,0 +1,63 @@
+---
+import { TRAINING_TYPE_MAP, NUTRITION_CHECKLIST, golf } from '@slope-dev/slope';
+
+const trainingTypes = golf.trainingTypes as Record<string, string>;
+const nutritionTerms = golf.nutrition as Record<string, string>;
+---
+
+<!-- Training System -->
+<section class="mb-16">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Training System</h2>
+  <p class="text-text-secondary mb-6">When miss patterns emerge, SLOPE recommends targeted training sprints to address weaknesses.</p>
+
+  <!-- Training Type Map -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Training Types</h3>
+  <div class="rounded-xl border border-border bg-bg-card overflow-hidden mb-6">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-border bg-bg-surface/50">
+          <th class="text-left px-5 py-3 text-text-muted text-xs uppercase tracking-wider font-medium">Sprint Type</th>
+          <th class="text-left px-5 py-3 text-text-muted text-xs uppercase tracking-wider font-medium">Recommended Training</th>
+          <th class="text-left px-5 py-3 text-text-muted text-xs uppercase tracking-wider font-medium">Focus</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border-subtle">
+        {Object.entries(TRAINING_TYPE_MAP).map(([sprintType, training]) => (
+          <tr>
+            <td class="px-5 py-3 text-emerald font-mono text-xs">{sprintType}</td>
+            <td class="px-5 py-3 text-gold font-medium text-sm">{trainingTypes[training] ?? training}</td>
+            <td class="px-5 py-3 text-text-muted text-xs">
+              {sprintType === 'research' && 'Long-range accuracy — scoping and estimation'}
+              {sprintType === 'feedback' && 'Short game — precision and refinement'}
+              {sprintType === 'test-coverage' && 'Consistency — repeatable quality'}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Nutrition Checklist -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Nutrition Checklist</h3>
+  <p class="text-text-secondary mb-4 text-sm">Beyond mechanics, SLOPE tracks environmental health factors that affect performance. These are checked in the pre-round briefing.</p>
+  <div class="grid sm:grid-cols-2 gap-3 mb-6">
+    {NUTRITION_CHECKLIST.map((item) => (
+      <div class="flex items-center gap-3 p-3 rounded-lg bg-bg-card border border-border-subtle">
+        <span class="w-6 h-6 rounded-md bg-emerald/10 flex items-center justify-center shrink-0 text-emerald text-xs font-bold">+</span>
+        <span class="text-text-primary text-sm font-medium">{nutritionTerms[item] ?? item}</span>
+      </div>
+    ))}
+  </div>
+
+  <details class="read-the-green">
+    <summary>
+      <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      <span class="text-emerald text-sm font-medium">Read the Green</span>
+      <span class="text-text-muted text-xs">— Why training and nutrition matter</span>
+    </summary>
+    <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
+      <p>Training is what turns scorecard data into <strong class="text-text-primary">improvement</strong>. Without it, you're just tracking stats. With it, each sprint's learnings feed back into specific practice areas.</p>
+      <p>The nutrition checklist is deceptively important for AI agents. "Hydration" maps to keeping context fresh, "diet" to clean inputs, "recovery" to proper session boundaries. An agent running without these checks is like an athlete who never stretches — performance degrades silently.</p>
+    </div>
+  </details>
+</section>
