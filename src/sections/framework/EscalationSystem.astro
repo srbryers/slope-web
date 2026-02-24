@@ -14,29 +14,24 @@
       </thead>
       <tbody class="divide-y divide-border-subtle">
         <tr>
-          <td class="px-5 py-3 text-text-primary text-xs">Score 3+ over <span data-term="vocabulary.par">par</span></td>
-          <td class="px-5 py-3 font-medium text-xs text-red-400">High</td>
-          <td class="px-5 py-3 text-text-muted text-xs">Flag for review, recommend training <span data-term="vocabulary.sprint">sprint</span></td>
+          <td class="px-5 py-3 text-emerald font-mono text-xs">blocker_timeout</td>
+          <td class="px-5 py-3 font-medium text-xs text-red-400">Critical</td>
+          <td class="px-5 py-3 text-text-muted text-xs">Agent blocked longer than threshold (default 15 min). Logs event, marks blocked, surfaces in standup.</td>
         </tr>
         <tr>
-          <td class="px-5 py-3 text-text-primary text-xs">Consecutive <span data-term="scoreLabels.bogey">bogey</span>s (3+)</td>
-          <td class="px-5 py-3 font-medium text-xs text-gold">Medium</td>
-          <td class="px-5 py-3 text-text-muted text-xs">Suggest simpler <span data-term="vocabulary.club">club</span>s, shorter <span data-term="vocabulary.ticket">shot</span>s</td>
+          <td class="px-5 py-3 text-emerald font-mono text-xs">claim_conflict</td>
+          <td class="px-5 py-3 font-medium text-xs text-red-400">Critical</td>
+          <td class="px-5 py-3 text-text-muted text-xs">Overlapping scope between agents. Detected from claim registry, surfaces in standup.</td>
         </tr>
         <tr>
-          <td class="px-5 py-3 text-text-primary text-xs">Hazard recurrence in same area</td>
-          <td class="px-5 py-3 font-medium text-xs text-red-400">High</td>
-          <td class="px-5 py-3 text-text-muted text-xs">Update common-issues, flag for architect review</td>
+          <td class="px-5 py-3 text-emerald font-mono text-xs">test_failure_cascade</td>
+          <td class="px-5 py-3 font-medium text-xs text-gold">Warning</td>
+          <td class="px-5 py-3 text-text-muted text-xs">Excessive test failures across swarm (default threshold: 10). Logs event, surfaces in standup.</td>
         </tr>
         <tr>
-          <td class="px-5 py-3 text-text-primary text-xs">Miss pattern lock-in</td>
-          <td class="px-5 py-3 font-medium text-xs text-gold">Medium</td>
-          <td class="px-5 py-3 text-text-muted text-xs">Recommend targeted training type</td>
-        </tr>
-        <tr>
-          <td class="px-5 py-3 text-text-primary text-xs"><span data-term="vocabulary.handicap">Handicap</span> regression (5-<span data-term="vocabulary.sprint">sprint</span> window)</td>
-          <td class="px-5 py-3 font-medium text-xs text-text-muted">Low</td>
-          <td class="px-5 py-3 text-text-muted text-xs">Surface in <span data-term="vocabulary.briefing">briefing</span>, suggest practice <span data-term="vocabulary.sprint">sprint</span></td>
+          <td class="px-5 py-3 text-emerald font-mono text-xs">manual</td>
+          <td class="px-5 py-3 font-medium text-xs text-text-muted">Varies</td>
+          <td class="px-5 py-3 text-text-muted text-xs">Agent explicitly flags an escalation with severity and context. Feeds into <span data-term="vocabulary.handicapCard">handicap</span> and common-issues.</td>
         </tr>
       </tbody>
     </table>

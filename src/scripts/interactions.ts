@@ -76,9 +76,9 @@ export function initShotCycle(): void {
 /** Install command tab toggle */
 export function initInstallToggle(): void {
   const commands: Record<string, string> = {
-    npm: 'npm install -g @srbryers/cli',
-    pnpm: 'pnpm add -g @srbryers/cli',
-    bun: 'bun add -g @srbryers/cli',
+    npm: 'npm install -g @slope-dev/slope',
+    pnpm: 'pnpm add -g @slope-dev/slope',
+    bun: 'bun add -g @slope-dev/slope',
   };
 
   const buttons = document.querySelectorAll<HTMLButtonElement>('[data-pkg]');

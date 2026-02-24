@@ -683,11 +683,11 @@
     "vocabulary": {
       "sprint": "Sprint",
       "ticket": "Story",
-      "scorecard": "Sprint report",
-      "handicapCard": "Velocity card",
+      "scorecard": "Retro report",
+      "handicapCard": "Velocity tracker",
       "briefing": "Sprint planning",
-      "perfectScore": "All stories done",
-      "onTarget": "On target",
+      "perfectScore": "Shipped early",
+      "onTarget": "On track",
       "review": "Retrospective",
       "preRound": "Sprint Planning",
       "preShot": "Pre-Work",
@@ -700,87 +700,87 @@
       "readTheGreen": "Deep Dive",
       "handicap": "Velocity index",
       "fairway": "On track",
-      "green": "Accepted",
+      "green": "Done",
       "putt": "Polish",
       "club": "Approach",
-      "recovery": "Rework",
+      "recovery": "Cooldown",
       "penalty": "Blocker",
       "distance": "Scope"
     },
     "clubs": {
-      "driver": "Spike",
-      "long_iron": "Epic",
+      "driver": "Epic",
+      "long_iron": "Feature",
       "short_iron": "Story",
       "wedge": "Task",
-      "putter": "Bug Fix"
+      "putter": "Chore"
     },
     "shotResults": {
-      "fairway": "On Track",
-      "green": "Accepted",
-      "in_the_hole": "Done-Done",
+      "fairway": "In Progress",
+      "green": "Done",
+      "in_the_hole": "Shipped Early",
       "missed_long": "Over-scoped",
-      "missed_short": "Under-scoped",
-      "missed_left": "Wrong Approach",
-      "missed_right": "Integration Issue"
+      "missed_short": "Under-delivered",
+      "missed_left": "Wrong Priority",
+      "missed_right": "Scope Creep"
     },
     "hazards": {
-      "bunker": "Tech Debt",
-      "water": "Breaking Change",
-      "ob": "Scope Creep",
-      "rough": "Dependency Issue",
-      "trees": "Legacy Code"
+      "bunker": "Blocker",
+      "water": "Regression",
+      "ob": "Rollback",
+      "rough": "Tech Debt",
+      "trees": "Dependency"
     },
     "conditions": {
-      "wind": "Shifting Requirements",
-      "rain": "Team Disruption",
-      "frost_delay": "Blocked",
-      "altitude": "Complexity",
-      "pin_position": "Acceptance Criteria"
+      "wind": "Changing Requirements",
+      "rain": "Team Absence",
+      "frost_delay": "Blocked Sprint",
+      "altitude": "Complexity Spike",
+      "pin_position": "Priority Shift"
     },
     "specialPlays": {
-      "gimme": "Auto-close",
-      "mulligan": "Redo",
-      "provisional": "Plan B",
-      "lay_up": "De-scope",
-      "scramble": "Swarm",
+      "gimme": "Auto-merge",
+      "mulligan": "Revert & Redo",
+      "provisional": "Spike",
+      "lay_up": "Descope",
+      "scramble": "Mob Programming",
       "match_play": "Head-to-Head"
     },
     "missDirections": {
-      "long": "Over-engineered",
-      "short": "Under-scoped",
-      "left": "Wrong approach",
-      "right": "Integration issue"
+      "long": "Over-scoped",
+      "short": "Under-delivered",
+      "left": "Wrong Priority",
+      "right": "Scope Creep"
     },
     "scoreLabels": {
-      "eagle": "Exceeded (−2)",
-      "birdie": "Ahead (−1)",
-      "par": "On Target",
-      "bogey": "Behind (+1)",
-      "double_bogey": "Over (+2)",
-      "triple_plus": "Blocked (+3)"
+      "eagle": "Crushed It",
+      "birdie": "Ahead of Schedule",
+      "par": "On Track",
+      "bogey": "Slipped",
+      "double_bogey": "Missed Sprint Goal",
+      "triple_plus": "Failed Sprint"
     },
     "sprintTypes": {
       "feature": "Feature Sprint",
       "feedback": "Feedback Sprint",
-      "infra": "Infrastructure Sprint",
+      "infra": "Platform Sprint",
       "bugfix": "Bug Fix Sprint",
       "research": "Spike Sprint",
       "flow": "Flow Sprint",
-      "test-coverage": "Test Sprint",
+      "test-coverage": "Quality Sprint",
       "audit": "Code Review Sprint"
     },
     "trainingTypes": {
-      "driving_range": "Estimation Practice",
-      "chipping_practice": "Refinement",
-      "putting_practice": "Acceptance Testing",
-      "lessons": "Team Training"
+      "driving_range": "Tech Talk",
+      "chipping_practice": "Pair Programming",
+      "putting_practice": "Code Review",
+      "lessons": "Workshop"
     },
     "nutrition": {
-      "hydration": "Documentation",
-      "diet": "Code Quality",
-      "recovery": "Tech Debt Paydown",
+      "hydration": "Communication",
+      "diet": "Process Health",
+      "recovery": "Cooldown",
       "supplements": "Tooling",
-      "stretching": "Process Review"
+      "stretching": "Refinement"
     },
     "statLabels": {
       "handicap": "Velocity Index",

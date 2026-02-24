@@ -113,7 +113,6 @@ export const SPECIAL_PLAY_METADATA: SpecialPlayMeta[] = [
   { name: 'Provisional', term: 'specialPlays.provisional', meaning: 'Fallback declared before swinging', detail: '"If this doesn\'t work in 2 shots, play X instead"' },
   { name: 'Lay-up', term: 'specialPlays.lay_up', meaning: 'Safer approach over ambitious one', detail: 'Could go for it but risk isn\'t worth it' },
   { name: 'Scramble', term: 'specialPlays.scramble', meaning: 'Multi-agent sprint', detail: 'Multiple agents take shots, use the best' },
-  { name: 'Match play', term: 'specialPlays.match_play', meaning: 'Sprint-vs-sprint comparison', detail: 'Compare two sprints head to head' },
 ];
 
 export interface SprintTypeMeta {
