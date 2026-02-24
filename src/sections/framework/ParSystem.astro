@@ -12,22 +12,22 @@ const factorLabels: Record<string, string> = {
 
 <!-- Par System -->
 <section class="mb-16">
-  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Par System</h2>
-  <p class="text-text-secondary mb-6">Par is determined by ticket count. It sets the expected difficulty <em>before</em> the sprint begins.</p>
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary"><span data-term="vocabulary.par">Par</span> System</h2>
+  <p class="text-text-secondary mb-6"><span data-term="vocabulary.par">Par</span> is determined by ticket count. It sets the expected difficulty <em>before</em> the sprint begins.</p>
 
   <div class="grid sm:grid-cols-3 gap-4 mb-6">
     <div class="rounded-xl border border-emerald/20 bg-emerald/5 p-5 text-center">
-      <div class="font-heading font-extrabold text-3xl text-emerald mb-1">Par 3</div>
+      <div class="font-heading font-extrabold text-3xl text-emerald mb-1"><span data-term="vocabulary.par">Par</span> 3</div>
       <div class="text-text-muted text-sm">1-2 tickets</div>
       <div class="text-text-muted text-xs mt-2">Single package, familiar area</div>
     </div>
     <div class="rounded-xl border border-gold/20 bg-gold/5 p-5 text-center">
-      <div class="font-heading font-extrabold text-3xl text-gold mb-1">Par 4</div>
+      <div class="font-heading font-extrabold text-3xl text-gold mb-1"><span data-term="vocabulary.par">Par</span> 4</div>
       <div class="text-text-muted text-sm">3-4 tickets</div>
       <div class="text-text-muted text-xs mt-2">Multi-package or schema changes</div>
     </div>
     <div class="rounded-xl border border-red-500/20 bg-red-500/5 p-5 text-center">
-      <div class="font-heading font-extrabold text-3xl text-red-400 mb-1">Par 5</div>
+      <div class="font-heading font-extrabold text-3xl text-red-400 mb-1"><span data-term="vocabulary.par">Par</span> 5</div>
       <div class="text-text-muted text-sm">5+ tickets</div>
       <div class="text-text-muted text-xs mt-2">New infrastructure, cross-cutting</div>
     </div>
@@ -35,7 +35,7 @@ const factorLabels: Record<string, string> = {
 
   <!-- Slope factors -->
   <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Course Rating / Slope</h3>
-  <p class="text-text-secondary mb-4 text-sm">Par says how many shots. Slope says how hard those shots are. Each factor adds +1.</p>
+  <p class="text-text-secondary mb-4 text-sm"><span data-term="vocabulary.par">Par</span> says how many <span data-term="vocabulary.ticket">shot</span>s. Slope says how hard those <span data-term="vocabulary.ticket">shot</span>s are. Each factor adds +1.</p>
   <div class="space-y-2 mb-6">
     {Object.entries(SLOPE_FACTOR_DETAILS).map(([key, detail]) => (
       <div class="flex items-center gap-3 p-3 rounded-lg bg-bg-card border border-border-subtle">

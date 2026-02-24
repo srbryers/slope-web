@@ -17,7 +17,8 @@
       "postHole": "Post-Hole",
       "tournament": "Tournament",
       "round": "Round",
-      "stroke": "Stroke"
+      "stroke": "Stroke",
+      "par": "Par"
     },
     "clubs": {
       "driver": "Driver",
@@ -119,7 +120,8 @@
       "postHole": "Post-Set",
       "tournament": "Season",
       "round": "Match",
-      "stroke": "Swing"
+      "stroke": "Swing",
+      "par": "Target"
     },
     "clubs": {
       "driver": "Power Serve",
@@ -221,7 +223,8 @@
       "postHole": "Post-Inning",
       "tournament": "Season",
       "round": "Series",
-      "stroke": "Pitch"
+      "stroke": "Pitch",
+      "par": "Target"
     },
     "clubs": {
       "driver": "Power Swing",
@@ -323,7 +326,8 @@
       "postHole": "Level Complete",
       "tournament": "Campaign",
       "round": "World",
-      "stroke": "Input"
+      "stroke": "Input",
+      "par": "Target"
     },
     "clubs": {
       "driver": "Boss Fight",
@@ -425,7 +429,8 @@
       "postHole": "Short Rest",
       "tournament": "Campaign",
       "round": "Chapter",
-      "stroke": "Roll"
+      "stroke": "Roll",
+      "par": "DC"
     },
     "clubs": {
       "driver": "Fireball",
@@ -527,7 +532,8 @@
       "postHole": "System Check",
       "tournament": "Network",
       "round": "Simulation Cycle",
-      "stroke": "Packet"
+      "stroke": "Packet",
+      "par": "Threshold"
     },
     "clubs": {
       "driver": "Red Pill",
