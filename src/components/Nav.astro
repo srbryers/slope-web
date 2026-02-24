@@ -46,7 +46,24 @@ function isActive(href: string) {
       SLOPE
     </a>
 
-    <!-- Desktop links (md+) -->
+    <!-- Center: Metaphor pills (md+) -->
+    <div class="hidden md:flex items-center gap-1" role="radiogroup" aria-label="Switch metaphor">
+      {metaphors.map(({ id, name }) => (
+        <button
+          data-nav-metaphor={id}
+          class:list={[
+            'nav-metaphor-pill px-2.5 py-1 rounded-md text-xs font-mono font-medium transition-colors cursor-pointer',
+            id === 'golf'
+              ? 'bg-emerald/10 text-emerald border border-emerald/20'
+              : 'text-text-muted hover:text-text-secondary border border-transparent',
+          ]}
+        >
+          {name}
+        </button>
+      ))}
+    </div>
+
+    <!-- Right: Desktop links (md+) -->
     <div class="hidden md:flex items-center gap-6">
       {links.map(({ label, href }) => (
         <a
@@ -73,22 +90,6 @@ function isActive(href: string) {
           <path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331zM10.665 10H12v2.667h-1.335V10z" />
         </svg>
       </a>
-
-      <!-- Metaphor switcher -->
-      <div class="relative">
-        <select
-          id="metaphor-select"
-          class="appearance-none bg-bg-card border border-border rounded-lg px-3 py-1.5 pr-8 text-xs font-mono text-text-secondary hover:border-emerald/40 focus:border-emerald focus:outline-none transition-colors cursor-pointer"
-          aria-label="Switch metaphor"
-        >
-          {metaphors.map(({ id, name }) => (
-            <option value={id}>{name}</option>
-          ))}
-        </select>
-        <svg class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-text-muted" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </div>
     </div>
 
     <!-- Mobile hamburger button -->
@@ -185,21 +186,5 @@ function isActive(href: string) {
     }
   });
 
-  // Sync mobile metaphor select with the main one
-  const mobileSelect = document.querySelector('.nav-metaphor-mobile') as HTMLSelectElement;
-  const mainSelect = document.getElementById('metaphor-select') as HTMLSelectElement;
-
-  // Sync initial value
-  const saved = localStorage.getItem('slope-metaphor');
-  if (saved) {
-    if (mobileSelect) mobileSelect.value = saved;
-    if (mainSelect) mainSelect.value = saved;
-  }
-
-  mobileSelect?.addEventListener('change', () => {
-    if (mainSelect) {
-      mainSelect.value = mobileSelect.value;
-      mainSelect.dispatchEvent(new Event('change'));
-    }
-  });
+  // Metaphor pill clicks and mobile select are handled by initMetaphorSwitcher() in Base layout
 </script>

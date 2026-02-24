@@ -147,13 +147,21 @@ function applyMetaphor(
   localStorage.setItem('slope-metaphor', metaphorId);
   document.documentElement.dataset.metaphor = metaphorId;
 
-  // Sync global dropdown if present
-  const dropdown = document.getElementById('metaphor-select') as HTMLSelectElement | null;
-  if (dropdown) dropdown.value = metaphorId;
+  // Sync nav pills if present
+  const navPills = document.querySelectorAll<HTMLElement>('[data-nav-metaphor]');
+  navPills.forEach((pill) => {
+    const isActive = pill.dataset.navMetaphor === metaphorId;
+    pill.classList.toggle('bg-emerald/10', isActive);
+    pill.classList.toggle('text-emerald', isActive);
+    pill.classList.toggle('border-emerald/20', isActive);
+    pill.classList.toggle('text-text-muted', !isActive);
+    pill.classList.toggle('hover:text-text-secondary', !isActive);
+    pill.classList.toggle('border-transparent', !isActive);
+  });
 
   // Sync inline pills if present
-  const pills = document.querySelectorAll<HTMLElement>('[data-inline-metaphor]');
-  pills.forEach((pill) => {
+  const inlinePills = document.querySelectorAll<HTMLElement>('[data-inline-metaphor]');
+  inlinePills.forEach((pill) => {
     const isActive = pill.dataset.inlineMetaphor === metaphorId;
     pill.classList.toggle('border-emerald/40', isActive);
     pill.classList.toggle('bg-emerald/10', isActive);
@@ -162,18 +170,33 @@ function applyMetaphor(
     pill.classList.toggle('bg-bg-card', !isActive);
     pill.classList.toggle('text-text-muted', !isActive);
   });
+
+  // Sync mobile select if present
+  const mobileSelect = document.querySelector('.nav-metaphor-mobile') as HTMLSelectElement | null;
+  if (mobileSelect) mobileSelect.value = metaphorId;
 }
 
-/** Metaphor switcher — swaps data-term elements based on selected metaphor */
+/** Metaphor switcher — initializes nav pills + listens for slope:metaphor events */
 export function initMetaphorSwitcher(): void {
-  const dropdown = document.getElementById('metaphor-select') as HTMLSelectElement | null;
-  if (!dropdown) return;
-
   import('../data/metaphors.json').then((mod) => {
     const metaphors: Record<string, Record<string, Record<string, string>>> = mod.default;
 
-    dropdown.addEventListener('change', () => applyMetaphor(dropdown.value, metaphors));
+    // Nav pill clicks
+    const navPills = document.querySelectorAll<HTMLElement>('[data-nav-metaphor]');
+    navPills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        const id = pill.dataset.navMetaphor;
+        if (id && metaphors[id]) applyMetaphor(id, metaphors);
+      });
+    });
 
+    // Mobile select
+    const mobileSelect = document.querySelector('.nav-metaphor-mobile') as HTMLSelectElement | null;
+    mobileSelect?.addEventListener('change', () => {
+      if (metaphors[mobileSelect.value]) applyMetaphor(mobileSelect.value, metaphors);
+    });
+
+    // Apply saved preference on load
     const saved = localStorage.getItem('slope-metaphor') ?? 'golf';
     if (metaphors[saved]) applyMetaphor(saved, metaphors);
   });
