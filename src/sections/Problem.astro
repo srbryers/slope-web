@@ -70,7 +70,7 @@
     </div>
 
     <!-- Live stats bar -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4" aria-live="polite" data-stagger>
+    <div class="grid grid-cols-2 gap-4" aria-live="polite" data-stagger>
       <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
         <div id="stat-sprints" class="font-heading font-bold text-2xl text-emerald">28</div>
         <div class="text-text-muted text-xs mt-1">Sprints</div>
@@ -78,14 +78,6 @@
       <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
         <div id="stat-tests" class="font-heading font-bold text-2xl text-text-primary">1,091</div>
         <div class="text-text-muted text-xs mt-1">Tests</div>
-      </div>
-      <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
-        <div id="stat-commands" class="font-heading font-bold text-2xl text-text-primary">26</div>
-        <div class="text-text-muted text-xs mt-1">CLI Commands</div>
-      </div>
-      <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
-        <div id="stat-packages" class="font-heading font-bold text-2xl text-text-secondary">5</div>
-        <div class="text-text-muted text-xs mt-1">Packages</div>
       </div>
     </div>
   </div>
@@ -97,15 +89,11 @@
 
   const statEls = {
     tests: document.getElementById('stat-tests'),
-    commands: document.getElementById('stat-commands'),
-    packages: document.getElementById('stat-packages'),
     sprints: document.getElementById('stat-sprints'),
   };
 
   onStatsUpdate((stats) => {
     if (statEls.tests) animateCounter(statEls.tests, stats.total_tests);
-    if (statEls.commands) animateCounter(statEls.commands, stats.cli_commands);
-    if (statEls.packages) animateCounter(statEls.packages, stats.packages);
     if (statEls.sprints) animateCounter(statEls.sprints, stats.sprints_completed);
   });
 </script>

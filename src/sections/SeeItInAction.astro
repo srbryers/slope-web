@@ -40,6 +40,75 @@ const metaphors = [
       ))}
     </div>
 
+    <!-- Example scorecard -->
+    <div class="rounded-xl border border-border bg-bg-card overflow-hidden mb-10" data-reveal>
+      <!-- Scorecard header -->
+      <div class="px-5 py-3 border-b border-border bg-bg-surface/50 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="text-emerald text-xs font-mono uppercase tracking-wider" data-term="vocabulary.scorecard">Scorecard</span>
+          <span class="text-text-muted text-xs">—</span>
+          <span class="text-text-primary text-sm font-heading font-bold"><span data-term="vocabulary.sprint">Hole</span> 28</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-text-muted text-xs font-mono"><span data-term="vocabulary.par">Par</span> 4</span>
+          <span class="text-text-muted text-xs">|</span>
+          <span class="text-emerald text-xs font-mono font-bold">Score: 4 (<span data-term="scoreLabels.par">Par</span>)</span>
+        </div>
+      </div>
+
+      <!-- Ticket breakdown -->
+      <div class="divide-y divide-border-subtle">
+        <div class="px-5 py-2.5 flex items-center justify-between text-sm">
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-emerald/10 flex items-center justify-center text-emerald text-[10px] font-bold shrink-0">1</span>
+            <span class="text-text-secondary">Setup & config</span>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="text-text-muted font-mono" data-term="clubs.wedge">Wedge</span>
+            <span class="text-emerald font-mono" data-term="shotResults.green">Green</span>
+          </div>
+        </div>
+        <div class="px-5 py-2.5 flex items-center justify-between text-sm">
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-emerald/10 flex items-center justify-center text-emerald text-[10px] font-bold shrink-0">2</span>
+            <span class="text-text-secondary">Core feature implementation</span>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="text-text-muted font-mono" data-term="clubs.short_iron">Short Iron</span>
+            <span class="text-emerald font-mono" data-term="shotResults.fairway">Fairway</span>
+          </div>
+        </div>
+        <div class="px-5 py-2.5 flex items-center justify-between text-sm">
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-gold/10 flex items-center justify-center text-gold text-[10px] font-bold shrink-0">3</span>
+            <span class="text-text-secondary">Integration + edge cases</span>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="text-text-muted font-mono" data-term="clubs.long_iron">Long Iron</span>
+            <span class="text-gold font-mono" data-term="hazards.bunker">Bunker</span>
+          </div>
+        </div>
+        <div class="px-5 py-2.5 flex items-center justify-between text-sm">
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-emerald/10 flex items-center justify-center text-emerald text-[10px] font-bold shrink-0">4</span>
+            <span class="text-text-secondary">Tests & documentation</span>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="text-text-muted font-mono" data-term="clubs.putter">Putter</span>
+            <span class="text-emerald font-mono" data-term="shotResults.in_the_hole">In the Hole</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats footer -->
+      <div class="px-5 py-3 border-t border-border bg-bg-surface/30 flex flex-wrap gap-x-6 gap-y-1 text-xs">
+        <span class="text-text-muted"><span data-term="statLabels.fairways" class="text-text-secondary">Fairways</span>: 4/4</span>
+        <span class="text-text-muted"><span data-term="statLabels.gir" class="text-text-secondary">GIR</span>: 3/4</span>
+        <span class="text-text-muted"><span data-term="statLabels.putts" class="text-text-secondary">Putts</span>: 1</span>
+        <span class="text-text-muted"><span data-term="vocabulary.handicap" class="text-text-secondary">Handicap</span>: 1.2</span>
+      </div>
+    </div>
+
     <!-- Terminology table -->
     <div class="rounded-xl border border-emerald/20 bg-bg-card overflow-hidden" data-reveal>
       <table class="w-full text-sm">
