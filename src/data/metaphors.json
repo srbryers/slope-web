@@ -19,7 +19,15 @@
       "round": "Round",
       "stroke": "Stroke",
       "par": "Par",
-      "readTheGreen": "Read the Green"
+      "readTheGreen": "Read the Green",
+      "handicap": "handicap",
+      "fairway": "fairway",
+      "green": "green",
+      "putt": "putt",
+      "club": "club",
+      "recovery": "recovery",
+      "penalty": "penalty",
+      "distance": "distance"
     },
     "clubs": {
       "driver": "Driver",
@@ -123,7 +131,15 @@
       "round": "Match",
       "stroke": "Swing",
       "par": "Target",
-      "readTheGreen": "Read the Court"
+      "readTheGreen": "Read the Court",
+      "handicap": "ranking",
+      "fairway": "in play",
+      "green": "winner",
+      "putt": "touch shot",
+      "club": "stroke type",
+      "recovery": "rally back",
+      "penalty": "fault",
+      "distance": "position"
     },
     "clubs": {
       "driver": "Power Serve",
@@ -227,7 +243,15 @@
       "round": "Series",
       "stroke": "Pitch",
       "par": "Target",
-      "readTheGreen": "Scout the Field"
+      "readTheGreen": "Scout the Field",
+      "handicap": "batting avg",
+      "fairway": "single",
+      "green": "double",
+      "putt": "tap",
+      "club": "approach",
+      "recovery": "comeback",
+      "penalty": "error",
+      "distance": "base"
     },
     "clubs": {
       "driver": "Power Swing",
@@ -331,7 +355,15 @@
       "round": "World",
       "stroke": "Input",
       "par": "Target",
-      "readTheGreen": "Check the Map"
+      "readTheGreen": "Check the Map",
+      "handicap": "player level",
+      "fairway": "progress",
+      "green": "clear",
+      "putt": "finisher",
+      "club": "ability",
+      "recovery": "respawn",
+      "penalty": "damage",
+      "distance": "progress"
     },
     "clubs": {
       "driver": "Boss Fight",
@@ -435,7 +467,15 @@
       "round": "Chapter",
       "stroke": "Roll",
       "par": "DC",
-      "readTheGreen": "Perception Check"
+      "readTheGreen": "Perception Check",
+      "handicap": "challenge rating",
+      "fairway": "hit",
+      "green": "critical hit",
+      "putt": "cantrip",
+      "club": "weapon",
+      "recovery": "heal",
+      "penalty": "penalty",
+      "distance": "range"
     },
     "clubs": {
       "driver": "Fireball",
@@ -539,7 +579,15 @@
       "round": "Simulation Cycle",
       "stroke": "Packet",
       "par": "Threshold",
-      "readTheGreen": "Scan the Matrix"
+      "readTheGreen": "Scan the Matrix",
+      "handicap": "operator rating",
+      "fairway": "connected",
+      "green": "decoded",
+      "putt": "tweak",
+      "club": "protocol",
+      "recovery": "restore",
+      "penalty": "corruption",
+      "distance": "offset"
     },
     "clubs": {
       "driver": "Red Pill",

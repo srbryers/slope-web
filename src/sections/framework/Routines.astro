@@ -10,22 +10,12 @@
     </div>
     <div class="p-6">
       <ol class="space-y-3">
-        {[
-          ['Read the yardage book', 'Check codebase map for the area you\'re about to touch'],
-          ['Check conditions', 'Any gotchas for this area? External blockers?'],
-          ['Select your club', 'Declare your approach (driver/iron/wedge/putter) and record it'],
-          ['Pick your target', 'Read the spec section, know exactly what "on the green" looks like'],
-          ['Visualize the shot', 'If the area has prior miss data, account for it ("this green slopes left")'],
-          ['Declare a provisional', 'If risky, name the fallback before swinging'],
-        ].map(([step, detail], i) => (
-          <li class="flex gap-3">
-            <span class="w-6 h-6 rounded-full bg-emerald/10 flex items-center justify-center shrink-0 text-emerald text-xs font-bold mt-0.5">{i + 1}</span>
-            <div>
-              <span class="text-text-primary text-sm font-medium">{step}</span>
-              <span class="text-text-muted text-sm"> — {detail}</span>
-            </div>
-          </li>
-        ))}
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-emerald/10 flex items-center justify-center shrink-0 text-emerald text-xs font-bold mt-0.5">1</span><div><span class="text-text-primary text-sm font-medium">Read the yardage book</span><span class="text-text-muted text-sm"> — Check codebase map for the area you're about to touch</span></div></li>
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-emerald/10 flex items-center justify-center shrink-0 text-emerald text-xs font-bold mt-0.5">2</span><div><span class="text-text-primary text-sm font-medium">Check conditions</span><span class="text-text-muted text-sm"> — Any gotchas for this area? External blockers?</span></div></li>
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-emerald/10 flex items-center justify-center shrink-0 text-emerald text-xs font-bold mt-0.5">3</span><div><span class="text-text-primary text-sm font-medium">Select your <span data-term="vocabulary.club">club</span></span><span class="text-text-muted text-sm"> — Declare your approach and record it</span></div></li>
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-emerald/10 flex items-center justify-center shrink-0 text-emerald text-xs font-bold mt-0.5">4</span><div><span class="text-text-primary text-sm font-medium">Pick your target</span><span class="text-text-muted text-sm"> — Read the spec section, know exactly what "on the <span data-term="vocabulary.green">green</span>" looks like</span></div></li>
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-emerald/10 flex items-center justify-center shrink-0 text-emerald text-xs font-bold mt-0.5">5</span><div><span class="text-text-primary text-sm font-medium">Visualize the <span data-term="vocabulary.ticket">shot</span></span><span class="text-text-muted text-sm"> — If the area has prior miss data, account for it</span></div></li>
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-emerald/10 flex items-center justify-center shrink-0 text-emerald text-xs font-bold mt-0.5">6</span><div><span class="text-text-primary text-sm font-medium">Declare a <span data-term="specialPlays.provisional">provisional</span></span><span class="text-text-muted text-sm"> — If risky, name the fallback before swinging</span></div></li>
       </ol>
     </div>
   </div>
@@ -37,21 +27,11 @@
     </div>
     <div class="p-6">
       <ol class="space-y-3">
-        {[
-          ['Score the shot', 'Did it land where you aimed? Fairway / green / miss?'],
-          ['Record miss direction', 'Long (over-engineered), Short (under-scoped), Left (wrong approach), Right (wrong execution)'],
-          ['Log hazards hit', 'Any bunkers (gotchas), water (breaking changes), OB (scope creep)?'],
-          ['Commit and push', 'The stroke is recorded — the last push is the recovery point'],
-          ['Update the lie', 'Update sprint file with ticket status and context checkpoint'],
-        ].map(([step, detail], i) => (
-          <li class="flex gap-3">
-            <span class="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center shrink-0 text-gold text-xs font-bold mt-0.5">{i + 1}</span>
-            <div>
-              <span class="text-text-primary text-sm font-medium">{step}</span>
-              <span class="text-text-muted text-sm"> — {detail}</span>
-            </div>
-          </li>
-        ))}
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center shrink-0 text-gold text-xs font-bold mt-0.5">1</span><div><span class="text-text-primary text-sm font-medium">Score the <span data-term="vocabulary.ticket">shot</span></span><span class="text-text-muted text-sm"> — Did it land where you aimed? <span data-term="vocabulary.fairway">Fairway</span> / <span data-term="vocabulary.green">green</span> / miss?</span></div></li>
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center shrink-0 text-gold text-xs font-bold mt-0.5">2</span><div><span class="text-text-primary text-sm font-medium">Record miss direction</span><span class="text-text-muted text-sm"> — Long (over-engineered), Short (under-scoped), Left (wrong approach), Right (wrong execution)</span></div></li>
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center shrink-0 text-gold text-xs font-bold mt-0.5">3</span><div><span class="text-text-primary text-sm font-medium">Log hazards hit</span><span class="text-text-muted text-sm"> — Any <span data-term="hazards.bunker">bunkers</span> (gotchas), <span data-term="hazards.water">water</span> (breaking changes), <span data-term="hazards.ob">OB</span> (scope creep)?</span></div></li>
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center shrink-0 text-gold text-xs font-bold mt-0.5">4</span><div><span class="text-text-primary text-sm font-medium">Commit and push</span><span class="text-text-muted text-sm"> — The <span data-term="vocabulary.stroke">stroke</span> is recorded — the last push is the <span data-term="vocabulary.recovery">recovery</span> point</span></div></li>
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center shrink-0 text-gold text-xs font-bold mt-0.5">5</span><div><span class="text-text-primary text-sm font-medium">Update the lie</span><span class="text-text-muted text-sm"> — Update <span data-term="vocabulary.sprint">sprint</span> file with ticket status and context checkpoint</span></div></li>
       </ol>
 
       <!-- Miss direction diagram inline -->
@@ -74,22 +54,12 @@
     </div>
     <div class="p-6">
       <ol class="space-y-3">
-        {[
-          ['Tally the scorecard', 'Score vs par, shots taken, hazards, misses, conditions'],
-          ['Aggregate shot stats', 'Fairways hit %, GIR %, putts per hole, penalty count'],
-          ['Record to the yardage book', 'Update codebase map with anything learned'],
-          ['Distill lessons', 'Update bunker locations for future players'],
-          ['Check your handicap', 'Rolling trend: are you improving or regressing?'],
-          ['File the card', 'Retro JSON + spec-status + completed sprint JSON'],
-        ].map(([step, detail], i) => (
-          <li class="flex gap-3">
-            <span class="w-6 h-6 rounded-full bg-border flex items-center justify-center shrink-0 text-text-muted text-xs font-bold mt-0.5">{i + 1}</span>
-            <div>
-              <span class="text-text-primary text-sm font-medium">{step}</span>
-              <span class="text-text-muted text-sm"> — {detail}</span>
-            </div>
-          </li>
-        ))}
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-border flex items-center justify-center shrink-0 text-text-muted text-xs font-bold mt-0.5">1</span><div><span class="text-text-primary text-sm font-medium">Tally the <span data-term="vocabulary.scorecard">scorecard</span></span><span class="text-text-muted text-sm"> — Score vs <span data-term="vocabulary.par">par</span>, <span data-term="vocabulary.ticket">shot</span>s taken, hazards, misses, conditions</span></div></li>
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-border flex items-center justify-center shrink-0 text-text-muted text-xs font-bold mt-0.5">2</span><div><span class="text-text-primary text-sm font-medium">Aggregate <span data-term="vocabulary.ticket">shot</span> stats</span><span class="text-text-muted text-sm"> — <span data-term="statLabels.fairways">Fairways</span> hit %, <span data-term="statLabels.gir">GIR</span> %, <span data-term="vocabulary.putt">putt</span>s per <span data-term="vocabulary.sprint">hole</span>, <span data-term="vocabulary.penalty">penalty</span> count</span></div></li>
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-border flex items-center justify-center shrink-0 text-text-muted text-xs font-bold mt-0.5">3</span><div><span class="text-text-primary text-sm font-medium">Record to the yardage book</span><span class="text-text-muted text-sm"> — Update codebase map with anything learned</span></div></li>
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-border flex items-center justify-center shrink-0 text-text-muted text-xs font-bold mt-0.5">4</span><div><span class="text-text-primary text-sm font-medium">Distill lessons</span><span class="text-text-muted text-sm"> — Update <span data-term="hazards.bunker">bunker</span> locations for future players</span></div></li>
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-border flex items-center justify-center shrink-0 text-text-muted text-xs font-bold mt-0.5">5</span><div><span class="text-text-primary text-sm font-medium">Check your <span data-term="vocabulary.handicap">handicap</span></span><span class="text-text-muted text-sm"> — Rolling trend: are you improving or regressing?</span></div></li>
+        <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-border flex items-center justify-center shrink-0 text-text-muted text-xs font-bold mt-0.5">6</span><div><span class="text-text-primary text-sm font-medium">File the card</span><span class="text-text-muted text-sm"> — Retro JSON + spec-status + completed <span data-term="vocabulary.sprint">sprint</span> JSON</span></div></li>
       </ol>
     </div>
   </div>

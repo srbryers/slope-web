@@ -23,7 +23,7 @@ import { HAZARD_METADATA } from '../../data/framework';
       <text x="70" y="135" text-anchor="middle" fill="var(--color-gold)" font-size="10" font-family="var(--font-heading)" font-weight="600" data-term="hazards.bunker">Bunker</text>
       <path d="M120,130 L160,130" stroke="var(--color-gold)" stroke-width="1" />
       <rect x="165" y="115" width="140" height="32" rx="4" fill="var(--color-bg-primary)" stroke="var(--color-border-subtle)" stroke-width="1" />
-      <text x="235" y="135" text-anchor="middle" fill="var(--color-text-muted)" font-size="9" font-family="var(--font-mono)">Recovery shot (+1)</text>
+      <text x="235" y="135" text-anchor="middle" fill="var(--color-text-muted)" font-size="9" font-family="var(--font-mono)"><tspan data-term="vocabulary.recovery">Recovery</tspan> <tspan data-term="vocabulary.ticket">shot</tspan> (+1)</text>
       <path d="M305,130 L340,130" stroke="var(--color-border)" stroke-width="1" marker-end="url(#arrow)" />
       <text x="365" y="134" fill="var(--color-text-secondary)" font-size="9" font-family="var(--font-mono)">Back in play</text>
 
@@ -32,7 +32,7 @@ import { HAZARD_METADATA } from '../../data/framework';
       <text x="70" y="195" text-anchor="middle" fill="#6699CC" font-size="10" font-family="var(--font-heading)" font-weight="600" data-term="hazards.water">Water</text>
       <path d="M120,190 L160,190" stroke="#4488CC" stroke-width="1" />
       <rect x="165" y="175" width="140" height="32" rx="4" fill="var(--color-bg-primary)" stroke="var(--color-border-subtle)" stroke-width="1" />
-      <text x="235" y="195" text-anchor="middle" fill="var(--color-text-muted)" font-size="9" font-family="var(--font-mono)">Penalty + re-tee</text>
+      <text x="235" y="195" text-anchor="middle" fill="var(--color-text-muted)" font-size="9" font-family="var(--font-mono)"><tspan data-term="vocabulary.penalty">Penalty</tspan> + re-tee</text>
       <path d="M305,190 L340,190" stroke="var(--color-border)" stroke-width="1" marker-end="url(#arrow)" />
       <text x="365" y="194" fill="var(--color-text-secondary)" font-size="9" font-family="var(--font-mono)">Replay from safe point</text>
 
@@ -41,15 +41,15 @@ import { HAZARD_METADATA } from '../../data/framework';
       <text x="70" y="255" text-anchor="middle" fill="#ef4444" font-size="10" font-family="var(--font-heading)" font-weight="600" data-term="hazards.ob">OB</text>
       <path d="M120,250 L160,250" stroke="#ef4444" stroke-width="1" />
       <rect x="165" y="235" width="140" height="32" rx="4" fill="var(--color-bg-primary)" stroke="var(--color-border-subtle)" stroke-width="1" />
-      <text x="235" y="255" text-anchor="middle" fill="var(--color-text-muted)" font-size="9" font-family="var(--font-mono)">Stroke + distance</text>
+      <text x="235" y="255" text-anchor="middle" fill="var(--color-text-muted)" font-size="9" font-family="var(--font-mono)"><tspan data-term="vocabulary.stroke">Stroke</tspan> + <tspan data-term="vocabulary.distance">distance</tspan></text>
       <path d="M305,250 L340,250" stroke="var(--color-border)" stroke-width="1" marker-end="url(#arrow)" />
       <text x="365" y="254" fill="var(--color-text-secondary)" font-size="9" font-family="var(--font-mono)">Back to original scope</text>
 
       <!-- Cost summary -->
-      <text x="580" y="75" fill="var(--color-emerald)" font-size="9" font-family="var(--font-mono)">+0 strokes</text>
-      <text x="580" y="135" fill="var(--color-gold)" font-size="9" font-family="var(--font-mono)">+1 stroke</text>
-      <text x="580" y="195" fill="#6699CC" font-size="9" font-family="var(--font-mono)">+1 stroke + rework</text>
-      <text x="580" y="255" fill="#ef4444" font-size="9" font-family="var(--font-mono)">+2 strokes</text>
+      <text x="580" y="75" fill="var(--color-emerald)" font-size="9" font-family="var(--font-mono)">+0 <tspan data-term="vocabulary.stroke">stroke</tspan>s</text>
+      <text x="580" y="135" fill="var(--color-gold)" font-size="9" font-family="var(--font-mono)">+1 <tspan data-term="vocabulary.stroke">stroke</tspan></text>
+      <text x="580" y="195" fill="#6699CC" font-size="9" font-family="var(--font-mono)">+1 <tspan data-term="vocabulary.stroke">stroke</tspan> + rework</text>
+      <text x="580" y="255" fill="#ef4444" font-size="9" font-family="var(--font-mono)">+2 <tspan data-term="vocabulary.stroke">stroke</tspan>s</text>
 
       <defs>
         <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">

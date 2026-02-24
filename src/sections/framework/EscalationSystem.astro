@@ -1,7 +1,3 @@
----
-import { ESCALATION_TRIGGERS } from '../../data/framework';
----
-
 <!-- Escalation System -->
 <section class="mb-16">
   <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Escalation System</h2>
@@ -17,16 +13,31 @@ import { ESCALATION_TRIGGERS } from '../../data/framework';
         </tr>
       </thead>
       <tbody class="divide-y divide-border-subtle">
-        {ESCALATION_TRIGGERS.map(({ trigger, severity, action }) => {
-          const severityColor = severity === 'High' ? 'text-red-400' : severity === 'Medium' ? 'text-gold' : 'text-text-muted';
-          return (
-            <tr>
-              <td class="px-5 py-3 text-text-primary text-xs">{trigger}</td>
-              <td class={`px-5 py-3 font-medium text-xs ${severityColor}`}>{severity}</td>
-              <td class="px-5 py-3 text-text-muted text-xs">{action}</td>
-            </tr>
-          );
-        })}
+        <tr>
+          <td class="px-5 py-3 text-text-primary text-xs">Score 3+ over <span data-term="vocabulary.par">par</span></td>
+          <td class="px-5 py-3 font-medium text-xs text-red-400">High</td>
+          <td class="px-5 py-3 text-text-muted text-xs">Flag for review, recommend training <span data-term="vocabulary.sprint">sprint</span></td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-text-primary text-xs">Consecutive <span data-term="scoreLabels.bogey">bogey</span>s (3+)</td>
+          <td class="px-5 py-3 font-medium text-xs text-gold">Medium</td>
+          <td class="px-5 py-3 text-text-muted text-xs">Suggest simpler <span data-term="vocabulary.club">club</span>s, shorter <span data-term="vocabulary.ticket">shot</span>s</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-text-primary text-xs">Hazard recurrence in same area</td>
+          <td class="px-5 py-3 font-medium text-xs text-red-400">High</td>
+          <td class="px-5 py-3 text-text-muted text-xs">Update common-issues, flag for architect review</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-text-primary text-xs">Miss pattern lock-in</td>
+          <td class="px-5 py-3 font-medium text-xs text-gold">Medium</td>
+          <td class="px-5 py-3 text-text-muted text-xs">Recommend targeted training type</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-text-primary text-xs"><span data-term="vocabulary.handicap">Handicap</span> regression (5-<span data-term="vocabulary.sprint">sprint</span> window)</td>
+          <td class="px-5 py-3 font-medium text-xs text-text-muted">Low</td>
+          <td class="px-5 py-3 text-text-muted text-xs">Surface in <span data-term="vocabulary.briefing">briefing</span>, suggest practice <span data-term="vocabulary.sprint">sprint</span></td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -34,11 +45,11 @@ import { ESCALATION_TRIGGERS } from '../../data/framework';
   <div class="grid sm:grid-cols-2 gap-3 mb-6">
     <div class="p-4 rounded-lg bg-bg-card border border-border-subtle">
       <div class="text-text-primary text-sm font-medium mb-1">Auto-detect mode</div>
-      <p class="text-text-muted text-xs">Run <code class="text-emerald bg-bg-primary px-1 py-0.5 rounded text-[10px]">slope escalate</code> during post-shot or post-hole routines. SLOPE scans the current sprint's data for trigger conditions and surfaces warnings.</p>
+      <p class="text-text-muted text-xs">Run <code class="text-emerald bg-bg-primary px-1 py-0.5 rounded text-[10px]">slope escalate</code> during <span data-term="vocabulary.postShot">post-shot</span> or <span data-term="vocabulary.postHole">post-hole</span> routines. SLOPE scans the current <span data-term="vocabulary.sprint">sprint</span>'s data for trigger conditions and surfaces warnings.</p>
     </div>
     <div class="p-4 rounded-lg bg-bg-card border border-border-subtle">
       <div class="text-text-primary text-sm font-medium mb-1">Manual mode</div>
-      <p class="text-text-muted text-xs">Agents can manually flag escalation events with severity and context. These feed into the handicap computation and common-issues database.</p>
+      <p class="text-text-muted text-xs">Agents can manually flag escalation events with severity and context. These feed into the <span data-term="vocabulary.handicap">handicap</span> computation and common-issues database.</p>
     </div>
   </div>
 </section>

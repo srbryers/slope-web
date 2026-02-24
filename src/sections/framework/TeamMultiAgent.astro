@@ -7,7 +7,7 @@ const roles = [generalist, backend, frontend, architect, devops];
 <!-- Team & Multi-Agent -->
 <section class="mb-16">
   <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Team & Multi-Agent</h2>
-  <p class="text-text-secondary mb-6">SLOPE supports multi-agent sprints with {roles.length} built-in roles. Each role gets a filtered briefing, preferred clubs, and separate handicap tracking.</p>
+  <p class="text-text-secondary mb-6">SLOPE supports multi-agent sprints with {roles.length} built-in roles. Each role gets a filtered <span data-term="vocabulary.briefing">briefing</span>, preferred <span data-term="vocabulary.club">club</span>s, and separate <span data-term="vocabulary.handicap">handicap</span> tracking.</p>
 
   <!-- Built-in Roles -->
   <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Built-in Roles</h3>
@@ -33,17 +33,22 @@ const roles = [generalist, backend, frontend, architect, devops];
   <!-- Multi-agent concepts -->
   <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Multi-Agent Coordination</h3>
   <div class="grid sm:grid-cols-2 gap-3 mb-6">
-    {[
-      { concept: 'Team Handicap', desc: 'Weighted average of all agents\' handicaps, adjusted for role distribution' },
-      { concept: 'Agent Breakdowns', desc: 'Per-agent stats within a sprint — who took which shots, individual accuracy' },
-      { concept: 'Claims & Conflicts', desc: 'Ticket claiming system prevents two agents from working the same shot' },
-      { concept: 'Standups', desc: 'Auto-generated team standups from session data across all agents' },
-    ].map(({ concept, desc }) => (
-      <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
-        <span class="text-text-primary text-sm font-medium">{concept}</span>
-        <p class="text-text-muted text-xs mt-1">{desc}</p>
-      </div>
-    ))}
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Team <span data-term="vocabulary.handicap">Handicap</span></span>
+      <p class="text-text-muted text-xs mt-1">Weighted average of all agents' <span data-term="vocabulary.handicap">handicap</span>s, adjusted for role distribution</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Agent Breakdowns</span>
+      <p class="text-text-muted text-xs mt-1">Per-agent stats within a <span data-term="vocabulary.sprint">sprint</span> — who took which <span data-term="vocabulary.ticket">shot</span>s, individual accuracy</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Claims & Conflicts</span>
+      <p class="text-text-muted text-xs mt-1">Ticket claiming system prevents two agents from working the same <span data-term="vocabulary.ticket">shot</span></p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Standups</span>
+      <p class="text-text-muted text-xs mt-1">Auto-generated team standups from session data across all agents</p>
+    </div>
   </div>
 
   <details class="read-the-green">
@@ -53,8 +58,8 @@ const roles = [generalist, backend, frontend, architect, devops];
       <span class="text-text-muted text-xs">— How roles change the game</span>
     </summary>
     <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
-      <p>Roles aren't just labels — they change the <strong class="text-text-primary">briefing content</strong>. A backend agent gets hazards about database migrations surfaced prominently; a frontend agent gets accessibility gotchas. The same pre-round briefing is filtered through the role's lens.</p>
-      <p>In a multi-agent sprint, the team handicap is more useful than individual handicaps. It tells you: "when these agents work together on this kind of sprint, they average X over par." This predicts team performance better than any individual metric.</p>
+      <p>Roles aren't just labels — they change the <strong class="text-text-primary"><span data-term="vocabulary.briefing">briefing</span> content</strong>. A backend agent gets hazards about database migrations surfaced prominently; a frontend agent gets accessibility gotchas. The same <span data-term="vocabulary.preRound">pre-round</span> <span data-term="vocabulary.briefing">briefing</span> is filtered through the role's lens.</p>
+      <p>In a multi-agent <span data-term="vocabulary.sprint">sprint</span>, the team <span data-term="vocabulary.handicap">handicap</span> is more useful than individual <span data-term="vocabulary.handicap">handicap</span>s. It tells you: "when these agents work together on this kind of <span data-term="vocabulary.sprint">sprint</span>, they average X over <span data-term="vocabulary.par">par</span>." This predicts team performance better than any individual metric.</p>
     </div>
   </details>
 </section>
