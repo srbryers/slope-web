@@ -52,14 +52,14 @@ const factorLabels: Record<string, string> = {
     <summary>
       <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
       <span class="text-emerald text-sm font-medium" data-term="vocabulary.readTheGreen">Read the Green</span>
-      <span class="text-text-muted text-xs">— How par + slope interact with scoring</span>
+      <span class="text-text-muted text-xs">— How <span data-term="vocabulary.par">par</span> + slope interact with scoring</span>
     </summary>
     <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
-      <p>A Par 4, Slope 3 sprint is meaningfully harder than a Par 4, Slope 0. Both have 3-4 tickets, but the slope factors compound difficulty in ways that ticket count alone doesn't capture.</p>
-      <p>The handicap system accounts for this: <strong class="text-text-primary">handicap = avg(score - par)</strong> over a rolling window. A bogey on a Slope 3 sprint is more forgivable than a bogey on Slope 0. The framework doesn't penalize you for taking on hard work.</p>
+      <p>A <span data-term="vocabulary.par">Par</span> 4, Slope 3 sprint is meaningfully harder than a <span data-term="vocabulary.par">Par</span> 4, Slope 0. Both have 3-4 tickets, but the slope factors compound difficulty in ways that ticket count alone doesn't capture.</p>
+      <p>The handicap system accounts for this: <strong class="text-text-primary">handicap = avg(score - <span data-term="vocabulary.par">par</span>)</strong> over a rolling window. A bogey on a Slope 3 sprint is more forgivable than a bogey on Slope 0. The framework doesn't penalize you for taking on hard work.</p>
       <p class="p-3 rounded-lg bg-bg-primary border border-border-subtle font-mono text-xs text-text-muted">
-        Example: Sprint 22 — Par 4, Slope 2 (cross-package + new area)<br/>
-        Score: 4 (Par) — clean execution despite the slope factors.<br/>
+        Example: Sprint 22 — <span data-term="vocabulary.par">Par</span> 4, Slope 2 (cross-package + new area)<br/>
+        Score: 4 (<span data-term="vocabulary.par">Par</span>) — clean execution despite the slope factors.<br/>
         The handicap computation weights slope difficulty appropriately.
       </p>
     </div>
