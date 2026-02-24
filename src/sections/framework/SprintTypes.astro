@@ -2,7 +2,11 @@
 import { golf } from '@slope-dev/slope';
 import { SPRINT_TYPE_METADATA } from '../../data/framework';
 
-const sprintTypes = golf.sprintTypes as Record<string, string>;
+const sprintTypes: Record<string, string> = {
+  ...(golf.sprintTypes as Record<string, string>),
+  // Fallback until published package includes audit
+  audit: (golf.sprintTypes as Record<string, string>).audit ?? 'Course Review',
+};
 ---
 
 <!-- Sprint Types -->

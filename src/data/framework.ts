@@ -139,11 +139,10 @@ export interface EscalationTrigger {
 }
 
 export const ESCALATION_TRIGGERS: EscalationTrigger[] = [
-  { trigger: 'Score 3+ over par', severity: 'High', action: 'Flag for review, recommend training sprint' },
-  { trigger: 'Consecutive bogeys (3+)', severity: 'Medium', action: 'Suggest simpler clubs, shorter shots' },
-  { trigger: 'Hazard recurrence in same area', severity: 'High', action: 'Update common-issues, flag for architect review' },
-  { trigger: 'Miss pattern lock-in', severity: 'Medium', action: 'Recommend targeted training type' },
-  { trigger: 'Handicap regression (5-sprint window)', severity: 'Low', action: 'Surface in briefing, suggest practice sprint' },
+  { trigger: 'blocker_timeout', severity: 'High', action: 'Ticket blocked beyond threshold — escalate to unblock' },
+  { trigger: 'claim_conflict', severity: 'Medium', action: 'Multiple agents claimed overlapping scope — resolve ownership' },
+  { trigger: 'test_failure_cascade', severity: 'High', action: 'Cascading test failures — halt and investigate root cause' },
+  { trigger: 'manual', severity: 'Low', action: 'Manually triggered escalation — review context and decide' },
 ];
 
 export const SLOPE_FACTOR_DETAILS: Record<string, string> = {

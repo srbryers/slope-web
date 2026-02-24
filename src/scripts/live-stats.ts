@@ -59,11 +59,11 @@ export const FALLBACK_SPRINTS = 28;
 
 const FALLBACK: SlopeStats = {
   sprints_completed: 28,
-  total_tests: 1091,
-  cli_commands: 26,
-  guards: 10,
-  packages: 5,
-  metaphors: 6,
+  total_tests: 1173,
+  cli_commands: 27,
+  guards: 13,
+  packages: 1,
+  metaphors: 7,
   handicap: {
     last_5: { handicap: 1.0, fairway_pct: 90, gir_pct: 82, avg_putts: 1.3 },
     last_10: { handicap: 1.2, fairway_pct: 86, gir_pct: 78, avg_putts: 1.4 },
