@@ -18,7 +18,8 @@
       "tournament": "Tournament",
       "round": "Round",
       "stroke": "Stroke",
-      "par": "Par"
+      "par": "Par",
+      "readTheGreen": "Read the Green"
     },
     "clubs": {
       "driver": "Driver",
@@ -121,7 +122,8 @@
       "tournament": "Season",
       "round": "Match",
       "stroke": "Swing",
-      "par": "Target"
+      "par": "Target",
+      "readTheGreen": "Read the Court"
     },
     "clubs": {
       "driver": "Power Serve",
@@ -224,7 +226,8 @@
       "tournament": "Season",
       "round": "Series",
       "stroke": "Pitch",
-      "par": "Target"
+      "par": "Target",
+      "readTheGreen": "Scout the Field"
     },
     "clubs": {
       "driver": "Power Swing",
@@ -327,7 +330,8 @@
       "tournament": "Campaign",
       "round": "World",
       "stroke": "Input",
-      "par": "Target"
+      "par": "Target",
+      "readTheGreen": "Check the Map"
     },
     "clubs": {
       "driver": "Boss Fight",
@@ -430,7 +434,8 @@
       "tournament": "Campaign",
       "round": "Chapter",
       "stroke": "Roll",
-      "par": "DC"
+      "par": "DC",
+      "readTheGreen": "Perception Check"
     },
     "clubs": {
       "driver": "Fireball",
@@ -533,7 +538,8 @@
       "tournament": "Network",
       "round": "Simulation Cycle",
       "stroke": "Packet",
-      "par": "Threshold"
+      "par": "Threshold",
+      "readTheGreen": "Scan the Matrix"
     },
     "clubs": {
       "driver": "Red Pill",
