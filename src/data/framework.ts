@@ -130,6 +130,7 @@ export const SPRINT_TYPE_METADATA: SprintTypeMeta[] = [
   { type: 'research', description: 'Investigation and prototyping', whenToUse: 'Exploring unfamiliar territory before committing to an approach' },
   { type: 'flow', description: 'Mapping user-facing workflows to code paths', whenToUse: 'Documenting and validating user journeys through the codebase' },
   { type: 'test-coverage', description: 'Increasing test coverage in weak areas', whenToUse: 'When GIR% or fairway% is low and you need safety nets' },
+  { type: 'audit', description: 'Code quality review — DRY, clean, modern, concise', whenToUse: 'When codebase has accumulated tech debt, inconsistent patterns, or outdated practices' },
 ];
 
 export interface EscalationTrigger {

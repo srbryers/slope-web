@@ -88,7 +88,8 @@
       "bugfix": "Bug Fix",
       "research": "Research",
       "flow": "Flow",
-      "test-coverage": "Test Coverage"
+      "test-coverage": "Test Coverage",
+      "audit": "Course Review"
     },
     "trainingTypes": {
       "driving_range": "Driving Range",
@@ -200,7 +201,8 @@
       "bugfix": "Error Correction",
       "research": "Film Study",
       "flow": "Rally",
-      "test-coverage": "Practice Match"
+      "test-coverage": "Practice Match",
+      "audit": "Film Review"
     },
     "trainingTypes": {
       "driving_range": "Serve Practice",
@@ -312,7 +314,8 @@
       "bugfix": "Error Recovery",
       "research": "Scouting",
       "flow": "Rally",
-      "test-coverage": "Batting Practice"
+      "test-coverage": "Batting Practice",
+      "audit": "Tape Review"
     },
     "trainingTypes": {
       "driving_range": "Batting Cage",
@@ -424,7 +427,8 @@
       "bugfix": "Bug Hunt",
       "research": "Exploration",
       "flow": "Speedrun",
-      "test-coverage": "Training Arena"
+      "test-coverage": "Training Arena",
+      "audit": "Code Review"
     },
     "trainingTypes": {
       "driving_range": "Exploration",
@@ -536,7 +540,8 @@
       "bugfix": "Healing",
       "research": "Investigation",
       "flow": "Combat",
-      "test-coverage": "Training Montage"
+      "test-coverage": "Training Montage",
+      "audit": "Inspection"
     },
     "trainingTypes": {
       "driving_range": "Study",
@@ -648,7 +653,8 @@
       "bugfix": "Debug",
       "research": "Recon",
       "flow": "Overclock",
-      "test-coverage": "Diagnostic"
+      "test-coverage": "Diagnostic",
+      "audit": "System Audit"
     },
     "trainingTypes": {
       "driving_range": "Simulation",
@@ -760,7 +766,8 @@
       "bugfix": "Bug Fix Sprint",
       "research": "Spike Sprint",
       "flow": "Flow Sprint",
-      "test-coverage": "Test Sprint"
+      "test-coverage": "Test Sprint",
+      "audit": "Code Review Sprint"
     },
     "trainingTypes": {
       "driving_range": "Estimation Practice",

@@ -5,6 +5,7 @@ const prompts = [
   { id: 'bugfix', label: 'Bug Fixing' },
   { id: 'research', label: 'Research' },
   { id: 'roadmap', label: 'Roadmap' },
+  { id: 'audit', label: 'Code Audit' },
   { id: 'score', label: 'Check Progress' },
   { id: 'wrap', label: 'Sprint Review' },
 ];
@@ -301,6 +302,47 @@ const metaphors = [
               <div class="flex items-start gap-2">
                 <span class="text-emerald font-mono text-base shrink-0 mt-px">❯</span>
                 <p class="text-text-secondary text-base">I need to plan out the V2 launch. We've got auth, payments, and notifications to build, and then a launch prep sprint. Can you map that out?</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- Panel: Code Audit                          -->
+        <!-- ═══════════════════════════════════════════ -->
+        <div data-how-panel="audit" class="hidden">
+          <div class="rounded-xl border border-border bg-bg-surface overflow-hidden">
+            <div class="flex items-center gap-2 px-4 py-2.5 border-b border-border/50 bg-bg-card">
+              <div class="flex gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500/40"></span>
+              </div>
+              <span class="text-text-muted text-xs font-mono ml-1">claude — slope-project</span>
+            </div>
+
+            <div class="p-5 font-mono text-sm leading-relaxed space-y-2">
+              <p class="text-text-muted">── <span data-term="sprintTypes.audit">Course Review</span> <span data-term="vocabulary.sprint">Hole</span> ──────────────</p>
+              <p class="text-text-muted">── <span data-term="vocabulary.sprint">Hole</span> 33 ────────────────────</p>
+              <p class="text-text-secondary">"Auth Module Cleanup" │ <span data-term="vocabulary.par">Par</span> 4</p>
+
+              <div class="border-t border-border/30 pt-2 space-y-1">
+                <p class="text-text-secondary"><span data-term="vocabulary.ticket">Shot</span> 1: Remove duplicate helper functions</p>
+                <p class="text-text-secondary"><span data-term="vocabulary.ticket">Shot</span> 2: Replace legacy patterns with modern idioms</p>
+                <p class="text-text-secondary"><span data-term="vocabulary.ticket">Shot</span> 3: Extract shared logic into composable utils</p>
+                <p class="text-text-secondary"><span data-term="vocabulary.ticket">Shot</span> 4: Update type signatures and remove any casts</p>
+              </div>
+
+              <div class="border-t border-border/30 pt-2 space-y-1">
+                <p class="text-text-secondary"><span data-term="vocabulary.club">Club</span>: <span class="text-text-primary" data-term="clubs.short_iron">Short Iron</span> <span class="text-text-muted">(refactor, no new features)</span></p>
+                <p class="text-text-secondary">Constraint: No behavior changes — tests must pass as-is</p>
+              </div>
+            </div>
+
+            <div class="border-t border-border/50 px-5 py-3 bg-bg-card/50">
+              <div class="flex items-start gap-2">
+                <span class="text-emerald font-mono text-base shrink-0 mt-px">❯</span>
+                <p class="text-text-secondary text-base">The auth module has gotten pretty messy — lots of duplicated code, old patterns, some any types. Can you clean it up? Keep it DRY and modern, but don't change any behavior.</p>
               </div>
             </div>
           </div>
