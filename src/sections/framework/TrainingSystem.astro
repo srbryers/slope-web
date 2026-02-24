@@ -25,7 +25,7 @@ const nutritionTerms = golf.nutrition as Record<string, string>;
         {Object.entries(TRAINING_TYPE_MAP).map(([sprintType, training]) => (
           <tr>
             <td class="px-5 py-3 text-emerald font-mono text-xs">{sprintType}</td>
-            <td class="px-5 py-3 text-gold font-medium text-sm">{trainingTypes[training] ?? training}</td>
+            <td class="px-5 py-3 text-gold font-medium text-sm" data-term={`trainingTypes.${training}`}>{trainingTypes[training] ?? training}</td>
             <td class="px-5 py-3 text-text-muted text-xs">
               {sprintType === 'research' && 'Long-range accuracy — scoping and estimation'}
               {sprintType === 'feedback' && 'Short game — precision and refinement'}
@@ -44,7 +44,7 @@ const nutritionTerms = golf.nutrition as Record<string, string>;
     {NUTRITION_CHECKLIST.map((item) => (
       <div class="flex items-center gap-3 p-3 rounded-lg bg-bg-card border border-border-subtle">
         <span class="w-6 h-6 rounded-md bg-emerald/10 flex items-center justify-center shrink-0 text-emerald text-xs font-bold">+</span>
-        <span class="text-text-primary text-sm font-medium">{nutritionTerms[item] ?? item}</span>
+        <span class="text-text-primary text-sm font-medium" data-term={`nutrition.${item}`}>{nutritionTerms[item] ?? item}</span>
       </div>
     ))}
   </div>

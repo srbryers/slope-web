@@ -61,11 +61,11 @@ export interface StructureRow {
 }
 
 export const STRUCTURE_MAPPING: StructureRow[] = [
-  { golf: 'Tournament', dev: 'Project', scope: 'The whole thing, all phases' },
-  { golf: 'Round', dev: 'Phase', scope: 'Multi-sprint milestone (6 rounds total)' },
+  { golf: 'Tournament', dev: 'Project', scope: 'The whole thing, all phases', dataTerm: 'vocabulary.tournament' },
+  { golf: 'Round', dev: 'Phase', scope: 'Multi-sprint milestone (6 rounds total)', dataTerm: 'vocabulary.round' },
   { golf: 'Hole', dev: 'Sprint', scope: 'Self-contained, has a par', dataTerm: 'vocabulary.sprint' },
   { golf: 'Shot', dev: 'Ticket', scope: 'One deliberate action', dataTerm: 'vocabulary.ticket' },
-  { golf: 'Stroke', dev: 'Commit', scope: 'The atomic unit of work' },
+  { golf: 'Stroke', dev: 'Commit', scope: 'The atomic unit of work', dataTerm: 'vocabulary.stroke' },
 ];
 
 export interface HazardMeta {

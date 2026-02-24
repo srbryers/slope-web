@@ -10,7 +10,14 @@
       "briefing": "pre-round briefing",
       "perfectScore": "hole-in-one",
       "onTarget": "par",
-      "review": "19th hole"
+      "review": "19th hole",
+      "preRound": "Pre-Round",
+      "preShot": "Pre-Shot",
+      "postShot": "Post-Shot",
+      "postHole": "Post-Hole",
+      "tournament": "Tournament",
+      "round": "Round",
+      "stroke": "Stroke"
     },
     "clubs": {
       "driver": "Driver",
@@ -84,6 +91,13 @@
       "recovery": "Recovery",
       "supplements": "Supplements",
       "stretching": "Stretching"
+    },
+    "statLabels": {
+      "handicap": "Handicap",
+      "fairways": "Fairways",
+      "gir": "GIR",
+      "putts": "Avg putts",
+      "missPattern": "Miss pattern"
     }
   },
   "tennis": {
@@ -97,7 +111,14 @@
       "briefing": "pre-match scouting",
       "perfectScore": "ace",
       "onTarget": "game point",
-      "review": "post-match"
+      "review": "post-match",
+      "preRound": "Pre-Match",
+      "preShot": "Pre-Point",
+      "postShot": "Post-Point",
+      "postHole": "Post-Set",
+      "tournament": "Season",
+      "round": "Match",
+      "stroke": "Swing"
     },
     "clubs": {
       "driver": "Power Serve",
@@ -171,6 +192,13 @@
       "recovery": "Recovery",
       "supplements": "Equipment",
       "stretching": "Warm-up"
+    },
+    "statLabels": {
+      "handicap": "Ranking",
+      "fairways": "Return %",
+      "gir": "Winners %",
+      "putts": "Unforced errors",
+      "missPattern": "Error pattern"
     }
   },
   "baseball": {
@@ -184,7 +212,14 @@
       "briefing": "scouting report",
       "perfectScore": "home run",
       "onTarget": "on base",
-      "review": "dugout"
+      "review": "dugout",
+      "preRound": "Pre-Game",
+      "preShot": "On-Deck",
+      "postShot": "Post-At-Bat",
+      "postHole": "Post-Inning",
+      "tournament": "Season",
+      "round": "Series",
+      "stroke": "Pitch"
     },
     "clubs": {
       "driver": "Power Swing",
@@ -258,6 +293,13 @@
       "recovery": "Recovery",
       "supplements": "Equipment",
       "stretching": "Warm-up"
+    },
+    "statLabels": {
+      "handicap": "Batting avg",
+      "fairways": "On-base %",
+      "gir": "Slugging %",
+      "putts": "Errors",
+      "missPattern": "Error tendency"
     }
   },
   "gaming": {
@@ -271,7 +313,14 @@
       "briefing": "quest log",
       "perfectScore": "S-rank",
       "onTarget": "clear",
-      "review": "save point"
+      "review": "save point",
+      "preRound": "Loading Screen",
+      "preShot": "Prep Phase",
+      "postShot": "Checkpoint",
+      "postHole": "Level Complete",
+      "tournament": "Campaign",
+      "round": "World",
+      "stroke": "Input"
     },
     "clubs": {
       "driver": "Boss Fight",
@@ -345,6 +394,13 @@
       "recovery": "Rest at Inn",
       "supplements": "Power-ups",
       "stretching": "Buff"
+    },
+    "statLabels": {
+      "handicap": "Player level",
+      "fairways": "Accuracy %",
+      "gir": "Quest clear %",
+      "putts": "Finishing moves",
+      "missPattern": "Fail pattern"
     }
   },
   "dnd": {
@@ -358,7 +414,14 @@
       "briefing": "quest briefing",
       "perfectScore": "natural 20",
       "onTarget": "hit",
-      "review": "long rest"
+      "review": "long rest",
+      "preRound": "Quest Prep",
+      "preShot": "Initiative",
+      "postShot": "End of Turn",
+      "postHole": "Short Rest",
+      "tournament": "Campaign",
+      "round": "Chapter",
+      "stroke": "Roll"
     },
     "clubs": {
       "driver": "Fireball",
@@ -432,6 +495,13 @@
       "recovery": "Long Rest",
       "supplements": "Potions",
       "stretching": "Short Rest"
+    },
+    "statLabels": {
+      "handicap": "Challenge rating",
+      "fairways": "Hit %",
+      "gir": "Crit %",
+      "putts": "Saves",
+      "missPattern": "Miss tendency"
     }
   },
   "matrix": {
@@ -445,7 +515,14 @@
       "briefing": "operator briefing",
       "perfectScore": "bullettime",
       "onTarget": "connected",
-      "review": "debrief"
+      "review": "debrief",
+      "preRound": "Boot Sequence",
+      "preShot": "Target Lock",
+      "postShot": "Process Complete",
+      "postHole": "System Check",
+      "tournament": "Network",
+      "round": "Simulation Cycle",
+      "stroke": "Packet"
     },
     "clubs": {
       "driver": "Red Pill",
@@ -519,6 +596,13 @@
       "recovery": "Defrag",
       "supplements": "Plugins",
       "stretching": "Pre-flight"
+    },
+    "statLabels": {
+      "handicap": "Operator rating",
+      "fairways": "Connect %",
+      "gir": "Decode %",
+      "putts": "Latency",
+      "missPattern": "Drift pattern"
     }
   }
 }

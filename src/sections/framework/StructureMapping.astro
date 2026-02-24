@@ -17,7 +17,7 @@ import { STRUCTURE_MAPPING } from '../../data/framework';
       <tbody class="divide-y divide-border-subtle">
         {STRUCTURE_MAPPING.map(({ golf, dev, scope, dataTerm }) => (
           <tr>
-            <td class={`px-5 py-3 font-medium ${dataTerm ? 'text-emerald' : golf === 'Tournament' || golf === 'Round' ? 'text-gold' : 'text-text-secondary'}`} data-term={dataTerm}>{golf}</td>
+            <td class="px-5 py-3 font-medium text-emerald" data-term={dataTerm}>{golf}</td>
             <td class="px-5 py-3 text-text-secondary">{dev}</td>
             <td class="px-5 py-3 text-text-muted">{scope}</td>
           </tr>

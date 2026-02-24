@@ -15,7 +15,7 @@ const sprintTypes = golf.sprintTypes as Record<string, string>;
       <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
         <div class="flex items-center gap-3 mb-2">
           <code class="text-emerald text-xs font-mono bg-emerald/5 px-2 py-0.5 rounded">{type}</code>
-          <span class="text-text-primary text-sm font-medium">{sprintTypes[type] ?? type}</span>
+          <span class="text-text-primary text-sm font-medium" data-term={`sprintTypes.${type}`}>{sprintTypes[type] ?? type}</span>
         </div>
         <p class="text-text-secondary text-sm mb-1">{description}</p>
         <p class="text-text-muted text-xs italic">When to use: {whenToUse}</p>
