@@ -1,9 +1,12 @@
 ---
 const prompts = [
-  { id: 'briefing', label: 'Pre-Round' },
-  { id: 'claim', label: 'Pre-Shot' },
-  { id: 'score', label: 'Post-Shot' },
-  { id: 'wrap', label: 'Post-Hole' },
+  { id: 'briefing', label: 'Sprint Planning' },
+  { id: 'claim', label: 'New Feature' },
+  { id: 'bugfix', label: 'Bug Fixing' },
+  { id: 'research', label: 'Research' },
+  { id: 'roadmap', label: 'Roadmap' },
+  { id: 'score', label: 'Check Progress' },
+  { id: 'wrap', label: 'Sprint Review' },
 ];
 ---
 
@@ -21,15 +24,24 @@ const prompts = [
       </p>
     </div>
 
-    <!-- Prompt selector -->
-    <div class="mb-8" data-reveal>
-      <!-- Desktop: pill tabs -->
-      <div class="hidden sm:flex items-center gap-1 rounded-lg bg-bg-surface border border-border/50 p-1">
+    <!-- Mobile: dropdown (above grid) -->
+    <div class="mb-4 sm:hidden" data-reveal>
+      <select class="how-select w-full rounded-lg border border-border bg-bg-surface text-text-secondary text-sm font-mono px-3 py-2 appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%236b7280%22%20d%3D%22M3%205l3%203%203-3%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_0.75rem_center]">
+        {prompts.map(({ id, label }) => (
+          <option value={id}>{label}</option>
+        ))}
+      </select>
+    </div>
+
+    <!-- Two-column layout: vertical tabs + terminal -->
+    <div class="grid sm:grid-cols-[auto_1fr] gap-4 sm:gap-6">
+      <!-- Desktop: vertical tab stack -->
+      <div class="hidden sm:flex flex-col gap-1.5 pt-12" data-reveal>
         {prompts.map(({ id, label }) => (
           <button
             data-how={id}
             class:list={[
-              'how-tab px-4 py-1.5 rounded-md text-sm font-mono transition-all cursor-pointer whitespace-nowrap',
+              'how-tab px-4 py-2.5 rounded-lg text-sm font-mono transition-all cursor-pointer whitespace-nowrap text-left',
               id === 'briefing'
                 ? 'bg-emerald/10 text-emerald border border-emerald/20'
                 : 'text-text-muted hover:text-text-secondary border border-transparent',
@@ -39,239 +51,369 @@ const prompts = [
           </button>
         ))}
       </div>
-      <!-- Mobile: dropdown -->
-      <select class="how-select sm:hidden w-full rounded-lg border border-border bg-bg-surface text-text-secondary text-sm font-mono px-3 py-2 appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%236b7280%22%20d%3D%22M3%205l3%203%203-3%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_0.75rem_center]">
-        {prompts.map(({ id, label }) => (
-          <option value={id}>{label}</option>
-        ))}
-      </select>
-    </div>
 
-    <!-- ═══════════════════════════════════════════ -->
-    <!-- Prompt 1: Pre-Round Briefing               -->
-    <!-- ═══════════════════════════════════════════ -->
-    <div data-how-panel="briefing">
-      <!-- Prompt bubble -->
-      <div class="flex items-start gap-3 mb-4">
-        <div class="w-7 h-7 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-blue-400" aria-hidden="true">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" />
-          </svg>
-        </div>
-        <div class="rounded-xl rounded-tl-sm bg-blue-500/10 border border-blue-500/20 px-4 py-2.5 max-w-lg">
-          <p class="text-blue-300 text-sm font-mono">Give me a <span data-term="vocabulary.briefing">briefing</span> for my next <span data-term="vocabulary.sprint">sprint</span></p>
-        </div>
-      </div>
-
-      <!-- SLOPE response -->
-      <div class="rounded-xl border border-emerald/20 bg-bg-surface overflow-hidden ml-10">
-        <div class="flex items-center gap-2 px-4 py-2.5 border-b border-emerald/10 bg-emerald/5">
-          <div class="flex gap-1.5">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald/40"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
-          </div>
-          <span class="text-emerald text-xs font-mono ml-1"><span data-term="vocabulary.preRound">Pre-Round</span> <span data-term="vocabulary.briefing">Briefing</span></span>
-        </div>
-        <div class="p-5 font-mono text-xs leading-relaxed space-y-2">
-          <p class="text-text-muted">── <span data-term="vocabulary.sprint">Hole</span> 29 ────────────────────</p>
-          <p class="text-text-secondary">"OAuth & API Refactor" │ <span data-term="vocabulary.par">Par</span> 4 · <data class="text-text-muted">Slope 1 (cross-package)</data></p>
-
-          <div class="border-t border-border/30 pt-2 space-y-1">
-            <p class="text-text-secondary"><span data-term="vocabulary.handicap">Handicap</span>: <span class="text-emerald">1.2</span> <span class="text-emerald/60">↓ trending down</span></p>
-            <p class="text-text-secondary"><span data-term="hazards.bunker">Bunker</span> index: <span class="text-gold">2 known</span> in auth module</p>
-            <p class="text-text-secondary">Backlog: <span class="text-text-primary">4 <span data-term="vocabulary.ticket">tickets</span></span> queued</p>
-          </div>
-
-          <div class="border-t border-border/30 pt-2">
-            <p class="text-text-muted">Ready to start?</p>
-            <div class="mt-1.5 space-y-0.5">
-              <div class="flex items-center gap-2"><span class="text-emerald">❯</span><span class="text-text-primary bg-emerald/10 px-2 py-0.5 rounded">Claim first <span data-term="vocabulary.ticket">ticket</span></span></div>
-              <div class="flex items-center gap-2"><span class="text-text-muted/40">○</span><span class="text-text-muted">Review backlog</span></div>
-              <div class="flex items-center gap-2"><span class="text-text-muted/40">○</span><span class="text-text-muted">Adjust <span data-term="vocabulary.par">par</span></span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════ -->
-    <!-- Prompt 2: Pre-Shot (Claim Ticket)          -->
-    <!-- ═══════════════════════════════════════════ -->
-    <div data-how-panel="claim" class="hidden">
-      <!-- Prompt bubble -->
-      <div class="flex items-start gap-3 mb-4">
-        <div class="w-7 h-7 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-blue-400" aria-hidden="true">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" />
-          </svg>
-        </div>
-        <div class="rounded-xl rounded-tl-sm bg-blue-500/10 border border-blue-500/20 px-4 py-2.5 max-w-lg">
-          <p class="text-blue-300 text-sm font-mono">Claim <span data-term="vocabulary.ticket">ticket</span> S29-1: Add OAuth provider</p>
-        </div>
-      </div>
-
-      <!-- SLOPE response -->
-      <div class="rounded-xl border border-emerald/20 bg-bg-surface overflow-hidden ml-10">
-        <div class="flex items-center gap-2 px-4 py-2.5 border-b border-emerald/10 bg-emerald/5">
-          <div class="flex gap-1.5">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald/40"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
-          </div>
-          <span class="text-emerald text-xs font-mono ml-1"><span data-term="vocabulary.preShot">Pre-Shot</span> Routine</span>
-        </div>
-        <div class="p-5 font-mono text-xs leading-relaxed space-y-2">
-          <p class="text-text-muted">── <span data-term="vocabulary.ticket">Shot</span> S29-1 ──────────────────</p>
-          <p class="text-text-secondary">"Add OAuth provider" │ <span data-term="clubs.short_iron">Short Iron</span></p>
-
-          <div class="border-t border-border/30 pt-2 space-y-1">
-            <p class="text-text-secondary"><span data-term="vocabulary.ticket">Ticket</span> S29-1 claimed ✓</p>
-            <p class="text-text-secondary"><span data-term="vocabulary.club">Club</span> selected: <span class="text-text-primary" data-term="clubs.short_iron">Short Iron</span> <span class="text-text-muted">(standard single-package)</span></p>
-            <p class="text-text-secondary">Known <span data-term="hazards.bunker">hazards</span> in area: <span class="text-gold"><span data-term="hazards.bunker">Bunker</span> ×1</span> <span class="text-text-muted">(nvm sourcing)</span></p>
-            <p class="text-text-secondary">Target: OAuth callback endpoint working with tests</p>
-          </div>
-
-          <div class="border-t border-border/30 pt-2">
-            <p class="text-text-muted"><span data-term="specialPlays.provisional">Provisional</span>:</p>
-            <p class="text-text-secondary/70 italic">"If blocked after 2 commits, fall back to session-based auth"</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════ -->
-    <!-- Prompt 3: Post-Shot (Score Ticket)         -->
-    <!-- ═══════════════════════════════════════════ -->
-    <div data-how-panel="score" class="hidden">
-      <!-- Prompt bubble -->
-      <div class="flex items-start gap-3 mb-4">
-        <div class="w-7 h-7 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-blue-400" aria-hidden="true">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" />
-          </svg>
-        </div>
-        <div class="rounded-xl rounded-tl-sm bg-blue-500/10 border border-blue-500/20 px-4 py-2.5 max-w-lg">
-          <p class="text-blue-300 text-sm font-mono"><span data-term="vocabulary.ticket">Ticket</span> S29-1 complete, score it</p>
-        </div>
-      </div>
-
-      <!-- SLOPE response -->
-      <div class="rounded-xl border border-emerald/20 bg-bg-surface overflow-hidden ml-10">
-        <div class="flex items-center gap-2 px-4 py-2.5 border-b border-emerald/10 bg-emerald/5">
-          <div class="flex gap-1.5">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald/40"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
-          </div>
-          <span class="text-emerald text-xs font-mono ml-1"><span data-term="vocabulary.postShot">Post-Shot</span> Scoring</span>
-        </div>
-        <div class="p-5 font-mono text-xs leading-relaxed space-y-2">
-          <p class="text-text-muted">── <span data-term="vocabulary.ticket">Shot</span> S29-1 Result ─────────────</p>
-
-          <div class="space-y-1">
-            <p class="text-text-secondary">Result: <span class="text-emerald"><span data-term="shotResults.fairway">Fairway</span> → <span data-term="shotResults.green">Green</span> ✅</span></p>
-            <p class="text-text-secondary"><span data-term="hazards.bunker">Hazards</span> hit: <span class="text-emerald">0</span></p>
-            <p class="text-text-secondary">Miss direction: <span class="text-emerald">None</span></p>
-            <p class="text-text-secondary">Commits: <span class="text-text-primary">3</span> <span class="text-text-muted">(within budget)</span></p>
-          </div>
-
-          <div class="border-t border-border/30 pt-2">
-            <p class="text-text-secondary">Status: <span class="text-emerald">On track</span> — 1 of 4 <span data-term="vocabulary.ticket">tickets</span> complete</p>
-            <div class="flex items-center gap-3 mt-1.5">
-              <div class="flex-1 h-1.5 rounded-full bg-border/30 overflow-hidden">
-                <div class="h-full w-1/4 rounded-full bg-emerald/60"></div>
+      <!-- Terminal panels -->
+      <div class="min-w-0">
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- Panel 1: Pre-Round Briefing                -->
+        <!-- ═══════════════════════════════════════════ -->
+        <div data-how-panel="briefing">
+          <div class="rounded-xl border border-border bg-bg-surface overflow-hidden">
+            <!-- Terminal header -->
+            <div class="flex items-center gap-2 px-4 py-2.5 border-b border-border/50 bg-bg-card">
+              <div class="flex gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500/40"></span>
               </div>
-              <span class="text-text-muted text-[10px]">25%</span>
+              <span class="text-text-muted text-xs font-mono ml-1">claude — slope-project</span>
+            </div>
+
+            <!-- Response area -->
+            <div class="p-5 font-mono text-sm leading-relaxed space-y-2">
+              <p class="text-text-muted">── <span data-term="vocabulary.preRound">Pre-Round</span> <span data-term="vocabulary.briefing">Briefing</span> ──────────────</p>
+              <p class="text-text-muted">── <span data-term="vocabulary.sprint">Hole</span> 29 ────────────────────</p>
+              <p class="text-text-secondary">"OAuth & API Refactor" │ <span data-term="vocabulary.par">Par</span> 4 · Slope 1 (cross-package)</p>
+
+              <div class="border-t border-border/30 pt-2 space-y-1">
+                <p class="text-text-secondary"><span data-term="vocabulary.handicap">Handicap</span>: <span class="text-emerald">1.2</span> <span class="text-emerald/60">↓ trending down</span></p>
+                <p class="text-text-secondary"><span data-term="hazards.bunker">Bunker</span> index: <span class="text-gold">2 known</span> in auth module</p>
+                <p class="text-text-secondary">Backlog: <span class="text-text-primary">4 <span data-term="vocabulary.ticket">tickets</span></span> queued</p>
+              </div>
+
+              <div class="border-t border-border/30 pt-2">
+                <p class="text-text-muted">Ready to start?</p>
+                <div class="mt-1.5 space-y-0.5">
+                  <div class="flex items-center gap-2"><span class="text-emerald">❯</span><span class="text-text-primary bg-emerald/10 px-2 py-0.5 rounded">Claim first <span data-term="vocabulary.ticket">ticket</span></span></div>
+                  <div class="flex items-center gap-2"><span class="text-text-muted/40">○</span><span class="text-text-muted">Review backlog</span></div>
+                  <div class="flex items-center gap-2"><span class="text-text-muted/40">○</span><span class="text-text-muted">Adjust <span data-term="vocabulary.par">par</span></span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Prompt input -->
+            <div class="border-t border-border/50 px-5 py-3 bg-bg-card/50">
+              <div class="flex items-start gap-2">
+                <span class="text-emerald font-mono text-base shrink-0 mt-px">❯</span>
+                <p class="text-text-secondary text-base">I've got a new sprint to work on, four tickets around OAuth and API refactoring. What should I know before I dive in?</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- ═══════════════════════════════════════════ -->
-    <!-- Prompt 4: Post-Hole (Wrap Up Sprint)       -->
-    <!-- ═══════════════════════════════════════════ -->
-    <div data-how-panel="wrap" class="hidden">
-      <!-- Prompt bubble -->
-      <div class="flex items-start gap-3 mb-4">
-        <div class="w-7 h-7 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-blue-400" aria-hidden="true">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" />
-          </svg>
-        </div>
-        <div class="rounded-xl rounded-tl-sm bg-blue-500/10 border border-blue-500/20 px-4 py-2.5 max-w-lg">
-          <p class="text-blue-300 text-sm font-mono"><span data-term="vocabulary.sprint">Sprint</span> done, build my <span data-term="vocabulary.scorecard">scorecard</span></p>
-        </div>
-      </div>
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- Panel 2: Pre-Shot (Claim Ticket)           -->
+        <!-- ═══════════════════════════════════════════ -->
+        <div data-how-panel="claim" class="hidden">
+          <div class="rounded-xl border border-border bg-bg-surface overflow-hidden">
+            <!-- Terminal header -->
+            <div class="flex items-center gap-2 px-4 py-2.5 border-b border-border/50 bg-bg-card">
+              <div class="flex gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500/40"></span>
+              </div>
+              <span class="text-text-muted text-xs font-mono ml-1">claude — slope-project</span>
+            </div>
 
-      <!-- SLOPE response -->
-      <div class="rounded-xl border border-emerald/20 bg-bg-surface overflow-hidden ml-10">
-        <div class="flex items-center gap-2 px-4 py-2.5 border-b border-emerald/10 bg-emerald/5">
-          <div class="flex gap-1.5">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald/40"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+            <!-- Response area -->
+            <div class="p-5 font-mono text-sm leading-relaxed space-y-2">
+              <p class="text-text-muted">── <span data-term="vocabulary.preShot">Pre-Shot</span> Routine ──────────────</p>
+              <p class="text-text-muted">── <span data-term="vocabulary.ticket">Shot</span> S29-1 ──────────────────</p>
+              <p class="text-text-secondary">"Add OAuth provider" │ <span data-term="clubs.short_iron">Short Iron</span></p>
+
+              <div class="border-t border-border/30 pt-2 space-y-1">
+                <p class="text-text-secondary"><span data-term="vocabulary.ticket">Ticket</span> S29-1 claimed ✓</p>
+                <p class="text-text-secondary"><span data-term="vocabulary.club">Club</span> selected: <span class="text-text-primary" data-term="clubs.short_iron">Short Iron</span> <span class="text-text-muted">(standard single-package)</span></p>
+                <p class="text-text-secondary">Known <span data-term="hazards.bunker">hazards</span> in area: <span class="text-gold"><span data-term="hazards.bunker">Bunker</span> ×1</span> <span class="text-text-muted">(nvm sourcing)</span></p>
+                <p class="text-text-secondary">Target: OAuth callback endpoint working with tests</p>
+              </div>
+
+              <div class="border-t border-border/30 pt-2">
+                <p class="text-text-muted"><span data-term="specialPlays.provisional">Provisional</span>:</p>
+                <p class="text-text-secondary/70 italic">"If blocked after 2 commits, fall back to session-based auth"</p>
+              </div>
+            </div>
+
+            <!-- Prompt input -->
+            <div class="border-t border-border/50 px-5 py-3 bg-bg-card/50">
+              <div class="flex items-start gap-2">
+                <span class="text-emerald font-mono text-base shrink-0 mt-px">❯</span>
+                <p class="text-text-secondary text-base">Okay, I'd like to implement the Google and GitHub OAuth provider. How should I go about that?</p>
+              </div>
+            </div>
           </div>
-          <span class="text-emerald text-xs font-mono ml-1"><span data-term="vocabulary.postHole">Post-Hole</span> <span data-term="vocabulary.scorecard">Scorecard</span></span>
         </div>
-        <div class="p-5 font-mono text-xs leading-relaxed space-y-2">
-          <p class="text-text-muted">── <span data-term="vocabulary.sprint">Hole</span> 29 <span data-term="vocabulary.scorecard">Scorecard</span> ──────────────</p>
-          <p class="text-text-secondary">"OAuth & API Refactor" │ <span data-term="vocabulary.par">Par</span> 4</p>
 
-          <div class="overflow-x-auto">
-            <table class="w-full text-xs font-mono border-collapse">
-              <thead>
-                <tr class="text-text-muted">
-                  <th class="text-left pr-2 pb-1 font-normal">#</th>
-                  <th class="text-left pr-3 pb-1 font-normal"><span data-term="vocabulary.ticket">Shot</span></th>
-                  <th class="text-left pr-3 pb-1 font-normal"><span data-term="vocabulary.club">Club</span></th>
-                  <th class="text-left pr-2 pb-1 font-normal">Result</th>
-                </tr>
-              </thead>
-              <tbody class="text-text-secondary">
-                <tr>
-                  <td class="pr-2 py-0.5 text-text-muted">S29-1</td>
-                  <td class="pr-3 py-0.5">OAuth provider</td>
-                  <td class="pr-3 py-0.5" data-term="clubs.short_iron">Short Iron</td>
-                  <td class="pr-2 py-0.5 text-emerald">✅ <span data-term="shotResults.green">Green</span></td>
-                </tr>
-                <tr>
-                  <td class="pr-2 py-0.5 text-text-muted">S29-2</td>
-                  <td class="pr-3 py-0.5">Token refresh</td>
-                  <td class="pr-3 py-0.5" data-term="clubs.wedge">Wedge</td>
-                  <td class="pr-2 py-0.5 text-emerald">⭐ <span data-term="shotResults.in_the_hole">Hole!</span></td>
-                </tr>
-                <tr>
-                  <td class="pr-2 py-0.5 text-text-muted">S29-3</td>
-                  <td class="pr-3 py-0.5">API rate limiter</td>
-                  <td class="pr-3 py-0.5" data-term="clubs.long_iron">Long Iron</td>
-                  <td class="pr-2 py-0.5 text-emerald">✅ <span data-term="shotResults.fairway">Fairway</span></td>
-                </tr>
-                <tr>
-                  <td class="pr-2 py-0.5 text-text-muted">S29-4</td>
-                  <td class="pr-3 py-0.5">Integration tests</td>
-                  <td class="pr-3 py-0.5" data-term="clubs.putter">Putter</td>
-                  <td class="pr-2 py-0.5 text-gold">⚠ <span data-term="shotResults.fairway">Fairway</span></td>
-                </tr>
-              </tbody>
-            </table>
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- Panel: Bug Fixing                          -->
+        <!-- ═══════════════════════════════════════════ -->
+        <div data-how-panel="bugfix" class="hidden">
+          <div class="rounded-xl border border-border bg-bg-surface overflow-hidden">
+            <div class="flex items-center gap-2 px-4 py-2.5 border-b border-border/50 bg-bg-card">
+              <div class="flex gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500/40"></span>
+              </div>
+              <span class="text-text-muted text-xs font-mono ml-1">claude — slope-project</span>
+            </div>
+
+            <div class="p-5 font-mono text-sm leading-relaxed space-y-2">
+              <p class="text-text-muted">── <span data-term="vocabulary.preShot">Pre-Shot</span> Routine ──────────────</p>
+              <p class="text-text-muted">── <span data-term="vocabulary.ticket">Shot</span> S30-2 ──────────────────</p>
+              <p class="text-text-secondary">"Fix race condition in checkout" │ <span data-term="clubs.short_iron">Short Iron</span></p>
+
+              <div class="border-t border-border/30 pt-2 space-y-1">
+                <p class="text-text-secondary"><span data-term="vocabulary.ticket">Ticket</span> S30-2 claimed ✓</p>
+                <p class="text-text-secondary"><span data-term="vocabulary.club">Club</span> selected: <span class="text-text-primary" data-term="clubs.short_iron">Short Iron</span> <span class="text-text-muted">(targeted fix)</span></p>
+                <p class="text-text-secondary">Known <span data-term="hazards.bunker">hazards</span> in area: <span class="text-gold"><span data-term="hazards.water">Water</span> ×1</span> <span class="text-text-muted">(async timing)</span></p>
+                <p class="text-text-secondary">Related: S27-3 had similar <span data-term="statLabels.missPattern">miss pattern</span></p>
+              </div>
+
+              <div class="border-t border-border/30 pt-2">
+                <p class="text-text-muted"><span data-term="specialPlays.provisional">Provisional</span>:</p>
+                <p class="text-text-secondary/70 italic">"If root cause isn't clear after 30 min, add a lock and revisit"</p>
+              </div>
+            </div>
+
+            <div class="border-t border-border/50 px-5 py-3 bg-bg-card/50">
+              <div class="flex items-start gap-2">
+                <span class="text-emerald font-mono text-base shrink-0 mt-px">❯</span>
+                <p class="text-text-secondary text-base">Users are seeing duplicate orders when they double-click the checkout button. Can you dig into that and fix it?</p>
+              </div>
+            </div>
           </div>
+        </div>
 
-          <div class="border-t border-border/30 pt-2 space-y-1">
-            <p class="text-text-secondary">Score: <span class="text-emerald">4</span> (<span class="text-emerald" data-term="scoreLabels.par">Par</span>) │ <span data-term="vocabulary.handicap">Handicap</span>: <span class="text-emerald">1.1</span> <span class="text-emerald/60">↓</span></p>
-            <p class="text-text-muted"><span data-term="statLabels.fairways">FW</span>: 100% <span class="text-text-muted/40">·</span> <span data-term="statLabels.gir">GIR</span>: 75% <span class="text-text-muted/40">·</span> <span data-term="statLabels.putts">Putts</span>: 0.25</p>
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- Panel: Research                            -->
+        <!-- ═══════════════════════════════════════════ -->
+        <div data-how-panel="research" class="hidden">
+          <div class="rounded-xl border border-border bg-bg-surface overflow-hidden">
+            <div class="flex items-center gap-2 px-4 py-2.5 border-b border-border/50 bg-bg-card">
+              <div class="flex gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500/40"></span>
+              </div>
+              <span class="text-text-muted text-xs font-mono ml-1">claude — slope-project</span>
+            </div>
+
+            <div class="p-5 font-mono text-sm leading-relaxed space-y-2">
+              <p class="text-text-muted">── <span data-term="sprintTypes.research">Research</span> <span data-term="vocabulary.sprint">Hole</span> ──────────────</p>
+              <p class="text-text-muted">── <span data-term="vocabulary.sprint">Hole</span> 31 ────────────────────</p>
+              <p class="text-text-secondary">"Payment Processor Evaluation" │ <span data-term="vocabulary.par">Par</span> 3 · Skip review tier</p>
+
+              <div class="border-t border-border/30 pt-2 space-y-1">
+                <p class="text-text-secondary"><span data-term="vocabulary.ticket">Shot</span> 1: Compare pricing models</p>
+                <p class="text-text-secondary"><span data-term="vocabulary.ticket">Shot</span> 2: Test sandbox integration</p>
+                <p class="text-text-secondary"><span data-term="vocabulary.ticket">Shot</span> 3: Write recommendation doc</p>
+              </div>
+
+              <div class="border-t border-border/30 pt-2 space-y-1">
+                <p class="text-text-secondary"><span data-term="vocabulary.club">Club</span>: <span class="text-text-primary" data-term="clubs.short_iron">Short Iron</span> <span class="text-text-muted">(no code output, docs only)</span></p>
+                <p class="text-text-secondary">Deliverable: Decision doc with trade-offs matrix</p>
+              </div>
+            </div>
+
+            <div class="border-t border-border/50 px-5 py-3 bg-bg-card/50">
+              <div class="flex items-start gap-2">
+                <span class="text-emerald font-mono text-base shrink-0 mt-px">❯</span>
+                <p class="text-text-secondary text-base">We need to pick a payment processor. Can you research Stripe, Square, and PayPal and tell me which one makes the most sense for us?</p>
+              </div>
+            </div>
           </div>
+        </div>
 
-          <div class="border-t border-border/30 pt-2">
-            <p class="text-text-secondary"><span data-term="vocabulary.sprint">Hole</span> complete. What next?</p>
-            <div class="mt-1.5 space-y-0.5">
-              <div class="flex items-center gap-2"><span class="text-emerald">❯</span><span class="text-text-primary bg-emerald/10 px-2 py-0.5 rounded">Plan a new <span data-term="vocabulary.sprint">hole</span></span></div>
-              <div class="flex items-center gap-2"><span class="text-text-muted/40">○</span><span class="text-text-muted">Review <span data-term="statLabels.missPattern">miss patterns</span></span></div>
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- Panel: Roadmap                             -->
+        <!-- ═══════════════════════════════════════════ -->
+        <div data-how-panel="roadmap" class="hidden">
+          <div class="rounded-xl border border-border bg-bg-surface overflow-hidden">
+            <div class="flex items-center gap-2 px-4 py-2.5 border-b border-border/50 bg-bg-card">
+              <div class="flex gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500/40"></span>
+              </div>
+              <span class="text-text-muted text-xs font-mono ml-1">claude — slope-project</span>
+            </div>
+
+            <div class="p-5 font-mono text-sm leading-relaxed space-y-2">
+              <p class="text-text-muted">── <span data-term="vocabulary.tournament">Tournament</span> Roadmap ──────────────</p>
+              <p class="text-text-secondary">"V2 Launch" │ 4 <span data-term="vocabulary.sprint">holes</span> · 14 <span data-term="vocabulary.ticket">shots</span></p>
+
+              <div class="border-t border-border/30 pt-2 space-y-1.5">
+                <div class="flex items-start gap-2">
+                  <span class="text-emerald">●</span>
+                  <div>
+                    <p class="text-text-secondary"><span data-term="vocabulary.sprint">Hole</span> 32: Auth & Permissions <span class="text-text-muted">│ <span data-term="vocabulary.par">Par</span> 4</span></p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-text-muted/40">○</span>
+                  <div>
+                    <p class="text-text-secondary"><span data-term="vocabulary.sprint">Hole</span> 33: Payment Integration <span class="text-text-muted">│ <span data-term="vocabulary.par">Par</span> 4 · depends on 32</span></p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-text-muted/40">○</span>
+                  <div>
+                    <p class="text-text-secondary"><span data-term="vocabulary.sprint">Hole</span> 34: Notifications <span class="text-text-muted">│ <span data-term="vocabulary.par">Par</span> 3 · parallel track</span></p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="text-text-muted/40">○</span>
+                  <div>
+                    <p class="text-text-secondary"><span data-term="vocabulary.sprint">Hole</span> 35: Launch Prep <span class="text-text-muted">│ <span data-term="vocabulary.par">Par</span> 3 · depends on 33, 34</span></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="border-t border-border/30 pt-2 space-y-1">
+                <p class="text-text-secondary">Critical path: 32 → 33 → 35</p>
+                <p class="text-text-secondary">Parallel track: 34 (can start after 32)</p>
+              </div>
+            </div>
+
+            <div class="border-t border-border/50 px-5 py-3 bg-bg-card/50">
+              <div class="flex items-start gap-2">
+                <span class="text-emerald font-mono text-base shrink-0 mt-px">❯</span>
+                <p class="text-text-secondary text-base">I need to plan out the V2 launch. We've got auth, payments, and notifications to build, and then a launch prep sprint. Can you map that out?</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- Panel 3: Post-Shot (Score Ticket)          -->
+        <!-- ═══════════════════════════════════════════ -->
+        <div data-how-panel="score" class="hidden">
+          <div class="rounded-xl border border-border bg-bg-surface overflow-hidden">
+            <!-- Terminal header -->
+            <div class="flex items-center gap-2 px-4 py-2.5 border-b border-border/50 bg-bg-card">
+              <div class="flex gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500/40"></span>
+              </div>
+              <span class="text-text-muted text-xs font-mono ml-1">claude — slope-project</span>
+            </div>
+
+            <!-- Response area -->
+            <div class="p-5 font-mono text-sm leading-relaxed space-y-2">
+              <p class="text-text-muted">── <span data-term="vocabulary.postShot">Post-Shot</span> Scoring ──────────────</p>
+              <p class="text-text-muted">── <span data-term="vocabulary.ticket">Shot</span> S29-1 Result ─────────────</p>
+
+              <div class="space-y-1">
+                <p class="text-text-secondary">Result: <span class="text-emerald"><span data-term="shotResults.fairway">Fairway</span> → <span data-term="shotResults.green">Green</span> ✅</span></p>
+                <p class="text-text-secondary"><span data-term="hazards.bunker">Hazards</span> hit: <span class="text-emerald">0</span></p>
+                <p class="text-text-secondary">Miss direction: <span class="text-emerald">None</span></p>
+                <p class="text-text-secondary">Commits: <span class="text-text-primary">3</span> <span class="text-text-muted">(within budget)</span></p>
+              </div>
+
+              <div class="border-t border-border/30 pt-2">
+                <p class="text-text-secondary">Status: <span class="text-emerald">On track</span> — 1 of 4 <span data-term="vocabulary.ticket">tickets</span> complete</p>
+                <div class="flex items-center gap-3 mt-1.5">
+                  <div class="flex-1 h-1.5 rounded-full bg-border/30 overflow-hidden">
+                    <div class="h-full w-1/4 rounded-full bg-emerald/60"></div>
+                  </div>
+                  <span class="text-text-muted text-xs">25%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Prompt input -->
+            <div class="border-t border-border/50 px-5 py-3 bg-bg-card/50">
+              <div class="flex items-start gap-2">
+                <span class="text-emerald font-mono text-base shrink-0 mt-px">❯</span>
+                <p class="text-text-secondary text-base">Alright, the OAuth provider is working and tests are passing. How'd that go?</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- Panel 4: Post-Hole (Wrap Up Sprint)        -->
+        <!-- ═══════════════════════════════════════════ -->
+        <div data-how-panel="wrap" class="hidden">
+          <div class="rounded-xl border border-border bg-bg-surface overflow-hidden">
+            <!-- Terminal header -->
+            <div class="flex items-center gap-2 px-4 py-2.5 border-b border-border/50 bg-bg-card">
+              <div class="flex gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500/40"></span>
+              </div>
+              <span class="text-text-muted text-xs font-mono ml-1">claude — slope-project</span>
+            </div>
+
+            <!-- Response area -->
+            <div class="p-5 font-mono text-sm leading-relaxed space-y-2">
+              <p class="text-text-muted">── <span data-term="vocabulary.postHole">Post-Hole</span> <span data-term="vocabulary.scorecard">Scorecard</span> ──────────────</p>
+              <p class="text-text-muted">── <span data-term="vocabulary.sprint">Hole</span> 29 ────────────────────</p>
+              <p class="text-text-secondary">"OAuth & API Refactor" │ <span data-term="vocabulary.par">Par</span> 4</p>
+
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm font-mono border-collapse">
+                  <thead>
+                    <tr class="text-text-muted">
+                      <th class="text-left pr-2 pb-1 font-normal">#</th>
+                      <th class="text-left pr-3 pb-1 font-normal"><span data-term="vocabulary.ticket">Shot</span></th>
+                      <th class="text-left pr-3 pb-1 font-normal"><span data-term="vocabulary.club">Club</span></th>
+                      <th class="text-left pr-2 pb-1 font-normal">Result</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-text-secondary">
+                    <tr>
+                      <td class="pr-2 py-0.5 text-text-muted">S29-1</td>
+                      <td class="pr-3 py-0.5">OAuth provider</td>
+                      <td class="pr-3 py-0.5" data-term="clubs.short_iron">Short Iron</td>
+                      <td class="pr-2 py-0.5 text-emerald">✅ <span data-term="shotResults.green">Green</span></td>
+                    </tr>
+                    <tr>
+                      <td class="pr-2 py-0.5 text-text-muted">S29-2</td>
+                      <td class="pr-3 py-0.5">Token refresh</td>
+                      <td class="pr-3 py-0.5" data-term="clubs.wedge">Wedge</td>
+                      <td class="pr-2 py-0.5 text-emerald">⭐ <span data-term="shotResults.in_the_hole">Hole!</span></td>
+                    </tr>
+                    <tr>
+                      <td class="pr-2 py-0.5 text-text-muted">S29-3</td>
+                      <td class="pr-3 py-0.5">API rate limiter</td>
+                      <td class="pr-3 py-0.5" data-term="clubs.long_iron">Long Iron</td>
+                      <td class="pr-2 py-0.5 text-emerald">✅ <span data-term="shotResults.fairway">Fairway</span></td>
+                    </tr>
+                    <tr>
+                      <td class="pr-2 py-0.5 text-text-muted">S29-4</td>
+                      <td class="pr-3 py-0.5">Integration tests</td>
+                      <td class="pr-3 py-0.5" data-term="clubs.putter">Putter</td>
+                      <td class="pr-2 py-0.5 text-gold">⚠ <span data-term="shotResults.fairway">Fairway</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="border-t border-border/30 pt-2 space-y-1">
+                <p class="text-text-secondary">Score: <span class="text-emerald">4</span> (<span class="text-emerald" data-term="scoreLabels.par">Par</span>) │ <span data-term="vocabulary.handicap">Handicap</span>: <span class="text-emerald">1.1</span> <span class="text-emerald/60">↓</span></p>
+                <p class="text-text-muted"><span data-term="statLabels.fairways">FW</span>: 100% <span class="text-text-muted/40">·</span> <span data-term="statLabels.gir">GIR</span>: 75% <span class="text-text-muted/40">·</span> <span data-term="statLabels.putts">Putts</span>: 0.25</p>
+              </div>
+
+              <div class="border-t border-border/30 pt-2">
+                <p class="text-text-secondary"><span data-term="vocabulary.sprint">Hole</span> complete. What next?</p>
+                <div class="mt-1.5 space-y-0.5">
+                  <div class="flex items-center gap-2"><span class="text-emerald">❯</span><span class="text-text-primary bg-emerald/10 px-2 py-0.5 rounded">Plan a new <span data-term="vocabulary.sprint">hole</span></span></div>
+                  <div class="flex items-center gap-2"><span class="text-text-muted/40">○</span><span class="text-text-muted">Review <span data-term="statLabels.missPattern">miss patterns</span></span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Prompt input -->
+            <div class="border-t border-border/50 px-5 py-3 bg-bg-card/50">
+              <div class="flex items-start gap-2">
+                <span class="text-emerald font-mono text-base shrink-0 mt-px">❯</span>
+                <p class="text-text-secondary text-base">Okay I think that's everything done. How'd the whole sprint go, and what should I focus on next?</p>
+              </div>
             </div>
           </div>
         </div>
