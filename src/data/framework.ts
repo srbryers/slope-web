@@ -174,39 +174,39 @@ export const TIPS: Tip[] = [
 
 export interface CheatSheetCategory {
   label: string;
-  items: { term: string; meaning: string; color?: string }[];
+  items: { term: string; meaning: string; color?: string; dataTerm?: string }[];
 }
 
 export const CHEAT_SHEET: CheatSheetCategory[] = [
   {
     label: 'Score Labels',
     items: [
-      { term: 'Eagle', meaning: '-2 — well under par', color: 'text-gold' },
-      { term: 'Birdie', meaning: '-1 — under par', color: 'text-emerald' },
-      { term: 'Par', meaning: '0 — exactly on target', color: 'text-text-primary' },
-      { term: 'Bogey', meaning: '+1 — one over', color: 'text-amber-400' },
-      { term: 'Double', meaning: '+2 — two over', color: 'text-red-400' },
-      { term: 'Triple+', meaning: '+3 — three or more over', color: 'text-red-500' },
+      { term: 'Eagle', meaning: '-2 — well under par', color: 'text-gold', dataTerm: 'scoreLabels.eagle' },
+      { term: 'Birdie', meaning: '-1 — under par', color: 'text-emerald', dataTerm: 'scoreLabels.birdie' },
+      { term: 'Par', meaning: '0 — exactly on target', color: 'text-text-primary', dataTerm: 'scoreLabels.par' },
+      { term: 'Bogey', meaning: '+1 — one over', color: 'text-amber-400', dataTerm: 'scoreLabels.bogey' },
+      { term: 'Double', meaning: '+2 — two over', color: 'text-red-400', dataTerm: 'scoreLabels.double_bogey' },
+      { term: 'Triple+', meaning: '+3 — three or more over', color: 'text-red-500', dataTerm: 'scoreLabels.triple_plus' },
     ],
   },
   {
     label: 'Shot Types (Clubs)',
     items: [
-      { term: 'Driver', meaning: 'High-risk, new infrastructure or architecture' },
-      { term: 'Long Iron', meaning: 'Multi-package changes, moderate complexity' },
-      { term: 'Short Iron', meaning: 'Standard single-package ticket' },
-      { term: 'Wedge', meaning: 'Small, focused change' },
-      { term: 'Putter', meaning: 'Trivial — config tweak, typo fix' },
+      { term: 'Driver', meaning: 'High-risk, new infrastructure or architecture', dataTerm: 'clubs.driver' },
+      { term: 'Long Iron', meaning: 'Multi-package changes, moderate complexity', dataTerm: 'clubs.long_iron' },
+      { term: 'Short Iron', meaning: 'Standard single-package ticket', dataTerm: 'clubs.short_iron' },
+      { term: 'Wedge', meaning: 'Small, focused change', dataTerm: 'clubs.wedge' },
+      { term: 'Putter', meaning: 'Trivial — config tweak, typo fix', dataTerm: 'clubs.putter' },
     ],
   },
   {
     label: 'Hazards',
     items: [
-      { term: 'Bunker', meaning: 'Known gotcha — documented but missed', color: 'text-gold' },
-      { term: 'Water', meaning: 'Breaking change or data loss', color: 'text-blue-400' },
-      { term: 'OB', meaning: 'Scope creep — left the sprint boundary', color: 'text-red-400' },
-      { term: 'Rough', meaning: 'Technical debt — slower going', color: 'text-text-secondary' },
-      { term: 'Trees', meaning: 'Blocking dependency', color: 'text-emerald' },
+      { term: 'Bunker', meaning: 'Known gotcha — documented but missed', color: 'text-gold', dataTerm: 'hazards.bunker' },
+      { term: 'Water', meaning: 'Breaking change or data loss', color: 'text-blue-400', dataTerm: 'hazards.water' },
+      { term: 'OB', meaning: 'Scope creep — left the sprint boundary', color: 'text-red-400', dataTerm: 'hazards.ob' },
+      { term: 'Rough', meaning: 'Technical debt — slower going', color: 'text-text-secondary', dataTerm: 'hazards.rough' },
+      { term: 'Trees', meaning: 'Blocking dependency', color: 'text-emerald', dataTerm: 'hazards.trees' },
     ],
   },
   {
@@ -223,10 +223,10 @@ export const CHEAT_SHEET: CheatSheetCategory[] = [
   {
     label: 'Miss Directions',
     items: [
-      { term: 'Long', meaning: 'Over-engineered — too much complexity' },
-      { term: 'Short', meaning: 'Under-scoped — missed requirements' },
-      { term: 'Left', meaning: 'Wrong approach — fundamentally off-target' },
-      { term: 'Right', meaning: 'Scope drift — correct area, wrong deliverable' },
+      { term: 'Long', meaning: 'Over-engineered — too much complexity', dataTerm: 'missDirections.long' },
+      { term: 'Short', meaning: 'Under-scoped — missed requirements', dataTerm: 'missDirections.short' },
+      { term: 'Left', meaning: 'Wrong approach — fundamentally off-target', dataTerm: 'missDirections.left' },
+      { term: 'Right', meaning: 'Scope drift — correct area, wrong deliverable', dataTerm: 'missDirections.right' },
     ],
   },
 ];

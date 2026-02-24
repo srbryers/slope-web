@@ -12,9 +12,9 @@ import { CHEAT_SHEET } from '../../data/framework';
           <p class="text-xs font-mono uppercase tracking-wider text-text-muted">{label}</p>
         </div>
         <div class="divide-y divide-border-subtle">
-          {items.map(({ term, meaning, color }) => (
+          {items.map(({ term, meaning, color, dataTerm }) => (
             <div class="flex items-baseline gap-3 px-4 py-2">
-              <span class:list={['w-28 shrink-0 font-mono text-sm font-medium', color || 'text-emerald']}>{term}</span>
+              <span class:list={['w-28 shrink-0 font-mono text-sm font-medium', color || 'text-emerald']} data-term={dataTerm}>{term}</span>
               <span class="text-text-muted text-xs leading-relaxed">{meaning}</span>
             </div>
           ))}

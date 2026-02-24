@@ -55,14 +55,14 @@ const sidebarGroups = [
     links: [
       { id: 'big-picture', name: 'The Big Picture' },
       { id: 'structure-mapping', name: 'Structure Mapping' },
-      { id: 'par-system', name: 'Par System' },
+      { id: 'par-system', name: 'Par System', parts: [{ term: 'vocabulary.par', text: 'Par' }, { text: ' System' }] },
       { id: 'sprint-types', name: 'Sprint Types' },
     ],
   },
   {
     label: 'Gameplay',
     links: [
-      { id: 'club-selection', name: 'Club Selection' },
+      { id: 'club-selection', name: 'Club Selection', parts: [{ term: 'vocabulary.club', text: 'Club' }, { text: ' Selection' }] },
       { id: 'hazards', name: 'Hazards' },
       { id: 'conditions', name: 'Conditions' },
     ],
@@ -71,7 +71,7 @@ const sidebarGroups = [
     label: 'Routines & Scoring',
     links: [
       { id: 'routines', name: 'Routines' },
-      { id: 'scoring-handicap', name: 'Scoring & Handicap' },
+      { id: 'scoring-handicap', name: 'Scoring & Handicap', parts: [{ text: 'Scoring & ' }, { term: 'vocabulary.handicap', text: 'Handicap' }] },
       { id: 'analysis-advisor', name: 'Analysis & Advisor' },
       { id: 'training-system', name: 'Training System' },
     ],
@@ -80,7 +80,7 @@ const sidebarGroups = [
     label: 'Examples & Output',
     links: [
       { id: 'special-plays', name: 'Special Plays' },
-      { id: 'example-scorecard', name: 'Example Scorecard' },
+      { id: 'example-scorecard', name: 'Example Scorecard', parts: [{ text: 'Example ' }, { term: 'vocabulary.scorecard', text: 'Scorecard' }] },
       { id: 'reports-dashboard', name: 'Reports & Dashboard' },
     ],
   },
@@ -100,7 +100,7 @@ const sidebarGroups = [
       { id: 'escalation-system', name: 'Escalation System' },
       { id: 'flow-tracking', name: 'Flow Tracking' },
       { id: 'roadmap-tools', name: 'Roadmap Tools' },
-      { id: 'tournament-review', name: 'Tournament Review' },
+      { id: 'tournament-review', name: 'Tournament Review', parts: [{ term: 'vocabulary.tournament', text: 'Tournament' }, { text: ' Review' }] },
     ],
   },
 ];
@@ -134,9 +134,11 @@ const sidebarGroups = [
           <div class="mb-6">
             <p class="text-xs font-mono uppercase tracking-wider text-text-muted mb-2">{label}</p>
             <ul class="space-y-1">
-              {links.map(({ id, name }) => (
+              {links.map(({ id, name, parts }) => (
                 <li>
-                  <a href={`#${id}`} class="sidebar-link text-sm text-text-secondary">{name}</a>
+                  <a href={`#${id}`} class="sidebar-link text-sm text-text-secondary">
+                    {parts ? parts.map(p => p.term ? <span data-term={p.term}>{p.text}</span> : p.text) : name}
+                  </a>
                 </li>
               ))}
             </ul>
