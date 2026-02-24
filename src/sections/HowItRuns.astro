@@ -8,6 +8,16 @@ const prompts = [
   { id: 'score', label: 'Check Progress' },
   { id: 'wrap', label: 'Sprint Review' },
 ];
+
+const metaphors = [
+  { id: 'golf', name: 'Golf' },
+  { id: 'agile', name: 'Agile' },
+  { id: 'tennis', name: 'Tennis' },
+  { id: 'baseball', name: 'Baseball' },
+  { id: 'gaming', name: 'Gaming' },
+  { id: 'dnd', name: 'D&D' },
+  { id: 'matrix', name: 'Matrix' },
+];
 ---
 
 <section id="how-it-works" class="py-24 sm:py-32">
@@ -54,6 +64,16 @@ const prompts = [
 
       <!-- Terminal panels -->
       <div class="min-w-0">
+        <!-- Your Language dropdown -->
+        <div class="flex items-center gap-3 mb-4">
+          <label class="text-text-muted text-xs font-mono uppercase tracking-wider shrink-0">Your Language</label>
+          <select class="how-metaphor-select rounded-lg border border-border bg-bg-surface text-text-secondary text-sm font-mono px-3 py-1.5 appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%236b7280%22%20d%3D%22M3%205l3%203%203-3%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_0.75rem_center] pr-8">
+            {metaphors.map(({ id, name }) => (
+              <option value={id}>{name}</option>
+            ))}
+          </select>
+        </div>
+
         <!-- ═══════════════════════════════════════════ -->
         <!-- Panel 1: Pre-Round Briefing                -->
         <!-- ═══════════════════════════════════════════ -->
@@ -423,6 +443,9 @@ const prompts = [
 </section>
 
 <script>
+  import { initInlineSwitcher } from '../scripts/interactions';
+  initInlineSwitcher();
+
   function initHowSwitcher() {
     const tabs = document.querySelectorAll<HTMLButtonElement>('.how-tab');
     const select = document.querySelector<HTMLSelectElement>('.how-select');
@@ -462,4 +485,63 @@ const prompts = [
   }
 
   initHowSwitcher();
+
+  // Metaphor dropdown
+  import('../data/metaphors.json').then((mod) => {
+    const metaphors: Record<string, Record<string, Record<string, string>>> = mod.default;
+    const metaphorSelect = document.querySelector<HTMLSelectElement>('.how-metaphor-select');
+    if (!metaphorSelect) return;
+
+    const saved = localStorage.getItem('slope-metaphor') ?? 'golf';
+    metaphorSelect.value = saved;
+
+    function applyMetaphor(id: string) {
+      // Update all data-term elements
+      const els = document.querySelectorAll<HTMLElement>('[data-term]');
+      els.forEach((el) => {
+        const term = el.dataset.term;
+        if (!term) return;
+        const parts = term.split('.');
+        let obj: unknown = metaphors[id];
+        for (const p of parts) {
+          if (obj && typeof obj === 'object') obj = (obj as Record<string, unknown>)[p];
+          else { obj = undefined; break; }
+        }
+        if (typeof obj === 'string') el.textContent = obj;
+      });
+      localStorage.setItem('slope-metaphor', id);
+      document.documentElement.dataset.metaphor = id;
+
+      // Sync nav pills
+      document.querySelectorAll<HTMLElement>('[data-nav-metaphor]').forEach((pill) => {
+        const isActive = pill.dataset.navMetaphor === id;
+        pill.classList.toggle('bg-emerald/10', isActive);
+        pill.classList.toggle('text-emerald', isActive);
+        pill.classList.toggle('border-emerald/20', isActive);
+        pill.classList.toggle('text-text-muted', !isActive);
+        pill.classList.toggle('hover:text-text-secondary', !isActive);
+        pill.classList.toggle('border-transparent', !isActive);
+      });
+
+      // Sync inline pills
+      document.querySelectorAll<HTMLElement>('[data-inline-metaphor]').forEach((pill) => {
+        const isActive = pill.dataset.inlineMetaphor === id;
+        pill.classList.toggle('border-emerald/40', isActive);
+        pill.classList.toggle('bg-emerald/10', isActive);
+        pill.classList.toggle('text-emerald', isActive);
+        pill.classList.toggle('border-border', !isActive);
+        pill.classList.toggle('bg-bg-card', !isActive);
+        pill.classList.toggle('text-text-muted', !isActive);
+      });
+
+      // Sync nav mobile select
+      const navMobile = document.querySelector<HTMLSelectElement>('.nav-metaphor-mobile');
+      if (navMobile) navMobile.value = id;
+    }
+
+    metaphorSelect.addEventListener('change', () => {
+      const id = metaphorSelect.value;
+      if (metaphors[id]) applyMetaphor(id);
+    });
+  });
 </script>
