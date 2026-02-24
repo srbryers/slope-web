@@ -54,7 +54,8 @@
       "mulligan": "Mulligan",
       "provisional": "Provisional",
       "lay_up": "Lay Up",
-      "scramble": "Scramble"
+      "scramble": "Scramble",
+      "match_play": "Match Play"
     },
     "missDirections": {
       "long": "Long",
@@ -155,7 +156,8 @@
       "mulligan": "Let (replay)",
       "provisional": "Challenge",
       "lay_up": "Moonball",
-      "scramble": "Doubles Rally"
+      "scramble": "Doubles Rally",
+      "match_play": "Head-to-Head"
     },
     "missDirections": {
       "long": "Long",
@@ -256,7 +258,8 @@
       "mulligan": "Pinch Hitter",
       "provisional": "Switch Hitter",
       "lay_up": "Sacrifice Bunt",
-      "scramble": "Double Play"
+      "scramble": "Double Play",
+      "match_play": "Rivalry Series"
     },
     "missDirections": {
       "long": "Fly Out",
@@ -357,7 +360,8 @@
       "mulligan": "Quick Load",
       "provisional": "Save Scum",
       "lay_up": "Grind",
-      "scramble": "Co-op"
+      "scramble": "Co-op",
+      "match_play": "PvP"
     },
     "missDirections": {
       "long": "Over-leveled",
@@ -458,7 +462,8 @@
       "mulligan": "Lucky Feat",
       "provisional": "Held Action",
       "lay_up": "Dodge Action",
-      "scramble": "Party Assist"
+      "scramble": "Party Assist",
+      "match_play": "Duel"
     },
     "missDirections": {
       "long": "Overshoot",
@@ -559,7 +564,8 @@
       "mulligan": "System Restore",
       "provisional": "Fork",
       "lay_up": "Safe Mode",
-      "scramble": "Swarm"
+      "scramble": "Swarm",
+      "match_play": "Benchmark"
     },
     "missDirections": {
       "long": "Overload",
