@@ -1,119 +1,323 @@
 ---
+const prompts = [
+  { id: 'briefing', label: 'Pre-Round' },
+  { id: 'claim', label: 'Pre-Shot' },
+  { id: 'score', label: 'Post-Shot' },
+  { id: 'wrap', label: 'Post-Hole' },
+];
 ---
 
-<section id="how-it-runs" class="py-24 sm:py-32">
+<section id="how-it-works" class="py-24 sm:py-32">
   <div class="max-w-5xl mx-auto px-6">
     <!-- Header -->
     <div class="text-center mb-12" data-reveal>
-      <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">Agents & Environments</p>
+      <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">How It Works</p>
       <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
-        One framework. Any agent. Three integration layers.
+        Your agent follows the same routine. Every <span data-term="vocabulary.sprint">sprint</span>.
       </h2>
       <p class="text-text-secondary max-w-2xl mx-auto">
-        SLOPE is a framework your AI agent follows — not a plugin.
-        Set it up once, and every sprint produces structured data.
+        SLOPE adds structure through natural language prompts — no plugins, no integrations.
+        Tell your agent what to do, and it produces structured data every time.
       </p>
     </div>
 
-    <!-- Integration Layers -->
-    <div class="grid md:grid-cols-3 gap-4 mb-10" data-stagger>
-      <!-- CLI Tools -->
-      <div class="rounded-xl border border-border bg-bg-card p-6">
-        <div class="flex items-center gap-3 mb-3">
-          <div class="w-8 h-8 rounded-lg bg-emerald/10 flex items-center justify-center shrink-0">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="text-emerald" aria-hidden="true">
-              <polyline points="4 17 10 11 4 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <line x1="12" y1="19" x2="20" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-            </svg>
-          </div>
-          <h3 class="font-heading font-bold text-base text-text-primary">CLI Tools</h3>
-        </div>
-        <p class="text-text-muted text-sm leading-relaxed mb-3">
-          The agent runs slope commands — briefing, review, card.
-          Works in any environment that can execute shell commands.
-        </p>
-        <span class="text-[10px] font-mono px-2 py-1 rounded-full bg-emerald/10 text-emerald/80">All environments</span>
+    <!-- Prompt selector -->
+    <div class="mb-8" data-reveal>
+      <!-- Desktop: pill tabs -->
+      <div class="hidden sm:flex items-center gap-1 rounded-lg bg-bg-surface border border-border/50 p-1">
+        {prompts.map(({ id, label }) => (
+          <button
+            data-how={id}
+            class:list={[
+              'how-tab px-4 py-1.5 rounded-md text-sm font-mono transition-all cursor-pointer whitespace-nowrap',
+              id === 'briefing'
+                ? 'bg-emerald/10 text-emerald border border-emerald/20'
+                : 'text-text-muted hover:text-text-secondary border border-transparent',
+            ]}
+          >
+            {label}
+          </button>
+        ))}
       </div>
-
-      <!-- Rules Files -->
-      <div class="rounded-xl border border-border bg-bg-card p-6">
-        <div class="flex items-center gap-3 mb-3">
-          <div class="w-8 h-8 rounded-lg bg-emerald/10 flex items-center justify-center shrink-0">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="text-emerald" aria-hidden="true">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-            </svg>
-          </div>
-          <h3 class="font-heading font-bold text-base text-text-primary">Rules Files</h3>
-        </div>
-        <p class="text-text-muted text-sm leading-relaxed mb-3">
-          CLAUDE.md, .cursorrules, or AGENTS.md — the agent reads
-          framework instructions at session start. Routines, checklists,
-          commit discipline.
-        </p>
-        <span class="text-[10px] font-mono px-2 py-1 rounded-full bg-emerald/10 text-emerald/80">Claude Code · Cursor · OpenCode</span>
-      </div>
-
-      <!-- Hooks & Guards -->
-      <div class="rounded-xl border border-border bg-bg-card p-6">
-        <div class="flex items-center gap-3 mb-3">
-          <div class="w-8 h-8 rounded-lg bg-emerald/10 flex items-center justify-center shrink-0">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="text-emerald" aria-hidden="true">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <polyline points="9 12 11 14 15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </div>
-          <h3 class="font-heading font-bold text-base text-text-primary">Hooks & Guards</h3>
-        </div>
-        <p class="text-text-muted text-sm leading-relaxed mb-3">
-          Guards fire automatically on tool-use events via Claude Code hooks.
-          Real-time warnings before mistakes land — no agent action needed.
-        </p>
-        <span class="text-[10px] font-mono px-2 py-1 rounded-full bg-emerald/10 text-emerald/80">Claude Code</span>
-      </div>
+      <!-- Mobile: dropdown -->
+      <select class="how-select sm:hidden w-full rounded-lg border border-border bg-bg-surface text-text-secondary text-sm font-mono px-3 py-2 appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%236b7280%22%20d%3D%22M3%205l3%203%203-3%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_0.75rem_center]">
+        {prompts.map(({ id, label }) => (
+          <option value={id}>{label}</option>
+        ))}
+      </select>
     </div>
 
-    <!-- Agent Model -->
-    <div class="grid sm:grid-cols-2 gap-4" data-stagger>
-      <!-- Solo Agent -->
-      <div class="rounded-xl border border-border bg-bg-surface p-5">
-        <div class="flex items-center gap-2 mb-2">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="text-emerald shrink-0" aria-hidden="true">
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- Prompt 1: Pre-Round Briefing               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div data-how-panel="briefing">
+      <!-- Prompt bubble -->
+      <div class="flex items-start gap-3 mb-4">
+        <div class="w-7 h-7 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-blue-400" aria-hidden="true">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" />
           </svg>
-          <h3 class="font-heading font-bold text-base text-text-primary">Solo Agent</h3>
         </div>
-        <p class="text-text-muted text-sm leading-relaxed">
-          One agent, one sprint. Scorecards, handicap, and miss patterns
-          track performance across sessions.
-        </p>
+        <div class="rounded-xl rounded-tl-sm bg-blue-500/10 border border-blue-500/20 px-4 py-2.5 max-w-lg">
+          <p class="text-blue-300 text-sm font-mono">Give me a <span data-term="vocabulary.briefing">briefing</span> for my next <span data-term="vocabulary.sprint">sprint</span></p>
+        </div>
       </div>
 
-      <!-- Multi-Agent Team -->
-      <div class="rounded-xl border border-border bg-bg-surface p-5">
-        <div class="flex items-center gap-2 mb-2">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="text-emerald shrink-0" aria-hidden="true">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" />
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-            <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          </svg>
-          <h3 class="font-heading font-bold text-base text-text-primary">Multi-Agent Team</h3>
+      <!-- SLOPE response -->
+      <div class="rounded-xl border border-emerald/20 bg-bg-surface overflow-hidden ml-10">
+        <div class="flex items-center gap-2 px-4 py-2.5 border-b border-emerald/10 bg-emerald/5">
+          <div class="flex gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald/40"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+          </div>
+          <span class="text-emerald text-xs font-mono ml-1"><span data-term="vocabulary.preRound">Pre-Round</span> <span data-term="vocabulary.briefing">Briefing</span></span>
         </div>
-        <p class="text-text-muted text-sm leading-relaxed mb-2">
-          Multiple agents, coordinated sprints. Built-in roles, ticket
-          claiming, per-agent stats, team handicap.
-        </p>
-        <a href="/docs#team-multi-agent" class="text-emerald text-sm font-medium hover:underline inline-flex items-center gap-1">
-          Learn more in the docs
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <div class="p-5 font-mono text-xs leading-relaxed space-y-2">
+          <p class="text-text-muted">── <span data-term="vocabulary.sprint">Hole</span> 29 ────────────────────</p>
+          <p class="text-text-secondary">"OAuth & API Refactor" │ <span data-term="vocabulary.par">Par</span> 4 · <data class="text-text-muted">Slope 1 (cross-package)</data></p>
+
+          <div class="border-t border-border/30 pt-2 space-y-1">
+            <p class="text-text-secondary"><span data-term="vocabulary.handicap">Handicap</span>: <span class="text-emerald">1.2</span> <span class="text-emerald/60">↓ trending down</span></p>
+            <p class="text-text-secondary"><span data-term="hazards.bunker">Bunker</span> index: <span class="text-gold">2 known</span> in auth module</p>
+            <p class="text-text-secondary">Backlog: <span class="text-text-primary">4 <span data-term="vocabulary.ticket">tickets</span></span> queued</p>
+          </div>
+
+          <div class="border-t border-border/30 pt-2">
+            <p class="text-text-muted">Ready to start?</p>
+            <div class="mt-1.5 space-y-0.5">
+              <div class="flex items-center gap-2"><span class="text-emerald">❯</span><span class="text-text-primary bg-emerald/10 px-2 py-0.5 rounded">Claim first <span data-term="vocabulary.ticket">ticket</span></span></div>
+              <div class="flex items-center gap-2"><span class="text-text-muted/40">○</span><span class="text-text-muted">Review backlog</span></div>
+              <div class="flex items-center gap-2"><span class="text-text-muted/40">○</span><span class="text-text-muted">Adjust <span data-term="vocabulary.par">par</span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- Prompt 2: Pre-Shot (Claim Ticket)          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div data-how-panel="claim" class="hidden">
+      <!-- Prompt bubble -->
+      <div class="flex items-start gap-3 mb-4">
+        <div class="w-7 h-7 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-blue-400" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" />
           </svg>
-        </a>
+        </div>
+        <div class="rounded-xl rounded-tl-sm bg-blue-500/10 border border-blue-500/20 px-4 py-2.5 max-w-lg">
+          <p class="text-blue-300 text-sm font-mono">Claim <span data-term="vocabulary.ticket">ticket</span> S29-1: Add OAuth provider</p>
+        </div>
+      </div>
+
+      <!-- SLOPE response -->
+      <div class="rounded-xl border border-emerald/20 bg-bg-surface overflow-hidden ml-10">
+        <div class="flex items-center gap-2 px-4 py-2.5 border-b border-emerald/10 bg-emerald/5">
+          <div class="flex gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald/40"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+          </div>
+          <span class="text-emerald text-xs font-mono ml-1"><span data-term="vocabulary.preShot">Pre-Shot</span> Routine</span>
+        </div>
+        <div class="p-5 font-mono text-xs leading-relaxed space-y-2">
+          <p class="text-text-muted">── <span data-term="vocabulary.ticket">Shot</span> S29-1 ──────────────────</p>
+          <p class="text-text-secondary">"Add OAuth provider" │ <span data-term="clubs.short_iron">Short Iron</span></p>
+
+          <div class="border-t border-border/30 pt-2 space-y-1">
+            <p class="text-text-secondary"><span data-term="vocabulary.ticket">Ticket</span> S29-1 claimed ✓</p>
+            <p class="text-text-secondary"><span data-term="vocabulary.club">Club</span> selected: <span class="text-text-primary" data-term="clubs.short_iron">Short Iron</span> <span class="text-text-muted">(standard single-package)</span></p>
+            <p class="text-text-secondary">Known <span data-term="hazards.bunker">hazards</span> in area: <span class="text-gold"><span data-term="hazards.bunker">Bunker</span> ×1</span> <span class="text-text-muted">(nvm sourcing)</span></p>
+            <p class="text-text-secondary">Target: OAuth callback endpoint working with tests</p>
+          </div>
+
+          <div class="border-t border-border/30 pt-2">
+            <p class="text-text-muted"><span data-term="specialPlays.provisional">Provisional</span>:</p>
+            <p class="text-text-secondary/70 italic">"If blocked after 2 commits, fall back to session-based auth"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- Prompt 3: Post-Shot (Score Ticket)         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div data-how-panel="score" class="hidden">
+      <!-- Prompt bubble -->
+      <div class="flex items-start gap-3 mb-4">
+        <div class="w-7 h-7 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-blue-400" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" />
+          </svg>
+        </div>
+        <div class="rounded-xl rounded-tl-sm bg-blue-500/10 border border-blue-500/20 px-4 py-2.5 max-w-lg">
+          <p class="text-blue-300 text-sm font-mono"><span data-term="vocabulary.ticket">Ticket</span> S29-1 complete, score it</p>
+        </div>
+      </div>
+
+      <!-- SLOPE response -->
+      <div class="rounded-xl border border-emerald/20 bg-bg-surface overflow-hidden ml-10">
+        <div class="flex items-center gap-2 px-4 py-2.5 border-b border-emerald/10 bg-emerald/5">
+          <div class="flex gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald/40"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+          </div>
+          <span class="text-emerald text-xs font-mono ml-1"><span data-term="vocabulary.postShot">Post-Shot</span> Scoring</span>
+        </div>
+        <div class="p-5 font-mono text-xs leading-relaxed space-y-2">
+          <p class="text-text-muted">── <span data-term="vocabulary.ticket">Shot</span> S29-1 Result ─────────────</p>
+
+          <div class="space-y-1">
+            <p class="text-text-secondary">Result: <span class="text-emerald"><span data-term="shotResults.fairway">Fairway</span> → <span data-term="shotResults.green">Green</span> ✅</span></p>
+            <p class="text-text-secondary"><span data-term="hazards.bunker">Hazards</span> hit: <span class="text-emerald">0</span></p>
+            <p class="text-text-secondary">Miss direction: <span class="text-emerald">None</span></p>
+            <p class="text-text-secondary">Commits: <span class="text-text-primary">3</span> <span class="text-text-muted">(within budget)</span></p>
+          </div>
+
+          <div class="border-t border-border/30 pt-2">
+            <p class="text-text-secondary">Status: <span class="text-emerald">On track</span> — 1 of 4 <span data-term="vocabulary.ticket">tickets</span> complete</p>
+            <div class="flex items-center gap-3 mt-1.5">
+              <div class="flex-1 h-1.5 rounded-full bg-border/30 overflow-hidden">
+                <div class="h-full w-1/4 rounded-full bg-emerald/60"></div>
+              </div>
+              <span class="text-text-muted text-[10px]">25%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- Prompt 4: Post-Hole (Wrap Up Sprint)       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div data-how-panel="wrap" class="hidden">
+      <!-- Prompt bubble -->
+      <div class="flex items-start gap-3 mb-4">
+        <div class="w-7 h-7 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-blue-400" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" />
+          </svg>
+        </div>
+        <div class="rounded-xl rounded-tl-sm bg-blue-500/10 border border-blue-500/20 px-4 py-2.5 max-w-lg">
+          <p class="text-blue-300 text-sm font-mono"><span data-term="vocabulary.sprint">Sprint</span> done, build my <span data-term="vocabulary.scorecard">scorecard</span></p>
+        </div>
+      </div>
+
+      <!-- SLOPE response -->
+      <div class="rounded-xl border border-emerald/20 bg-bg-surface overflow-hidden ml-10">
+        <div class="flex items-center gap-2 px-4 py-2.5 border-b border-emerald/10 bg-emerald/5">
+          <div class="flex gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald/40"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+          </div>
+          <span class="text-emerald text-xs font-mono ml-1"><span data-term="vocabulary.postHole">Post-Hole</span> <span data-term="vocabulary.scorecard">Scorecard</span></span>
+        </div>
+        <div class="p-5 font-mono text-xs leading-relaxed space-y-2">
+          <p class="text-text-muted">── <span data-term="vocabulary.sprint">Hole</span> 29 <span data-term="vocabulary.scorecard">Scorecard</span> ──────────────</p>
+          <p class="text-text-secondary">"OAuth & API Refactor" │ <span data-term="vocabulary.par">Par</span> 4</p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs font-mono border-collapse">
+              <thead>
+                <tr class="text-text-muted">
+                  <th class="text-left pr-2 pb-1 font-normal">#</th>
+                  <th class="text-left pr-3 pb-1 font-normal"><span data-term="vocabulary.ticket">Shot</span></th>
+                  <th class="text-left pr-3 pb-1 font-normal"><span data-term="vocabulary.club">Club</span></th>
+                  <th class="text-left pr-2 pb-1 font-normal">Result</th>
+                </tr>
+              </thead>
+              <tbody class="text-text-secondary">
+                <tr>
+                  <td class="pr-2 py-0.5 text-text-muted">S29-1</td>
+                  <td class="pr-3 py-0.5">OAuth provider</td>
+                  <td class="pr-3 py-0.5" data-term="clubs.short_iron">Short Iron</td>
+                  <td class="pr-2 py-0.5 text-emerald">✅ <span data-term="shotResults.green">Green</span></td>
+                </tr>
+                <tr>
+                  <td class="pr-2 py-0.5 text-text-muted">S29-2</td>
+                  <td class="pr-3 py-0.5">Token refresh</td>
+                  <td class="pr-3 py-0.5" data-term="clubs.wedge">Wedge</td>
+                  <td class="pr-2 py-0.5 text-emerald">⭐ <span data-term="shotResults.in_the_hole">Hole!</span></td>
+                </tr>
+                <tr>
+                  <td class="pr-2 py-0.5 text-text-muted">S29-3</td>
+                  <td class="pr-3 py-0.5">API rate limiter</td>
+                  <td class="pr-3 py-0.5" data-term="clubs.long_iron">Long Iron</td>
+                  <td class="pr-2 py-0.5 text-emerald">✅ <span data-term="shotResults.fairway">Fairway</span></td>
+                </tr>
+                <tr>
+                  <td class="pr-2 py-0.5 text-text-muted">S29-4</td>
+                  <td class="pr-3 py-0.5">Integration tests</td>
+                  <td class="pr-3 py-0.5" data-term="clubs.putter">Putter</td>
+                  <td class="pr-2 py-0.5 text-gold">⚠ <span data-term="shotResults.fairway">Fairway</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="border-t border-border/30 pt-2 space-y-1">
+            <p class="text-text-secondary">Score: <span class="text-emerald">4</span> (<span class="text-emerald" data-term="scoreLabels.par">Par</span>) │ <span data-term="vocabulary.handicap">Handicap</span>: <span class="text-emerald">1.1</span> <span class="text-emerald/60">↓</span></p>
+            <p class="text-text-muted"><span data-term="statLabels.fairways">FW</span>: 100% <span class="text-text-muted/40">·</span> <span data-term="statLabels.gir">GIR</span>: 75% <span class="text-text-muted/40">·</span> <span data-term="statLabels.putts">Putts</span>: 0.25</p>
+          </div>
+
+          <div class="border-t border-border/30 pt-2">
+            <p class="text-text-secondary"><span data-term="vocabulary.sprint">Hole</span> complete. What next?</p>
+            <div class="mt-1.5 space-y-0.5">
+              <div class="flex items-center gap-2"><span class="text-emerald">❯</span><span class="text-text-primary bg-emerald/10 px-2 py-0.5 rounded">Plan a new <span data-term="vocabulary.sprint">hole</span></span></div>
+              <div class="flex items-center gap-2"><span class="text-text-muted/40">○</span><span class="text-text-muted">Review <span data-term="statLabels.missPattern">miss patterns</span></span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  function initHowSwitcher() {
+    const tabs = document.querySelectorAll<HTMLButtonElement>('.how-tab');
+    const select = document.querySelector<HTMLSelectElement>('.how-select');
+    const panels = document.querySelectorAll<HTMLElement>('[data-how-panel]');
+
+    function switchTo(id: string) {
+      panels.forEach(panel => {
+        if (panel.dataset.howPanel === id) {
+          panel.classList.remove('hidden');
+        } else {
+          panel.classList.add('hidden');
+        }
+      });
+
+      tabs.forEach(tab => {
+        if (tab.dataset.how === id) {
+          tab.classList.add('bg-emerald/10', 'text-emerald', 'border-emerald/20');
+          tab.classList.remove('text-text-muted', 'hover:text-text-secondary', 'border-transparent');
+        } else {
+          tab.classList.remove('bg-emerald/10', 'text-emerald', 'border-emerald/20');
+          tab.classList.add('text-text-muted', 'hover:text-text-secondary', 'border-transparent');
+        }
+      });
+
+      if (select) select.value = id;
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        if (tab.dataset.how) switchTo(tab.dataset.how);
+      });
+    });
+
+    if (select) {
+      select.addEventListener('change', () => switchTo(select.value));
+    }
+  }
+
+  initHowSwitcher();
+</script>
