@@ -1,0 +1,45 @@
+<!-- Analysis & Advisor -->
+<section id="analysis-advisor" class="mb-16 scroll-mt-20">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Analysis & Advisor</h2>
+  <p class="text-text-secondary mb-6">SLOPE doesn't just record scores — it analyzes patterns and recommends approaches.</p>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+    <div class="p-4 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Dispersion Report</span>
+      <p class="text-text-muted text-xs mt-1">Miss pattern breakdown: dominant direction, systemic issues, miss rate %</p>
+    </div>
+    <div class="p-4 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Area Performance</span>
+      <p class="text-text-muted text-xs mt-1">Stats by <span data-term="vocabulary.sprint">sprint</span> type, <span data-term="vocabulary.club">club</span>, and <span data-term="vocabulary.par">par</span> — where you're strong vs weak</p>
+    </div>
+    <div class="p-4 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium"><span data-term="vocabulary.club">Club</span> Recommendation</span>
+      <p class="text-text-muted text-xs mt-1"><code class="text-emerald text-[10px] font-mono">recommendClub()</code> suggests approach + confidence from history</p>
+    </div>
+    <div class="p-4 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium"><span data-term="vocabulary.ticket">Shot</span> Classification</span>
+      <p class="text-text-muted text-xs mt-1"><code class="text-emerald text-[10px] font-mono">classifyShot()</code> auto-scores <span data-term="vocabulary.ticket">ticket</span>s from execution traces</p>
+    </div>
+    <div class="p-4 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Auto-Scoring</span>
+      <p class="text-text-muted text-xs mt-1"><code class="text-emerald text-[10px] font-mono">classifyShotFromSignals()</code> uses CI test results + PR metadata</p>
+    </div>
+    <div class="p-4 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Training Plan</span>
+      <p class="text-text-muted text-xs mt-1"><code class="text-emerald text-[10px] font-mono">generateTrainingPlan()</code> produces targeted drills from <span data-term="vocabulary.handicap">handicap</span> + dispersion</p>
+    </div>
+  </div>
+
+  <details class="read-the-green">
+    <summary>
+      <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      <span class="text-emerald text-sm font-medium" data-term="vocabulary.readTheGreen">Read the Green</span>
+      <span class="text-text-muted text-xs">— From data to decisions</span>
+    </summary>
+    <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
+      <p>The analysis layer is what turns SLOPE from a logging tool into a coaching system. Raw <span data-term="vocabulary.scorecard">scorecard</span>s give you numbers; the advisor gives you <strong class="text-text-primary">actionable recommendations</strong>.</p>
+      <p><code class="text-emerald text-xs">recommendClub()</code> looks at your history with similar <span data-term="vocabulary.ticket">ticket</span>s — same <span data-term="vocabulary.par">par</span>, same area, same conditions — and suggests the approach most likely to land on the <span data-term="vocabulary.green">green</span>. Confidence drops when you haven't faced this combination before.</p>
+      <p>Auto-scoring via <code class="text-emerald text-xs">classifyShotFromSignals()</code> means agents don't need to self-assess. CI pass/fail, PR size, review comments, and time-to-merge all feed into an objective result classification. This removes the biggest bias in self-scored systems.</p>
+    </div>
+  </details>
+</section>

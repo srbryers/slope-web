@@ -5,7 +5,7 @@ const roles = [generalist, backend, frontend, architect, devops];
 ---
 
 <!-- Team & Multi-Agent -->
-<section class="mb-16">
+<section id="team-multi-agent" class="mb-16 scroll-mt-20">
   <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Team & Multi-Agent</h2>
   <p class="text-text-secondary mb-6">SLOPE supports multi-agent sprints with {roles.length} built-in roles. Each role gets a filtered <span data-term="vocabulary.briefing">briefing</span>, preferred <span data-term="vocabulary.club">club</span>s, and separate <span data-term="vocabulary.handicap">handicap</span> tracking.</p>
 
@@ -48,6 +48,18 @@ const roles = [generalist, backend, frontend, architect, devops];
     <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
       <span class="text-text-primary text-sm font-medium">Standups</span>
       <p class="text-text-muted text-xs mt-1">Auto-generated team standups from session data across all agents</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Leaderboard</span>
+      <p class="text-text-muted text-xs mt-1">Ranks players by <span data-term="vocabulary.handicap">handicap</span> with improvement trend over time</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Player <span data-term="vocabulary.handicap">Handicap</span>s</span>
+      <p class="text-text-muted text-xs mt-1">Per-player rolling stats computed independently from team aggregates</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Standup Reports</span>
+      <p class="text-text-muted text-xs mt-1">Structured progress/blockers/decisions/handoffs for each agent per session</p>
     </div>
   </div>
 

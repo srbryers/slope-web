@@ -1,0 +1,44 @@
+<!-- Tournament Review -->
+<section id="tournament-review" class="mb-16 scroll-mt-20">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary"><span data-term="vocabulary.tournament">Tournament</span> Review</h2>
+  <p class="text-text-secondary mb-6">Track multi-<span data-term="vocabulary.sprint">sprint</span> initiatives as a cohesive unit.</p>
+
+  <div class="grid sm:grid-cols-2 gap-3 mb-6">
+    <div class="p-4 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Aggregate Scoring</span>
+      <p class="text-text-muted text-xs mt-1">Total <span data-term="vocabulary.par">par</span>/score, landing rate, best/worst <span data-term="vocabulary.sprint">sprint</span></p>
+    </div>
+    <div class="p-4 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Aggregate Stats</span>
+      <p class="text-text-muted text-xs mt-1">Avg slope, total hazards, <span data-term="statLabels.fairways">fairway</span>/<span data-term="statLabels.gir">GIR</span> rate</p>
+    </div>
+    <div class="p-4 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Hazard Index</span>
+      <p class="text-text-muted text-xs mt-1">Recurring patterns across the initiative — what keeps biting you</p>
+    </div>
+    <div class="p-4 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium"><span data-term="vocabulary.club">Club</span> Performance</span>
+      <p class="text-text-muted text-xs mt-1">Which approaches worked best across all <span data-term="vocabulary.sprint">sprint</span>s in the <span data-term="vocabulary.tournament">tournament</span></p>
+    </div>
+  </div>
+
+  <!-- CLI -->
+  <div class="rounded-lg border border-border-subtle bg-bg-card p-4 mb-6">
+    <div class="flex items-center gap-2 mb-2">
+      <code class="text-emerald text-xs font-mono bg-bg-primary px-2 py-1 rounded">slope tournament</code>
+    </div>
+    <p class="text-text-muted text-xs">Aggregate scorecards from a multi-<span data-term="vocabulary.sprint">sprint</span> initiative into a single <span data-term="vocabulary.tournament">tournament</span> summary with combined stats and hazard analysis.</p>
+  </div>
+
+  <details class="read-the-green">
+    <summary>
+      <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      <span class="text-emerald text-sm font-medium" data-term="vocabulary.readTheGreen">Read the Green</span>
+      <span class="text-text-muted text-xs">— When to use <span data-term="vocabulary.tournament">tournament</span> mode</span>
+    </summary>
+    <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
+      <p>A <span data-term="vocabulary.tournament">tournament</span> groups related <span data-term="vocabulary.sprint">sprint</span>s — like "auth system rewrite" or "v2 migration" — into a single narrative. Individual <span data-term="vocabulary.scorecard">scorecard</span>s show per-<span data-term="vocabulary.sprint">sprint</span> performance; the <span data-term="vocabulary.tournament">tournament</span> shows the <strong class="text-text-primary">initiative-level trajectory</strong>.</p>
+      <p>The hazard index is especially useful here. A hazard that appears once is a fluke. A hazard that appears in 4 of 6 <span data-term="vocabulary.sprint">sprint</span>s is a systemic issue that needs a dedicated fix — and SLOPE surfaces it automatically.</p>
+    </div>
+  </details>
+</section>

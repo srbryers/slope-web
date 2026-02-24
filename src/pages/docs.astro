@@ -1,0 +1,278 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/global.css';
+
+import Installation from '../sections/framework/Installation.astro';
+import BigPicture from '../sections/framework/BigPicture.astro';
+import StructureMapping from '../sections/framework/StructureMapping.astro';
+import ParSystem from '../sections/framework/ParSystem.astro';
+import SprintTypes from '../sections/framework/SprintTypes.astro';
+import ClubSelection from '../sections/framework/ClubSelection.astro';
+import Hazards from '../sections/framework/Hazards.astro';
+import Conditions from '../sections/framework/Conditions.astro';
+import Routines from '../sections/framework/Routines.astro';
+import ScoringHandicap from '../sections/framework/ScoringHandicap.astro';
+import AnalysisAdvisor from '../sections/framework/AnalysisAdvisor.astro';
+import TrainingSystem from '../sections/framework/TrainingSystem.astro';
+import SpecialPlays from '../sections/framework/SpecialPlays.astro';
+import ExampleScorecard from '../sections/framework/ExampleScorecard.astro';
+import ReportsDashboard from '../sections/framework/ReportsDashboard.astro';
+import CliCommands from '../sections/framework/CliCommands.astro';
+import GuardFramework from '../sections/framework/GuardFramework.astro';
+import MetaphorEngine from '../sections/framework/MetaphorEngine.astro';
+import PluginSystem from '../sections/framework/PluginSystem.astro';
+import TeamMultiAgent from '../sections/framework/TeamMultiAgent.astro';
+import EscalationSystem from '../sections/framework/EscalationSystem.astro';
+import FlowTracking from '../sections/framework/FlowTracking.astro';
+import RoadmapTools from '../sections/framework/RoadmapTools.astro';
+import TournamentReview from '../sections/framework/TournamentReview.astro';
+
+const metaphors = [
+  { id: 'golf', name: 'Golf', desc: 'You vs the course' },
+  { id: 'agile', name: 'Agile', desc: 'Sprints and stories' },
+  { id: 'tennis', name: 'Tennis', desc: 'Serve, rally, match point' },
+  { id: 'baseball', name: 'Baseball', desc: 'Innings and home runs' },
+  { id: 'gaming', name: 'Gaming', desc: 'XP and boss fights' },
+  { id: 'dnd', name: 'D&D', desc: 'Quests and encounters' },
+  { id: 'matrix', name: 'Matrix', desc: 'Red pill, blue pill' },
+];
+
+const sidebarGroups = [
+  {
+    label: 'Getting Started',
+    links: [
+      { id: 'installation', name: 'Installation & Usage' },
+    ],
+  },
+  {
+    label: 'Core Concepts',
+    links: [
+      { id: 'big-picture', name: 'The Big Picture' },
+      { id: 'structure-mapping', name: 'Structure Mapping' },
+      { id: 'par-system', name: 'Par System' },
+      { id: 'sprint-types', name: 'Sprint Types' },
+    ],
+  },
+  {
+    label: 'Gameplay',
+    links: [
+      { id: 'club-selection', name: 'Club Selection' },
+      { id: 'hazards', name: 'Hazards' },
+      { id: 'conditions', name: 'Conditions' },
+    ],
+  },
+  {
+    label: 'Routines & Scoring',
+    links: [
+      { id: 'routines', name: 'Routines' },
+      { id: 'scoring-handicap', name: 'Scoring & Handicap' },
+      { id: 'analysis-advisor', name: 'Analysis & Advisor' },
+      { id: 'training-system', name: 'Training System' },
+    ],
+  },
+  {
+    label: 'Examples & Output',
+    links: [
+      { id: 'special-plays', name: 'Special Plays' },
+      { id: 'example-scorecard', name: 'Example Scorecard' },
+      { id: 'reports-dashboard', name: 'Reports & Dashboard' },
+    ],
+  },
+  {
+    label: 'Tooling',
+    links: [
+      { id: 'cli-commands', name: 'CLI Commands' },
+      { id: 'guard-framework', name: 'Guard Framework' },
+      { id: 'metaphor-engine', name: 'Metaphor Engine' },
+      { id: 'plugin-system', name: 'Plugin System' },
+    ],
+  },
+  {
+    label: 'Advanced',
+    links: [
+      { id: 'team-multi-agent', name: 'Team & Multi-Agent' },
+      { id: 'escalation-system', name: 'Escalation System' },
+      { id: 'flow-tracking', name: 'Flow Tracking' },
+      { id: 'roadmap-tools', name: 'Roadmap Tools' },
+      { id: 'tournament-review', name: 'Tournament Review' },
+    ],
+  },
+];
+---
+
+<Base title="SLOPE Framework — Full Reference" description="The complete SLOPE framework for scoring AI agent sprints — structured measurement with customizable metaphors." canonicalPath="/docs">
+  <!-- Mobile sidebar toggle button -->
+  <button id="sidebar-toggle" class="lg:hidden fixed bottom-6 right-6 z-30 inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-bg-card border border-border shadow-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:border-emerald/30 transition-colors">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </svg>
+    On this page
+  </button>
+
+  <!-- Sidebar backdrop -->
+  <div id="sidebar-backdrop" class="hidden fixed inset-0 bg-black/50 z-30 lg:hidden"></div>
+
+  <div class="max-w-7xl mx-auto px-6 py-16 sm:py-24 lg:grid lg:grid-cols-[240px_1fr] lg:gap-12">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 bg-bg-primary border-r border-border-subtle transform -translate-x-full transition-transform duration-200 lg:relative lg:translate-x-0 lg:w-auto lg:border-r-0 lg:bg-transparent lg:z-auto">
+      <nav class="sticky top-[4.5rem] max-h-[calc(100vh-4.5rem)] overflow-y-auto pr-4 pb-8 pt-4 lg:pt-0 pl-6 lg:pl-0">
+        <!-- Close button (mobile only) -->
+        <button id="sidebar-close" class="lg:hidden flex items-center gap-2 text-sm text-text-muted hover:text-text-primary mb-4 transition-colors">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          Close
+        </button>
+
+        {sidebarGroups.map(({ label, links }) => (
+          <div class="mb-6">
+            <p class="text-xs font-mono uppercase tracking-wider text-text-muted mb-2">{label}</p>
+            <ul class="space-y-1">
+              {links.map(({ id, name }) => (
+                <li>
+                  <a href={`#${id}`} class="sidebar-link text-sm text-text-secondary">{name}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </nav>
+    </aside>
+
+    <!-- Content -->
+    <main class="max-w-4xl">
+      <article>
+        <!-- Header -->
+        <div class="mb-16">
+          <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">Full Reference</p>
+          <h1 class="font-heading font-extrabold text-4xl sm:text-5xl tracking-tight mb-4 text-text-primary">
+            The SLOPE Framework
+          </h1>
+          <p class="text-text-secondary text-lg leading-relaxed mb-6">
+            A comprehensive framework that maps sprint workflows to <span data-term="name">Golf</span> terminology. Goes beyond naming — the <span data-term="name">Golf</span> metaphor introduces structural improvements: directional miss tracking, <span data-term="vocabulary.handicap">handicap</span> trending, <span data-term="vocabulary.club">club</span> selection, difficulty rating, conditions tracking, and a multi-level routine hierarchy.
+          </p>
+          <div class="flex items-center gap-2 text-text-muted text-xs">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-emerald" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+              <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            <span>Look for <span class="text-emerald font-medium" data-term="vocabulary.readTheGreen">Read the Green</span> sections to dive deeper into each topic</span>
+          </div>
+
+          <!-- Metaphor picker -->
+          <p class="text-text-muted text-sm mb-4">Switch the vocabulary — all <span class="text-emerald font-medium">highlighted terms</span> across this page will update.</p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 sm:gap-3">
+            {metaphors.map(({ id, name, desc }) => (
+              <button
+                data-inline-metaphor={id}
+                class:list={[
+                  'inline-metaphor-pill rounded-lg border p-3 sm:p-4 text-center transition-all cursor-pointer min-h-[44px]',
+                  id === 'golf'
+                    ? 'border-emerald/40 bg-emerald/10 text-emerald'
+                    : 'border-border bg-bg-card text-text-muted hover:border-emerald/20 hover:text-text-secondary',
+                ]}
+              >
+                <div class="font-heading font-bold text-sm">{name}</div>
+                <div class="text-[10px] sm:text-xs mt-0.5 opacity-70 leading-tight">{desc}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Sections: Getting Started -->
+        <Installation />
+
+        <!-- Sections: Core Concepts -->
+        <BigPicture />
+        <StructureMapping />
+        <ParSystem />
+        <SprintTypes />
+
+        <!-- Sections: Gameplay -->
+        <ClubSelection />
+        <Hazards />
+        <Conditions />
+
+        <!-- Sections: Routines & Scoring -->
+        <Routines />
+        <ScoringHandicap />
+        <AnalysisAdvisor />
+        <TrainingSystem />
+
+        <!-- Sections: Examples & Output -->
+        <SpecialPlays />
+        <ExampleScorecard />
+        <ReportsDashboard />
+
+        <!-- Sections: Tooling -->
+        <CliCommands />
+        <GuardFramework />
+        <MetaphorEngine />
+        <PluginSystem />
+
+        <!-- Sections: Advanced -->
+        <TeamMultiAgent />
+        <EscalationSystem />
+        <FlowTracking />
+        <RoadmapTools />
+        <TournamentReview />
+
+        <!-- Back to main -->
+        <div class="pt-8 border-t border-border-subtle flex items-center justify-between">
+          <a href="/" class="inline-flex items-center gap-2 text-emerald text-sm font-medium hover:underline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Back to SLOPE
+          </a>
+          <a href="#" class="inline-flex items-center gap-2 text-text-muted text-sm hover:text-text-secondary transition-colors">
+            Back to top
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </article>
+    </main>
+  </div>
+
+  <script>
+    import { initInlineSwitcher } from '../scripts/interactions';
+    initInlineSwitcher();
+
+    // Sidebar toggle (mobile)
+    const toggle = document.getElementById('sidebar-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    const sidebarClose = document.getElementById('sidebar-close');
+
+    function openSidebar() {
+      sidebar?.classList.remove('-translate-x-full');
+      backdrop?.classList.remove('hidden');
+    }
+    function closeSidebar() {
+      sidebar?.classList.add('-translate-x-full');
+      backdrop?.classList.add('hidden');
+    }
+
+    toggle?.addEventListener('click', openSidebar);
+    backdrop?.addEventListener('click', closeSidebar);
+    sidebarClose?.addEventListener('click', closeSidebar);
+    sidebar?.querySelectorAll('.sidebar-link').forEach(link => {
+      link.addEventListener('click', closeSidebar);
+    });
+
+    // Scroll-spy: highlight active sidebar link based on scroll position
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+          const link = document.querySelector(`.sidebar-link[href="#${entry.target.id}"]`);
+          if (link) link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+  </script>
+</Base>

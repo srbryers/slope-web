@@ -1,0 +1,47 @@
+<!-- Reports & Dashboard -->
+<section id="reports-dashboard" class="mb-16 scroll-mt-20">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Reports & Dashboard</h2>
+  <p class="text-text-secondary mb-6">Generate static reports or launch an interactive dashboard from your <span data-term="vocabulary.scorecard">scorecard</span> data.</p>
+
+  <div class="grid sm:grid-cols-2 gap-4 mb-6">
+    <!-- Static Report -->
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="text-emerald shrink-0" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="text-text-primary text-sm font-bold">Static Report</span>
+      </div>
+      <p class="text-text-muted text-xs mb-3">Markdown output with <span data-term="vocabulary.handicap">handicap</span> trend, dispersion chart, area performance, nutrition, and <span data-term="vocabulary.sprint">sprint</span> table.</p>
+      <code class="text-emerald text-xs font-mono bg-bg-primary px-2 py-1 rounded block">slope report</code>
+    </div>
+
+    <!-- Interactive Dashboard -->
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="text-gold shrink-0" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="text-text-primary text-sm font-bold">Interactive Dashboard</span>
+      </div>
+      <p class="text-text-muted text-xs mb-3"><span data-term="vocabulary.sprint">Sprint</span> timeline, miss heatmap, area hazard overlay, and drill-down into individual <span data-term="vocabulary.scorecard">scorecard</span>s.</p>
+      <code class="text-emerald text-xs font-mono bg-bg-primary px-2 py-1 rounded block">slope dashboard</code>
+    </div>
+  </div>
+
+  <details class="read-the-green">
+    <summary>
+      <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      <span class="text-emerald text-sm font-medium" data-term="vocabulary.readTheGreen">Read the Green</span>
+      <span class="text-text-muted text-xs">— Static vs interactive</span>
+    </summary>
+    <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
+      <p><code class="text-emerald text-xs">slope report</code> generates a Markdown file you can commit alongside your <span data-term="vocabulary.scorecard">scorecard</span>s — perfect for PR descriptions or team reviews. It's a snapshot: <span data-term="vocabulary.handicap">handicap</span> trend, top hazards, area breakdown.</p>
+      <p><code class="text-emerald text-xs">slope dashboard</code> launches a local web UI for exploratory analysis. Click into any <span data-term="vocabulary.sprint">sprint</span> to see individual <span data-term="vocabulary.ticket">shot</span>s, filter by <span data-term="vocabulary.club">club</span> or hazard type, and spot patterns that static reports miss.</p>
+    </div>
+  </details>
+</section>
