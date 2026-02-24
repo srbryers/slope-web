@@ -8,6 +8,12 @@ const metaphors = [
   { id: 'dnd', name: 'D&D', desc: 'Quests and encounters' },
   { id: 'matrix', name: 'Matrix', desc: 'Red pill, blue pill' },
 ];
+
+const scenarios = [
+  { id: 'feature', label: 'Feature Build' },
+  { id: 'bugfix', label: 'Bug Fix' },
+  { id: 'refactor', label: 'Refactor' },
+];
 ---
 
 <section id="see-it-in-action" class="py-24 sm:py-32 bg-bg-surface/30">
@@ -41,7 +47,36 @@ const metaphors = [
       ))}
     </div>
 
-    <!-- Terminal cards -->
+    <!-- Scenario selector -->
+    <div class="mb-6" data-reveal>
+      <!-- Desktop: pill tabs -->
+      <div class="hidden sm:inline-flex items-center gap-1 rounded-lg bg-bg-surface border border-border/50 p-1">
+        {scenarios.map(({ id, label }) => (
+          <button
+            data-scenario={id}
+            class:list={[
+              'scenario-tab px-4 py-1.5 rounded-md text-sm font-mono transition-all cursor-pointer',
+              id === 'feature'
+                ? 'bg-emerald/10 text-emerald border border-emerald/20'
+                : 'text-text-muted hover:text-text-secondary border border-transparent',
+            ]}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+      <!-- Mobile: dropdown -->
+      <select class="scenario-select sm:hidden w-full rounded-lg border border-border bg-bg-surface text-text-secondary text-sm font-mono px-3 py-2 appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%236b7280%22%20d%3D%22M3%205l3%203%203-3%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_0.75rem_center]">
+        {scenarios.map(({ id, label }) => (
+          <option value={id}>{label}</option>
+        ))}
+      </select>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- Scenario: Feature Build                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div data-scenario-panel="feature">
     <div class="grid md:grid-cols-2 gap-6" data-stagger>
       <!-- Without SLOPE -->
       <div class="rounded-xl border border-red-900/30 bg-bg-surface overflow-hidden">
@@ -75,11 +110,9 @@ const metaphors = [
           <span class="text-emerald text-xs font-mono ml-1">With SLOPE</span>
         </div>
         <div class="p-5 font-mono text-[11px] leading-relaxed space-y-2">
-          <!-- Sprint header -->
           <p class="text-text-muted">── <span data-term="vocabulary.sprint">Hole</span> 28 ────────────────────</p>
           <p class="text-text-secondary">"User Auth & Session Management" │ <span data-term="vocabulary.par">Par</span> 4</p>
 
-          <!-- Ticket table -->
           <div class="overflow-x-auto">
             <table class="w-full text-[11px] font-mono border-collapse">
               <thead>
@@ -124,13 +157,11 @@ const metaphors = [
             </table>
           </div>
 
-          <!-- Stats line -->
           <div class="border-t border-border/30 pt-2 space-y-1">
             <p class="text-text-secondary">Score: <span class="text-emerald">4</span> (<span class="text-emerald" data-term="scoreLabels.par">Par</span>) │ <span data-term="vocabulary.handicap">Handicap</span>: <span class="text-emerald">1.2</span> <span class="text-emerald/60">↓</span></p>
             <p class="text-text-muted"><span data-term="statLabels.fairways">FW</span>: 100% <span class="text-text-muted/40">·</span> <span data-term="statLabels.gir">GIR</span>: 75% <span class="text-text-muted/40">·</span> <span data-term="statLabels.putts">Putts</span>: 0.25</p>
           </div>
 
-          <!-- Ask user prompt -->
           <div class="border-t border-border/30 pt-2">
             <p class="text-text-secondary"><span data-term="vocabulary.sprint">Hole</span> complete. What next?</p>
             <div class="mt-1.5 space-y-0.5">
@@ -142,10 +173,259 @@ const metaphors = [
         </div>
       </div>
     </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- Scenario: Bug Fix                           -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div data-scenario-panel="bugfix" class="hidden">
+    <div class="grid md:grid-cols-2 gap-6" data-stagger>
+      <!-- Without SLOPE -->
+      <div class="rounded-xl border border-red-900/30 bg-bg-surface overflow-hidden">
+        <div class="flex items-center gap-2 px-4 py-2.5 border-b border-red-900/20 bg-red-950/20">
+          <div class="flex gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500/40"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+          </div>
+          <span class="text-red-400 text-xs font-mono ml-1">Without SLOPE</span>
+        </div>
+        <div class="p-5 font-mono text-xs text-text-muted leading-relaxed space-y-1">
+          <p>$ git log --oneline → "Fixed it" × 12</p>
+          <p class="text-red-400/70">WARN: Same flaky test failing for 3 months</p>
+          <p>$ why did CI break? → "race condition, I think"</p>
+          <p class="text-red-400/70">ERROR: Fix reverted — broke again next week</p>
+          <p>$ root cause? → "not sure, tried a few things"</p>
+          <p class="text-red-400/70">WARN: No regression test added</p>
+          <p class="text-text-muted/40">... (same fix applied 4 times)</p>
+        </div>
+      </div>
+
+      <!-- With SLOPE -->
+      <div class="rounded-xl border border-emerald/20 bg-bg-surface overflow-hidden">
+        <div class="flex items-center gap-2 px-4 py-2.5 border-b border-emerald/10 bg-emerald/5">
+          <div class="flex gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald/40"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+          </div>
+          <span class="text-emerald text-xs font-mono ml-1">With SLOPE</span>
+        </div>
+        <div class="p-5 font-mono text-[11px] leading-relaxed space-y-2">
+          <p class="text-text-muted">── <span data-term="vocabulary.sprint">Hole</span> 31 ────────────────────</p>
+          <p class="text-text-secondary">"Fix Flaky CI & Race Conditions" │ <span data-term="vocabulary.par">Par</span> 3</p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-[11px] font-mono border-collapse">
+              <thead>
+                <tr class="text-text-muted">
+                  <th class="text-left pr-2 pb-1 font-normal">#</th>
+                  <th class="text-left pr-3 pb-1 font-normal"><span data-term="vocabulary.ticket">Shot</span></th>
+                  <th class="text-left pr-3 pb-1 font-normal"><span data-term="vocabulary.club">Club</span></th>
+                  <th class="text-left pr-2 pb-1 font-normal">Result</th>
+                  <th class="text-right pb-1 font-normal">Hz</th>
+                </tr>
+              </thead>
+              <tbody class="text-text-secondary">
+                <tr>
+                  <td class="pr-2 py-0.5 text-text-muted">S31-1</td>
+                  <td class="pr-3 py-0.5">Isolate race condition</td>
+                  <td class="pr-3 py-0.5" data-term="clubs.wedge">Wedge</td>
+                  <td class="pr-2 py-0.5 text-emerald">✅ <span data-term="shotResults.fairway">Fairway</span></td>
+                  <td class="text-right py-0.5 text-gold">1</td>
+                </tr>
+                <tr>
+                  <td class="pr-2 py-0.5 text-text-muted">S31-2</td>
+                  <td class="pr-3 py-0.5">Add mutex lock</td>
+                  <td class="pr-3 py-0.5" data-term="clubs.short_iron">Short Iron</td>
+                  <td class="pr-2 py-0.5 text-emerald">✅ <span data-term="shotResults.green">Green</span></td>
+                  <td class="text-right py-0.5 text-text-muted">─</td>
+                </tr>
+                <tr>
+                  <td class="pr-2 py-0.5 text-text-muted">S31-3</td>
+                  <td class="pr-3 py-0.5">Regression test suite</td>
+                  <td class="pr-3 py-0.5" data-term="clubs.putter">Putter</td>
+                  <td class="pr-2 py-0.5 text-emerald">⭐ <span data-term="shotResults.in_the_hole">Hole!</span></td>
+                  <td class="text-right py-0.5 text-text-muted">─</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="border-t border-border/30 pt-2 space-y-1">
+            <p class="text-text-secondary">Score: <span class="text-emerald">2</span> (<span class="text-emerald" data-term="scoreLabels.birdie">Birdie</span> −1) │ <span data-term="vocabulary.handicap">Handicap</span>: <span class="text-emerald">1.0</span> <span class="text-emerald/60">↓</span></p>
+            <p class="text-text-muted"><span data-term="statLabels.fairways">FW</span>: 100% <span class="text-text-muted/40">·</span> <span data-term="statLabels.gir">GIR</span>: 100% <span class="text-text-muted/40">·</span> <span data-term="statLabels.putts">Putts</span>: 0.33</p>
+            <p class="text-text-muted">Hz: <span data-term="hazards.rough">Rough</span> ×1 (tech debt)</p>
+            <p class="text-text-muted/60">Miss pattern: was going <span data-term="missDirections.short">Short</span> (under-scoped fixes)</p>
+          </div>
+
+          <div class="border-t border-border/30 pt-2">
+            <p class="text-text-secondary"><span data-term="vocabulary.sprint">Hole</span> complete. What next?</p>
+            <div class="mt-1.5 space-y-0.5">
+              <div class="flex items-center gap-2"><span class="text-emerald">❯</span><span class="text-text-primary bg-emerald/10 px-2 py-0.5 rounded">Plan a new <span data-term="vocabulary.sprint">hole</span></span></div>
+              <div class="flex items-center gap-2"><span class="text-text-muted/40">○</span><span class="text-text-muted">Refine the backlog</span></div>
+              <div class="flex items-center gap-2"><span class="text-text-muted/40">○</span><span class="text-text-muted">Review miss patterns</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- Scenario: Refactor                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div data-scenario-panel="refactor" class="hidden">
+    <div class="grid md:grid-cols-2 gap-6" data-stagger>
+      <!-- Without SLOPE -->
+      <div class="rounded-xl border border-red-900/30 bg-bg-surface overflow-hidden">
+        <div class="flex items-center gap-2 px-4 py-2.5 border-b border-red-900/20 bg-red-950/20">
+          <div class="flex gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500/40"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+          </div>
+          <span class="text-red-400 text-xs font-mono ml-1">Without SLOPE</span>
+        </div>
+        <div class="p-5 font-mono text-xs text-text-muted leading-relaxed space-y-1">
+          <p>$ git log --oneline → "big refactor" (1 commit, 47 files)</p>
+          <p class="text-red-400/70">ERROR: Checkout broken after 3-day refactor</p>
+          <p>$ tests? → "didn't run them, looked fine"</p>
+          <p class="text-red-400/70">WARN: No rollback plan, reverted entire branch</p>
+          <p>$ what was the plan? → "extract the module"</p>
+          <p class="text-red-400/70">ERROR: Broke 12 import paths, missed 3 callers</p>
+          <p class="text-text-muted/40">... (starts over from scratch)</p>
+        </div>
+      </div>
+
+      <!-- With SLOPE -->
+      <div class="rounded-xl border border-emerald/20 bg-bg-surface overflow-hidden">
+        <div class="flex items-center gap-2 px-4 py-2.5 border-b border-emerald/10 bg-emerald/5">
+          <div class="flex gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald/40"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+          </div>
+          <span class="text-emerald text-xs font-mono ml-1">With SLOPE</span>
+        </div>
+        <div class="p-5 font-mono text-[11px] leading-relaxed space-y-2">
+          <p class="text-text-muted">── <span data-term="vocabulary.sprint">Hole</span> 33 ────────────────────</p>
+          <p class="text-text-secondary">"Extract Payment Module" │ <span data-term="vocabulary.par">Par</span> 4</p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-[11px] font-mono border-collapse">
+              <thead>
+                <tr class="text-text-muted">
+                  <th class="text-left pr-2 pb-1 font-normal">#</th>
+                  <th class="text-left pr-3 pb-1 font-normal"><span data-term="vocabulary.ticket">Shot</span></th>
+                  <th class="text-left pr-3 pb-1 font-normal"><span data-term="vocabulary.club">Club</span></th>
+                  <th class="text-left pr-2 pb-1 font-normal">Result</th>
+                  <th class="text-right pb-1 font-normal">Hz</th>
+                </tr>
+              </thead>
+              <tbody class="text-text-secondary">
+                <tr>
+                  <td class="pr-2 py-0.5 text-text-muted">S33-1</td>
+                  <td class="pr-3 py-0.5">Define module boundary</td>
+                  <td class="pr-3 py-0.5" data-term="clubs.driver">Driver</td>
+                  <td class="pr-2 py-0.5 text-emerald">✅ <span data-term="shotResults.fairway">Fairway</span></td>
+                  <td class="text-right py-0.5 text-text-muted">─</td>
+                </tr>
+                <tr>
+                  <td class="pr-2 py-0.5 text-text-muted">S33-2</td>
+                  <td class="pr-3 py-0.5">Extract + re-export</td>
+                  <td class="pr-3 py-0.5" data-term="clubs.long_iron">Long Iron</td>
+                  <td class="pr-2 py-0.5 text-emerald">✅ <span data-term="shotResults.green">Green</span></td>
+                  <td class="text-right py-0.5 text-text-muted">─</td>
+                </tr>
+                <tr>
+                  <td class="pr-2 py-0.5 text-text-muted">S33-3</td>
+                  <td class="pr-3 py-0.5">Migrate callers</td>
+                  <td class="pr-3 py-0.5" data-term="clubs.short_iron">Short Iron</td>
+                  <td class="pr-2 py-0.5 text-gold">⚠ <span data-term="hazards.water">Water</span></td>
+                  <td class="text-right py-0.5 text-gold">1</td>
+                </tr>
+                <tr class="text-text-muted/60">
+                  <td class="pr-2 py-0.5"></td>
+                  <td class="pr-3 py-0.5 italic" colspan="4">↳ <span data-term="specialPlays.provisional">Provisional</span> declared — breaking change risk</td>
+                </tr>
+                <tr>
+                  <td class="pr-2 py-0.5 text-text-muted">S33-4</td>
+                  <td class="pr-3 py-0.5">Remove legacy exports</td>
+                  <td class="pr-3 py-0.5" data-term="clubs.wedge">Wedge</td>
+                  <td class="pr-2 py-0.5 text-emerald">✅ <span data-term="shotResults.fairway">Fairway</span></td>
+                  <td class="text-right py-0.5 text-text-muted">─</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="border-t border-border/30 pt-2 space-y-1">
+            <p class="text-text-secondary">Score: <span class="text-gold">5</span> (<span class="text-gold" data-term="scoreLabels.bogey">Bogey</span> +1) │ <span data-term="vocabulary.handicap">Handicap</span>: <span class="text-text-secondary">1.2</span> <span class="text-text-muted/60">→</span></p>
+            <p class="text-text-muted"><span data-term="statLabels.fairways">FW</span>: 75% <span class="text-text-muted/40">·</span> <span data-term="statLabels.gir">GIR</span>: 50% <span class="text-text-muted/40">·</span> <span data-term="statLabels.putts">Putts</span>: 0.00</p>
+            <p class="text-text-muted">Hz: <span data-term="hazards.water">Water</span> ×1 (breaking change)</p>
+          </div>
+
+          <div class="border-t border-border/30 pt-2">
+            <p class="text-text-secondary"><span data-term="vocabulary.sprint">Hole</span> complete. What next?</p>
+            <div class="mt-1.5 space-y-0.5">
+              <div class="flex items-center gap-2"><span class="text-emerald">❯</span><span class="text-text-primary bg-emerald/10 px-2 py-0.5 rounded">Plan a new <span data-term="vocabulary.sprint">hole</span></span></div>
+              <div class="flex items-center gap-2"><span class="text-text-muted/40">○</span><span class="text-text-muted">Refine the backlog</span></div>
+              <div class="flex items-center gap-2"><span class="text-text-muted/40">○</span><span class="text-text-muted">Review hazard log</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
   </div>
 </section>
 
 <script>
   import { initInlineSwitcher } from '../scripts/interactions';
   initInlineSwitcher();
+
+  function initScenarioSwitcher() {
+    const tabs = document.querySelectorAll<HTMLButtonElement>('.scenario-tab');
+    const select = document.querySelector<HTMLSelectElement>('.scenario-select');
+    const panels = document.querySelectorAll<HTMLElement>('[data-scenario-panel]');
+
+    function switchTo(id: string) {
+      // Update panels
+      panels.forEach(panel => {
+        if (panel.dataset.scenarioPanel === id) {
+          panel.classList.remove('hidden');
+        } else {
+          panel.classList.add('hidden');
+        }
+      });
+
+      // Update tabs
+      tabs.forEach(tab => {
+        if (tab.dataset.scenario === id) {
+          tab.classList.add('bg-emerald/10', 'text-emerald', 'border-emerald/20');
+          tab.classList.remove('text-text-muted', 'hover:text-text-secondary', 'border-transparent');
+        } else {
+          tab.classList.remove('bg-emerald/10', 'text-emerald', 'border-emerald/20');
+          tab.classList.add('text-text-muted', 'hover:text-text-secondary', 'border-transparent');
+        }
+      });
+
+      // Sync dropdown
+      if (select) select.value = id;
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        if (tab.dataset.scenario) switchTo(tab.dataset.scenario);
+      });
+    });
+
+    if (select) {
+      select.addEventListener('change', () => switchTo(select.value));
+    }
+  }
+
+  initScenarioSwitcher();
 </script>
