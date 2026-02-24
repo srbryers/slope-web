@@ -1,36 +1,55 @@
 ---
-const steps = [
+const commandSteps = [
   {
     num: '1',
     cmd: 'slope init',
     title: 'Initialize',
     detail: 'Set up SLOPE in your project. Pick a metaphor. Configure guards.',
-    color: 'text-emerald',
-    bg: 'bg-emerald/10',
   },
   {
     num: '2',
     cmd: 'slope briefing',
     title: 'Get briefed',
     detail: 'Get a pre-sprint briefing: risk index, performance snapshot, known issues.',
-    color: 'text-emerald',
-    bg: 'bg-emerald/10',
   },
   {
     num: '3',
     cmd: 'slope card',
     title: 'Check your card',
     detail: 'Check your performance card — rolling stats across multiple windows.',
-    color: 'text-gold',
-    bg: 'bg-gold/10',
   },
   {
     num: '4',
     cmd: 'slope review',
     title: 'Review the sprint',
     detail: 'Generate a sprint review with ticket-by-ticket analysis and improvement recommendations.',
-    color: 'text-gold',
-    bg: 'bg-gold/10',
+  },
+];
+
+const promptSteps = [
+  {
+    num: '1',
+    prompt: 'Initialize SLOPE in this project with the golf metaphor',
+    title: 'Initialize',
+    detail: 'The agent sets up .slope/config.json, enables guards, and configures your metaphor.',
+  },
+  {
+    num: '2',
+    prompt: 'Give me a pre-sprint briefing for my next sprint',
+    title: 'Get briefed',
+    detail: 'The agent reads your scorecards, surfaces hazards, and sets par based on your backlog.',
+  },
+  {
+    num: '3',
+    prompt: 'Show me my performance card',
+    title: 'Check your card',
+    detail: 'The agent computes rolling stats across your last 5, 10, and all-time sprints.',
+  },
+  {
+    num: '4',
+    prompt: 'Review this sprint and score it',
+    title: 'Review the sprint',
+    detail: 'The agent audits commits, scores each ticket, builds a scorecard, and updates your handicap.',
   },
 ];
 ---
@@ -40,15 +59,27 @@ const steps = [
     <div class="text-center mb-12" data-reveal>
       <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">Quick Start</p>
       <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
-        Four commands. First sprint.
+        Four steps. First sprint.
       </h2>
       <p class="text-text-secondary max-w-2xl mx-auto">
-        From zero to your first scored sprint. No configuration required — SLOPE ships with sensible defaults.
+        Get started with CLI commands or natural language prompts. Same flow, your choice.
       </p>
     </div>
 
-    <!-- Install toggle -->
-    <div class="flex flex-col items-center gap-3 mb-12" data-reveal>
+    <!-- Mode selector -->
+    <div class="flex justify-center mb-8" data-reveal>
+      <div class="inline-flex rounded-lg border border-border bg-bg-surface/50 p-1 gap-1">
+        <button data-start-mode="commands" class="start-mode-pill px-5 py-2 rounded-md text-sm font-heading font-bold transition-colors bg-emerald/10 text-emerald border border-emerald/20">
+          Commands
+        </button>
+        <button data-start-mode="prompts" class="start-mode-pill px-5 py-2 rounded-md text-sm font-heading font-bold transition-colors text-text-muted hover:text-text-secondary border border-transparent">
+          Prompts
+        </button>
+      </div>
+    </div>
+
+    <!-- Install toggle (commands mode only) -->
+    <div id="install-toggle" class="flex flex-col items-center gap-3 mb-10" data-reveal>
       <div class="inline-flex rounded-lg border border-border bg-bg-surface/50 p-0.5">
         <button data-pkg="npm" class="px-4 py-1.5 rounded-md text-xs font-mono font-medium transition-colors bg-emerald/10 text-emerald border border-emerald/20">npm</button>
         <button data-pkg="pnpm" class="px-4 py-1.5 rounded-md text-xs font-mono font-medium transition-colors text-text-muted hover:text-text-secondary">pnpm</button>
@@ -66,16 +97,33 @@ const steps = [
       </div>
     </div>
 
-    <div class="grid sm:grid-cols-2 gap-6" data-stagger>
-      {steps.map(({ num, cmd, title, detail, color, bg }) => (
+    <!-- Commands mode -->
+    <div id="start-commands" class="grid sm:grid-cols-2 gap-6" data-stagger>
+      {commandSteps.map(({ num, cmd, title, detail }) => (
         <div class="rounded-xl border border-border bg-bg-card p-6 hover:border-emerald/20 transition-colors">
           <div class="flex items-center gap-3 mb-4">
-            <div class={`w-8 h-8 rounded-lg ${bg} flex items-center justify-center shrink-0`}>
-              <span class={`${color} text-sm font-bold`}>{num}</span>
+            <div class="w-8 h-8 rounded-lg bg-emerald/10 flex items-center justify-center shrink-0">
+              <span class="text-emerald text-sm font-bold">{num}</span>
             </div>
             <code class="text-emerald text-sm font-mono">{cmd}</code>
           </div>
           <h3 class="font-heading font-bold text-lg text-text-primary mb-1">{title}</h3>
+          <p class="text-text-muted text-sm leading-relaxed">{detail}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Prompts mode (hidden by default) -->
+    <div id="start-prompts" class="grid sm:grid-cols-2 gap-6 hidden" data-stagger>
+      {promptSteps.map(({ num, prompt, title, detail }) => (
+        <div class="rounded-xl border border-border bg-bg-card p-6 hover:border-emerald/20 transition-colors">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-lg bg-emerald/10 flex items-center justify-center shrink-0">
+              <span class="text-emerald text-sm font-bold">{num}</span>
+            </div>
+          </div>
+          <h3 class="font-heading font-bold text-lg text-text-primary mb-1">{title}</h3>
+          <p class="text-emerald text-sm font-mono leading-relaxed mb-2 bg-emerald/5 border border-emerald/10 rounded-lg px-3 py-2">"{prompt}"</p>
           <p class="text-text-muted text-sm leading-relaxed">{detail}</p>
         </div>
       ))}
@@ -86,4 +134,38 @@ const steps = [
 <script>
   import { initInstallToggle } from '../scripts/interactions';
   initInstallToggle();
+
+  // Mode toggle
+  const pills = document.querySelectorAll<HTMLButtonElement>('[data-start-mode]');
+  const commandsPanel = document.getElementById('start-commands');
+  const promptsPanel = document.getElementById('start-prompts');
+  const installToggle = document.getElementById('install-toggle');
+
+  pills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const mode = pill.dataset.startMode;
+
+      // Update pill styles
+      pills.forEach((p) => {
+        if (p.dataset.startMode === mode) {
+          p.classList.add('bg-emerald/10', 'text-emerald', 'border-emerald/20');
+          p.classList.remove('text-text-muted', 'hover:text-text-secondary', 'border-transparent');
+        } else {
+          p.classList.remove('bg-emerald/10', 'text-emerald', 'border-emerald/20');
+          p.classList.add('text-text-muted', 'hover:text-text-secondary', 'border-transparent');
+        }
+      });
+
+      // Toggle panels
+      if (mode === 'commands') {
+        commandsPanel?.classList.remove('hidden');
+        promptsPanel?.classList.add('hidden');
+        installToggle?.classList.remove('hidden');
+      } else {
+        commandsPanel?.classList.add('hidden');
+        promptsPanel?.classList.remove('hidden');
+        installToggle?.classList.add('hidden');
+      }
+    });
+  });
 </script>
