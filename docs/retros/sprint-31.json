@@ -1,0 +1,54 @@
+{
+  "sprint_number": 31,
+  "theme": "Homepage Visual Upgrades",
+  "par": 3,
+  "slope": 0,
+  "score": 3,
+  "score_label": "par",
+  "date": "2026-02-23",
+  "shots": [
+    {
+      "ticket_key": "S31-1",
+      "title": "Replace sprint card with terminology table in SeeItInAction",
+      "club": "short_iron",
+      "result": "green",
+      "hazards": [],
+      "notes": "Swapped the mini sprint-card visualization for a 5-row terminology mapping table. Cleaner visual, teaches vocabulary faster."
+    },
+    {
+      "ticket_key": "S31-2",
+      "title": "Replace proof bar chart with stats wall",
+      "club": "short_iron",
+      "result": "green",
+      "hazards": [],
+      "notes": "Replaced 4-bar handicap trajectory chart with 3 bold stat cards (fairway %, GIR %, handicap). Powered by live-stats API with animateCounter."
+    }
+  ],
+  "conditions": [],
+  "special_plays": [],
+  "stats": {
+    "fairways_hit": 2,
+    "fairways_total": 2,
+    "greens_in_regulation": 2,
+    "greens_total": 2,
+    "putts": 0,
+    "penalties": 0,
+    "hazards_hit": 0,
+    "hazard_penalties": 0,
+    "miss_directions": {
+      "long": 0,
+      "short": 0,
+      "left": 0,
+      "right": 0
+    }
+  },
+  "yardage_book_updates": [
+    "Proof section now uses stats.handicap.all_time for outcome metrics instead of handicap_milestones",
+    "animateCounter works well for integer stats; decimal stats need direct .textContent assignment"
+  ],
+  "bunker_locations": [],
+  "course_management_notes": [
+    "Both tickets were surgical replacements — swap one visual for another, same data source.",
+    "Clean sprint, no hazards. Par 3 with 0 slope — familiar patterns throughout."
+  ]
+}
