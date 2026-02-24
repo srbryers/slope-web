@@ -1,9 +1,16 @@
 ---
 import { golf, tennis, baseball, gaming, dnd, matrix } from '@slope-dev/slope';
 
-const metaphors = [golf, tennis, baseball, gaming, dnd, matrix];
+const agile = {
+  id: 'agile',
+  name: 'Agile',
+  vocabulary: { sprint: 'sprint', ticket: 'story', perfectScore: 'all stories done', review: 'retrospective' },
+};
+
+const metaphors = [golf, agile, tennis, baseball, gaming, dnd, matrix];
 const descriptions: Record<string, string> = {
   golf: 'You vs the course',
+  agile: 'Sprints and stories',
   tennis: 'Serve, rally, match point',
   baseball: 'Innings and home runs',
   gaming: 'XP and boss fights',

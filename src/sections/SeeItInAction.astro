@@ -1,6 +1,7 @@
 ---
 const metaphors = [
   { id: 'golf', name: 'Golf', desc: 'You vs the course' },
+  { id: 'agile', name: 'Agile', desc: 'Sprints and stories' },
   { id: 'tennis', name: 'Tennis', desc: 'Serve, rally, match point' },
   { id: 'baseball', name: 'Baseball', desc: 'Innings and home runs' },
   { id: 'gaming', name: 'Gaming', desc: 'XP and boss fights' },
@@ -10,20 +11,20 @@ const metaphors = [
 ---
 
 <section id="see-it-in-action" class="py-24 sm:py-32 bg-bg-surface/30">
-  <div class="max-w-4xl mx-auto px-6">
-    <!-- Section header -->
+  <div class="max-w-5xl mx-auto px-6">
+    <!-- Header -->
     <div class="text-center mb-12" data-reveal>
       <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">See It In Action</p>
       <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
-        Pick the language your team already speaks
+        The difference is data.
       </h2>
-      <p class="text-text-secondary max-w-xl mx-auto">
-        Same sprint. Same engine. Same data. Watch the vocabulary change.
+      <p class="text-text-secondary max-w-2xl mx-auto">
+        Without SLOPE, you get a wall of text. With SLOPE, you get structured output — a scorecard, stats, and a clear next step. Switch the vocabulary to see it in your team's language.
       </p>
     </div>
 
-    <!-- Inline metaphor picker — 2×3 grid on mobile, single row on desktop -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mb-10" data-stagger>
+    <!-- Metaphor picker -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 sm:gap-3 mb-10" data-stagger>
       {metaphors.map(({ id, name, desc }) => (
         <button
           data-inline-metaphor={id}
@@ -40,113 +41,106 @@ const metaphors = [
       ))}
     </div>
 
-    <!-- Example scorecard -->
-    <div class="rounded-xl border border-border bg-bg-card overflow-hidden mb-10" data-reveal>
-      <!-- Scorecard header -->
-      <div class="px-5 py-3 border-b border-border bg-bg-surface/50 flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <span class="text-emerald text-xs font-mono uppercase tracking-wider" data-term="vocabulary.scorecard">Scorecard</span>
-          <span class="text-text-muted text-xs">—</span>
-          <span class="text-text-primary text-sm font-heading font-bold"><span data-term="vocabulary.sprint">Hole</span> 28</span>
+    <!-- Terminal cards -->
+    <div class="grid md:grid-cols-2 gap-6" data-stagger>
+      <!-- Without SLOPE -->
+      <div class="rounded-xl border border-red-900/30 bg-bg-surface overflow-hidden">
+        <div class="flex items-center gap-2 px-4 py-2.5 border-b border-red-900/20 bg-red-950/20">
+          <div class="flex gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500/40"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+          </div>
+          <span class="text-red-400 text-xs font-mono ml-1">Without SLOPE</span>
         </div>
-        <div class="flex items-center gap-2">
-          <span class="text-text-muted text-xs font-mono"><span data-term="vocabulary.par">Par</span> 4</span>
-          <span class="text-text-muted text-xs">|</span>
-          <span class="text-emerald text-xs font-mono font-bold">Score: 4 (<span data-term="scoreLabels.par">Par</span>)</span>
-        </div>
-      </div>
-
-      <!-- Ticket breakdown -->
-      <div class="divide-y divide-border-subtle">
-        <div class="px-5 py-2.5 flex items-center justify-between text-sm">
-          <div class="flex items-center gap-2">
-            <span class="w-5 h-5 rounded-full bg-emerald/10 flex items-center justify-center text-emerald text-[10px] font-bold shrink-0">1</span>
-            <span class="text-text-secondary">Setup & config</span>
-          </div>
-          <div class="flex items-center gap-3 text-xs">
-            <span class="text-text-muted font-mono" data-term="clubs.wedge">Wedge</span>
-            <span class="text-emerald font-mono" data-term="shotResults.green">Green</span>
-          </div>
-        </div>
-        <div class="px-5 py-2.5 flex items-center justify-between text-sm">
-          <div class="flex items-center gap-2">
-            <span class="w-5 h-5 rounded-full bg-emerald/10 flex items-center justify-center text-emerald text-[10px] font-bold shrink-0">2</span>
-            <span class="text-text-secondary">Core feature implementation</span>
-          </div>
-          <div class="flex items-center gap-3 text-xs">
-            <span class="text-text-muted font-mono" data-term="clubs.short_iron">Short Iron</span>
-            <span class="text-emerald font-mono" data-term="shotResults.fairway">Fairway</span>
-          </div>
-        </div>
-        <div class="px-5 py-2.5 flex items-center justify-between text-sm">
-          <div class="flex items-center gap-2">
-            <span class="w-5 h-5 rounded-full bg-gold/10 flex items-center justify-center text-gold text-[10px] font-bold shrink-0">3</span>
-            <span class="text-text-secondary">Integration + edge cases</span>
-          </div>
-          <div class="flex items-center gap-3 text-xs">
-            <span class="text-text-muted font-mono" data-term="clubs.long_iron">Long Iron</span>
-            <span class="text-gold font-mono" data-term="hazards.bunker">Bunker</span>
-          </div>
-        </div>
-        <div class="px-5 py-2.5 flex items-center justify-between text-sm">
-          <div class="flex items-center gap-2">
-            <span class="w-5 h-5 rounded-full bg-emerald/10 flex items-center justify-center text-emerald text-[10px] font-bold shrink-0">4</span>
-            <span class="text-text-secondary">Tests & documentation</span>
-          </div>
-          <div class="flex items-center gap-3 text-xs">
-            <span class="text-text-muted font-mono" data-term="clubs.putter">Putter</span>
-            <span class="text-emerald font-mono" data-term="shotResults.in_the_hole">In the Hole</span>
-          </div>
+        <div class="p-5 font-mono text-xs text-text-muted leading-relaxed space-y-1">
+          <p class="text-red-400/70">ERROR: Agent crashed mid-sprint, no recovery point</p>
+          <p>$ git log --oneline | wc -l → 47 commits, no pattern</p>
+          <p class="text-red-400/70">WARN: Same bug as 3 sprints ago</p>
+          <p>$ how many tests? → "not sure, maybe 200?"</p>
+          <p class="text-red-400/70">ERROR: Context lost on compaction</p>
+          <p>$ what improved? → "hard to say"</p>
+          <p class="text-text-muted/40">... (scrolls for 500 more lines)</p>
         </div>
       </div>
 
-      <!-- Stats footer -->
-      <div class="px-5 py-3 border-t border-border bg-bg-surface/30 flex flex-wrap gap-x-6 gap-y-1 text-xs">
-        <span class="text-text-muted"><span data-term="statLabels.fairways" class="text-text-secondary">Fairways</span>: 4/4</span>
-        <span class="text-text-muted"><span data-term="statLabels.gir" class="text-text-secondary">GIR</span>: 3/4</span>
-        <span class="text-text-muted"><span data-term="statLabels.putts" class="text-text-secondary">Putts</span>: 1</span>
-        <span class="text-text-muted"><span data-term="vocabulary.handicap" class="text-text-secondary">Handicap</span>: 1.2</span>
+      <!-- With SLOPE -->
+      <div class="rounded-xl border border-emerald/20 bg-bg-surface overflow-hidden">
+        <div class="flex items-center gap-2 px-4 py-2.5 border-b border-emerald/10 bg-emerald/5">
+          <div class="flex gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald/40"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-text-muted/20"></span>
+          </div>
+          <span class="text-emerald text-xs font-mono ml-1">With SLOPE</span>
+        </div>
+        <div class="p-5 font-mono text-[11px] leading-relaxed space-y-2">
+          <!-- Sprint header -->
+          <p class="text-text-muted">── <span data-term="vocabulary.sprint">Hole</span> 28 ────────────────────</p>
+          <p class="text-text-secondary">"The Pro Tour" │ <span data-term="vocabulary.par">Par</span> 4</p>
+
+          <!-- Ticket table -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-[11px] font-mono border-collapse">
+              <thead>
+                <tr class="text-text-muted">
+                  <th class="text-left pr-2 pb-1 font-normal">#</th>
+                  <th class="text-left pr-3 pb-1 font-normal"><span data-term="vocabulary.ticket">Shot</span></th>
+                  <th class="text-left pr-3 pb-1 font-normal"><span data-term="vocabulary.club">Club</span></th>
+                  <th class="text-left pr-2 pb-1 font-normal">Result</th>
+                  <th class="text-right pb-1 font-normal">Hz</th>
+                </tr>
+              </thead>
+              <tbody class="text-text-secondary">
+                <tr>
+                  <td class="pr-2 py-0.5 text-text-muted">1</td>
+                  <td class="pr-3 py-0.5">Setup & config</td>
+                  <td class="pr-3 py-0.5" data-term="clubs.wedge">Wedge</td>
+                  <td class="pr-2 py-0.5 text-emerald">✅ <span data-term="shotResults.green">Green</span></td>
+                  <td class="text-right py-0.5 text-text-muted">─</td>
+                </tr>
+                <tr>
+                  <td class="pr-2 py-0.5 text-text-muted">2</td>
+                  <td class="pr-3 py-0.5">Core feature</td>
+                  <td class="pr-3 py-0.5" data-term="clubs.short_iron">Short Iron</td>
+                  <td class="pr-2 py-0.5 text-emerald">✅ <span data-term="shotResults.fairway">Fairway</span></td>
+                  <td class="text-right py-0.5 text-text-muted">─</td>
+                </tr>
+                <tr>
+                  <td class="pr-2 py-0.5 text-text-muted">3</td>
+                  <td class="pr-3 py-0.5">Integration</td>
+                  <td class="pr-3 py-0.5" data-term="clubs.long_iron">Long Iron</td>
+                  <td class="pr-2 py-0.5 text-gold">⚠ <span data-term="hazards.bunker">Bunker</span></td>
+                  <td class="text-right py-0.5 text-gold">1</td>
+                </tr>
+                <tr>
+                  <td class="pr-2 py-0.5 text-text-muted">4</td>
+                  <td class="pr-3 py-0.5">Tests & docs</td>
+                  <td class="pr-3 py-0.5" data-term="clubs.putter">Putter</td>
+                  <td class="pr-2 py-0.5 text-emerald">⭐ <span data-term="shotResults.in_the_hole">Hole!</span></td>
+                  <td class="text-right py-0.5 text-text-muted">─</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Stats line -->
+          <div class="border-t border-border/30 pt-2 space-y-1">
+            <p class="text-text-secondary">Score: <span class="text-emerald">4</span> (<span class="text-emerald" data-term="scoreLabels.par">Par</span>) │ <span data-term="vocabulary.handicap">Handicap</span>: <span class="text-emerald">1.2</span> <span class="text-emerald/60">↓</span></p>
+            <p class="text-text-muted"><span data-term="statLabels.fairways">FW</span>: 100% <span class="text-text-muted/40">·</span> <span data-term="statLabels.gir">GIR</span>: 75% <span class="text-text-muted/40">·</span> <span data-term="statLabels.putts">Putts</span>: 0.25</p>
+          </div>
+
+          <!-- Ask user prompt -->
+          <div class="border-t border-border/30 pt-2">
+            <p class="text-text-secondary"><span data-term="vocabulary.sprint">Hole</span> complete. What next?</p>
+            <div class="mt-1.5 space-y-0.5">
+              <div class="flex items-center gap-2"><span class="text-emerald">❯</span><span class="text-text-primary bg-emerald/10 px-2 py-0.5 rounded">Plan a new <span data-term="vocabulary.sprint">hole</span></span></div>
+              <div class="flex items-center gap-2"><span class="text-text-muted/40">○</span><span class="text-text-muted">Refine the backlog</span></div>
+              <div class="flex items-center gap-2"><span class="text-text-muted/40">○</span><span class="text-text-muted">Cleanup / bug fix</span></div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <!-- Terminology table -->
-    <div class="rounded-xl border border-emerald/20 bg-bg-card overflow-hidden" data-reveal>
-      <table class="w-full text-sm">
-        <thead>
-          <tr class="border-b border-border">
-            <th class="text-left px-4 sm:px-6 py-3 text-text-muted text-xs font-mono uppercase tracking-wider">Concept</th>
-            <th class="text-left px-4 sm:px-6 py-3 text-emerald text-xs font-mono uppercase tracking-wider">Metaphor Term</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-border/50">
-          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Sprint</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.sprint">Hole</td></tr>
-          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Ticket</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.ticket">Shot</td></tr>
-          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Scorecard</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.scorecard">Scorecard</td></tr>
-          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Performance Card</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.handicapCard">Handicap Card</td></tr>
-          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Briefing</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.briefing">Pre-round Briefing</td></tr>
-          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Perfect Score</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.perfectScore">Hole-in-one</td></tr>
-          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">On Target</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.onTarget">Par</td></tr>
-          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Review</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.review">19th Hole</td></tr>
-          <tr class="border-t border-border"><td class="px-4 sm:px-6 py-2.5 text-text-secondary">High-risk approach</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="clubs.driver">Driver</td></tr>
-          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Precision approach</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="clubs.wedge">Wedge</td></tr>
-          <tr class="border-t border-border"><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Known gotcha</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="hazards.bunker">Bunker</td></tr>
-          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Breaking change</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="hazards.water">Water</td></tr>
-          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Scope creep</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="hazards.ob">Out of Bounds</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- CTA -->
-    <div class="text-center mt-10" data-reveal>
-      <a
-        href="/framework"
-        class="inline-flex items-center gap-2 text-emerald hover:text-emerald/80 transition-colors font-heading font-bold text-sm"
-      >
-        Explore the full framework
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </a>
     </div>
   </div>
 </section>

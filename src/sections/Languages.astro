@@ -1,0 +1,126 @@
+---
+---
+
+<section id="languages" class="py-24 sm:py-32">
+  <div class="max-w-4xl mx-auto px-6">
+    <!-- Header -->
+    <div class="text-center mb-12" data-reveal>
+      <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">One Framework, Six Languages</p>
+      <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
+        Same engine. Different vocabulary.
+      </h2>
+      <p class="text-text-secondary max-w-xl mx-auto">
+        The scoring engine doesn't change — only the language does. Pick the metaphor your team already understands.
+      </p>
+    </div>
+
+    <!-- Example scorecard -->
+    <div class="rounded-xl border border-border bg-bg-card overflow-hidden mb-10" data-reveal>
+      <!-- Scorecard header -->
+      <div class="px-5 py-3 border-b border-border bg-bg-surface/50 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="text-emerald text-xs font-mono uppercase tracking-wider" data-term="vocabulary.scorecard">Scorecard</span>
+          <span class="text-text-muted text-xs">—</span>
+          <span class="text-text-primary text-sm font-heading font-bold"><span data-term="vocabulary.sprint">Hole</span> 28</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-text-muted text-xs font-mono"><span data-term="vocabulary.par">Par</span> 4</span>
+          <span class="text-text-muted text-xs">|</span>
+          <span class="text-emerald text-xs font-mono font-bold">Score: 4 (<span data-term="scoreLabels.par">Par</span>)</span>
+        </div>
+      </div>
+
+      <!-- Ticket breakdown -->
+      <div class="divide-y divide-border-subtle">
+        <div class="px-5 py-2.5 flex items-center justify-between text-sm">
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-emerald/10 flex items-center justify-center text-emerald text-[10px] font-bold shrink-0">1</span>
+            <span class="text-text-secondary">Setup & config</span>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="text-text-muted font-mono" data-term="clubs.wedge">Wedge</span>
+            <span class="text-emerald font-mono" data-term="shotResults.green">Green</span>
+          </div>
+        </div>
+        <div class="px-5 py-2.5 flex items-center justify-between text-sm">
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-emerald/10 flex items-center justify-center text-emerald text-[10px] font-bold shrink-0">2</span>
+            <span class="text-text-secondary">Core feature implementation</span>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="text-text-muted font-mono" data-term="clubs.short_iron">Short Iron</span>
+            <span class="text-emerald font-mono" data-term="shotResults.fairway">Fairway</span>
+          </div>
+        </div>
+        <div class="px-5 py-2.5 flex items-center justify-between text-sm">
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-gold/10 flex items-center justify-center text-gold text-[10px] font-bold shrink-0">3</span>
+            <span class="text-text-secondary">Integration + edge cases</span>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="text-text-muted font-mono" data-term="clubs.long_iron">Long Iron</span>
+            <span class="text-gold font-mono" data-term="hazards.bunker">Bunker</span>
+          </div>
+        </div>
+        <div class="px-5 py-2.5 flex items-center justify-between text-sm">
+          <div class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-emerald/10 flex items-center justify-center text-emerald text-[10px] font-bold shrink-0">4</span>
+            <span class="text-text-secondary">Tests & documentation</span>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="text-text-muted font-mono" data-term="clubs.putter">Putter</span>
+            <span class="text-emerald font-mono" data-term="shotResults.in_the_hole">In the Hole</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats footer -->
+      <div class="px-5 py-3 border-t border-border bg-bg-surface/30 flex flex-wrap gap-x-6 gap-y-1 text-xs">
+        <span class="text-text-muted"><span data-term="statLabels.fairways" class="text-text-secondary">Fairways</span>: 4/4</span>
+        <span class="text-text-muted"><span data-term="statLabels.gir" class="text-text-secondary">GIR</span>: 3/4</span>
+        <span class="text-text-muted"><span data-term="statLabels.putts" class="text-text-secondary">Putts</span>: 1</span>
+        <span class="text-text-muted"><span data-term="vocabulary.handicap" class="text-text-secondary">Handicap</span>: 1.2</span>
+      </div>
+    </div>
+
+    <!-- Terminology table -->
+    <div class="rounded-xl border border-emerald/20 bg-bg-card overflow-hidden" data-reveal>
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-border">
+            <th class="text-left px-4 sm:px-6 py-3 text-text-muted text-xs font-mono uppercase tracking-wider">Concept</th>
+            <th class="text-left px-4 sm:px-6 py-3 text-emerald text-xs font-mono uppercase tracking-wider">Metaphor Term</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-border/50">
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Sprint</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.sprint">Hole</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Ticket</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.ticket">Shot</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Scorecard</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.scorecard">Scorecard</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Performance Card</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.handicapCard">Handicap Card</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Briefing</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.briefing">Pre-round Briefing</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Perfect Score</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.perfectScore">Hole-in-one</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">On Target</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.onTarget">Par</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Review</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="vocabulary.review">19th Hole</td></tr>
+          <tr class="border-t border-border"><td class="px-4 sm:px-6 py-2.5 text-text-secondary">High-risk approach</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="clubs.driver">Driver</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Precision approach</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="clubs.wedge">Wedge</td></tr>
+          <tr class="border-t border-border"><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Known gotcha</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="hazards.bunker">Bunker</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Breaking change</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="hazards.water">Water</td></tr>
+          <tr><td class="px-4 sm:px-6 py-2.5 text-text-secondary">Scope creep</td><td class="px-4 sm:px-6 py-2.5 text-text-primary font-medium" data-term="hazards.ob">Out of Bounds</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-10" data-reveal>
+      <a
+        href="/framework"
+        class="inline-flex items-center gap-2 text-emerald hover:text-emerald/80 transition-colors font-heading font-bold text-sm"
+      >
+        Explore the full framework
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

@@ -2,98 +2,110 @@
 ---
 
 <section id="problem" class="py-24 sm:py-32">
-  <div class="max-w-6xl mx-auto px-6">
-    <!-- Section header -->
+  <div class="max-w-5xl mx-auto px-6">
+    <!-- Header -->
     <div class="text-center mb-16" data-reveal>
       <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
         AI Agents Are Powerful. <span class="text-text-muted">But Chaotic.</span>
       </h2>
       <p class="text-text-secondary max-w-2xl mx-auto">
-        Without structure, session 50 looks exactly like session 1. Work gets lost. Patterns repeat. Nobody knows if things are getting better.
+        Without structure, session 50 looks exactly like session 1. SLOPE is designed around the three constraints that make AI agents unreliable at scale.
       </p>
     </div>
 
-    <!-- Landscape preamble -->
-    <div class="grid sm:grid-cols-2 gap-6 mb-16 max-w-3xl mx-auto" data-stagger>
-      <div class="rounded-lg border border-border bg-bg-surface p-5">
-        <p class="text-text-primary font-heading font-bold text-base mb-2">AI agents build real software.</p>
-        <p class="text-text-muted text-sm leading-relaxed">They write code, run tests, fix bugs, and ship features. They're fast, capable, and increasingly common.</p>
+    <!-- Three problems (compact) -->
+    <div class="grid sm:grid-cols-3 gap-4 mb-16" data-stagger>
+      <div class="rounded-xl border border-red-900/30 bg-bg-surface p-5">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2 h-2 rounded-full bg-red-400/60 shrink-0"></span>
+          <h3 class="text-text-primary font-heading font-bold text-base">Context loss</h3>
+        </div>
+        <p class="text-text-muted text-sm leading-relaxed">
+          Agents crash, compact, and restart from zero. Everything they learned last session is gone.
+        </p>
       </div>
-      <div class="rounded-lg border border-border bg-bg-surface p-5">
-        <p class="text-text-primary font-heading font-bold text-base mb-2">They work in sessions.</p>
-        <p class="text-text-muted text-sm leading-relaxed">You describe what you want. The agent executes. It delivers. Session over.</p>
+      <div class="rounded-xl border border-red-900/30 bg-bg-surface p-5">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2 h-2 rounded-full bg-red-400/60 shrink-0"></span>
+          <h3 class="text-text-primary font-heading font-bold text-base">No consistency</h3>
+        </div>
+        <p class="text-text-muted text-sm leading-relaxed">
+          Every session is ad-hoc. Quality depends on luck, not process. The agent might check tests, might not.
+        </p>
       </div>
-      <div class="rounded-lg border border-border bg-bg-surface p-5">
-        <p class="text-text-primary font-heading font-bold text-base mb-2">But nothing carries over.</p>
-        <p class="text-text-muted text-sm leading-relaxed">Each session starts from zero. No memory of past mistakes. No awareness of patterns. No measurement of progress.</p>
-      </div>
-      <div class="rounded-lg border border-border bg-bg-surface p-5">
-        <p class="text-emerald font-heading font-bold text-base mb-2">After 50 sessions, you know exactly as much as you did after the first.</p>
-        <p class="text-text-muted text-sm leading-relaxed">All that work — and no data to show what's improving, what's breaking, or what to do next.</p>
+      <div class="rounded-xl border border-red-900/30 bg-bg-surface p-5">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2 h-2 rounded-full bg-red-400/60 shrink-0"></span>
+          <h3 class="text-text-primary font-heading font-bold text-base">No improvement</h3>
+        </div>
+        <p class="text-text-muted text-sm leading-relaxed">
+          Same mistakes, same blind spots, no trends. No data to tell you if things are getting better or worse.
+        </p>
       </div>
     </div>
 
-    <!-- Before / After comparison -->
-    <div class="grid md:grid-cols-2 gap-6 mb-16" data-stagger>
-      <!-- Chaos side -->
-      <div class="rounded-xl border border-red-900/30 bg-bg-surface p-6 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500/50 to-red-500/0"></div>
-        <div class="flex items-center gap-2 mb-4">
-          <span class="text-red-400 text-sm font-medium uppercase tracking-wider">Without SLOPE</span>
-        </div>
-        <div class="font-mono text-xs text-text-muted leading-relaxed space-y-1 opacity-80">
-          <p class="text-red-400/70">ERROR: Agent crashed mid-sprint, no recovery point</p>
-          <p>$ git log --oneline | wc -l → 47 commits, no pattern</p>
-          <p class="text-red-400/70">WARN: Same bug as 3 sprints ago</p>
-          <p>$ how many tests? → "not sure, maybe 200?"</p>
-          <p class="text-red-400/70">ERROR: Context lost on compaction</p>
-          <p>$ what improved? → "hard to say"</p>
-          <p class="text-text-muted/50">... (scrolls for 500 more lines)</p>
+    <!-- The Loop -->
+    <div class="max-w-2xl mx-auto" data-reveal>
+      <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-6 text-center">How SLOPE Solves This</p>
+
+      <div class="rounded-xl border border-emerald/20 bg-bg-surface p-6 sm:p-8">
+        <div class="space-y-4">
+          <!-- PLAN -->
+          <div class="rounded-lg border border-border bg-bg-card p-4">
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="flex items-center justify-center w-6 h-6 rounded-full bg-emerald/10 text-emerald font-heading font-bold text-[10px] shrink-0">1</span>
+              <h4 class="text-emerald font-heading font-bold text-sm">Plan</h4>
+            </div>
+            <p class="text-text-muted text-xs leading-relaxed">Briefing reads from disk — scorecards, hazard maps, codebase context. The agent starts informed, not blank.</p>
+            <p class="text-emerald/60 text-[10px] font-mono mt-2">solves: context loss</p>
+          </div>
+
+          <!-- Arrow -->
+          <div class="flex justify-center">
+            <svg width="10" height="16" class="text-emerald/40" aria-hidden="true"><path d="M5,0 L5,10 L1,6 M5,10 L9,6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+          </div>
+
+          <!-- EXECUTE -->
+          <div class="rounded-lg border border-border bg-bg-card p-4">
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="flex items-center justify-center w-6 h-6 rounded-full bg-emerald/10 text-emerald font-heading font-bold text-[10px] shrink-0">2</span>
+              <h4 class="text-emerald font-heading font-bold text-sm">Execute</h4>
+            </div>
+            <p class="text-text-muted text-xs leading-relaxed">Fixed routines at every stage. Same steps, same order. Automated guards catch common mistakes before they land.</p>
+            <p class="text-emerald/60 text-[10px] font-mono mt-2">solves: inconsistency</p>
+          </div>
+
+          <!-- Arrow -->
+          <div class="flex justify-center">
+            <svg width="10" height="16" class="text-emerald/40" aria-hidden="true"><path d="M5,0 L5,10 L1,6 M5,10 L9,6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+          </div>
+
+          <!-- SCORE + LEARN -->
+          <div class="rounded-lg border border-border bg-bg-card p-4">
+            <div class="flex items-center gap-2 mb-1.5">
+              <span class="flex items-center justify-center w-6 h-6 rounded-full bg-emerald/10 text-emerald font-heading font-bold text-[10px] shrink-0">3</span>
+              <h4 class="text-emerald font-heading font-bold text-sm">Score + Learn</h4>
+            </div>
+            <p class="text-text-muted text-xs leading-relaxed">Every sprint produces a scorecard. Rolling stats build a performance index. Miss patterns and hazard maps feed back into the next Plan.</p>
+            <p class="text-emerald/60 text-[10px] font-mono mt-2">solves: no improvement</p>
+          </div>
+
+          <!-- Loop-back -->
+          <div class="flex items-center justify-center gap-2 text-emerald/40">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="shrink-0" aria-hidden="true">
+              <path d="M17 1l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 11V9a4 4 0 014-4h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7 23l-4-4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 13v2a4 4 0 01-4 4H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="text-[10px] font-mono">loops back to Plan</span>
+          </div>
         </div>
       </div>
 
-      <!-- Order side -->
-      <div class="rounded-xl border border-emerald/20 bg-bg-surface p-6 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald/50 to-emerald/0"></div>
-        <div class="flex items-center gap-2 mb-4">
-          <span class="text-emerald text-sm font-medium uppercase tracking-wider">With SLOPE</span>
-        </div>
-        <div class="font-mono text-xs leading-relaxed space-y-1">
-          <p class="text-emerald/80">Latest Sprint — Expected: 4 tickets — Delivered: 4 (on target)</p>
-          <p class="text-text-secondary">Clean starts: 4/4 | Completed as planned: 3/4</p>
-          <p class="text-text-secondary">Known issues hit: 1 — caught by automated guard</p>
-          <p class="text-gold">Trending: improving (last 5 better than all-time)</p>
-          <p class="text-text-secondary">Recurring pattern flagged → won't happen again</p>
-          <p class="text-emerald/60">Next sprint: guided by briefing + performance history</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Live stats bar -->
-    <div class="grid grid-cols-2 gap-4" aria-live="polite" data-stagger>
-      <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
-        <div id="stat-sprints" class="font-heading font-bold text-2xl text-emerald">28</div>
-        <div class="text-text-muted text-xs mt-1">Sprints</div>
-      </div>
-      <div class="text-center p-4 rounded-lg bg-bg-card border border-border-subtle">
-        <div id="stat-tests" class="font-heading font-bold text-2xl text-text-primary">1,091</div>
-        <div class="text-text-muted text-xs mt-1">Tests</div>
-      </div>
+      <p class="text-center text-text-muted text-sm mt-6">
+        Sprint 1 plans blind. Sprint 50 plans with 49 sprints of structured data.
+      </p>
     </div>
   </div>
 </section>
-
-<script>
-  import { onStatsUpdate } from '../scripts/live-stats';
-  import { animateCounter } from '../scripts/animations';
-
-  const statEls = {
-    tests: document.getElementById('stat-tests'),
-    sprints: document.getElementById('stat-sprints'),
-  };
-
-  onStatsUpdate((stats) => {
-    if (statEls.tests) animateCounter(statEls.tests, stats.total_tests);
-    if (statEls.sprints) animateCounter(statEls.sprints, stats.sprints_completed);
-  });
-</script>

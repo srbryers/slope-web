@@ -670,5 +670,117 @@
       "putts": "Latency",
       "missPattern": "Drift pattern"
     }
+  },
+  "agile": {
+    "id": "agile",
+    "name": "Agile",
+    "vocabulary": {
+      "sprint": "sprint",
+      "ticket": "story",
+      "scorecard": "sprint report",
+      "handicapCard": "velocity card",
+      "briefing": "sprint planning",
+      "perfectScore": "all stories done",
+      "onTarget": "on target",
+      "review": "retrospective",
+      "preRound": "Sprint Planning",
+      "preShot": "Pre-Work",
+      "postShot": "Post-Work",
+      "postHole": "Sprint Review",
+      "tournament": "Project",
+      "round": "Sprint",
+      "stroke": "Effort",
+      "par": "Target",
+      "readTheGreen": "Deep Dive",
+      "handicap": "velocity index",
+      "fairway": "on track",
+      "green": "accepted",
+      "putt": "polish",
+      "club": "approach",
+      "recovery": "rework",
+      "penalty": "blocker",
+      "distance": "scope"
+    },
+    "clubs": {
+      "driver": "Spike",
+      "long_iron": "Epic",
+      "short_iron": "Story",
+      "wedge": "Task",
+      "putter": "Bug Fix"
+    },
+    "shotResults": {
+      "fairway": "On Track",
+      "green": "Accepted",
+      "in_the_hole": "Done-Done",
+      "missed_long": "Over-scoped",
+      "missed_short": "Under-scoped",
+      "missed_left": "Wrong Approach",
+      "missed_right": "Integration Issue"
+    },
+    "hazards": {
+      "bunker": "Tech Debt",
+      "water": "Breaking Change",
+      "ob": "Scope Creep",
+      "rough": "Dependency Issue",
+      "trees": "Legacy Code"
+    },
+    "conditions": {
+      "wind": "Shifting Requirements",
+      "rain": "Team Disruption",
+      "frost_delay": "Blocked",
+      "altitude": "Complexity",
+      "pin_position": "Acceptance Criteria"
+    },
+    "specialPlays": {
+      "gimme": "Auto-close",
+      "mulligan": "Redo",
+      "provisional": "Plan B",
+      "lay_up": "De-scope",
+      "scramble": "Swarm",
+      "match_play": "Head-to-Head"
+    },
+    "missDirections": {
+      "long": "Over-engineered",
+      "short": "Under-scoped",
+      "left": "Wrong approach",
+      "right": "Integration issue"
+    },
+    "scoreLabels": {
+      "eagle": "Exceeded (−2)",
+      "birdie": "Ahead (−1)",
+      "par": "On Target",
+      "bogey": "Behind (+1)",
+      "double_bogey": "Over (+2)",
+      "triple_plus": "Blocked (+3)"
+    },
+    "sprintTypes": {
+      "feature": "Feature Sprint",
+      "feedback": "Feedback Sprint",
+      "infra": "Infrastructure Sprint",
+      "bugfix": "Bug Fix Sprint",
+      "research": "Spike Sprint",
+      "flow": "Flow Sprint",
+      "test-coverage": "Test Sprint"
+    },
+    "trainingTypes": {
+      "driving_range": "Estimation Practice",
+      "chipping_practice": "Refinement",
+      "putting_practice": "Acceptance Testing",
+      "lessons": "Team Training"
+    },
+    "nutrition": {
+      "hydration": "Documentation",
+      "diet": "Code Quality",
+      "recovery": "Tech Debt Paydown",
+      "supplements": "Tooling",
+      "stretching": "Process Review"
+    },
+    "statLabels": {
+      "handicap": "Velocity Index",
+      "fairways": "Estimation Accuracy",
+      "gir": "Delivery Rate",
+      "putts": "Rework Rate",
+      "missPattern": "Miss Pattern"
+    }
   }
 }
