@@ -26,7 +26,12 @@ const commandSteps = [
   },
 ];
 
-const promptSteps = [
+interface PromptPart {
+  text: string;
+  term?: string;
+}
+
+const promptSteps: { num: string; prompt: string; title: string; detail: string | PromptPart[] }[] = [
   {
     num: '1',
     prompt: 'Initialize SLOPE in this project with the golf metaphor',
@@ -37,7 +42,11 @@ const promptSteps = [
     num: '2',
     prompt: 'Give me a pre-sprint briefing for my next sprint',
     title: 'Get briefed',
-    detail: 'The agent reads your scorecards, surfaces hazards, and sets par based on your backlog.',
+    detail: [
+      { text: 'The agent reads your ' }, { text: 'scorecard', term: 'vocabulary.scorecard' },
+      { text: 's, surfaces hazards, and sets ' }, { text: 'par', term: 'vocabulary.par' },
+      { text: ' based on your backlog.' },
+    ],
   },
   {
     num: '3',
@@ -49,7 +58,11 @@ const promptSteps = [
     num: '4',
     prompt: 'Review this sprint and score it',
     title: 'Review the sprint',
-    detail: 'The agent audits commits, scores each ticket, builds a scorecard, and updates your handicap.',
+    detail: [
+      { text: 'The agent audits commits, scores each ticket, builds a ' },
+      { text: 'scorecard', term: 'vocabulary.scorecard' },
+      { text: ', and updates your ' }, { text: 'handicap', term: 'vocabulary.handicap' }, { text: '.' },
+    ],
   },
 ];
 ---
@@ -124,7 +137,9 @@ const promptSteps = [
           </div>
           <h3 class="font-heading font-bold text-lg text-text-primary mb-1">{title}</h3>
           <p class="text-emerald text-sm font-mono leading-relaxed mb-2 bg-emerald/5 border border-emerald/10 rounded-lg px-3 py-2">"{prompt}"</p>
-          <p class="text-text-muted text-sm leading-relaxed">{detail}</p>
+          <p class="text-text-muted text-sm leading-relaxed">
+            {Array.isArray(detail) ? detail.map(p => p.term ? <span data-term={p.term}>{p.text}</span> : p.text) : detail}
+          </p>
         </div>
       ))}
     </div>
