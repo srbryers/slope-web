@@ -154,22 +154,86 @@ export const SLOPE_FACTOR_DETAILS: Record<string, string> = {
   concurrent_agents: 'Multi-agent coordination required',
 };
 
+export interface TipPart {
+  text: string;
+  term?: string;
+}
+
 export interface Tip {
   icon: string;
-  title: string;
-  detail: string;
+  title: string | TipPart[];
+  detail: string | TipPart[];
   command?: string;
 }
 
 export const TIPS: Tip[] = [
-  { icon: '🎯', title: 'Declare your approach before coding', detail: 'Pick your club — Driver, Iron, Wedge, or Putter — so the scorecard captures complexity, not just outcome.', command: 'slope claim' },
+  {
+    icon: '🎯',
+    title: 'Declare your approach before coding',
+    detail: [
+      { text: 'Pick your ' }, { text: 'club', term: 'vocabulary.club' },
+      { text: ' — ' }, { text: 'Driver', term: 'clubs.driver' },
+      { text: ', Iron, ' }, { text: 'Wedge', term: 'clubs.wedge' },
+      { text: ', or ' }, { text: 'Putter', term: 'clubs.putter' },
+      { text: ' — so the ' }, { text: 'scorecard', term: 'vocabulary.scorecard' },
+      { text: ' captures complexity, not just outcome.' },
+    ],
+    command: 'slope claim',
+  },
   { icon: '📋', title: 'Run a briefing at sprint start', detail: 'Get your hazard index, performance snapshot, and known gotchas before writing a line of code.', command: 'slope briefing' },
-  { icon: '💾', title: 'Commit early, push often', detail: 'The last push is your recovery point. Everything since the last push is lost on crash or context loss.' },
+  {
+    icon: '💾',
+    title: 'Commit early, push often',
+    detail: [
+      { text: 'The last push is your ' }, { text: 'recovery', term: 'vocabulary.recovery' },
+      { text: ' point. Everything since the last push is lost on crash or context loss.' },
+    ],
+  },
   { icon: '🗺️', title: 'Keep the codebase map current', detail: 'The map saves tokens and prevents stale assumptions. Regenerate after adding new files or commands.', command: 'slope map' },
-  { icon: '🔄', title: 'Use provisionals for risky shots', detail: 'Declare a fallback before swinging. "If this doesn\'t work in 2 shots, play X instead."' },
-  { icon: '📊', title: 'Check miss patterns, not just the score', detail: 'A bogey from going Long is different from going Left. Directional data drives targeted improvement.', command: 'slope card' },
-  { icon: '✅', title: 'Validate your scorecard before merging', detail: 'Catch schema errors, missing fields, and scoring inconsistencies before they hit the repo.', command: 'slope validate' },
-  { icon: '⚡', title: 'Use gimmes for trivial tickets', detail: 'Obvious one-line fixes don\'t need full ceremony. Mark them as gimmes and save your focus for real shots.' },
+  {
+    icon: '🔄',
+    title: [
+      { text: 'Use ' }, { text: 'provisional', term: 'specialPlays.provisional' },
+      { text: 's for risky ' }, { text: 'shot', term: 'vocabulary.ticket' }, { text: 's' },
+    ],
+    detail: [
+      { text: 'Declare a fallback before swinging. "If this doesn\'t work in 2 ' },
+      { text: 'shot', term: 'vocabulary.ticket' }, { text: 's, play X instead."' },
+    ],
+  },
+  {
+    icon: '📊',
+    title: 'Check miss patterns, not just the score',
+    detail: [
+      { text: 'A ' }, { text: 'bogey', term: 'scoreLabels.bogey' },
+      { text: ' from going ' }, { text: 'Long', term: 'missDirections.long' },
+      { text: ' is different from going ' }, { text: 'Left', term: 'missDirections.left' },
+      { text: '. Directional data drives targeted improvement.' },
+    ],
+    command: 'slope card',
+  },
+  {
+    icon: '✅',
+    title: [
+      { text: 'Validate your ' }, { text: 'scorecard', term: 'vocabulary.scorecard' },
+      { text: ' before merging' },
+    ],
+    detail: 'Catch schema errors, missing fields, and scoring inconsistencies before they hit the repo.',
+    command: 'slope validate',
+  },
+  {
+    icon: '⚡',
+    title: [
+      { text: 'Use ' }, { text: 'gimme', term: 'specialPlays.gimme' },
+      { text: 's for trivial ' }, { text: 'ticket', term: 'vocabulary.ticket' }, { text: 's' },
+    ],
+    detail: [
+      { text: 'Obvious one-line fixes don\'t need full ceremony. Mark them as ' },
+      { text: 'gimme', term: 'specialPlays.gimme' },
+      { text: 's and save your focus for real ' },
+      { text: 'shot', term: 'vocabulary.ticket' }, { text: 's.' },
+    ],
+  },
 ];
 
 export interface CheatSheetCategory {

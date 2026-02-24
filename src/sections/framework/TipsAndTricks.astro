@@ -11,8 +11,12 @@ import { TIPS } from '../../data/framework';
         <div class="flex items-start gap-3">
           <span class="text-lg leading-none shrink-0" aria-hidden="true">{icon}</span>
           <div>
-            <p class="text-sm font-medium text-text-primary">{title}</p>
-            <p class="text-text-muted text-xs mt-1 leading-relaxed">{detail}</p>
+            <p class="text-sm font-medium text-text-primary">
+              {Array.isArray(title) ? title.map(p => p.term ? <span data-term={p.term}>{p.text}</span> : p.text) : title}
+            </p>
+            <p class="text-text-muted text-xs mt-1 leading-relaxed">
+              {Array.isArray(detail) ? detail.map(p => p.term ? <span data-term={p.term}>{p.text}</span> : p.text) : detail}
+            </p>
             {command && (
               <code class="inline-block mt-2 text-xs font-mono text-emerald bg-emerald/5 border border-emerald/10 rounded px-2 py-0.5">{command}</code>
             )}
