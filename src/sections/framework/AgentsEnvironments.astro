@@ -1,0 +1,131 @@
+---
+const integrationLayers = [
+  {
+    layer: 'CLI Tools',
+    what: 'Agent runs slope commands (briefing, review, card, validate)',
+    environments: 'All',
+  },
+  {
+    layer: 'Rules Files',
+    what: 'Agent reads framework instructions at session start — routines, checklists, commit discipline',
+    environments: 'Claude Code, Cursor, OpenCode',
+  },
+  {
+    layer: 'Hooks & Guards',
+    what: 'Auto-fire on tool-use events, real-time warnings before mistakes land',
+    environments: 'Claude Code',
+  },
+];
+
+const environmentSetups = [
+  {
+    name: 'Claude Code',
+    level: 'Full integration',
+    items: [
+      'CLAUDE.md in project root — agent reads at session start',
+      '.claude/rules/ for checklists, commit discipline, sprint routines',
+      '.mcp.json for MCP tool access (slope search, slope execute)',
+      'Hooks: guards fire on Bash, Edit, Write tool events',
+    ],
+  },
+  {
+    name: 'Cursor',
+    level: 'Medium integration',
+    items: [
+      '.cursorrules file — system instructions (same content as CLAUDE.md)',
+      'Agent runs slope CLI commands in terminal',
+      'No hooks — agent must self-enforce routines',
+    ],
+  },
+  {
+    name: 'OpenCode',
+    level: 'Light integration',
+    items: [
+      'AGENTS.md or project-level config',
+      'Agent runs slope CLI commands',
+      'No hooks — agent must self-enforce routines',
+    ],
+  },
+];
+---
+
+<section id="agents-environments" class="mb-16 scroll-mt-20">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Agents & Environments</h2>
+  <p class="text-text-secondary mb-8">
+    SLOPE is a framework your AI agent follows — not a plugin. It integrates through three layers, each adding more automation. Any agent that can read files and run commands can use SLOPE.
+  </p>
+
+  <!-- Integration Layers -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Integration Layers</h3>
+  <div class="overflow-x-auto mb-8">
+    <table class="w-full text-sm border-collapse">
+      <thead>
+        <tr class="border-b border-border-subtle">
+          <th class="text-left pr-4 pb-2 font-heading font-bold text-text-primary">Layer</th>
+          <th class="text-left pr-4 pb-2 font-heading font-bold text-text-primary">What it does</th>
+          <th class="text-left pb-2 font-heading font-bold text-text-primary">Environments</th>
+        </tr>
+      </thead>
+      <tbody>
+        {integrationLayers.map(({ layer, what, environments }) => (
+          <tr class="border-b border-border-subtle/50">
+            <td class="pr-4 py-3 text-emerald font-mono text-xs font-medium whitespace-nowrap">{layer}</td>
+            <td class="pr-4 py-3 text-text-secondary">{what}</td>
+            <td class="py-3 text-text-muted text-xs font-mono">{environments}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Environment Setup -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Environment Setup</h3>
+  <div class="space-y-3 mb-8">
+    {environmentSetups.map(({ name, level, items }) => (
+      <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-text-primary text-sm font-bold">{name}</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald/10 text-emerald/80">{level}</span>
+        </div>
+        <ul class="space-y-1.5">
+          {items.map((item) => (
+            <li class="flex items-start gap-2 text-text-secondary text-sm">
+              <span class="text-emerald/60 mt-1 shrink-0">·</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+
+  <!-- Single Agent vs Multi-Agent -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Single Agent vs. Multi-Agent</h3>
+  <div class="grid sm:grid-cols-2 gap-3 mb-6">
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Solo Agent</span>
+      <p class="text-text-muted text-xs mt-1">Default mode. One agent, one sprint. Scorecards track that agent's performance over time — handicap, miss patterns, hazard frequency.</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Multi-Agent Team</span>
+      <p class="text-text-muted text-xs mt-1">Assign roles (backend, frontend, architect, devops, generalist), claim tickets, per-agent stats roll up to team handicap.</p>
+    </div>
+  </div>
+  <p class="text-text-muted text-sm mb-8">
+    See <a href="#team-multi-agent" class="text-emerald hover:underline">Team & Multi-Agent</a> for setup details, built-in roles, and coordination features.
+  </p>
+
+  <!-- Read the Green -->
+  <details class="read-the-green">
+    <summary>
+      <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      <span class="text-emerald text-sm font-medium">Read the Green</span>
+      <span class="text-text-muted text-xs">— Why SLOPE is framework-first, not plugin-first</span>
+    </summary>
+    <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
+      <p>SLOPE writes everything to disk — JSON scorecards, config files, hazard maps. Any agent that can read files and run commands can use it. There's no API key, no cloud service, no vendor lock-in.</p>
+      <p>Hooks are the deepest integration but not required — they just automate enforcement. Without hooks, the agent follows the same routines manually via rules files and CLI commands. The output is identical.</p>
+      <p>This means SLOPE works with future tools too, not just today's editors. If a new AI coding environment launches tomorrow and it can run shell commands, SLOPE works on day one.</p>
+    </div>
+  </details>
+</section>

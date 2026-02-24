@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import '../styles/global.css';
 
 import Installation from '../sections/framework/Installation.astro';
+import AgentsEnvironments from '../sections/framework/AgentsEnvironments.astro';
 import TipsAndTricks from '../sections/framework/TipsAndTricks.astro';
 import CheatSheet from '../sections/framework/CheatSheet.astro';
 import BigPicture from '../sections/framework/BigPicture.astro';
@@ -44,6 +45,7 @@ const sidebarGroups = [
     label: 'Getting Started',
     links: [
       { id: 'installation', name: 'Installation & Usage' },
+      { id: 'agents-environments', name: 'Agents & Environments' },
       { id: 'tips-and-tricks', name: 'Tips & Tricks' },
       { id: 'cheat-sheet', name: 'Cheat Sheet' },
     ],
@@ -185,6 +187,7 @@ const sidebarGroups = [
 
         <!-- Sections: Getting Started -->
         <Installation />
+        <AgentsEnvironments />
         <TipsAndTricks />
         <CheatSheet />
 
