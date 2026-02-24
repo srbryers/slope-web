@@ -64,18 +64,21 @@ function isActive(href: string) {
     </div>
 
     <!-- Center: Metaphor dropdown (mobile only) -->
-    <div class="relative md:hidden">
-      <select
-        class="nav-metaphor-mobile appearance-none bg-bg-card border border-border rounded-lg px-3 py-1.5 pr-7 text-xs font-mono text-text-secondary hover:border-emerald/40 focus:border-emerald focus:outline-none transition-colors cursor-pointer"
-        aria-label="Switch metaphor"
-      >
-        {metaphors.map(({ id, name }) => (
-          <option value={id}>{name}</option>
-        ))}
-      </select>
-      <svg class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-text-muted" width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
+    <div class="flex items-center gap-2 md:hidden">
+      <span class="text-[10px] font-mono uppercase tracking-wider text-text-muted">Metaphor</span>
+      <div class="relative">
+        <select
+          class="nav-metaphor-mobile appearance-none bg-bg-card border border-border rounded-lg px-3 py-1.5 pr-7 text-xs font-mono text-text-secondary hover:border-emerald/40 focus:border-emerald focus:outline-none transition-colors cursor-pointer"
+          aria-label="Switch metaphor"
+        >
+          {metaphors.map(({ id, name }) => (
+            <option value={id}>{name}</option>
+          ))}
+        </select>
+        <svg class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-text-muted" width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
     </div>
 
     <!-- Right: Desktop links (md+) -->
