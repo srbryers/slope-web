@@ -79,7 +79,7 @@ export interface HazardMeta {
 }
 
 export const HAZARD_METADATA: HazardMeta[] = [
-  { name: 'Bunker', term: 'hazards.bunker', maps: 'Known gotcha', penalty: 'Recovery costs an extra shot but you\'re still in play. The gotcha was documented — you just didn\'t check the yardage book.', color: 'text-gold', bg: 'bg-gold/5', border: 'border-gold/15' },
+  { name: 'Bunker', term: 'hazards.bunker', maps: 'Known gotcha', penalty: 'Recovery costs an extra shot but you\'re still in play. The gotcha was documented — you just didn\'t check.', color: 'text-gold', bg: 'bg-gold/5', border: 'border-gold/15' },
   { name: 'Water', term: 'hazards.water', maps: 'Breaking change or data loss', penalty: 'Penalty stroke + re-tee from safe position. Irreversible damage — you need to revert and approach from a safer angle.', color: 'text-blue-400', bg: 'bg-blue-500/5', border: 'border-blue-500/15' },
   { name: 'OB (Out of Bounds)', term: 'hazards.ob', maps: 'Scope creep', penalty: 'Stroke + distance. You left the sprint boundary entirely. Go back to where you were and re-approach.', color: 'text-red-400', bg: 'bg-red-500/5', border: 'border-red-500/15' },
   { name: 'Rough', term: 'hazards.rough', maps: 'Technical debt', penalty: 'No penalty, just slower going. The code works but it\'s harder to navigate. Budget extra time.', color: 'text-text-secondary', bg: 'bg-bg-surface', border: 'border-border-subtle' },
