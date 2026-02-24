@@ -62,6 +62,28 @@
       "bogey": "Bogey",
       "double_bogey": "Double Bogey",
       "triple_plus": "Triple+"
+    },
+    "sprintTypes": {
+      "feature": "Feature",
+      "feedback": "Feedback",
+      "infra": "Infrastructure",
+      "bugfix": "Bug Fix",
+      "research": "Research",
+      "flow": "Flow",
+      "test-coverage": "Test Coverage"
+    },
+    "trainingTypes": {
+      "driving_range": "Driving Range",
+      "chipping_practice": "Chipping Practice",
+      "putting_practice": "Putting Practice",
+      "lessons": "Lessons"
+    },
+    "nutrition": {
+      "hydration": "Hydration",
+      "diet": "Diet",
+      "recovery": "Recovery",
+      "supplements": "Supplements",
+      "stretching": "Stretching"
     }
   },
   "tennis": {
@@ -127,6 +149,28 @@
       "bogey": "Deuce",
       "double_bogey": "Broken Serve",
       "triple_plus": "Bageled"
+    },
+    "sprintTypes": {
+      "feature": "Offensive Set",
+      "feedback": "Return Game",
+      "infra": "Court Maintenance",
+      "bugfix": "Error Correction",
+      "research": "Film Study",
+      "flow": "Rally",
+      "test-coverage": "Practice Match"
+    },
+    "trainingTypes": {
+      "driving_range": "Serve Practice",
+      "chipping_practice": "Volley Drills",
+      "putting_practice": "Touch Practice",
+      "lessons": "Coaching Session"
+    },
+    "nutrition": {
+      "hydration": "Hydration",
+      "diet": "Match Fitness",
+      "recovery": "Recovery",
+      "supplements": "Equipment",
+      "stretching": "Warm-up"
     }
   },
   "baseball": {
@@ -192,6 +236,28 @@
       "bogey": "Strikeout",
       "double_bogey": "Double Play",
       "triple_plus": "Shutout"
+    },
+    "sprintTypes": {
+      "feature": "Offensive Inning",
+      "feedback": "Defensive Inning",
+      "infra": "Field Maintenance",
+      "bugfix": "Error Recovery",
+      "research": "Scouting",
+      "flow": "Rally",
+      "test-coverage": "Batting Practice"
+    },
+    "trainingTypes": {
+      "driving_range": "Batting Cage",
+      "chipping_practice": "Fielding Drills",
+      "putting_practice": "Bunting Practice",
+      "lessons": "Coaching"
+    },
+    "nutrition": {
+      "hydration": "Hydration",
+      "diet": "Game Fitness",
+      "recovery": "Recovery",
+      "supplements": "Equipment",
+      "stretching": "Warm-up"
     }
   },
   "gaming": {
@@ -257,6 +323,28 @@
       "bogey": "C-Rank",
       "double_bogey": "D-Rank",
       "triple_plus": "Game Over"
+    },
+    "sprintTypes": {
+      "feature": "Main Quest",
+      "feedback": "Side Quest",
+      "infra": "Base Building",
+      "bugfix": "Bug Hunt",
+      "research": "Exploration",
+      "flow": "Speedrun",
+      "test-coverage": "Training Arena"
+    },
+    "trainingTypes": {
+      "driving_range": "Exploration",
+      "chipping_practice": "Combo Practice",
+      "putting_practice": "Precision Training",
+      "lessons": "Tutorial"
+    },
+    "nutrition": {
+      "hydration": "Mana",
+      "diet": "HP",
+      "recovery": "Rest at Inn",
+      "supplements": "Power-ups",
+      "stretching": "Buff"
     }
   },
   "dnd": {
@@ -322,6 +410,28 @@
       "bogey": "Miss",
       "double_bogey": "Critical Fail",
       "triple_plus": "Natural 1"
+    },
+    "sprintTypes": {
+      "feature": "Main Quest",
+      "feedback": "Side Quest",
+      "infra": "Downtime",
+      "bugfix": "Healing",
+      "research": "Investigation",
+      "flow": "Combat",
+      "test-coverage": "Training Montage"
+    },
+    "trainingTypes": {
+      "driving_range": "Study",
+      "chipping_practice": "Sparring",
+      "putting_practice": "Meditation",
+      "lessons": "Mentoring"
+    },
+    "nutrition": {
+      "hydration": "Mana",
+      "diet": "Rations",
+      "recovery": "Long Rest",
+      "supplements": "Potions",
+      "stretching": "Short Rest"
     }
   },
   "matrix": {
@@ -387,6 +497,28 @@
       "bogey": "Lag",
       "double_bogey": "Blue Screen",
       "triple_plus": "Unplugged"
+    },
+    "sprintTypes": {
+      "feature": "Upload",
+      "feedback": "Feedback Loop",
+      "infra": "System Upgrade",
+      "bugfix": "Debug",
+      "research": "Recon",
+      "flow": "Overclock",
+      "test-coverage": "Diagnostic"
+    },
+    "trainingTypes": {
+      "driving_range": "Simulation",
+      "chipping_practice": "Calibration",
+      "putting_practice": "Fine-tuning",
+      "lessons": "Download"
+    },
+    "nutrition": {
+      "hydration": "Bandwidth",
+      "diet": "Core Integrity",
+      "recovery": "Defrag",
+      "supplements": "Plugins",
+      "stretching": "Pre-flight"
     }
   }
 }
