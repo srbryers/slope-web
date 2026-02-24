@@ -2,12 +2,39 @@
 import { golf, tennis, baseball, gaming, dnd, matrix } from '@slope-dev/slope';
 
 const metaphors = [golf, tennis, baseball, gaming, dnd, matrix];
+const descriptions: Record<string, string> = {
+  golf: 'You vs the course',
+  tennis: 'Serve, rally, match point',
+  baseball: 'Innings and home runs',
+  gaming: 'XP and boss fights',
+  dnd: 'Quests and encounters',
+  matrix: 'Red pill, blue pill',
+};
 ---
 
 <!-- Metaphor Engine -->
 <section class="mb-16">
   <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Metaphor Engine</h2>
   <p class="text-text-secondary mb-6">Golf is the default, but SLOPE's scoring engine is metaphor-agnostic. {metaphors.length} built-in metaphors translate the same internal types into different vocabularies.</p>
+
+  <!-- Inline metaphor switcher -->
+  <p class="text-text-muted text-sm mb-4">Try switching — all <span class="text-emerald font-medium">highlighted terms</span> across this page will update.</p>
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mb-8">
+    {metaphors.map((m) => (
+      <button
+        data-inline-metaphor={m.id}
+        class:list={[
+          'inline-metaphor-pill rounded-lg border p-3 sm:p-4 text-center transition-all cursor-pointer min-h-[44px]',
+          m.id === 'golf'
+            ? 'border-emerald/40 bg-emerald/10 text-emerald'
+            : 'border-border bg-bg-card text-text-muted hover:border-emerald/20 hover:text-text-secondary',
+        ]}
+      >
+        <div class="font-heading font-bold text-sm">{m.name}</div>
+        <div class="text-[10px] sm:text-xs mt-0.5 opacity-70 leading-tight">{descriptions[m.id] ?? ''}</div>
+      </button>
+    ))}
+  </div>
 
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
     {metaphors.map((m) => (
@@ -25,3 +52,8 @@ const metaphors = [golf, tennis, baseball, gaming, dnd, matrix];
 
   <p class="text-text-muted text-sm">Set via <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">slope init --metaphor=gaming</code> or the <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">metaphor</code> field in <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">.slope/config.json</code>. CLI commands accept <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">--metaphor=&lt;id&gt;</code> to override per-command. Plugins can register custom metaphors.</p>
 </section>
+
+<script>
+  import { initInlineSwitcher } from '../../scripts/interactions';
+  initInlineSwitcher();
+</script>
