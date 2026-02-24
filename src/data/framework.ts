@@ -153,3 +153,80 @@ export const SLOPE_FACTOR_DETAILS: Record<string, string> = {
   external_dep: 'API, SDK, or service integration',
   concurrent_agents: 'Multi-agent coordination required',
 };
+
+export interface Tip {
+  icon: string;
+  title: string;
+  detail: string;
+  command?: string;
+}
+
+export const TIPS: Tip[] = [
+  { icon: '🎯', title: 'Declare your approach before coding', detail: 'Pick your club — Driver, Iron, Wedge, or Putter — so the scorecard captures complexity, not just outcome.', command: 'slope claim' },
+  { icon: '📋', title: 'Run a briefing at sprint start', detail: 'Get your hazard index, performance snapshot, and known gotchas before writing a line of code.', command: 'slope briefing' },
+  { icon: '💾', title: 'Commit early, push often', detail: 'The last push is your recovery point. Everything since the last push is lost on crash or context loss.' },
+  { icon: '🗺️', title: 'Keep the codebase map current', detail: 'The map saves tokens and prevents stale assumptions. Regenerate after adding new files or commands.', command: 'slope map' },
+  { icon: '🔄', title: 'Use provisionals for risky shots', detail: 'Declare a fallback before swinging. "If this doesn\'t work in 2 shots, play X instead."' },
+  { icon: '📊', title: 'Check miss patterns, not just the score', detail: 'A bogey from going Long is different from going Left. Directional data drives targeted improvement.', command: 'slope card' },
+  { icon: '✅', title: 'Validate your scorecard before merging', detail: 'Catch schema errors, missing fields, and scoring inconsistencies before they hit the repo.', command: 'slope validate' },
+  { icon: '⚡', title: 'Use gimmes for trivial tickets', detail: 'Obvious one-line fixes don\'t need full ceremony. Mark them as gimmes and save your focus for real shots.' },
+];
+
+export interface CheatSheetCategory {
+  label: string;
+  items: { term: string; meaning: string; color?: string }[];
+}
+
+export const CHEAT_SHEET: CheatSheetCategory[] = [
+  {
+    label: 'Score Labels',
+    items: [
+      { term: 'Eagle', meaning: '-2 — well under par', color: 'text-gold' },
+      { term: 'Birdie', meaning: '-1 — under par', color: 'text-emerald' },
+      { term: 'Par', meaning: '0 — exactly on target', color: 'text-text-primary' },
+      { term: 'Bogey', meaning: '+1 — one over', color: 'text-amber-400' },
+      { term: 'Double', meaning: '+2 — two over', color: 'text-red-400' },
+      { term: 'Triple+', meaning: '+3 — three or more over', color: 'text-red-500' },
+    ],
+  },
+  {
+    label: 'Shot Types (Clubs)',
+    items: [
+      { term: 'Driver', meaning: 'High-risk, new infrastructure or architecture' },
+      { term: 'Long Iron', meaning: 'Multi-package changes, moderate complexity' },
+      { term: 'Short Iron', meaning: 'Standard single-package ticket' },
+      { term: 'Wedge', meaning: 'Small, focused change' },
+      { term: 'Putter', meaning: 'Trivial — config tweak, typo fix' },
+    ],
+  },
+  {
+    label: 'Hazards',
+    items: [
+      { term: 'Bunker', meaning: 'Known gotcha — documented but missed', color: 'text-gold' },
+      { term: 'Water', meaning: 'Breaking change or data loss', color: 'text-blue-400' },
+      { term: 'OB', meaning: 'Scope creep — left the sprint boundary', color: 'text-red-400' },
+      { term: 'Rough', meaning: 'Technical debt — slower going', color: 'text-text-secondary' },
+      { term: 'Trees', meaning: 'Blocking dependency', color: 'text-emerald' },
+    ],
+  },
+  {
+    label: 'Key Commands',
+    items: [
+      { term: 'init', meaning: 'Initialize SLOPE in a project' },
+      { term: 'briefing', meaning: 'Pre-sprint briefing with hazard index' },
+      { term: 'card', meaning: 'Compute handicap card' },
+      { term: 'review', meaning: 'Generate sprint review markdown' },
+      { term: 'validate', meaning: 'Validate scorecard JSON' },
+      { term: 'map', meaning: 'Generate/update codebase map' },
+    ],
+  },
+  {
+    label: 'Miss Directions',
+    items: [
+      { term: 'Long', meaning: 'Over-engineered — too much complexity' },
+      { term: 'Short', meaning: 'Under-scoped — missed requirements' },
+      { term: 'Left', meaning: 'Wrong approach — fundamentally off-target' },
+      { term: 'Right', meaning: 'Scope drift — correct area, wrong deliverable' },
+    ],
+  },
+];

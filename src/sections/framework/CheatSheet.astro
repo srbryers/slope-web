@@ -1,0 +1,25 @@
+---
+import { CHEAT_SHEET } from '../../data/framework';
+---
+
+<section id="cheat-sheet" class="mb-16 scroll-mt-20">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Cheat Sheet</h2>
+  <p class="text-text-secondary mb-6">Quick reference for scores, clubs, hazards, commands, and miss directions.</p>
+  <div class="grid sm:grid-cols-2 gap-3">
+    {CHEAT_SHEET.map(({ label, items }) => (
+      <div class="rounded-lg border border-border-subtle overflow-hidden">
+        <div class="px-4 py-2.5 bg-bg-surface/50 border-b border-border-subtle">
+          <p class="text-xs font-mono uppercase tracking-wider text-text-muted">{label}</p>
+        </div>
+        <div class="divide-y divide-border-subtle">
+          {items.map(({ term, meaning, color }) => (
+            <div class="flex items-baseline gap-3 px-4 py-2">
+              <span class:list={['w-28 shrink-0 font-mono text-sm font-medium', color || 'text-emerald']}>{term}</span>
+              <span class="text-text-muted text-xs leading-relaxed">{meaning}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

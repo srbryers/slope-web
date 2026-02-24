@@ -1,0 +1,24 @@
+---
+import { TIPS } from '../../data/framework';
+---
+
+<section id="tips-and-tricks" class="mb-16 scroll-mt-20">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Tips & Tricks</h2>
+  <p class="text-text-secondary mb-6">Practical workflow advice to get more from every sprint.</p>
+  <div class="grid sm:grid-cols-2 gap-3">
+    {TIPS.map(({ icon, title, detail, command }) => (
+      <div class="p-4 rounded-lg bg-bg-card border border-border-subtle">
+        <div class="flex items-start gap-3">
+          <span class="text-lg leading-none shrink-0" aria-hidden="true">{icon}</span>
+          <div>
+            <p class="text-sm font-medium text-text-primary">{title}</p>
+            <p class="text-text-muted text-xs mt-1 leading-relaxed">{detail}</p>
+            {command && (
+              <code class="inline-block mt-2 text-xs font-mono text-emerald bg-emerald/5 border border-emerald/10 rounded px-2 py-0.5">{command}</code>
+            )}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

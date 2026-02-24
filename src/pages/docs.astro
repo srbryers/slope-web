@@ -3,6 +3,8 @@ import Base from '../layouts/Base.astro';
 import '../styles/global.css';
 
 import Installation from '../sections/framework/Installation.astro';
+import TipsAndTricks from '../sections/framework/TipsAndTricks.astro';
+import CheatSheet from '../sections/framework/CheatSheet.astro';
 import BigPicture from '../sections/framework/BigPicture.astro';
 import StructureMapping from '../sections/framework/StructureMapping.astro';
 import ParSystem from '../sections/framework/ParSystem.astro';
@@ -42,6 +44,8 @@ const sidebarGroups = [
     label: 'Getting Started',
     links: [
       { id: 'installation', name: 'Installation & Usage' },
+      { id: 'tips-and-tricks', name: 'Tips & Tricks' },
+      { id: 'cheat-sheet', name: 'Cheat Sheet' },
     ],
   },
   {
@@ -181,6 +185,8 @@ const sidebarGroups = [
 
         <!-- Sections: Getting Started -->
         <Installation />
+        <TipsAndTricks />
+        <CheatSheet />
 
         <!-- Sections: Core Concepts -->
         <BigPicture />
