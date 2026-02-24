@@ -1,0 +1,95 @@
+<!-- The Big Picture: Sprint Lifecycle Flow -->
+<section class="mb-16">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">The Big Picture</h2>
+  <p class="text-text-secondary mb-8">Every sprint flows through the same lifecycle. Here's the full picture — from stepping up to the tee to sitting down at the 19th hole.</p>
+
+  <!-- Sprint Lifecycle Flow Diagram -->
+  <div class="rounded-xl border border-border bg-bg-card p-6 sm:p-8 mb-6 overflow-x-auto">
+    <svg viewBox="0 0 900 340" class="w-full min-w-[700px]" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sprint lifecycle flow diagram showing pre-round, per-ticket loop with pre-shot, execute, and post-shot steps, hazard recovery path, post-hole, and 19th hole stages">
+      <!-- Title -->
+      <text x="450" y="24" text-anchor="middle" fill="var(--color-text-muted)" font-size="11" font-family="var(--font-mono)" letter-spacing="2">SPRINT LIFECYCLE</text>
+
+      <!-- Pre-Round -->
+      <rect class="flow-node" x="20" y="50" width="140" height="60" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-emerald)" stroke-width="1.5" />
+      <text x="90" y="75" text-anchor="middle" fill="var(--color-emerald)" font-size="12" font-family="var(--font-heading)" font-weight="700">Pre-Round</text>
+      <text x="90" y="95" text-anchor="middle" fill="var(--color-text-muted)" font-size="9" font-family="var(--font-mono)">Briefing + Par + Slope</text>
+
+      <!-- Arrow 1 -->
+      <path d="M160,80 L195,80" stroke="var(--color-border)" stroke-width="1.5" marker-end="url(#arrow)" />
+
+      <!-- Per-Ticket Loop Container -->
+      <rect x="200" y="40" width="480" height="260" rx="12" fill="none" stroke="var(--color-border)" stroke-width="1" stroke-dasharray="6 4" />
+      <text x="440" y="62" text-anchor="middle" fill="var(--color-text-muted)" font-size="10" font-family="var(--font-mono)" letter-spacing="1">FOR EACH TICKET</text>
+
+      <!-- Pre-Shot -->
+      <rect class="flow-node" x="220" y="80" width="130" height="55" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-forest)" stroke-width="1.5" />
+      <text x="285" y="103" text-anchor="middle" fill="var(--color-text-primary)" font-size="11" font-family="var(--font-heading)" font-weight="600">Pre-Shot</text>
+      <text x="285" y="120" text-anchor="middle" fill="var(--color-text-muted)" font-size="9" font-family="var(--font-mono)">Yardage + Club</text>
+
+      <!-- Arrow -->
+      <path d="M350,107 L380,107" stroke="var(--color-border)" stroke-width="1.5" marker-end="url(#arrow)" />
+
+      <!-- Execute -->
+      <rect class="flow-node" x="385" y="80" width="130" height="55" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-gold)" stroke-width="1.5" />
+      <text x="450" y="103" text-anchor="middle" fill="var(--color-text-primary)" font-size="11" font-family="var(--font-heading)" font-weight="600">Execute</text>
+      <text x="450" y="120" text-anchor="middle" fill="var(--color-text-muted)" font-size="9" font-family="var(--font-mono)">Code + Test + Push</text>
+
+      <!-- Arrow -->
+      <path d="M515,107 L545,107" stroke="var(--color-border)" stroke-width="1.5" marker-end="url(#arrow)" />
+
+      <!-- Post-Shot -->
+      <rect class="flow-node" x="550" y="80" width="115" height="55" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-forest)" stroke-width="1.5" />
+      <text x="607" y="103" text-anchor="middle" fill="var(--color-text-primary)" font-size="11" font-family="var(--font-heading)" font-weight="600">Post-Shot</text>
+      <text x="607" y="120" text-anchor="middle" fill="var(--color-text-muted)" font-size="9" font-family="var(--font-mono)">Score + Log</text>
+
+      <!-- Loop-back arrow -->
+      <path d="M607,135 L607,170 Q607,180 597,180 L295,180 Q285,180 285,170 L285,135" stroke="var(--color-border)" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrow-small)" />
+      <text x="445" y="195" text-anchor="middle" fill="var(--color-text-muted)" font-size="9" font-family="var(--font-mono)" font-style="italic">next ticket</text>
+
+      <!-- Hazard branch (from Execute) -->
+      <path d="M450,135 L450,225" stroke="var(--color-gold)" stroke-width="1" stroke-dasharray="4 3" />
+      <rect class="flow-node" x="385" y="225" width="130" height="50" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-gold)" stroke-width="1" stroke-dasharray="4 2" />
+      <text x="450" y="247" text-anchor="middle" fill="var(--color-gold)" font-size="10" font-family="var(--font-heading)" font-weight="600">Hazard Hit?</text>
+      <text x="450" y="263" text-anchor="middle" fill="var(--color-text-muted)" font-size="8" font-family="var(--font-mono)">Log + Recovery Shot</text>
+
+      <!-- Arrow out of loop -->
+      <path d="M680,107 L720,107" stroke="var(--color-border)" stroke-width="1.5" marker-end="url(#arrow)" />
+
+      <!-- Post-Hole -->
+      <rect class="flow-node" x="725" y="50" width="150" height="60" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-emerald)" stroke-width="1.5" />
+      <text x="800" y="75" text-anchor="middle" fill="var(--color-emerald)" font-size="12" font-family="var(--font-heading)" font-weight="700">Post-Hole</text>
+      <text x="800" y="95" text-anchor="middle" fill="var(--color-text-muted)" font-size="9" font-family="var(--font-mono)">Scorecard + Retro</text>
+
+      <!-- Arrow down -->
+      <path d="M800,110 L800,150" stroke="var(--color-border)" stroke-width="1.5" marker-end="url(#arrow)" />
+
+      <!-- 19th Hole -->
+      <rect class="flow-node" x="725" y="155" width="150" height="60" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-gold)" stroke-width="1.5" />
+      <text x="800" y="180" text-anchor="middle" fill="var(--color-gold)" font-size="12" font-family="var(--font-heading)" font-weight="700">19th Hole</text>
+      <text x="800" y="200" text-anchor="middle" fill="var(--color-text-muted)" font-size="9" font-family="var(--font-mono)">Reflect + Improve</text>
+
+      <!-- Arrow defs -->
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--color-border)" />
+        </marker>
+        <marker id="arrow-small" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--color-border)" />
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <details class="read-the-green">
+    <summary>
+      <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      <span class="text-emerald text-sm font-medium">Read the Green</span>
+      <span class="text-text-muted text-xs">— Why a fixed lifecycle matters for AI agents</span>
+    </summary>
+    <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
+      <p>AI coding agents lose context. They crash, compact, and restart. Without a fixed lifecycle, every session starts from zero — the agent has no idea what happened in the last 50 sprints.</p>
+      <p>SLOPE's lifecycle is designed around this constraint. Every artifact is <strong class="text-text-primary">written to disk</strong> at specific checkpoints: the sprint file after pre-round, the scorecard after post-hole, the handicap after the 19th hole. When context compacts, the agent reads these artifacts and picks up exactly where it left off.</p>
+      <p>The "for each ticket" loop is where most work happens. But the pre-round and post-hole routines are what make the data <em>compound</em>. Without them, you just have a git log. With them, you have a trajectory.</p>
+    </div>
+  </details>
+</section>

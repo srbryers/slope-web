@@ -1,0 +1,135 @@
+<!-- Routines -->
+<section class="mb-16">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Routines</h2>
+  <p class="text-text-secondary mb-8">Consistency prevents unforced errors. Same steps, same order, every time.</p>
+
+  <!-- Pre-Shot Routine -->
+  <div class="mb-8 rounded-xl border border-forest bg-bg-card overflow-hidden">
+    <div class="bg-forest/10 px-6 py-3 border-b border-border">
+      <h3 class="font-heading font-bold text-lg text-emerald">Pre-Shot Routine <span class="text-text-muted font-normal text-sm">— Before Each Ticket</span></h3>
+    </div>
+    <div class="p-6">
+      <ol class="space-y-3">
+        {[
+          ['Read the yardage book', 'Check codebase map for the area you\'re about to touch'],
+          ['Check conditions', 'Any gotchas for this area? External blockers?'],
+          ['Select your club', 'Declare your approach (driver/iron/wedge/putter) and record it'],
+          ['Pick your target', 'Read the spec section, know exactly what "on the green" looks like'],
+          ['Visualize the shot', 'If the area has prior miss data, account for it ("this green slopes left")'],
+          ['Declare a provisional', 'If risky, name the fallback before swinging'],
+        ].map(([step, detail], i) => (
+          <li class="flex gap-3">
+            <span class="w-6 h-6 rounded-full bg-emerald/10 flex items-center justify-center shrink-0 text-emerald text-xs font-bold mt-0.5">{i + 1}</span>
+            <div>
+              <span class="text-text-primary text-sm font-medium">{step}</span>
+              <span class="text-text-muted text-sm"> — {detail}</span>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+
+  <!-- Post-Shot Routine -->
+  <div class="mb-8 rounded-xl border border-gold/30 bg-bg-card overflow-hidden">
+    <div class="bg-gold/5 px-6 py-3 border-b border-border">
+      <h3 class="font-heading font-bold text-lg text-gold">Post-Shot Routine <span class="text-text-muted font-normal text-sm">— After Each Ticket</span></h3>
+    </div>
+    <div class="p-6">
+      <ol class="space-y-3">
+        {[
+          ['Score the shot', 'Did it land where you aimed? Fairway / green / miss?'],
+          ['Record miss direction', 'Long (over-engineered), Short (under-scoped), Left (wrong approach), Right (wrong execution)'],
+          ['Log hazards hit', 'Any bunkers (gotchas), water (breaking changes), OB (scope creep)?'],
+          ['Commit and push', 'The stroke is recorded — the last push is the recovery point'],
+          ['Update the lie', 'Update sprint file with ticket status and context checkpoint'],
+        ].map(([step, detail], i) => (
+          <li class="flex gap-3">
+            <span class="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center shrink-0 text-gold text-xs font-bold mt-0.5">{i + 1}</span>
+            <div>
+              <span class="text-text-primary text-sm font-medium">{step}</span>
+              <span class="text-text-muted text-sm"> — {detail}</span>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <!-- Miss direction diagram inline -->
+      <div class="mt-6 p-4 rounded-lg bg-bg-primary border border-border-subtle">
+        <p class="text-text-muted text-xs font-mono uppercase tracking-wider mb-3">Miss Direction Key</p>
+        <div class="grid grid-cols-2 gap-3 text-sm">
+          <div class="flex items-start gap-2"><span class="text-gold font-bold" data-term="missDirections.long">Long</span><span class="text-text-muted">= Over-engineered, built more than needed</span></div>
+          <div class="flex items-start gap-2"><span class="text-gold font-bold" data-term="missDirections.short">Short</span><span class="text-text-muted">= Under-scoped, didn't finish the job</span></div>
+          <div class="flex items-start gap-2"><span class="text-gold font-bold" data-term="missDirections.left">Left</span><span class="text-text-muted">= Wrong approach, had to rework strategy</span></div>
+          <div class="flex items-start gap-2"><span class="text-gold font-bold" data-term="missDirections.right">Right</span><span class="text-text-muted">= Right approach, wrong execution/integration</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Post-Hole Routine -->
+  <div class="mb-8 rounded-xl border border-border bg-bg-card overflow-hidden">
+    <div class="bg-bg-surface/50 px-6 py-3 border-b border-border">
+      <h3 class="font-heading font-bold text-lg text-text-primary">Post-Hole Routine <span class="text-text-muted font-normal text-sm">— After Each Sprint</span></h3>
+    </div>
+    <div class="p-6">
+      <ol class="space-y-3">
+        {[
+          ['Tally the scorecard', 'Score vs par, shots taken, hazards, misses, conditions'],
+          ['Aggregate shot stats', 'Fairways hit %, GIR %, putts per hole, penalty count'],
+          ['Record to the yardage book', 'Update codebase map with anything learned'],
+          ['Distill lessons', 'Update bunker locations for future players'],
+          ['Check your handicap', 'Rolling trend: are you improving or regressing?'],
+          ['File the card', 'Retro JSON + spec-status + completed sprint JSON'],
+        ].map(([step, detail], i) => (
+          <li class="flex gap-3">
+            <span class="w-6 h-6 rounded-full bg-border flex items-center justify-center shrink-0 text-text-muted text-xs font-bold mt-0.5">{i + 1}</span>
+            <div>
+              <span class="text-text-primary text-sm font-medium">{step}</span>
+              <span class="text-text-muted text-sm"> — {detail}</span>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+
+  <!-- 19th Hole -->
+  <div class="mb-6 rounded-xl border border-gold/10 bg-gradient-to-br from-[#1a1610]/50 to-bg-card overflow-hidden">
+    <div class="px-6 py-3 border-b border-gold/10">
+      <h3 class="font-heading font-bold text-lg text-gold"><span data-term="vocabulary.review">19th Hole</span> <span class="text-text-muted font-normal text-sm">— Informal Reflection</span></h3>
+    </div>
+    <div class="p-6">
+      <p class="text-text-muted text-sm mb-4">The bar after the round. Honest, unstructured, human.</p>
+      <ol class="space-y-3">
+        {[
+          ['How did that feel?', 'Not stats, not process. Gut check.'],
+          ['What would you tell the next player?', 'One piece of advice, no jargon.'],
+          ['What surprised you?', 'The thing you didn\'t expect, good or bad.'],
+          ['What are you excited about next?', 'Where the energy is for the next round.'],
+        ].map(([step, detail], i) => (
+          <li class="flex gap-3">
+            <span class="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center shrink-0 text-gold text-xs font-bold mt-0.5">{i + 1}</span>
+            <div>
+              <span class="text-text-primary text-sm font-medium">{step}</span>
+              <span class="text-text-muted text-sm"> — {detail}</span>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+
+  <details class="read-the-green">
+    <summary>
+      <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      <span class="text-emerald text-sm font-medium">Read the Green</span>
+      <span class="text-text-muted text-xs">— Why routine beats talent</span>
+    </summary>
+    <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
+      <p>The #1 insight from dozens of sprints: <strong class="text-text-primary">routine beats talent</strong>. An agent that follows the pre-shot routine every time will outperform an agent that's "smarter" but inconsistent. Golf pros know this — they don't skip their routine even when they're playing well.</p>
+      <p>The 19th Hole is the most underrated part. It captures what metrics can't: <em>momentum</em>, <em>energy</em>, <em>intuition</em>. After many sprints of 19th Hole notes, patterns emerge that no stat can show: "infrastructure sprints are energizing," "cross-package work is draining."</p>
+      <p>For AI agents specifically, the routines solve the <strong class="text-text-primary">context compaction problem</strong>. When an agent's context window fills up and old messages get compressed, the routine artifacts on disk preserve everything. The next session reads the sprint file and the scorecard, and it's as if no context was lost.</p>
+    </div>
+  </details>
+</section>

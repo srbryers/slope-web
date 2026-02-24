@@ -1,0 +1,20 @@
+<!-- Flow Tracking -->
+<section class="mb-16">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Flow Tracking</h2>
+  <p class="text-text-secondary mb-6">Map user-facing workflows (OAuth, checkout, onboarding) to code paths so agents can navigate by intent, not just by file.</p>
+
+  <div class="space-y-3 mb-6">
+    {[
+      { cmd: 'slope flows init', desc: 'Create a flows template at .slope/flows.json' },
+      { cmd: 'slope flows list', desc: 'Show all defined flows with their file mappings' },
+      { cmd: 'slope flows check', desc: 'Validate flow definitions and detect stale mappings' },
+    ].map(({ cmd, desc }) => (
+      <div class="flex items-center gap-3 p-3 rounded-lg bg-bg-card border border-border-subtle">
+        <code class="text-emerald text-xs font-mono shrink-0">{cmd}</code>
+        <span class="text-text-muted text-sm">{desc}</span>
+      </div>
+    ))}
+  </div>
+
+  <p class="text-text-muted text-sm">Flows are also accessible via MCP: <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">search({'{'} module: 'flows' {'}'})</code> returns all flows, filtered by id, title, or tags. The <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">stale-flows</code> guard warns when editing files belonging to a stale flow.</p>
+</section>

@@ -1,0 +1,28 @@
+<!-- Plugin System -->
+<section class="mb-16">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Plugin System</h2>
+  <p class="text-text-secondary mb-6">Extend SLOPE with custom metaphors, guards, and scoring logic. Plugins are discovered automatically from <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">node_modules</code> or local paths.</p>
+
+  <div class="space-y-3 mb-6">
+    {[
+      { type: 'metaphor', desc: 'Register custom vocabulary mappings for any domain' },
+      { type: 'guard', desc: 'Add custom guards that fire on tool use events' },
+    ].map(({ type, desc }) => (
+      <div class="flex items-start gap-3 p-4 rounded-lg bg-bg-card border border-border-subtle">
+        <code class="text-emerald text-xs font-mono shrink-0 mt-0.5">{type}</code>
+        <span class="text-text-secondary text-sm">{desc}</span>
+      </div>
+    ))}
+  </div>
+
+  <div class="rounded-lg border border-border-subtle bg-bg-primary p-4 font-mono text-xs text-text-muted">
+    <div class="text-text-secondary mb-2">Plugin manifest (<code>slope-plugin.json</code>):</div>
+    <pre class="text-text-muted">{`{
+  "name": "slope-plugin-scrum",
+  "version": "1.0.0",
+  "types": ["metaphor", "guard"],
+  "metaphors": ["./metaphors/scrum.js"],
+  "guards": ["./guards/standup-check.js"]
+}`}</pre>
+  </div>
+</section>

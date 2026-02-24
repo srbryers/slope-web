@@ -1,0 +1,38 @@
+<!-- Club Selection -->
+<section class="mb-16">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Club Selection</h2>
+  <p class="text-text-secondary mb-6">Declared <strong>before</strong> each shot. This is your approach commitment — choosing the right club prevents over-engineering and under-scoping.</p>
+
+  <div class="rounded-xl border border-border bg-bg-card overflow-hidden mb-6">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-border bg-bg-surface/50">
+          <th class="text-left px-5 py-3 text-text-muted text-xs uppercase tracking-wider font-medium">Club</th>
+          <th class="text-left px-5 py-3 text-text-muted text-xs uppercase tracking-wider font-medium">Approach</th>
+          <th class="text-left px-5 py-3 text-text-muted text-xs uppercase tracking-wider font-medium">When</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border-subtle">
+        <tr><td class="px-5 py-3 text-red-400 font-medium" data-term="clubs.driver">Driver</td><td class="px-5 py-3 text-text-secondary">New infrastructure, big architectural move</td><td class="px-5 py-3 text-text-muted">Starting something from scratch</td></tr>
+        <tr><td class="px-5 py-3 text-gold font-medium" data-term="clubs.long_iron">Long iron</td><td class="px-5 py-3 text-text-secondary">Standard feature implementation</td><td class="px-5 py-3 text-text-muted">Well-understood pattern, moderate scope</td></tr>
+        <tr><td class="px-5 py-3 text-emerald font-medium" data-term="clubs.short_iron">Short iron</td><td class="px-5 py-3 text-text-secondary">Targeted implementation</td><td class="px-5 py-3 text-text-muted">Precise scope, clear target</td></tr>
+        <tr><td class="px-5 py-3 text-emerald font-medium" data-term="clubs.wedge">Wedge</td><td class="px-5 py-3 text-text-secondary">Precision fix, surgical refactor</td><td class="px-5 py-3 text-text-muted">Small area, high accuracy</td></tr>
+        <tr><td class="px-5 py-3 text-text-secondary font-medium" data-term="clubs.putter">Putter</td><td class="px-5 py-3 text-text-secondary">Polish, final testing, cleanup</td><td class="px-5 py-3 text-text-muted">Last mile, closing it out</td></tr>
+        <tr class="bg-bg-surface/30"><td class="px-5 py-3 text-text-muted font-medium italic">Provisional</td><td class="px-5 py-3 text-text-secondary">Fallback approach declared upfront</td><td class="px-5 py-3 text-text-muted">"If this doesn't work in 2 shots..."</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <details class="read-the-green">
+    <summary>
+      <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      <span class="text-emerald text-sm font-medium">Read the Green</span>
+      <span class="text-text-muted text-xs">— The psychology of declaring your approach</span>
+    </summary>
+    <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
+      <p>Club selection isn't just metadata. It's a <strong class="text-text-primary">forcing function</strong> that makes you think about complexity before writing code. When you pick up a driver, you're saying: "this is risky, this is new, I'm swinging hard." When you pick up a putter, you're saying: "this is close to done, precision matters more than power."</p>
+      <p>Over time, club selection data reveals patterns: "We always reach for drivers on OAuth work, but irons would be safer." This is exactly how golf pros optimize — they know which clubs they hit consistently and which ones introduce variance.</p>
+      <p>The <em class="text-gold">provisional</em> is particularly powerful for AI agents. When an agent declares a provisional ("if this approach fails in 2 commits, switch to X"), it prevents the common failure mode of sinking 45 minutes into a dead-end approach.</p>
+    </div>
+  </details>
+</section>

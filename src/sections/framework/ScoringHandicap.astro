@@ -1,0 +1,94 @@
+<!-- Scoring & Handicap -->
+<section class="mb-16">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Scoring & Handicap</h2>
+  <p class="text-text-secondary mb-6">Every sprint produces a scorecard. Rolling stats produce a handicap. The handicap tells you if the system is improving.</p>
+
+  <!-- Scoring flow -->
+  <div class="rounded-xl border border-border bg-bg-card p-6 sm:p-8 mb-6 overflow-x-auto">
+    <svg viewBox="0 0 700 200" class="w-full min-w-[550px]" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scoring computation flow diagram showing shots input to buildScorecard function producing stats and final score calculation">
+      <text x="350" y="20" text-anchor="middle" fill="var(--color-text-muted)" font-size="11" font-family="var(--font-mono)" letter-spacing="2">SCORING COMPUTATION</text>
+
+      <!-- Shots input -->
+      <rect x="20" y="50" width="120" height="50" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-border)" stroke-width="1.5" />
+      <text x="80" y="72" text-anchor="middle" fill="var(--color-text-primary)" font-size="10" font-family="var(--font-heading)" font-weight="600">Shots[ ]</text>
+      <text x="80" y="88" text-anchor="middle" fill="var(--color-text-muted)" font-size="8" font-family="var(--font-mono)">club, result, hazards</text>
+
+      <path d="M140,75 L175,75" stroke="var(--color-border)" stroke-width="1.5" marker-end="url(#arrow)" />
+
+      <!-- buildScorecard() -->
+      <rect x="180" y="45" width="160" height="60" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-emerald)" stroke-width="1.5" />
+      <text x="260" y="70" text-anchor="middle" fill="var(--color-emerald)" font-size="10" font-family="var(--font-mono)" font-weight="600">buildScorecard()</text>
+      <text x="260" y="88" text-anchor="middle" fill="var(--color-text-muted)" font-size="8" font-family="var(--font-mono)">auto-computes stats</text>
+
+      <path d="M340,75 L375,75" stroke="var(--color-border)" stroke-width="1.5" marker-end="url(#arrow)" />
+
+      <!-- Stats output -->
+      <rect x="380" y="40" width="140" height="70" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-border)" stroke-width="1.5" />
+      <text x="450" y="62" text-anchor="middle" fill="var(--color-text-primary)" font-size="10" font-family="var(--font-heading)" font-weight="600">Stats</text>
+      <text x="450" y="78" text-anchor="middle" fill="var(--color-text-muted)" font-size="8" font-family="var(--font-mono)">FW% | GIR% | putts</text>
+      <text x="450" y="92" text-anchor="middle" fill="var(--color-text-muted)" font-size="8" font-family="var(--font-mono)">penalties | misses</text>
+
+      <path d="M520,75 L555,75" stroke="var(--color-border)" stroke-width="1.5" marker-end="url(#arrow)" />
+
+      <!-- Score -->
+      <rect x="560" y="50" width="120" height="50" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-gold)" stroke-width="1.5" />
+      <text x="620" y="72" text-anchor="middle" fill="var(--color-gold)" font-size="10" font-family="var(--font-heading)" font-weight="600">Score vs Par</text>
+      <text x="620" y="88" text-anchor="middle" fill="var(--color-text-muted)" font-size="8" font-family="var(--font-mono)">score_label</text>
+
+      <!-- Handicap flow (below) -->
+      <path d="M620,100 L620,135" stroke="var(--color-border)" stroke-width="1.5" marker-end="url(#arrow)" />
+
+      <rect x="530" y="140" width="160" height="50" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-emerald)" stroke-width="1.5" />
+      <text x="610" y="162" text-anchor="middle" fill="var(--color-emerald)" font-size="10" font-family="var(--font-mono)" font-weight="600">computeHandicap()</text>
+      <text x="610" y="178" text-anchor="middle" fill="var(--color-text-muted)" font-size="8" font-family="var(--font-mono)">last 5 | last 10 | all</text>
+
+      <!-- Score labels -->
+      <text x="80" y="140" fill="var(--color-emerald)" font-size="9" font-family="var(--font-mono)" data-term="scoreLabels.eagle">Eagle  -2</text>
+      <text x="80" y="155" fill="var(--color-emerald)" font-size="9" font-family="var(--font-mono)" data-term="scoreLabels.birdie">Birdie -1</text>
+      <text x="80" y="170" fill="var(--color-text-primary)" font-size="9" font-family="var(--font-mono)" data-term="scoreLabels.par">Par     0</text>
+      <text x="80" y="185" fill="var(--color-gold)" font-size="9" font-family="var(--font-mono)" data-term="scoreLabels.bogey">Bogey  +1</text>
+      <text x="220" y="155" fill="var(--color-gold)" font-size="9" font-family="var(--font-mono)" data-term="scoreLabels.double_bogey">Double +2</text>
+      <text x="220" y="170" fill="#ef4444" font-size="9" font-family="var(--font-mono)" data-term="scoreLabels.triple_plus">Triple +3</text>
+    </svg>
+  </div>
+
+  <!-- Handicap table -->
+  <div class="rounded-xl border border-border bg-bg-card overflow-hidden mb-6">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-border bg-bg-surface/50">
+          <th class="text-left px-5 py-3 text-text-muted text-xs uppercase tracking-wider font-medium">Stat</th>
+          <th class="text-center px-5 py-3 text-emerald text-xs uppercase tracking-wider font-medium">Last 5</th>
+          <th class="text-center px-5 py-3 text-gold text-xs uppercase tracking-wider font-medium">Last 10</th>
+          <th class="text-center px-5 py-3 text-text-muted text-xs uppercase tracking-wider font-medium">All-time</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border-subtle">
+        <tr><td class="px-5 py-3 text-text-primary font-medium">Handicap</td><td class="px-5 py-3 text-center text-emerald font-mono font-bold">+1.0</td><td class="px-5 py-3 text-center text-gold font-mono">+1.2</td><td class="px-5 py-3 text-center text-text-secondary font-mono">+1.5</td></tr>
+        <tr><td class="px-5 py-3 text-text-primary font-medium">Fairways</td><td class="px-5 py-3 text-center font-mono text-text-secondary">90%</td><td class="px-5 py-3 text-center font-mono text-text-secondary">86%</td><td class="px-5 py-3 text-center font-mono text-text-muted">80%</td></tr>
+        <tr><td class="px-5 py-3 text-text-primary font-medium">GIR</td><td class="px-5 py-3 text-center font-mono text-text-secondary">82%</td><td class="px-5 py-3 text-center font-mono text-text-secondary">78%</td><td class="px-5 py-3 text-center font-mono text-text-muted">74%</td></tr>
+        <tr><td class="px-5 py-3 text-text-primary font-medium">Avg putts</td><td class="px-5 py-3 text-center font-mono text-text-secondary">1.3</td><td class="px-5 py-3 text-center font-mono text-text-secondary">1.4</td><td class="px-5 py-3 text-center font-mono text-text-muted">1.5</td></tr>
+        <tr><td class="px-5 py-3 text-text-primary font-medium">Miss pattern</td><td class="px-5 py-3 text-center text-text-secondary">Slightly long</td><td class="px-5 py-3 text-center text-text-secondary">Long</td><td class="px-5 py-3 text-center text-text-muted">Long</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <details class="read-the-green">
+    <summary>
+      <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      <span class="text-emerald text-sm font-medium">Read the Green</span>
+      <span class="text-text-muted text-xs">— What the handicap actually tells you</span>
+    </summary>
+    <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
+      <p>The handicap isn't a judgment — it's a <strong class="text-text-primary">prediction</strong>. A handicap of 1.2 means "this system averages 1.2 strokes over par." That's not bad or good in isolation — it's useful because it tells you what to <em>expect</em> from the next sprint.</p>
+      <p>The three windows (last 5, last 10, all-time) show different things:</p>
+      <ul class="space-y-1 pl-4">
+        <li><strong class="text-emerald">Last 5</strong> — Are you in form right now? Recent momentum.</li>
+        <li><strong class="text-gold">Last 10</strong> — Is this a trend or a fluke? Smooths out variance.</li>
+        <li><strong class="text-text-secondary">All-time</strong> — Your baseline. Where you started vs where you are.</li>
+      </ul>
+      <p>When last-5 is significantly better than all-time, you're improving. When it's worse, something changed — check conditions, check hazards, check if you're playing a harder course (higher slope sprints).</p>
+      <p>The <strong class="text-text-primary">miss pattern</strong> is arguably more actionable than the handicap itself. "We consistently miss long" means the team over-engineers. "We miss right" means the approach is correct but execution/integration fails. This directly maps to training drills: research sprints for "long" misses, feedback sprints for "right" misses.</p>
+    </div>
+  </details>
+</section>

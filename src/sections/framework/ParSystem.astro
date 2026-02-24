@@ -1,0 +1,67 @@
+---
+import { SLOPE_FACTOR_DETAILS } from '../../data/framework';
+
+const factorLabels: Record<string, string> = {
+  cross_package: 'Cross-package boundary',
+  schema_migration: 'Schema migration',
+  new_area: 'New area',
+  external_dep: 'External dependency',
+  concurrent_agents: 'Concurrent agents',
+};
+---
+
+<!-- Par System -->
+<section class="mb-16">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Par System</h2>
+  <p class="text-text-secondary mb-6">Par is determined by ticket count. It sets the expected difficulty <em>before</em> the sprint begins.</p>
+
+  <div class="grid sm:grid-cols-3 gap-4 mb-6">
+    <div class="rounded-xl border border-emerald/20 bg-emerald/5 p-5 text-center">
+      <div class="font-heading font-extrabold text-3xl text-emerald mb-1">Par 3</div>
+      <div class="text-text-muted text-sm">1-2 tickets</div>
+      <div class="text-text-muted text-xs mt-2">Single package, familiar area</div>
+    </div>
+    <div class="rounded-xl border border-gold/20 bg-gold/5 p-5 text-center">
+      <div class="font-heading font-extrabold text-3xl text-gold mb-1">Par 4</div>
+      <div class="text-text-muted text-sm">3-4 tickets</div>
+      <div class="text-text-muted text-xs mt-2">Multi-package or schema changes</div>
+    </div>
+    <div class="rounded-xl border border-red-500/20 bg-red-500/5 p-5 text-center">
+      <div class="font-heading font-extrabold text-3xl text-red-400 mb-1">Par 5</div>
+      <div class="text-text-muted text-sm">5+ tickets</div>
+      <div class="text-text-muted text-xs mt-2">New infrastructure, cross-cutting</div>
+    </div>
+  </div>
+
+  <!-- Slope factors -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Course Rating / Slope</h3>
+  <p class="text-text-secondary mb-4 text-sm">Par says how many shots. Slope says how hard those shots are. Each factor adds +1.</p>
+  <div class="space-y-2 mb-6">
+    {Object.entries(SLOPE_FACTOR_DETAILS).map(([key, detail]) => (
+      <div class="flex items-center gap-3 p-3 rounded-lg bg-bg-card border border-border-subtle">
+        <span class="w-8 h-8 rounded-md bg-gold/10 flex items-center justify-center shrink-0 text-gold text-sm font-bold">+1</span>
+        <div>
+          <span class="text-text-primary text-sm font-medium">{factorLabels[key] ?? key}</span>
+          <span class="text-text-muted text-sm"> — {detail}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <details class="read-the-green">
+    <summary>
+      <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      <span class="text-emerald text-sm font-medium">Read the Green</span>
+      <span class="text-text-muted text-xs">— How par + slope interact with scoring</span>
+    </summary>
+    <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
+      <p>A Par 4, Slope 3 sprint is meaningfully harder than a Par 4, Slope 0. Both have 3-4 tickets, but the slope factors compound difficulty in ways that ticket count alone doesn't capture.</p>
+      <p>The handicap system accounts for this: <strong class="text-text-primary">handicap = avg(score - par)</strong> over a rolling window. A bogey on a Slope 3 sprint is more forgivable than a bogey on Slope 0. The framework doesn't penalize you for taking on hard work.</p>
+      <p class="p-3 rounded-lg bg-bg-primary border border-border-subtle font-mono text-xs text-text-muted">
+        Example: Sprint 22 — Par 4, Slope 2 (cross-package + new area)<br/>
+        Score: 4 (Par) — clean execution despite the slope factors.<br/>
+        The handicap computation weights slope difficulty appropriately.
+      </p>
+    </div>
+  </details>
+</section>

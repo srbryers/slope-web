@@ -1,0 +1,17 @@
+---
+import { SPECIAL_PLAY_METADATA } from '../../data/framework';
+---
+
+<!-- Special Plays -->
+<section class="mb-16">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Special Plays</h2>
+  <div class="grid sm:grid-cols-2 gap-3">
+    {SPECIAL_PLAY_METADATA.map(({ name, term, meaning, detail }) => (
+      <div class="p-4 rounded-lg bg-bg-card border border-border-subtle">
+        <span class="text-emerald text-sm font-medium" data-term={term}>{name}</span>
+        <span class="text-text-muted text-sm"> — {meaning}</span>
+        <p class="text-text-muted text-xs mt-1 italic">{detail}</p>
+      </div>
+    ))}
+  </div>
+</section>

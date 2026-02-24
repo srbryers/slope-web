@@ -1,0 +1,30 @@
+---
+import { CONDITION_METADATA } from '../../data/framework';
+---
+
+<!-- Conditions -->
+<section class="mb-16">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Conditions</h2>
+  <p class="text-text-secondary mb-6">External factors tracked per sprint. Not controlled by the player — but accounted for in the scorecard.</p>
+
+  <div class="grid sm:grid-cols-2 gap-3 mb-6">
+    {CONDITION_METADATA.map(({ name, term, example }) => (
+      <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+        <span class="text-text-primary text-sm font-medium" data-term={term}>{name}</span>
+        <span class="text-text-muted text-sm"> — {example}</span>
+      </div>
+    ))}
+  </div>
+
+  <details class="read-the-green">
+    <summary>
+      <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      <span class="text-emerald text-sm font-medium">Read the Green</span>
+      <span class="text-text-muted text-xs">— Why conditions aren't excuses</span>
+    </summary>
+    <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
+      <p>Conditions aren't excuses — they're <strong class="text-text-primary">context</strong>. A bogey in wind (context compaction) is different from a bogey on a calm day. The scorecard captures both the score and the conditions, so when you review your handicap trend, you can separate "bad play" from "hard conditions."</p>
+      <p><strong class="text-text-primary">Pin position</strong> is especially useful for AI agents. A ticket with loose acceptance criteria ("make the UI better") is a center pin — easy to land near. A ticket with precise requirements ("the animation must be exactly 200ms with this easing curve") is a tucked pin — requires surgical precision. Knowing the pin position before you swing changes your club selection.</p>
+    </div>
+  </details>
+</section>

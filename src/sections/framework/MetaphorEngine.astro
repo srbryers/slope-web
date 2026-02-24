@@ -1,0 +1,27 @@
+---
+import { golf, tennis, baseball, gaming, dnd, matrix } from '@slope-dev/slope';
+
+const metaphors = [golf, tennis, baseball, gaming, dnd, matrix];
+---
+
+<!-- Metaphor Engine -->
+<section class="mb-16">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Metaphor Engine</h2>
+  <p class="text-text-secondary mb-6">Golf is the default, but SLOPE's scoring engine is metaphor-agnostic. {metaphors.length} built-in metaphors translate the same internal types into different vocabularies.</p>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+    {metaphors.map((m) => (
+      <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+        <div class="font-heading font-bold text-sm text-emerald mb-2">{m.name}</div>
+        <div class="space-y-1 text-xs">
+          <div class="flex justify-between"><span class="text-text-muted">Sprint:</span><span class="text-text-secondary">{m.vocabulary.sprint}</span></div>
+          <div class="flex justify-between"><span class="text-text-muted">Ticket:</span><span class="text-text-secondary">{m.vocabulary.ticket}</span></div>
+          <div class="flex justify-between"><span class="text-text-muted">Perfect:</span><span class="text-text-secondary">{m.vocabulary.perfectScore}</span></div>
+          <div class="flex justify-between"><span class="text-text-muted">Review:</span><span class="text-text-secondary">{m.vocabulary.review}</span></div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <p class="text-text-muted text-sm">Set via <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">slope init --metaphor=gaming</code> or the <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">metaphor</code> field in <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">.slope/config.json</code>. CLI commands accept <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">--metaphor=&lt;id&gt;</code> to override per-command. Plugins can register custom metaphors.</p>
+</section>

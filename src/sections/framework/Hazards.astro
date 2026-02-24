@@ -1,0 +1,87 @@
+---
+import { HAZARD_METADATA } from '../../data/framework';
+---
+
+<!-- Hazards -->
+<section class="mb-16">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Hazards</h2>
+  <p class="text-text-secondary mb-6">Obstacles that add strokes to your score. Each hazard type maps to a specific development problem — and a specific recovery pattern.</p>
+
+  <!-- Hazard Recovery Flow -->
+  <div class="rounded-xl border border-border bg-bg-card p-6 sm:p-8 mb-6 overflow-x-auto">
+    <svg viewBox="0 0 700 280" class="w-full min-w-[550px]" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hazard recovery flows diagram showing paths for clean shots, bunker recovery, water penalty and re-tee, and out-of-bounds recovery">
+      <text x="350" y="20" text-anchor="middle" fill="var(--color-text-muted)" font-size="11" font-family="var(--font-mono)" letter-spacing="2">HAZARD RECOVERY FLOWS</text>
+
+      <!-- Normal shot -->
+      <rect x="20" y="50" width="100" height="40" rx="6" fill="var(--color-bg-surface)" stroke="var(--color-emerald)" stroke-width="1.5" />
+      <text x="70" y="75" text-anchor="middle" fill="var(--color-emerald)" font-size="10" font-family="var(--font-heading)" font-weight="600">Clean Shot</text>
+      <path d="M120,70 L160,70" stroke="var(--color-emerald)" stroke-width="1.5" marker-end="url(#arrow-green)" />
+      <text x="185" y="74" fill="var(--color-emerald)" font-size="9" font-family="var(--font-mono)">Fairway / Green</text>
+
+      <!-- Bunker -->
+      <rect x="20" y="110" width="100" height="40" rx="6" fill="var(--color-bg-surface)" stroke="var(--color-gold)" stroke-width="1.5" />
+      <text x="70" y="135" text-anchor="middle" fill="var(--color-gold)" font-size="10" font-family="var(--font-heading)" font-weight="600">Bunker</text>
+      <path d="M120,130 L160,130" stroke="var(--color-gold)" stroke-width="1" />
+      <rect x="165" y="115" width="140" height="32" rx="4" fill="var(--color-bg-primary)" stroke="var(--color-border-subtle)" stroke-width="1" />
+      <text x="235" y="135" text-anchor="middle" fill="var(--color-text-muted)" font-size="9" font-family="var(--font-mono)">Recovery shot (+1)</text>
+      <path d="M305,130 L340,130" stroke="var(--color-border)" stroke-width="1" marker-end="url(#arrow)" />
+      <text x="365" y="134" fill="var(--color-text-secondary)" font-size="9" font-family="var(--font-mono)">Back in play</text>
+
+      <!-- Water -->
+      <rect x="20" y="170" width="100" height="40" rx="6" fill="var(--color-bg-surface)" stroke="#4488CC" stroke-width="1.5" />
+      <text x="70" y="195" text-anchor="middle" fill="#6699CC" font-size="10" font-family="var(--font-heading)" font-weight="600">Water</text>
+      <path d="M120,190 L160,190" stroke="#4488CC" stroke-width="1" />
+      <rect x="165" y="175" width="140" height="32" rx="4" fill="var(--color-bg-primary)" stroke="var(--color-border-subtle)" stroke-width="1" />
+      <text x="235" y="195" text-anchor="middle" fill="var(--color-text-muted)" font-size="9" font-family="var(--font-mono)">Penalty + re-tee</text>
+      <path d="M305,190 L340,190" stroke="var(--color-border)" stroke-width="1" marker-end="url(#arrow)" />
+      <text x="365" y="194" fill="var(--color-text-secondary)" font-size="9" font-family="var(--font-mono)">Replay from safe point</text>
+
+      <!-- OB -->
+      <rect x="20" y="230" width="100" height="40" rx="6" fill="var(--color-bg-surface)" stroke="#ef4444" stroke-width="1.5" />
+      <text x="70" y="255" text-anchor="middle" fill="#ef4444" font-size="10" font-family="var(--font-heading)" font-weight="600">OB</text>
+      <path d="M120,250 L160,250" stroke="#ef4444" stroke-width="1" />
+      <rect x="165" y="235" width="140" height="32" rx="4" fill="var(--color-bg-primary)" stroke="var(--color-border-subtle)" stroke-width="1" />
+      <text x="235" y="255" text-anchor="middle" fill="var(--color-text-muted)" font-size="9" font-family="var(--font-mono)">Stroke + distance</text>
+      <path d="M305,250 L340,250" stroke="var(--color-border)" stroke-width="1" marker-end="url(#arrow)" />
+      <text x="365" y="254" fill="var(--color-text-secondary)" font-size="9" font-family="var(--font-mono)">Back to original scope</text>
+
+      <!-- Cost summary -->
+      <text x="580" y="75" fill="var(--color-emerald)" font-size="9" font-family="var(--font-mono)">+0 strokes</text>
+      <text x="580" y="135" fill="var(--color-gold)" font-size="9" font-family="var(--font-mono)">+1 stroke</text>
+      <text x="580" y="195" fill="#6699CC" font-size="9" font-family="var(--font-mono)">+1 stroke + rework</text>
+      <text x="580" y="255" fill="#ef4444" font-size="9" font-family="var(--font-mono)">+2 strokes</text>
+
+      <defs>
+        <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--color-emerald)" />
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- Hazard cards -->
+  <div class="space-y-3 mb-6">
+    {HAZARD_METADATA.map(({ name, term, maps, penalty, color, bg, border }) => (
+      <div class={`rounded-lg border ${border} ${bg} p-4`}>
+        <div class="flex items-center gap-2 mb-1">
+          <span class={`font-heading font-bold ${color}`} data-term={term}>{name}</span>
+          <span class="text-text-muted text-xs">/ {maps}</span>
+        </div>
+        <p class="text-text-muted text-sm">{penalty}</p>
+      </div>
+    ))}
+  </div>
+
+  <details class="read-the-green">
+    <summary>
+      <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      <span class="text-emerald text-sm font-medium">Read the Green</span>
+      <span class="text-text-muted text-xs">— From bunker locations to a hazard map</span>
+    </summary>
+    <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
+      <p>The real power isn't in logging individual hazards — it's in the <strong class="text-text-primary">bunker location map</strong> that accumulates over time. After 50 sprints, you know exactly where the bunkers are: "the OAuth module always has nvm sourcing issues," "mobile-orchestrator boundary misses right on integration."</p>
+      <p>This map gets baked into the pre-shot routine. Before starting a ticket, the agent checks: "are there known bunkers in this area?" If yes, it budgets an extra shot and selects a safer club. This is how golf pros play — they don't just swing and hope. They study the course.</p>
+      <p>In SLOPE, this is implemented as <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">common-issues.json</code> — a growing database of gotchas indexed by code area, severity, and recurrence. The pre-round briefing surfaces the top hazards for the sprint's work area automatically.</p>
+    </div>
+  </details>
+</section>
