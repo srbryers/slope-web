@@ -4,52 +4,62 @@
   <p class="text-text-secondary mb-6">Every <span data-term="vocabulary.sprint">sprint</span> produces a <span data-term="vocabulary.scorecard">scorecard</span>. Rolling stats produce a <span data-term="vocabulary.handicap">handicap</span>. The <span data-term="vocabulary.handicap">handicap</span> tells you if the system is improving.</p>
 
   <!-- Scoring flow -->
-  <div class="rounded-xl border border-border bg-bg-card p-6 sm:p-8 mb-6 overflow-x-auto">
-    <svg viewBox="0 0 700 200" class="w-full min-w-[550px]" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scoring computation flow diagram showing shots input to buildScorecard function producing stats and final score calculation">
-      <text x="350" y="20" text-anchor="middle" fill="var(--color-text-muted)" font-size="11" font-family="var(--font-mono)" letter-spacing="2">SCORING COMPUTATION</text>
+  <div class="rounded-xl border border-border bg-bg-card p-6 sm:p-8 mb-6" role="img" aria-label="Scoring computation flow diagram showing shots input to buildScorecard function producing stats and final score calculation">
+    <p class="text-center text-text-muted text-[10px] font-mono uppercase tracking-[0.2em] mb-6">Scoring Computation</p>
 
+    <!-- Flow row -->
+    <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-3 mb-6">
       <!-- Shots input -->
-      <rect x="20" y="50" width="120" height="50" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-border)" stroke-width="1.5" />
-      <text x="80" y="72" text-anchor="middle" fill="var(--color-text-primary)" font-size="10" font-family="var(--font-heading)" font-weight="600">Shots[ ]</text>
-      <text x="80" y="88" text-anchor="middle" fill="var(--color-text-muted)" font-size="8" font-family="var(--font-mono)"><tspan data-term="vocabulary.club">club</tspan>, result, hazards</text>
+      <div class="rounded-lg border-[1.5px] border-border bg-bg-surface px-4 py-3 text-center w-[130px]">
+        <div class="font-heading font-semibold text-xs text-text-primary">Shots[ ]</div>
+        <p class="text-text-muted text-[10px] font-mono mt-1 leading-snug"><span data-term="vocabulary.club">club</span>, result, hazards</p>
+      </div>
 
-      <path d="M140,75 L175,75" stroke="var(--color-border)" stroke-width="1.5" marker-end="url(#arrow)" />
+      <svg width="20" height="12" class="text-border shrink-0" aria-hidden="true"><path d="M0,6 L14,6" stroke="currentColor" stroke-width="1.5"/><path d="M10,2 L16,6 L10,10" fill="currentColor"/></svg>
 
       <!-- buildScorecard() -->
-      <rect x="180" y="45" width="160" height="60" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-emerald)" stroke-width="1.5" />
-      <text x="260" y="70" text-anchor="middle" fill="var(--color-emerald)" font-size="10" font-family="var(--font-mono)" font-weight="600">buildScorecard()</text>
-      <text x="260" y="88" text-anchor="middle" fill="var(--color-text-muted)" font-size="8" font-family="var(--font-mono)">auto-computes stats</text>
+      <div class="rounded-lg border-[1.5px] border-emerald bg-bg-surface px-4 py-3 text-center w-[160px]">
+        <div class="font-mono font-semibold text-xs text-emerald">buildScorecard()</div>
+        <p class="text-text-muted text-[10px] font-mono mt-1">auto-computes stats</p>
+      </div>
 
-      <path d="M340,75 L375,75" stroke="var(--color-border)" stroke-width="1.5" marker-end="url(#arrow)" />
+      <svg width="20" height="12" class="text-border shrink-0" aria-hidden="true"><path d="M0,6 L14,6" stroke="currentColor" stroke-width="1.5"/><path d="M10,2 L16,6 L10,10" fill="currentColor"/></svg>
 
       <!-- Stats output -->
-      <rect x="380" y="40" width="140" height="70" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-border)" stroke-width="1.5" />
-      <text x="450" y="62" text-anchor="middle" fill="var(--color-text-primary)" font-size="10" font-family="var(--font-heading)" font-weight="600">Stats</text>
-      <text x="450" y="78" text-anchor="middle" fill="var(--color-text-muted)" font-size="8" font-family="var(--font-mono)"><tspan data-term="statLabels.fairways">FW</tspan>% | <tspan data-term="statLabels.gir">GIR</tspan>% | <tspan data-term="statLabels.putts">putts</tspan></text>
-      <text x="450" y="92" text-anchor="middle" fill="var(--color-text-muted)" font-size="8" font-family="var(--font-mono)"><tspan data-term="vocabulary.penalty">penalties</tspan> | misses</text>
+      <div class="rounded-lg border-[1.5px] border-border bg-bg-surface px-4 py-3 text-center w-[160px]">
+        <div class="font-heading font-semibold text-xs text-text-primary">Stats</div>
+        <p class="text-text-muted text-[10px] font-mono mt-1 leading-snug"><span data-term="statLabels.fairways">FW</span>% · <span data-term="statLabels.gir">GIR</span>% · <span data-term="statLabels.putts">putts</span></p>
+        <p class="text-text-muted text-[10px] font-mono leading-snug"><span data-term="vocabulary.penalty">penalties</span> · misses</p>
+      </div>
 
-      <path d="M520,75 L555,75" stroke="var(--color-border)" stroke-width="1.5" marker-end="url(#arrow)" />
+      <svg width="20" height="12" class="text-border shrink-0" aria-hidden="true"><path d="M0,6 L14,6" stroke="currentColor" stroke-width="1.5"/><path d="M10,2 L16,6 L10,10" fill="currentColor"/></svg>
 
-      <!-- Score -->
-      <rect x="560" y="50" width="120" height="50" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-gold)" stroke-width="1.5" />
-      <text x="620" y="72" text-anchor="middle" fill="var(--color-gold)" font-size="10" font-family="var(--font-heading)" font-weight="600">Score vs <tspan data-term="vocabulary.par">Par</tspan></text>
-      <text x="620" y="88" text-anchor="middle" fill="var(--color-text-muted)" font-size="8" font-family="var(--font-mono)">score_label</text>
+      <!-- Score vs Par -->
+      <div class="rounded-lg border-[1.5px] border-gold bg-bg-surface px-4 py-3 text-center w-[140px]">
+        <div class="font-heading font-semibold text-xs text-gold">Score vs <span data-term="vocabulary.par">Par</span></div>
+        <p class="text-text-muted text-[10px] font-mono mt-1">score_label</p>
+      </div>
+    </div>
 
-      <!-- Handicap flow (below) -->
-      <path d="M620,100 L620,135" stroke="var(--color-border)" stroke-width="1.5" marker-end="url(#arrow)" />
+    <!-- Down arrow + computeHandicap -->
+    <div class="flex flex-col items-center mb-6">
+      <div class="w-px h-4 bg-border"></div>
+      <svg width="10" height="6" class="text-border shrink-0" aria-hidden="true"><path d="M0,0 L5,6 L10,0" fill="currentColor"/></svg>
+      <div class="mt-2 rounded-lg border-[1.5px] border-emerald bg-bg-surface px-4 py-3 text-center w-[180px]">
+        <div class="font-mono font-semibold text-xs text-emerald">computeHandicap()</div>
+        <p class="text-text-muted text-[10px] font-mono mt-1">last 5 | last 10 | all</p>
+      </div>
+    </div>
 
-      <rect x="530" y="140" width="160" height="50" rx="8" fill="var(--color-bg-surface)" stroke="var(--color-emerald)" stroke-width="1.5" />
-      <text x="610" y="162" text-anchor="middle" fill="var(--color-emerald)" font-size="10" font-family="var(--font-mono)" font-weight="600">computeHandicap()</text>
-      <text x="610" y="178" text-anchor="middle" fill="var(--color-text-muted)" font-size="8" font-family="var(--font-mono)">last 5 | last 10 | all</text>
-
-      <!-- Score labels -->
-      <text x="80" y="140" fill="var(--color-emerald)" font-size="9" font-family="var(--font-mono)" data-term="scoreLabels.eagle">Eagle  -2</text>
-      <text x="80" y="155" fill="var(--color-emerald)" font-size="9" font-family="var(--font-mono)" data-term="scoreLabels.birdie">Birdie -1</text>
-      <text x="80" y="170" fill="var(--color-text-primary)" font-size="9" font-family="var(--font-mono)" data-term="scoreLabels.par">Par     0</text>
-      <text x="80" y="185" fill="var(--color-gold)" font-size="9" font-family="var(--font-mono)" data-term="scoreLabels.bogey">Bogey  +1</text>
-      <text x="220" y="155" fill="var(--color-gold)" font-size="9" font-family="var(--font-mono)" data-term="scoreLabels.double_bogey">Double +2</text>
-      <text x="220" y="170" fill="#ef4444" font-size="9" font-family="var(--font-mono)" data-term="scoreLabels.triple_plus">Triple +3</text>
-    </svg>
+    <!-- Score labels -->
+    <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 max-w-md mx-auto">
+      <div class="text-emerald text-xs font-mono" data-term="scoreLabels.eagle">Eagle  -2</div>
+      <div class="text-emerald text-xs font-mono" data-term="scoreLabels.birdie">Birdie -1</div>
+      <div class="text-text-primary text-xs font-mono" data-term="scoreLabels.par">Par     0</div>
+      <div class="text-gold text-xs font-mono" data-term="scoreLabels.bogey">Bogey  +1</div>
+      <div class="text-gold text-xs font-mono" data-term="scoreLabels.double_bogey">Double +2</div>
+      <div class="text-red-400 text-xs font-mono" data-term="scoreLabels.triple_plus">Triple +3</div>
+    </div>
   </div>
 
   <!-- Handicap table -->
