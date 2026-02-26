@@ -20,6 +20,9 @@ export const CLI_COMMANDS: CliCommand[] = [
   // Scoring
   { cmd: 'validate', desc: 'Validate scorecard JSON', category: 'scoring' },
   { cmd: 'review', desc: 'Generate sprint review markdown', category: 'scoring' },
+  { cmd: 'review recommend', desc: 'Recommend review types for current sprint', category: 'scoring' },
+  { cmd: 'review findings', desc: 'Track review findings (add/list/clear)', category: 'scoring' },
+  { cmd: 'review amend', desc: 'Apply review findings as hazards to scorecard', category: 'scoring' },
   { cmd: 'card', desc: 'Compute handicap card', category: 'scoring' },
   { cmd: 'auto-card', desc: 'Build scorecards from git history', category: 'scoring' },
   { cmd: 'standup', desc: 'Generate standup from session data', category: 'scoring' },
@@ -279,6 +282,7 @@ export const CHEAT_SHEET: CheatSheetCategory[] = [
       { term: 'briefing', meaning: 'Pre-sprint briefing with hazard index' },
       { term: 'card', meaning: 'Compute handicap card' },
       { term: 'review', meaning: 'Generate sprint review markdown' },
+      { term: 'review amend', meaning: 'Apply review findings as hazards' },
       { term: 'validate', meaning: 'Validate scorecard JSON' },
       { term: 'map', meaning: 'Generate/update codebase map' },
     ],
