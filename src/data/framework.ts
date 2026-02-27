@@ -1,52 +1,9 @@
-// Framework reference data — content not exported by @slope-dev/slope
+// Framework reference data — CLI commands sourced from @slope-dev/slope registry
+import { CLI_COMMAND_REGISTRY } from '@slope-dev/slope';
+import type { CliCommandMeta } from '@slope-dev/slope';
 
-export interface CliCommand {
-  cmd: string;
-  desc: string;
-  category: 'lifecycle' | 'scoring' | 'analysis' | 'tooling' | 'planning';
-}
-
-export const CLI_COMMANDS: CliCommand[] = [
-  // Lifecycle
-  { cmd: 'init', desc: 'Initialize SLOPE in a project', category: 'lifecycle' },
-  { cmd: 'briefing', desc: 'Pre-round briefing with hazard index', category: 'lifecycle' },
-  { cmd: 'plan', desc: 'Create sprint plan from backlog', category: 'lifecycle' },
-  { cmd: 'session', desc: 'Start/resume a scoring session', category: 'lifecycle' },
-  { cmd: 'claim', desc: 'Claim a ticket for execution', category: 'lifecycle' },
-  { cmd: 'next', desc: 'Get next recommended ticket', category: 'lifecycle' },
-  { cmd: 'classify', desc: 'Classify shot from CI/PR signals', category: 'lifecycle' },
-  { cmd: 'status', desc: 'Show current sprint status', category: 'lifecycle' },
-
-  // Scoring
-  { cmd: 'validate', desc: 'Validate scorecard JSON', category: 'scoring' },
-  { cmd: 'review', desc: 'Generate sprint review markdown', category: 'scoring' },
-  { cmd: 'review recommend', desc: 'Recommend review types for current sprint', category: 'scoring' },
-  { cmd: 'review findings', desc: 'Track review findings (add/list/clear)', category: 'scoring' },
-  { cmd: 'review amend', desc: 'Apply review findings as hazards to scorecard', category: 'scoring' },
-  { cmd: 'card', desc: 'Compute handicap card', category: 'scoring' },
-  { cmd: 'auto-card', desc: 'Build scorecards from git history', category: 'scoring' },
-  { cmd: 'standup', desc: 'Generate standup from session data', category: 'scoring' },
-
-  // Analysis
-  { cmd: 'report', desc: 'Generate HTML performance report', category: 'analysis' },
-  { cmd: 'dashboard', desc: 'Interactive HTML dashboard', category: 'analysis' },
-  { cmd: 'tournament', desc: 'Multi-sprint tournament review', category: 'analysis' },
-  { cmd: 'extract', desc: 'Extract events from sessions', category: 'analysis' },
-  { cmd: 'distill', desc: 'Distill common issues from sprints', category: 'analysis' },
-  { cmd: 'escalate', desc: 'Detect escalation triggers', category: 'analysis' },
-
-  // Tooling
-  { cmd: 'guard', desc: 'Manage guard framework', category: 'tooling' },
-  { cmd: 'hook', desc: 'Install/remove hook integrations', category: 'tooling' },
-  { cmd: 'map', desc: 'Generate/update codebase map', category: 'tooling' },
-  { cmd: 'plugin', desc: 'Manage plugins', category: 'tooling' },
-  { cmd: 'release', desc: 'Automate package releases', category: 'tooling' },
-  { cmd: 'review-state', desc: 'Manage plan review state', category: 'tooling' },
-
-  // Planning
-  { cmd: 'roadmap', desc: 'Validate and review roadmaps', category: 'planning' },
-  { cmd: 'flows', desc: 'Manage user-facing flow definitions', category: 'planning' },
-];
+export type CliCommand = CliCommandMeta;
+export const CLI_COMMANDS: readonly CliCommand[] = CLI_COMMAND_REGISTRY;
 
 export const CLI_CATEGORIES: Record<CliCommand['category'], string> = {
   lifecycle: 'Sprint Lifecycle',
