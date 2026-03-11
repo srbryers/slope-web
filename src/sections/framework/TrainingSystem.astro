@@ -1,8 +1,9 @@
 ---
-import { TRAINING_TYPE_MAP, NUTRITION_CHECKLIST, golf } from '@slope-dev/slope';
+import { TRAINING_TYPE_MAP, NUTRITION_CHECKLIST, getMetaphor } from '../../data/manifest';
 
-const trainingTypes = golf.trainingTypes as Record<string, string>;
-const nutritionTerms = golf.nutrition as Record<string, string>;
+const golf = getMetaphor('golf')!;
+const trainingTypes = (golf.trainingTypes ?? {}) as Record<string, string>;
+const nutritionTerms = (golf.nutrition ?? {}) as Record<string, string>;
 ---
 
 <!-- Training System -->
