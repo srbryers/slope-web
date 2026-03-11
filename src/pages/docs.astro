@@ -23,6 +23,7 @@ import ReportsDashboard from '../sections/framework/ReportsDashboard.astro';
 import CliCommands from '../sections/framework/CliCommands.astro';
 import GuardFramework from '../sections/framework/GuardFramework.astro';
 import MetaphorEngine from '../sections/framework/MetaphorEngine.astro';
+import McpTools from '../sections/framework/McpTools.astro';
 import PluginSystem from '../sections/framework/PluginSystem.astro';
 import TeamMultiAgent from '../sections/framework/TeamMultiAgent.astro';
 import EscalationSystem from '../sections/framework/EscalationSystem.astro';
@@ -89,6 +90,7 @@ const sidebarGroups = [
     links: [
       { id: 'cli-commands', name: 'CLI Commands' },
       { id: 'guard-framework', name: 'Guard Framework' },
+      { id: 'mcp-tools', name: 'MCP Tools' },
       { id: 'metaphor-engine', name: 'Metaphor Engine' },
       { id: 'plugin-system', name: 'Plugin System' },
     ],
@@ -218,6 +220,7 @@ const sidebarGroups = [
         <!-- Sections: Tooling -->
         <CliCommands />
         <GuardFramework />
+        <McpTools />
         <MetaphorEngine />
         <PluginSystem />
 

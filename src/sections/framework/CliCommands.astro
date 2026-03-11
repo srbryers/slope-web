@@ -1,18 +1,98 @@
 ---
-import { CLI_COMMANDS } from '../../data/framework';
+import { CLI_COMMANDS, CLI_CATEGORIES, commandsByCategory } from '../../data/manifest';
+
+const grouped = commandsByCategory();
+const categories = Object.keys(CLI_CATEGORIES);
+const commandsWithSubs = CLI_COMMANDS.filter((c: any) => c.subcommands);
 ---
 
 <!-- CLI Commands -->
 <section id="cli-commands" class="mb-16 scroll-mt-20">
   <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">CLI Commands</h2>
-  <p class="text-text-secondary mb-6">{CLI_COMMANDS.length} commands covering the full sprint lifecycle — from init to tournament review.</p>
+  <p class="text-text-secondary mb-6">{CLI_COMMANDS.length} commands across {categories.length} categories — {commandsWithSubs.length} with subcommands.</p>
 
-  <div class="grid sm:grid-cols-2 gap-2 mb-6">
-    {CLI_COMMANDS.map(({ cmd, desc }) => (
-      <div class="flex items-center gap-3 p-2.5 rounded-lg bg-bg-card border border-border-subtle">
-        <code class="text-emerald text-xs font-mono shrink-0">slope {cmd}</code>
-        <span class="text-text-muted text-xs">{desc}</span>
+  {categories.map((cat) => {
+    const cmds = grouped[cat];
+    if (!cmds) return null;
+    return (
+      <div class="mb-8">
+        <h3 class="text-xs font-mono uppercase tracking-wider text-text-muted mb-3">{CLI_CATEGORIES[cat]}</h3>
+        <div class="space-y-2">
+          {cmds.map((cmd: any) => (
+            <details class="group rounded-lg border border-border-subtle bg-bg-card overflow-hidden">
+              <summary class="flex items-center gap-3 p-3 cursor-pointer hover:bg-bg-surface/50 transition-colors list-none [&::-webkit-details-marker]:hidden">
+                <svg class="w-3.5 h-3.5 text-text-muted transition-transform group-open:rotate-90 shrink-0" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <code class="text-emerald text-xs font-mono shrink-0">slope {cmd.cmd}</code>
+                <span class="text-text-muted text-xs">{cmd.desc}</span>
+                {cmd.subcommands && (
+                  <span class="ml-auto text-[10px] text-text-muted bg-bg-surface px-1.5 py-0.5 rounded-full shrink-0">
+                    {cmd.subcommands.length} sub
+                  </span>
+                )}
+              </summary>
+              <div class="px-3 pb-3 pt-1 border-t border-border-subtle/50">
+                {/* Top-level flags */}
+                {cmd.flags && cmd.flags.length > 0 && !cmd.subcommands && (
+                  <div class="mt-2">
+                    <p class="text-[10px] uppercase tracking-wider text-text-muted mb-1.5">Flags</p>
+                    <div class="space-y-1">
+                      {cmd.flags.map((f: any) => (
+                        <div class="flex items-start gap-2 text-xs">
+                          <code class="text-amber-400 font-mono text-[11px] shrink-0">{f.flag}</code>
+                          <span class="text-text-muted">{f.desc}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {/* Shared flags for commands that also have subcommands */}
+                {cmd.flags && cmd.flags.length > 0 && cmd.subcommands && (
+                  <div class="mt-2 mb-3">
+                    <p class="text-[10px] uppercase tracking-wider text-text-muted mb-1.5">Global Flags</p>
+                    <div class="space-y-1">
+                      {cmd.flags.map((f: any) => (
+                        <div class="flex items-start gap-2 text-xs">
+                          <code class="text-amber-400 font-mono text-[11px] shrink-0">{f.flag}</code>
+                          <span class="text-text-muted">{f.desc}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {/* Subcommands */}
+                {cmd.subcommands && (
+                  <div class="mt-2 space-y-2">
+                    {cmd.subcommands.map((sub: any) => (
+                      <div class="rounded bg-bg-surface/50 p-2">
+                        <div class="flex items-start gap-2 mb-1">
+                          <code class="text-emerald font-mono text-[11px] shrink-0">slope {cmd.cmd} {sub.name}</code>
+                          <span class="text-text-muted text-xs">{sub.desc}</span>
+                        </div>
+                        {sub.flags && sub.flags.length > 0 && (
+                          <div class="ml-4 mt-1 space-y-0.5">
+                            {sub.flags.map((f: any) => (
+                              <div class="flex items-start gap-2 text-[11px]">
+                                <code class="text-amber-400/80 font-mono shrink-0">{f.flag}</code>
+                                <span class="text-text-muted">{f.desc}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {/* No flags, no subcommands */}
+                {!cmd.flags && !cmd.subcommands && (
+                  <p class="text-text-muted text-xs mt-1">No additional options.</p>
+                )}
+              </div>
+            </details>
+          ))}
+        </div>
       </div>
-    ))}
-  </div>
+    );
+  })}
 </section>

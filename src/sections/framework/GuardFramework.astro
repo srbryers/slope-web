@@ -1,11 +1,11 @@
 ---
-import { GUARD_DEFINITIONS } from '@slope-dev/slope';
+import { GUARDS } from '../../data/manifest';
 ---
 
 <!-- Guard Framework -->
 <section id="guard-framework" class="mb-16 scroll-mt-20">
   <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Guard Framework</h2>
-  <p class="text-text-secondary mb-6">{GUARD_DEFINITIONS.length} built-in guards that enforce discipline automatically via Claude Code hooks. Guards fire on tool use events and provide real-time warnings.</p>
+  <p class="text-text-secondary mb-6">{GUARDS.length} built-in guards that enforce discipline automatically via Claude Code hooks. Guards fire on tool use events and provide real-time warnings.</p>
 
   <div class="rounded-xl border border-border bg-bg-card overflow-hidden mb-6">
     <table class="w-full text-sm">
@@ -13,14 +13,16 @@ import { GUARD_DEFINITIONS } from '@slope-dev/slope';
         <tr class="border-b border-border bg-bg-surface/50">
           <th class="text-left px-5 py-3 text-text-muted text-xs uppercase tracking-wider font-medium">Guard</th>
           <th class="text-left px-5 py-3 text-text-muted text-xs uppercase tracking-wider font-medium">Trigger</th>
+          <th class="text-left px-5 py-3 text-text-muted text-xs uppercase tracking-wider font-medium hidden sm:table-cell">Matches</th>
           <th class="text-left px-5 py-3 text-text-muted text-xs uppercase tracking-wider font-medium">Purpose</th>
         </tr>
       </thead>
       <tbody class="divide-y divide-border-subtle">
-        {GUARD_DEFINITIONS.map((guard) => (
+        {GUARDS.map((guard: any) => (
           <tr>
             <td class="px-5 py-3 text-emerald font-mono text-xs">{guard.name}</td>
             <td class="px-5 py-3 text-text-muted text-xs">{guard.hookEvent}</td>
+            <td class="px-5 py-3 text-amber-400/80 font-mono text-[11px] hidden sm:table-cell">{guard.matcher || '—'}</td>
             <td class="px-5 py-3 text-text-secondary text-xs">{guard.description}</td>
           </tr>
         ))}
@@ -28,5 +30,5 @@ import { GUARD_DEFINITIONS } from '@slope-dev/slope';
     </table>
   </div>
 
-  <p class="text-text-muted text-sm">Guards are installed via <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">slope hook install</code> and can be extended with custom guards through the plugin system.</p>
+  <p class="text-text-muted text-sm">Guards are installed via <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs">slope hook add --level=full</code> and can be extended with custom guards through the plugin system.</p>
 </section>
