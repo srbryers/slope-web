@@ -1,11 +1,10 @@
 ---
-import { golf } from '@slope-dev/slope';
+import { getMetaphor } from '../../data/manifest';
 import { SPRINT_TYPE_METADATA } from '../../data/framework';
 
+const golf = getMetaphor('golf')!;
 const sprintTypes: Record<string, string> = {
-  ...(golf.sprintTypes as Record<string, string>),
-  // Fallback until published package includes audit
-  audit: (golf.sprintTypes as Record<string, string>).audit ?? 'Course Review',
+  ...(golf.sprintTypes ?? {}),
 };
 ---
 

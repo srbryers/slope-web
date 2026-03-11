@@ -50,17 +50,30 @@ export interface ManifestMetaphor {
   name: string;
   description: string;
   vocabulary: Record<string, string>;
+  clubs?: Record<string, string>;
+  shotResults?: Record<string, string>;
+  hazards?: Record<string, string>;
+  conditions?: Record<string, string>;
+  specialPlays?: Record<string, string>;
+  missDirections?: Record<string, string>;
+  scoreLabels?: Record<string, string>;
+  sprintTypes?: Record<string, string>;
+  trainingTypes?: Record<string, string>;
+  nutrition?: Record<string, string>;
 }
 
 export interface ManifestRole {
   id: string;
   name: string;
   description: string;
+  focusAreas: string[];
+  clubPreferences?: Record<string, string>;
+  briefingFilter?: { emphasize: string[]; deemphasize: string[] };
 }
 
 // ── Typed manifest ───────────────────────────────────────────────
 
-const manifest = manifestJson as {
+const manifest = (manifestJson as unknown) as {
   version: string;
   generatedAt: string;
   gitSha: string;
@@ -83,6 +96,28 @@ export const METAPHORS: ManifestMetaphor[] = manifest.metaphors;
 export const ROLES: ManifestRole[] = manifest.roles;
 export const CONSTANTS = manifest.constants;
 export const CHANGELOG = manifest.changelog;
+
+// ── Training & Nutrition constants (inlined from core) ───────
+
+export const TRAINING_TYPE_MAP: Record<string, string> = {
+  research: 'driving_range',
+  feedback: 'chipping_practice',
+  'test-coverage': 'putting_practice',
+};
+
+export const NUTRITION_CHECKLIST: string[] = [
+  'hydration',
+  'diet',
+  'recovery',
+  'supplements',
+  'stretching',
+];
+
+// ── Helpers ──────────────────────────────────────────────────
+
+export function getMetaphor(id: string): ManifestMetaphor | undefined {
+  return METAPHORS.find((m) => m.id === id);
+}
 
 // Category labels for CLI command grouping
 export const CLI_CATEGORIES: Record<string, string> = {

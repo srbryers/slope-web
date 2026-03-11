@@ -1,7 +1,8 @@
 ---
-import { generalist, backend, frontend, architect, devops } from '@slope-dev/slope';
+import { ROLES } from '../../data/manifest';
 
-const roles = [generalist, backend, frontend, architect, devops];
+const roleIds = ['generalist', 'backend', 'frontend', 'architect', 'devops'];
+const roles = roleIds.map(id => ROLES.find(r => r.id === id)).filter(Boolean);
 ---
 
 <!-- Team & Multi-Agent -->
