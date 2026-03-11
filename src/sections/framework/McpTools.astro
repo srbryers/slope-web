@@ -1,22 +1,23 @@
 ---
 import { MCP_TOOLS } from '../../data/manifest';
+import type { ManifestTool, ManifestToolParam } from '../../data/manifest';
 
-const coreTool = MCP_TOOLS.filter((t: any) => !t.requiresStore);
-const storeTool = MCP_TOOLS.filter((t: any) => t.requiresStore);
+const coreTools = MCP_TOOLS.filter((t) => !t.requiresStore);
+const storeTools = MCP_TOOLS.filter((t) => t.requiresStore);
 ---
 
 <!-- MCP Tools -->
 <section id="mcp-tools" class="mb-16 scroll-mt-20">
   <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">MCP Tools</h2>
-  <p class="text-text-secondary mb-6">{MCP_TOOLS.length} tools available via the SLOPE MCP server — {coreTool.length} core tools (no store required) and {storeTool.length} store-backed tools for session and claim management.</p>
+  <p class="text-text-secondary mb-6">{MCP_TOOLS.length} tools available via the SLOPE MCP server — {coreTools.length} core tools (no store required) and {storeTools.length} store-backed tools for session and claim management.</p>
 
   <!-- Core tools -->
   <h3 class="text-xs font-mono uppercase tracking-wider text-text-muted mb-3">Core</h3>
   <div class="space-y-2 mb-8">
-    {coreTool.map((tool: any) => (
+    {coreTools.map((tool: ManifestTool) => (
       <details class="group rounded-lg border border-border-subtle bg-bg-card overflow-hidden">
         <summary class="flex items-center gap-3 p-3 cursor-pointer hover:bg-bg-surface/50 transition-colors list-none [&::-webkit-details-marker]:hidden">
-          <svg class="w-3.5 h-3.5 text-text-muted transition-transform group-open:rotate-90 shrink-0" viewBox="0 0 24 24" fill="none">
+          <svg class="w-3.5 h-3.5 text-text-muted transition-transform group-open:rotate-90 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
           <code class="text-emerald text-xs font-mono shrink-0">{tool.name}</code>
@@ -27,7 +28,7 @@ const storeTool = MCP_TOOLS.filter((t: any) => t.requiresStore);
             <div class="mt-2">
               <p class="text-[10px] uppercase tracking-wider text-text-muted mb-1.5">Parameters</p>
               <div class="space-y-1">
-                {tool.params.map((p: any) => (
+                {tool.params.map((p: ManifestToolParam) => (
                   <div class="flex items-start gap-2 text-xs">
                     <code class="text-amber-400 font-mono text-[11px] shrink-0">
                       {p.name}{p.required ? '' : '?'}
@@ -49,10 +50,10 @@ const storeTool = MCP_TOOLS.filter((t: any) => t.requiresStore);
   <!-- Store-backed tools -->
   <h3 class="text-xs font-mono uppercase tracking-wider text-text-muted mb-3">Store-Backed</h3>
   <div class="space-y-2 mb-6">
-    {storeTool.map((tool: any) => (
+    {storeTools.map((tool: ManifestTool) => (
       <details class="group rounded-lg border border-border-subtle bg-bg-card overflow-hidden">
         <summary class="flex items-center gap-3 p-3 cursor-pointer hover:bg-bg-surface/50 transition-colors list-none [&::-webkit-details-marker]:hidden">
-          <svg class="w-3.5 h-3.5 text-text-muted transition-transform group-open:rotate-90 shrink-0" viewBox="0 0 24 24" fill="none">
+          <svg class="w-3.5 h-3.5 text-text-muted transition-transform group-open:rotate-90 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
           <code class="text-emerald text-xs font-mono shrink-0">{tool.name}</code>
@@ -64,7 +65,7 @@ const storeTool = MCP_TOOLS.filter((t: any) => t.requiresStore);
             <div class="mt-2">
               <p class="text-[10px] uppercase tracking-wider text-text-muted mb-1.5">Parameters</p>
               <div class="space-y-1">
-                {tool.params.map((p: any) => (
+                {tool.params.map((p: ManifestToolParam) => (
                   <div class="flex items-start gap-2 text-xs">
                     <code class="text-amber-400 font-mono text-[11px] shrink-0">
                       {p.name}{p.required ? '' : '?'}

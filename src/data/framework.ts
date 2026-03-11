@@ -1,17 +1,5 @@
-// Framework reference data — CLI commands sourced from @slope-dev/slope registry
-import { CLI_COMMAND_REGISTRY } from '@slope-dev/slope';
-import type { CliCommandMeta } from '@slope-dev/slope';
-
-export type CliCommand = CliCommandMeta;
-export const CLI_COMMANDS: readonly CliCommand[] = CLI_COMMAND_REGISTRY;
-
-export const CLI_CATEGORIES: Record<CliCommand['category'], string> = {
-  lifecycle: 'Sprint Lifecycle',
-  scoring: 'Scoring & Review',
-  analysis: 'Analysis & Reporting',
-  tooling: 'Tooling & Config',
-  planning: 'Planning & Roadmap',
-};
+// Framework reference data — static display metadata for docs sections.
+// CLI commands, guards, MCP tools, and metaphors have moved to manifest.ts.
 
 export interface StructureRow {
   golf: string;

@@ -1,5 +1,6 @@
 ---
 import { METAPHORS } from '../../data/manifest';
+import type { ManifestMetaphor } from '../../data/manifest';
 
 const descriptions: Record<string, string> = {
   golf: 'You vs the course',
@@ -20,7 +21,7 @@ const descriptions: Record<string, string> = {
   <!-- Inline metaphor switcher -->
   <p class="text-text-muted text-sm mb-4">Try switching — all <span class="text-emerald font-medium">highlighted terms</span> across this page will update.</p>
   <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mb-8">
-    {METAPHORS.map((m: any) => (
+    {METAPHORS.map((m: ManifestMetaphor) => (
       <button
         data-inline-metaphor={m.id}
         class:list={[
@@ -37,7 +38,7 @@ const descriptions: Record<string, string> = {
   </div>
 
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-    {METAPHORS.map((m: any) => (
+    {METAPHORS.map((m: ManifestMetaphor) => (
       <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
         <div class="font-heading font-bold text-sm text-emerald mb-2">{m.name}</div>
         <div class="space-y-1 text-xs">
