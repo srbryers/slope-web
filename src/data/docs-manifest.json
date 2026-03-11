@@ -1,15 +1,15 @@
 {
   "version": "1.24.0",
-  "generatedAt": "2026-03-11T09:49:15.623Z",
-  "gitSha": "0e17477ab916311a273b9b3afc9603a08551827a",
+  "generatedAt": "2026-03-11T11:52:27.977Z",
+  "gitSha": "4a713decfa43f0897526818e75622d303afa6678",
   "checksums": {
     "commands": "e09c3e47d04bd2fe37363c09affdc53c040839d9f3abd0983c8bda0d89716b08",
     "guards": "b9e75c0369a7a4234b2254d38c86536a86ebf15294ac769ab7b0cf4e600f8f89",
-    "mcpTools": "004d90c55c8b53e9f653c15cff0da944e09fed715e308987ebb7ea6c91d2467f",
+    "mcpTools": "0ffb466d1c98f542e4a954dd07eae2746d740e76ea30a8715cc9f0d54d8fdbe0",
     "metaphors": "fbf85ac929a8738df5d6e26262029e4a1a1495eac6acd3c0316073f3bf1795f0",
     "roles": "ad096c5377dd772f8d1ecc7f4868196bf1045cd606b97eda368da4e6bd9dd102",
     "constants": "107d1a94e19454050bf16f8e246678fcb6b93044186a71b8acf6481c14a92569",
-    "changelog": "4749c5ebb3c4bc927826fac666e55b202d7eeed8e4bbbd2fd6189d2873e2d4f5"
+    "changelog": "8a81e2a0228e942375148def2dc1a8c92f85d50a2ea1e230badb0728b484d903"
   },
   "commands": [
     {
@@ -1648,7 +1648,7 @@
       "name": "testing_plan_status",
       "desc": "Show test plan coverage summary: tested, untested, stale, and issue counts per section",
       "params": [],
-      "requiresStore": true
+      "requiresStore": false
     }
   ],
   "metaphors": [
@@ -2544,6 +2544,30 @@
     "status": "success",
     "entries": [
       {
+        "version": "Unreleased",
+        "date": "2026-03-11",
+        "changes": [
+          {
+            "type": "fix",
+            "description": "remove string concatenation from workflow expression (#132)",
+            "breaking": false,
+            "hash": "4a713decfa43f0897526818e75622d303afa6678"
+          }
+        ]
+      },
+      {
+        "version": "v1.25.0",
+        "date": "2026-03-11",
+        "changes": [
+          {
+            "type": "feat",
+            "description": "docs manifest sync pipeline (#129)",
+            "breaking": false,
+            "hash": "faceaf93e8111530fe2d78979cea1e8a890ee7fb"
+          }
+        ]
+      },
+      {
         "version": "v1.24.0",
         "date": "2026-03-10",
         "changes": [
@@ -2564,7 +2588,13 @@
             "description": "add test plan parsing and testing_plan_status MCP tool",
             "breaking": false,
             "hash": "3b05b14a7502f4c856df996e8fedcedba7d89273"
-          },
+          }
+        ]
+      },
+      {
+        "version": "v1.23.0",
+        "date": "2026-03-07",
+        "changes": [
           {
             "type": "feat",
             "description": "testing session flow via MCP tools (#127)",
@@ -2951,556 +2981,6 @@
             "description": "add slope docs command for documentation manifest generation (#78)",
             "breaking": false,
             "hash": "1476f4d03fd40054ad03caed922e421f89874628"
-          }
-        ]
-      },
-      {
-        "version": "v1.15.0",
-        "date": "2026-03-02",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to v1.15.0 (#77)",
-            "breaking": false,
-            "hash": "423ce4ac6417dbb7d5eecba4c95ee8b5df8f3579"
-          },
-          {
-            "type": "fix",
-            "scope": "slope-loop",
-            "description": "blocking typecheck + tests with auto-revert (#76)",
-            "breaking": false,
-            "hash": "637ea5f334d44e51ad0b9b43fd23d50d1db42fb2"
-          },
-          {
-            "type": "fix",
-            "scope": "slope-loop",
-            "description": "disable auto-test for local models (#75)",
-            "breaking": false,
-            "hash": "8b0ed7f793a4acee5af39c04a93435d2ca146123"
-          },
-          {
-            "type": "fix",
-            "scope": "slope-loop",
-            "description": "optimize local model prefill + reduce context budget (#74)",
-            "breaking": false,
-            "hash": "7f2ef9c86de691be091cb40495dfee00ba49542f"
-          },
-          {
-            "type": "fix",
-            "scope": "slope-loop",
-            "description": "suppress Aider OLLAMA_API_BASE warning and browser popup (#73)",
-            "breaking": false,
-            "hash": "14fe742d75449b688b57c6eaf8967a72f6152ec4"
-          },
-          {
-            "type": "fix",
-            "scope": "guard",
-            "description": "use pgrep in stop-check to avoid false positives during loop (#72)",
-            "breaking": false,
-            "hash": "ffdb34c14786465978f8e1411518e87ddb6de026"
-          },
-          {
-            "type": "chore",
-            "scope": "slope-loop",
-            "description": "upgrade local model to Qwen3-Coder-Next + fix stop-check guard (#71)",
-            "breaking": false,
-            "hash": "5d97c13c73cfb1ce33b5a72761e5bf2067921133"
-          },
-          {
-            "type": "feat",
-            "scope": "S-LOCAL-054",
-            "description": "Harden top hotspot modules (#70)",
-            "breaking": false,
-            "hash": "3ee430160c230559328af7afaf799ddac5f1c851"
-          },
-          {
-            "type": "feat",
-            "scope": "S-LOCAL-053",
-            "description": "Harden top hotspot modules (#69)",
-            "breaking": false,
-            "hash": "247018a24abdb8a171ef7e24ac0b092b30b6d01e"
-          },
-          {
-            "type": "chore",
-            "scope": "slope-loop",
-            "description": "upgrade local model to Qwen3-Coder 30B + add sprint artifacts (#68)",
-            "breaking": false,
-            "hash": "93872b57a129ff6ef9043e139bf24d2e3ec545ff"
-          },
-          {
-            "type": "feat",
-            "scope": "S-LOCAL-052",
-            "description": "Harden top hotspot modules (#67)",
-            "breaking": false,
-            "hash": "62e53d6d0e1c48da7bc108edf2b957f2cd619f47"
-          },
-          {
-            "type": "other",
-            "description": "S-LOCAL-051-1: Harden continuous.sh and parallel.sh against known hazards (#66)",
-            "breaking": false,
-            "hash": "f39b085fea24ff65d03ae41d63599b24ee34bc34"
-          },
-          {
-            "type": "feat",
-            "scope": "S-LOCAL-050",
-            "description": "Harden top hotspot modules (#65)",
-            "breaking": false,
-            "hash": "5fa0f92bb1cb1d1b9d020cb9f15c5248c816054b"
-          },
-          {
-            "type": "chore",
-            "scope": "slope-loop",
-            "description": "default API model to Claude Haiku 4.5 (#64)",
-            "breaking": false,
-            "hash": "56b06959e9b4817da653479c962211537af17931"
-          },
-          {
-            "type": "other",
-            "description": "S-LOCAL-049-1: Harden continuous.sh and parallel.sh against known hazards (#63)",
-            "breaking": false,
-            "hash": "0d7338cee582f165a16f7f1a2cf21ca0177896a8"
-          },
-          {
-            "type": "fix",
-            "description": "S-LOCAL-048-1: Improve sprint event retrieval and mock store completeness (#61)",
-            "breaking": false,
-            "hash": "c7ffe95c46b3e8e70af3d6ce6ccddfb226a2c2d1"
-          },
-          {
-            "type": "fix",
-            "scope": "slope-loop",
-            "description": "use numeric sprint number for auto-card + review findings (#60)",
-            "breaking": false,
-            "hash": "cb6f9688fb899974eb40d09ceda1c7ed6e2003f5"
-          },
-          {
-            "type": "fix",
-            "description": "S-LOCAL-047-1: Harden continuous.sh and parallel.sh preflight checks (#59)",
-            "breaking": false,
-            "hash": "d80a50ef032fd99804a145dca67beb77d3fcc1e5"
-          },
-          {
-            "type": "feat",
-            "scope": "slope-loop",
-            "description": "post-PR structural review + auto-merge (#58)",
-            "breaking": false,
-            "hash": "a2a6fbc029299d1f38c2943d794a2fb46a817c75"
-          },
-          {
-            "type": "feat",
-            "scope": "slope-loop",
-            "description": "ticket validation gate + auto PR creation (#57)",
-            "breaking": false,
-            "hash": "c66d072d47b4e2f12174a34fb15370bd41552658"
-          },
-          {
-            "type": "fix",
-            "scope": "slope-loop",
-            "description": "harden hotspot modules (S-LOCAL-047) (#56)",
-            "breaking": false,
-            "hash": "7b4159582f77f856d46272995b156a548025e35c"
-          },
-          {
-            "type": "fix",
-            "scope": "slope-loop",
-            "description": "push after each ticket for recovery point (#55)",
-            "breaking": false,
-            "hash": "b9011abca9b11b0f5ccc3018d3fcf18c351b61db"
-          },
-          {
-            "type": "feat",
-            "scope": "slope-loop",
-            "description": "no-op detection + ambiguous basename filtering (#54)",
-            "breaking": false,
-            "hash": "bec71a6f950c99f30be19e5e75a1c77864275a76"
-          },
-          {
-            "type": "test",
-            "scope": "slope-loop",
-            "description": "add unit tests for extractFileRefs (#53)",
-            "breaking": false,
-            "hash": "769856a611151c56e693d7612336e932450a8b03"
-          },
-          {
-            "type": "feat",
-            "scope": "slope-loop",
-            "description": "improve backlog generator for autonomous execution (#52)",
-            "breaking": false,
-            "hash": "2d5ce09d48a89df4a9ffabf67ec845fed14149cb"
-          },
-          {
-            "type": "docs",
-            "scope": "retro",
-            "description": "add S49 scorecard + codebase map for S-LOCAL-040 (#51)",
-            "breaking": false,
-            "hash": "064b38b530acba8455056b9d8c65294162581d48"
-          },
-          {
-            "type": "feat",
-            "scope": "hardening",
-            "description": "S-LOCAL-040 harden hotspot modules (#50)",
-            "breaking": false,
-            "hash": "6f93a406e155e313dffc1054acf7892dd3f6401f"
-          },
-          {
-            "type": "chore",
-            "scope": "slope-loop",
-            "description": "switch MODEL_API to claude-sonnet-4 (#49)",
-            "breaking": false,
-            "hash": "c91d7397cdfa31e27cfeb7d8b37d443215d04f3c"
-          },
-          {
-            "type": "fix",
-            "scope": "slope-loop",
-            "description": "portable timeout command for macOS (#48)",
-            "breaking": false,
-            "hash": "9e41f131331bd164de7af5f091e66c6498be9928"
-          },
-          {
-            "type": "chore",
-            "scope": "s48",
-            "description": "update codebase map (#47)",
-            "breaking": false,
-            "hash": "be238ed1b1bc15d373113ae3fd4d9a7309311cc4"
-          },
-          {
-            "type": "docs",
-            "scope": "retro",
-            "description": "add S48 pipeline calibration scorecard (#46)",
-            "breaking": false,
-            "hash": "2c091113ba86d0af04ba39fc8d3bf5271e56cf9b"
-          },
-          {
-            "type": "fix",
-            "scope": "embedding",
-            "description": "S48 pipeline calibration (#45)",
-            "breaking": false,
-            "hash": "b909aaf8144bb5a3e9d4ebdfea7c4a624e6d2a5e"
-          },
-          {
-            "type": "fix",
-            "scope": "embedding",
-            "description": "resilient batch embedding + skip lock files",
-            "breaking": false,
-            "hash": "2d2e900b11c2c372f5c36b10ad6e7e6d43980fb3"
-          },
-          {
-            "type": "docs",
-            "description": "add codebase map update step to Post-Hole Routine",
-            "breaking": false,
-            "hash": "fc2f4c43a8415cc18a31a8a3f78880a8bca82482"
-          },
-          {
-            "type": "docs",
-            "description": "regenerate CODEBASE.md with S47 prep + enrich commands",
-            "breaking": false,
-            "hash": "1f8791932befe68c29426f4d0c878ad29995a8ca"
-          },
-          {
-            "type": "chore",
-            "scope": "S47",
-            "description": "file scorecard — The Yardage Book v2, par (4)",
-            "breaking": false,
-            "hash": "910f1c6500ca7b12103ae66a5bbadc6ad350a169"
-          },
-          {
-            "type": "feat",
-            "scope": "S47-4",
-            "description": "integrate prep plans and token routing into run.sh",
-            "breaking": false,
-            "hash": "4818902de66d9ac98b6cfb4c0b4d68bcb2386663"
-          },
-          {
-            "type": "feat",
-            "scope": "S47-3",
-            "description": "add enrich module and slope enrich CLI command",
-            "breaking": false,
-            "hash": "8f567883116e07b10b638a4fba5b4ddfdf3465a7"
-          },
-          {
-            "type": "feat",
-            "scope": "S47-1,S47-2",
-            "description": "add prep module and slope prep CLI command",
-            "breaking": false,
-            "hash": "dbd50089cdc94900fd69b8dff0138fddfd909aa6"
-          },
-          {
-            "type": "docs",
-            "description": "regenerate CODEBASE.md with S46 embedding index additions (#39)",
-            "breaking": false,
-            "hash": "d2863dbc93b8e55f26f8a41969d0c07879c127fa"
-          },
-          {
-            "type": "chore",
-            "scope": "S46",
-            "description": "file scorecard — triple+ (7), 6 review hazards (#38)",
-            "breaking": false,
-            "hash": "f994bc621969501a0dfbff0644660dd308b01c65"
-          },
-          {
-            "type": "feat",
-            "scope": "S46",
-            "description": "semantic embedding index for per-ticket context (#37)",
-            "breaking": false,
-            "hash": "b624b20693dd91eb07364bc367b0333ae3062a40"
-          },
-          {
-            "type": "docs",
-            "description": "apply S43-S45 post-round learnings to sprint checklist",
-            "breaking": false,
-            "hash": "5a1755465058bdd7e621c09a33ce09a15a95b862"
-          },
-          {
-            "type": "chore",
-            "scope": "S45",
-            "description": "amend scorecard with code review findings",
-            "breaking": false,
-            "hash": "5bd7a3c7f5bb94a9ba6df9b978aaef3bfb8b876f"
-          },
-          {
-            "type": "fix",
-            "scope": "S43",
-            "description": "add security to VALID_REVIEWERS in initiative CLI",
-            "breaking": false,
-            "hash": "e3f61c8ea75a2e90b773ec833df8da8e19050a6f"
-          },
-          {
-            "type": "fix",
-            "scope": "S43",
-            "description": "address HIGH + MEDIUM review findings for PR #34",
-            "breaking": false,
-            "hash": "70ecf4cd55cdf12b51710c30721095f120adacbd"
-          },
-          {
-            "type": "chore",
-            "scope": "S43-S45",
-            "description": "file scorecards for sprints 43, 44, 45",
-            "breaking": false,
-            "hash": "d0d7c5379aaa0d911092502db65eabdb7729a445"
-          },
-          {
-            "type": "docs",
-            "scope": "S45",
-            "description": "update CLAUDE.md with initiative + dev loop sections, regenerate map",
-            "breaking": false,
-            "hash": "5fe6a35e668221fb38c36dcdd470dd3e2799ab7a"
-          },
-          {
-            "type": "feat",
-            "scope": "S45",
-            "description": "add official Slope skills for sprint workflow and performance analysis",
-            "breaking": false,
-            "hash": "13bad34ebbed0458f8431cd0b18be80bac8dcc4e"
-          },
-          {
-            "type": "feat",
-            "scope": "S45",
-            "description": "add continuous loop and parallel sprint runners",
-            "breaking": false,
-            "hash": "1e9e08362f66a24f60b861d5225a933b67350dd7"
-          },
-          {
-            "type": "feat",
-            "scope": "S45",
-            "description": "add single sprint runner script",
-            "breaking": false,
-            "hash": "bd6141d01ea94aae1e89d7f96b95730392afe203"
-          },
-          {
-            "type": "chore",
-            "scope": "S44",
-            "description": "run analyze-scorecards against 39 existing scorecards",
-            "breaking": false,
-            "hash": "9b24c944ab33632d189040b49954c21ea45422c4"
-          },
-          {
-            "type": "feat",
-            "scope": "S44",
-            "description": "add model-selector.ts and dashboard.ts scripts",
-            "breaking": false,
-            "hash": "027f701f25dba6ca423c30af8ebc01dd43e4fb68"
-          },
-          {
-            "type": "fix",
-            "scope": "S44",
-            "description": "correct HandicapCard property access in analyze-scorecards",
-            "breaking": false,
-            "hash": "28f32d49e69a36b669afe9f7da972606806965cc"
-          },
-          {
-            "type": "feat",
-            "scope": "S44",
-            "description": "add analyze-scorecards.ts with temporal weighting",
-            "breaking": false,
-            "hash": "aedf75c1a7f90ff7e33b68c31a83094389d7dd07"
-          },
-          {
-            "type": "feat",
-            "scope": "S44",
-            "description": "scaffold slope-loop directory with agent guide skill",
-            "breaking": false,
-            "hash": "9d2b82ae7299d0097fbf567c61e983b52cd265b3"
-          },
-          {
-            "type": "test",
-            "scope": "S43",
-            "description": "add initiative core + CLI tests (67 tests)",
-            "breaking": false,
-            "hash": "e3f3a27bf16000bec1b532cd188af053c961d35c"
-          },
-          {
-            "type": "feat",
-            "scope": "S43",
-            "description": "add initiative CLI command with create/status/next/advance/review",
-            "breaking": false,
-            "hash": "16c64c3b964c9ddcf6bd092a2b5dfb39305aa144"
-          },
-          {
-            "type": "feat",
-            "scope": "S43",
-            "description": "add ml-engineer, database, ux-designer role definitions",
-            "breaking": false,
-            "hash": "faf6134e1a1ff6a99cc81c92259f8dff23ef05ee"
-          },
-          {
-            "type": "feat",
-            "scope": "S43",
-            "description": "add initiative types, specialist selection, state machine",
-            "breaking": false,
-            "hash": "a975c91247cf47ca2910cfe045189109344ef5b3"
-          },
-          {
-            "type": "fix",
-            "scope": "docs",
-            "description": "correct slope store health → slope store status in plan (#33)",
-            "breaking": false,
-            "hash": "30d45099478c93e1a048e2ca624da3562a3b99ee"
-          },
-          {
-            "type": "fix",
-            "scope": "docs",
-            "description": "correct MiniMax API endpoint URL in dev loop plan (#32)",
-            "breaking": false,
-            "hash": "2aa08c1c88afed8421aeaae53e48234607d3320b"
-          },
-          {
-            "type": "docs",
-            "description": "add self-development loop roadmap + plan (#31)",
-            "breaking": false,
-            "hash": "2a374207285b4da97d8414618ae79606275bc92f"
-          },
-          {
-            "type": "docs",
-            "scope": "S42",
-            "description": "file sprint 42 scorecard — The Caddy Interview (#30)",
-            "breaking": false,
-            "hash": "f4272eecb95b175356b9af55493289ce86d15eab"
-          },
-          {
-            "type": "feat",
-            "scope": "S42",
-            "description": "The Caddy Interview — structured init with rich CLI + agent API (#29)",
-            "breaking": false,
-            "hash": "d76130f9392e5f94a0100b0554e47d7ef3b708ec"
-          }
-        ]
-      },
-      {
-        "version": "v1.13.2",
-        "date": "2026-02-28",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.13.2 (#28)",
-            "breaking": false,
-            "hash": "3d3b36331d4d92dc34ecd6ade75b2341577026f2"
-          },
-          {
-            "type": "fix",
-            "description": "MCP binary name, cross-sprint deps, registry cross-refs (#27)",
-            "breaking": false,
-            "hash": "36c8489af2ca35fa1607ad4b194897ddc682f422"
-          },
-          {
-            "type": "feat",
-            "scope": "S41",
-            "description": "The Metaphor Studio — selection UX, custom generation, CLI management (#26)",
-            "breaking": false,
-            "hash": "542fa7fb8c7e936c938daf2a3eca51a21358a2b4"
-          },
-          {
-            "type": "docs",
-            "scope": "S39",
-            "description": "file sprint 39 scorecard — The Open Field (#25)",
-            "breaking": false,
-            "hash": "af3c0ae96bf1bcc7dbeea8f1babe74ebcc88c350"
-          },
-          {
-            "type": "chore",
-            "scope": "S40",
-            "description": "add sprint 40 scorecard (#24)",
-            "breaking": false,
-            "hash": "725005a009a6e55a5b84d132dc9315442f2966d8"
-          },
-          {
-            "type": "feat",
-            "scope": "S40",
-            "description": "The Welcome Mat — onboarding docs, init summary, README overhaul (#23)",
-            "breaking": false,
-            "hash": "d2bb7f708f761e252760c65b414938e6ccf913f0"
-          },
-          {
-            "type": "fix",
-            "description": "use $CLAUDE_PROJECT_DIR in hook script instead of hardcoded path (#22)",
-            "breaking": false,
-            "hash": "851bd031be1fe6fc159025f8fc9a6058b0b6389a"
-          },
-          {
-            "type": "feat",
-            "scope": "S39",
-            "description": "The Open Field — Cline adapter + Continue docs (#21)",
-            "breaking": false,
-            "hash": "37a8db80327a5390e0f43af00f7b2c7bceb2b53b"
-          },
-          {
-            "type": "feat",
-            "scope": "S38",
-            "description": "The Vault — store hardening, CLI, MCP, backup/restore (#20)",
-            "breaking": false,
-            "hash": "498ac8ecfaed1a443ffa1775548a31472c2320b4"
-          },
-          {
-            "type": "fix",
-            "description": "installGuards merges new guards into existing matcher entries (#19)",
-            "breaking": false,
-            "hash": "73b247e951f7ceaecf2f891cec33f52c5a084bd5"
-          },
-          {
-            "type": "feat",
-            "scope": "S37",
-            "description": "The Adapter Interface — self-describing harness adapters (#18)",
-            "breaking": false,
-            "hash": "3f6376f509d005cfff04eeea87daa10495e8e3f8"
-          },
-          {
-            "type": "docs",
-            "description": "Phase 7 roadmap — Hardening & Adoption (S37-S40) (#17)",
-            "breaking": false,
-            "hash": "de834f771f6932aa96597ed1089467890a50a46d"
-          },
-          {
-            "type": "chore",
-            "scope": "S36",
-            "description": "scorecard — The Clubhouse Bridge, par (#16)",
-            "breaking": false,
-            "hash": "fc7ad5e433bd7711d57371a1df672814068af0bc"
-          },
-          {
-            "type": "feat",
-            "scope": "S36",
-            "description": "The Clubhouse Bridge — adapter exports, init unification, guard status (#15)",
-            "breaking": false,
-            "hash": "a493b10b4755d8740f73f6ec37eecff562b4c10b"
           }
         ]
       }
