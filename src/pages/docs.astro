@@ -23,22 +23,29 @@ import ReportsDashboard from '../sections/framework/ReportsDashboard.astro';
 import CliCommands from '../sections/framework/CliCommands.astro';
 import GuardFramework from '../sections/framework/GuardFramework.astro';
 import MetaphorEngine from '../sections/framework/MetaphorEngine.astro';
+import McpTools from '../sections/framework/McpTools.astro';
 import PluginSystem from '../sections/framework/PluginSystem.astro';
 import TeamMultiAgent from '../sections/framework/TeamMultiAgent.astro';
 import EscalationSystem from '../sections/framework/EscalationSystem.astro';
 import FlowTracking from '../sections/framework/FlowTracking.astro';
 import RoadmapTools from '../sections/framework/RoadmapTools.astro';
 import TournamentReview from '../sections/framework/TournamentReview.astro';
+import { METAPHORS } from '../data/manifest';
 
-const metaphors = [
-  { id: 'golf', name: 'Golf', desc: 'You vs the course' },
-  { id: 'agile', name: 'Agile', desc: 'Sprints and stories' },
-  { id: 'tennis', name: 'Tennis', desc: 'Serve, rally, match point' },
-  { id: 'baseball', name: 'Baseball', desc: 'Innings and home runs' },
-  { id: 'gaming', name: 'Gaming', desc: 'XP and boss fights' },
-  { id: 'dnd', name: 'D&D', desc: 'Quests and encounters' },
-  { id: 'matrix', name: 'Matrix', desc: 'Red pill, blue pill' },
-];
+const metaphorDescriptions: Record<string, string> = {
+  golf: 'You vs the course',
+  agile: 'Sprints and stories',
+  tennis: 'Serve, rally, match point',
+  baseball: 'Innings and home runs',
+  gaming: 'XP and boss fights',
+  dnd: 'Quests and encounters',
+  matrix: 'Red pill, blue pill',
+};
+const metaphors = METAPHORS.map(m => ({
+  id: m.id,
+  name: m.name,
+  desc: metaphorDescriptions[m.id] ?? m.description,
+}));
 
 const sidebarGroups = [
   {
@@ -89,6 +96,7 @@ const sidebarGroups = [
     links: [
       { id: 'cli-commands', name: 'CLI Commands' },
       { id: 'guard-framework', name: 'Guard Framework' },
+      { id: 'mcp-tools', name: 'MCP Tools' },
       { id: 'metaphor-engine', name: 'Metaphor Engine' },
       { id: 'plugin-system', name: 'Plugin System' },
     ],
@@ -218,6 +226,7 @@ const sidebarGroups = [
         <!-- Sections: Tooling -->
         <CliCommands />
         <GuardFramework />
+        <McpTools />
         <MetaphorEngine />
         <PluginSystem />
 
