@@ -27,7 +27,10 @@ export async function fetchReleases(): Promise<Release[]> {
     while (true) {
       const url = `${RELEASES_API}?per_page=100&page=${page}`;
       const res = await fetch(url, { headers });
-      if (!res.ok) break;
+      if (!res.ok) {
+        console.warn(`[releases] GitHub API returned ${res.status} on page ${page}`);
+        break;
+      }
 
       const data = (await res.json()) as Array<{
         tag_name: string;
@@ -55,8 +58,9 @@ export async function fetchReleases(): Promise<Release[]> {
       if (data.length < 100) break;
       page++;
     }
-  } catch {
+  } catch (err) {
     // Graceful degradation — build still succeeds with empty releases
+    console.warn('[releases] Failed to fetch releases:', err);
     return [];
   }
 

@@ -25,19 +25,23 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          tag=$(gh api repos/srbryers/slope/releases/latest --jq '.tag_name')
+          tag=$(gh api repos/srbryers/slope/releases/latest --jq '.tag_name') || {
+            echo "::error::Failed to fetch latest slope release"
+            exit 1
+          }
           # Strip leading 'v' if present for comparison
           version="${tag#v}"
           echo "version=$version" >> "$GITHUB_OUTPUT"
           echo "Latest release: $tag (version: $version)"
 
       - name: Compare versions
+        env:
+          MANIFEST: ${{ steps.manifest.outputs.version }}
+          LATEST: ${{ steps.latest.outputs.version }}
         run: |
-          manifest="${{ steps.manifest.outputs.version }}"
-          latest="${{ steps.latest.outputs.version }}"
-          if [ "$manifest" != "$latest" ]; then
-            echo "::error::Manifest is stale: manifest=$manifest latest=$latest"
+          if [ "$MANIFEST" != "$LATEST" ]; then
+            echo "::error::Manifest is stale: manifest=$MANIFEST latest=$LATEST"
             echo "Run the sync-docs workflow on srbryers/slope to update."
             exit 1
           fi
-          echo "Manifest is current: $manifest"
+          echo "Manifest is current: $MANIFEST"
