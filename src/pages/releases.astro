@@ -1,0 +1,169 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/global.css';
+import { fetchReleases } from '../data/releases';
+import { marked, Renderer } from 'marked';
+
+// Configure marked: escape raw HTML, block javascript: URLs, downshift headings
+const renderer = new Renderer();
+renderer.html = function ({ text }: { text: string }) {
+  return text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+};
+renderer.link = function ({ href, text }: { href: string; text: string }) {
+  if (href && /^javascript:/i.test(href)) return text;
+  return `<a href="${href}" rel="noopener noreferrer">${text}</a>`;
+};
+renderer.heading = function ({ text, depth }: { text: string; depth: number }) {
+  const level = Math.min(depth + 2, 6); // h1→h3, h2→h4 (page h1 is the title)
+  return `<h${level}>${text}</h${level}>`;
+};
+marked.use({ renderer });
+
+const releases = await fetchReleases();
+
+// Pre-render markdown in frontmatter (avoids async issues in template)
+const releasesWithHtml = await Promise.all(
+  releases.map(async (r) => ({
+    ...r,
+    bodyHtml: r.body ? await marked.parse(r.body) : '',
+  })),
+);
+
+function formatDate(iso: string): string {
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<Base title="Releases — SLOPE" description="All SLOPE releases and changelogs." canonicalPath="/releases">
+  <main class="max-w-3xl mx-auto px-6 py-16">
+    <h1 class="font-heading font-extrabold text-3xl md:text-4xl text-text-primary mb-2">
+      Releases
+    </h1>
+    <p class="text-text-muted mb-12">
+      All published releases of SLOPE. See the full history on
+      <a href="https://github.com/srbryers/slope/releases" target="_blank" rel="noopener noreferrer" class="text-emerald hover:underline">GitHub</a>.
+    </p>
+
+    {releasesWithHtml.length === 0 ? (
+      <p class="text-text-muted">No releases found.</p>
+    ) : (
+      <div class="space-y-8">
+        {releasesWithHtml.map((release) => (
+          <article aria-labelledby={`release-${release.tag}`} class="bg-bg-card border border-border-subtle rounded-xl p-6 hover:border-emerald/20 transition-colors">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <div class="flex items-center gap-3 flex-wrap">
+                <span class="inline-block font-mono text-sm font-medium bg-emerald/10 text-emerald border border-emerald/20 px-2.5 py-0.5 rounded-md">
+                  {release.tag}
+                </span>
+                <h2 id={`release-${release.tag}`} class="font-heading font-bold text-lg text-text-primary">
+                  {release.name}
+                </h2>
+              </div>
+              <a
+                href={release.htmlUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="shrink-0 text-xs text-text-muted hover:text-emerald transition-colors"
+                aria-label={`View ${release.tag} on GitHub`}
+              >
+                GitHub &rarr;
+              </a>
+            </div>
+
+            <time class="block text-xs text-text-muted mb-4" datetime={release.publishedAt}>
+              {formatDate(release.publishedAt)}
+            </time>
+
+            {release.bodyHtml && (
+              <div class="release-body text-sm text-text-secondary leading-relaxed" set:html={release.bodyHtml} />
+            )}
+          </article>
+        ))}
+      </div>
+    )}
+  </main>
+</Base>
+
+<style>
+  /* Markdown prose styles for release body */
+  .release-body :global(h1),
+  .release-body :global(h2),
+  .release-body :global(h3) {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .release-body :global(h2) { font-size: 1rem; }
+  .release-body :global(h3) { font-size: 0.875rem; }
+
+  .release-body :global(p) {
+    margin-bottom: 0.5rem;
+  }
+
+  .release-body :global(ul),
+  .release-body :global(ol) {
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .release-body :global(ul) { list-style-type: disc; }
+  .release-body :global(ol) { list-style-type: decimal; }
+
+  .release-body :global(li) {
+    margin-bottom: 0.25rem;
+  }
+
+  .release-body :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 0.25rem;
+    padding: 0.1em 0.35em;
+  }
+
+  .release-body :global(pre) {
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    overflow-x: auto;
+    margin-bottom: 0.75rem;
+  }
+  .release-body :global(pre code) {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .release-body :global(a) {
+    color: var(--color-emerald);
+  }
+  .release-body :global(a:hover) {
+    text-decoration: underline;
+  }
+
+  .release-body :global(strong) {
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+
+  .release-body :global(hr) {
+    border-color: var(--color-border-subtle);
+    margin: 1rem 0;
+  }
+
+  .release-body :global(blockquote) {
+    border-left: 3px solid var(--color-emerald);
+    padding-left: 1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+  }
+</style>

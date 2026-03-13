@@ -1,0 +1,47 @@
+name: Validate Manifest
+
+on:
+  schedule:
+    - cron: '0 8 * * *'   # daily at 08:00 UTC
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read manifest version
+        id: manifest
+        run: |
+          version=$(jq -r '.version' src/data/docs-manifest.json)
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Manifest version: $version"
+
+      - name: Fetch latest slope release tag
+        id: latest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag=$(gh api repos/srbryers/slope/releases/latest --jq '.tag_name') || {
+            echo "::error::Failed to fetch latest slope release"
+            exit 1
+          }
+          # Strip leading 'v' if present for comparison
+          version="${tag#v}"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Latest release: $tag (version: $version)"
+
+      - name: Compare versions
+        env:
+          MANIFEST: ${{ steps.manifest.outputs.version }}
+          LATEST: ${{ steps.latest.outputs.version }}
+        run: |
+          if [ "$MANIFEST" != "$LATEST" ]; then
+            echo "::error::Manifest is stale: manifest=$MANIFEST latest=$LATEST"
+            echo "Run the sync-docs workflow on srbryers/slope to update."
+            exit 1
+          fi
+          echo "Manifest is current: $MANIFEST"
