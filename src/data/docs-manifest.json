@@ -1,15 +1,15 @@
 {
-  "version": "1.24.0",
-  "generatedAt": "2026-03-11T11:52:27.977Z",
-  "gitSha": "4a713decfa43f0897526818e75622d303afa6678",
+  "version": "1.26.1",
+  "generatedAt": "2026-03-13T22:45:45.227Z",
+  "gitSha": "57f1967be6caad970e53f32a8d36c19a39dcadad",
   "checksums": {
-    "commands": "e09c3e47d04bd2fe37363c09affdc53c040839d9f3abd0983c8bda0d89716b08",
-    "guards": "b9e75c0369a7a4234b2254d38c86536a86ebf15294ac769ab7b0cf4e600f8f89",
+    "commands": "d33943742a051482d0d89ca7138cc3369fff9f695741022fb176c7d1b141b91a",
+    "guards": "f073dc3a9a8da6f015b7e2637cd565a9eb31ae0480e0b3ae9d7a4b1db6478085",
     "mcpTools": "0ffb466d1c98f542e4a954dd07eae2746d740e76ea30a8715cc9f0d54d8fdbe0",
     "metaphors": "fbf85ac929a8738df5d6e26262029e4a1a1495eac6acd3c0316073f3bf1795f0",
     "roles": "ad096c5377dd772f8d1ecc7f4868196bf1045cd606b97eda368da4e6bd9dd102",
     "constants": "107d1a94e19454050bf16f8e246678fcb6b93044186a71b8acf6481c14a92569",
-    "changelog": "8a81e2a0228e942375148def2dc1a8c92f85d50a2ea1e230badb0728b484d903"
+    "changelog": "e28d1a06dc157e53baaec32c6e2465f0f08d92655a500b6e4593781b9e1f50e1"
   },
   "commands": [
     {
@@ -26,6 +26,22 @@
           "desc": "Rich interactive setup wizard"
         }
       ]
+    },
+    {
+      "cmd": "help",
+      "desc": "Show detailed per-command usage",
+      "category": "lifecycle",
+      "flags": [
+        {
+          "flag": "<command>",
+          "desc": "Command name to show details for"
+        }
+      ]
+    },
+    {
+      "cmd": "quickstart",
+      "desc": "Interactive tutorial for new users",
+      "category": "lifecycle"
     },
     {
       "cmd": "doctor",
@@ -458,6 +474,10 @@
         {
           "flag": "--areas=<list>",
           "desc": "Comma-separated code areas"
+        },
+        {
+          "flag": "--sprint=<N>",
+          "desc": "Sprint number for context"
         }
       ]
     },
@@ -600,6 +620,20 @@
         {
           "name": "status",
           "desc": "Show per-harness guard installation state"
+        },
+        {
+          "name": "recommend",
+          "desc": "Show missing guards with relevance to your workflow"
+        },
+        {
+          "name": "docs",
+          "desc": "Show detailed guard documentation",
+          "flags": [
+            {
+              "flag": "<name>",
+              "desc": "Guard name (optional — shows all if omitted)"
+            }
+          ]
         },
         {
           "name": "enable",
@@ -1149,6 +1183,31 @@
       ]
     },
     {
+      "cmd": "worktree",
+      "desc": "Manage git worktrees",
+      "category": "tooling",
+      "subcommands": [
+        {
+          "name": "cleanup",
+          "desc": "Clean up stale worktrees (remove, delete branch, delete remote)",
+          "flags": [
+            {
+              "flag": "--path=<path>",
+              "desc": "Target a specific worktree"
+            },
+            {
+              "flag": "--all",
+              "desc": "Clean up all secondary worktrees"
+            },
+            {
+              "flag": "--dry-run",
+              "desc": "Preview without making changes"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "cmd": "index-cmd",
       "desc": "Semantic embedding index management",
       "category": "tooling",
@@ -1210,6 +1269,10 @@
         {
           "flag": "--json",
           "desc": "Output as JSON"
+        },
+        {
+          "flag": "--lite",
+          "desc": "Hazards + similar tickets only (no embedding required)"
         },
         {
           "flag": "--top=<N>",
@@ -1453,12 +1516,16 @@
     },
     {
       "name": "worktree-check",
-      "description": "Warn when editing in main repo instead of a worktree",
+      "description": "Block concurrent sessions without worktree isolation",
       "hookEvent": "PreToolUse",
       "toolCategories": [
-        "write_file"
+        "read_file",
+        "search_files",
+        "search_content",
+        "write_file",
+        "execute_command"
       ],
-      "matcher": "Edit|Write",
+      "matcher": "Read|Glob|Grep|Edit|Write|Bash",
       "level": "full"
     },
     {
@@ -1490,6 +1557,16 @@
     {
       "name": "worktree-merge",
       "description": "Block gh pr merge --delete-branch in worktrees (causes false failure)",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "execute_command"
+      ],
+      "matcher": "Bash",
+      "level": "full"
+    },
+    {
+      "name": "worktree-self-remove",
+      "description": "Block git worktree remove when targeting own cwd",
       "hookEvent": "PreToolUse",
       "toolCategories": [
         "execute_command"
@@ -2545,13 +2622,257 @@
     "entries": [
       {
         "version": "Unreleased",
-        "date": "2026-03-11",
+        "date": "2026-03-13",
         "changes": [
           {
             "type": "fix",
-            "description": "remove string concatenation from workflow expression (#132)",
+            "scope": "ci",
+            "description": "fix GitHub Actions expression syntax in sync-docs workflow (#152)",
             "breaking": false,
-            "hash": "4a713decfa43f0897526818e75622d303afa6678"
+            "hash": "57f1967be6caad970e53f32a8d36c19a39dcadad"
+          }
+        ]
+      },
+      {
+        "version": "v1.26.1",
+        "date": "2026-03-13",
+        "changes": [
+          {
+            "type": "test",
+            "scope": "guards",
+            "description": "update stop-check tests to expect warning instead of block (#151)",
+            "breaking": false,
+            "hash": "70d6b919632a75de2438e7a46ba985176c628e49"
+          },
+          {
+            "type": "fix",
+            "scope": "guards",
+            "description": "resolve hook recursion bug + stop-check improvements (#150)",
+            "breaking": false,
+            "hash": "1d3f5125399bf6cfe1f6942d34f139e8a6c190aa"
+          }
+        ]
+      },
+      {
+        "version": "v1.26.0",
+        "date": "2026-03-13",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.26.0 (#148)",
+            "breaking": false,
+            "hash": "32bc4cedb34e9e5c02ac46186de573c0de4a98de"
+          },
+          {
+            "type": "chore",
+            "description": "update slope-guard.sh managed section to use SLOPE_BIN_PREAMBLE (#147)",
+            "breaking": false,
+            "hash": "60d32fc17f0f74d045bb78178d00ae36e5535b7e"
+          },
+          {
+            "type": "feat",
+            "scope": "S65",
+            "description": "Doctor v2 — version hygiene, hook drift & smart guard recommendations (#146)",
+            "breaking": false,
+            "hash": "5c404bff1bec3273624960587160ffccf346dcc7"
+          },
+          {
+            "type": "feat",
+            "scope": "guards",
+            "description": "auto-update managed section of hook scripts on reinstall (#139)",
+            "breaking": false,
+            "hash": "7279898006b0ffb34af74bd34b3882ecebb1cec6"
+          },
+          {
+            "type": "chore",
+            "description": "sprint housekeeping — scorecards, roadmap, stale cleanup (#145)",
+            "breaking": false,
+            "hash": "dc53aec72339db361b26686ffd9473664568e56b"
+          },
+          {
+            "type": "feat",
+            "scope": "S64",
+            "description": "claim hygiene, worktree safety & loop planner context (#144)",
+            "breaking": false,
+            "hash": "a75a75932e143ce451a8e28114e011c7bb28fa83"
+          },
+          {
+            "type": "fix",
+            "scope": "guards",
+            "description": "resolve slope binary at runtime via npx (#138)",
+            "breaking": false,
+            "hash": "b453fc0e616608543e9df045919b28b2b00d84e9"
+          },
+          {
+            "type": "feat",
+            "scope": "s63",
+            "description": "help, quickstart, and guard docs commands",
+            "breaking": false,
+            "hash": "9281c2c975db3270c4be4da70a82995ba508ef20"
+          },
+          {
+            "type": "chore",
+            "description": "Install slope opencode plugin",
+            "breaking": false,
+            "hash": "d592502c0d5885d6c546d0b48ab574b023d9f64d"
+          },
+          {
+            "type": "feat",
+            "scope": "init",
+            "description": "add stack detection and smart guard recommendations",
+            "breaking": false,
+            "hash": "56c71307ca659a621e2a4d09115a29e2f08104ba"
+          }
+        ]
+      },
+      {
+        "version": "v1.25.4",
+        "date": "2026-03-12",
+        "changes": [
+          {
+            "type": "other",
+            "description": "release: v1.25.4",
+            "breaking": false,
+            "hash": "cec07f42b7bb95eda45b63c8e84411e2fa12796b"
+          },
+          {
+            "type": "feat",
+            "scope": "loop",
+            "description": "add analysis paralysis timeout and planner/executor separation",
+            "breaking": false,
+            "hash": "a758d621b075c2e56fabfda87ef03f84deaecfb0"
+          }
+        ]
+      },
+      {
+        "version": "v1.25.3",
+        "date": "2026-03-12",
+        "changes": [
+          {
+            "type": "other",
+            "description": "release: v1.25.3",
+            "breaking": false,
+            "hash": "c3a10eaee22de103eede9d57c7c1ac1f6a1b89f1"
+          },
+          {
+            "type": "fix",
+            "scope": "cli",
+            "description": "add --version and --help flags, improve version command",
+            "breaking": false,
+            "hash": "f793f5656029fc150d925961e63ff1efa0404527"
+          }
+        ]
+      },
+      {
+        "version": "v1.25.2",
+        "date": "2026-03-12",
+        "changes": [
+          {
+            "type": "other",
+            "description": "release: v1.25.2",
+            "breaking": false,
+            "hash": "964db4368a156595f1463fc8610e3d70b00333d0"
+          },
+          {
+            "type": "fix",
+            "scope": "test",
+            "description": "update stale schema version assertion in PG store test",
+            "breaking": false,
+            "hash": "2d66db3cf097f9632601e34a8be18fdc59fa3e19"
+          },
+          {
+            "type": "chore",
+            "description": "update pnpm lockfile",
+            "breaking": false,
+            "hash": "dd5ceaaca984089be2dadb00f3192ac8a539ed54"
+          },
+          {
+            "type": "chore",
+            "description": "cleanup and fixes",
+            "breaking": false,
+            "hash": "62720e617a5194da2789b33f27ff0ced88588634"
+          },
+          {
+            "type": "feat",
+            "scope": "adapter",
+            "description": "add OB1 harness adapter",
+            "breaking": false,
+            "hash": "8d74e382726d14b92c803b0daf633640c8d300e4"
+          },
+          {
+            "type": "feat",
+            "scope": "loop",
+            "description": "integrate SLOPE into autonomous loop (Layers 1-3)",
+            "breaking": false,
+            "hash": "9fcb9427d1c1f7e921a6dc7a1d61ae7ec66d16ff"
+          },
+          {
+            "type": "feat",
+            "scope": "loop",
+            "description": "executor improvements from E2E analysis",
+            "breaking": false,
+            "hash": "0280e807491513d0328b3cdff401ec1de411d45d"
+          },
+          {
+            "type": "fix",
+            "scope": "loop",
+            "description": "address review findings from PR #135",
+            "breaking": false,
+            "hash": "2729207a0f0e5d9b19cf1aa7a87b5ec33a441257"
+          },
+          {
+            "type": "test",
+            "scope": "loop",
+            "description": "add tests for executor adapter, aider executor, and slope executor",
+            "breaking": false,
+            "hash": "ad234058c5fa9513191c8149a2f746eb3fb99a89"
+          },
+          {
+            "type": "feat",
+            "scope": "loop",
+            "description": "add A/B test command for executor comparison",
+            "breaking": false,
+            "hash": "5557089fa5692884c9a7e1084fe47e61a1fd7ad1"
+          },
+          {
+            "type": "feat",
+            "scope": "loop",
+            "description": "add inner-loop guard integration to SlopeExecutor",
+            "breaking": false,
+            "hash": "1b1f4088308c2f1a7a432bf99f735535b3c0cd66"
+          },
+          {
+            "type": "feat",
+            "scope": "loop",
+            "description": "add SlopeExecutor — custom agentic tool loop on Anthropic API",
+            "breaking": false,
+            "hash": "85633eddcd73991ea75e0a54ab7dc871f1e25860"
+          },
+          {
+            "type": "feat",
+            "scope": "loop",
+            "description": "extract ExecutorAdapter interface and AiderExecutor wrapper",
+            "breaking": false,
+            "hash": "d5186819c990e144fca7db427229336720fd1079"
+          }
+        ]
+      },
+      {
+        "version": "v1.25.1",
+        "date": "2026-03-11",
+        "changes": [
+          {
+            "type": "other",
+            "description": "1.25.1",
+            "breaking": false,
+            "hash": "d178493909fa543df8c649f536a15cf50e40e322"
+          },
+          {
+            "type": "fix",
+            "scope": "guards",
+            "description": "force AskUserQuestion via blockReason (#134)",
+            "breaking": false,
+            "hash": "d16eb0e92c74b121411e229691df2bdb6bcde403"
           }
         ]
       },
@@ -2559,6 +2880,18 @@
         "version": "v1.25.0",
         "date": "2026-03-11",
         "changes": [
+          {
+            "type": "feat",
+            "description": "branch discipline, worktree enforcement, docs manifest sync (#133)",
+            "breaking": false,
+            "hash": "afb62e3c224eed3bb45b8efc9deeb15104a11989"
+          },
+          {
+            "type": "fix",
+            "description": "remove string concatenation from workflow expression (#132)",
+            "breaking": false,
+            "hash": "4a713decfa43f0897526818e75622d303afa6678"
+          },
           {
             "type": "feat",
             "description": "docs manifest sync pipeline (#129)",
@@ -2720,267 +3053,6 @@
             "description": "add sprint-state schema and helpers",
             "breaking": false,
             "hash": "198e66f43400bdc19954d02e17207ec8352f0653"
-          }
-        ]
-      },
-      {
-        "version": "v1.19.1",
-        "date": "2026-03-04",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.19.1 (#114)",
-            "breaking": false,
-            "hash": "42d57169ac835cfa9a9440e0d3bd4bba4d1db403"
-          },
-          {
-            "type": "fix",
-            "description": "review-tier guard not firing via hook pipeline",
-            "breaking": false,
-            "hash": "c0ac3691dbbdaca4d89dcfd3e9bb0693a1e8dfa9"
-          },
-          {
-            "type": "docs",
-            "description": "backfill missing scorecards for S30, S37, S41 (#112)",
-            "breaking": false,
-            "hash": "db717f6b092c42284f42e48557b760160027749a"
-          }
-        ]
-      },
-      {
-        "version": "v1.19.0",
-        "date": "2026-03-04",
-        "changes": [
-          {
-            "type": "feat",
-            "scope": "guards",
-            "description": "plan review + findings capture (#111)",
-            "breaking": false,
-            "hash": "0d380689059497a0209c2226097b34015a34130d"
-          },
-          {
-            "type": "feat",
-            "scope": "loop",
-            "description": "fix autonomous loop failure patterns (#110)",
-            "breaking": false,
-            "hash": "1e50a7dcd612072834a9043d3742a74cc3ec4cc3"
-          }
-        ]
-      },
-      {
-        "version": "v1.18.0",
-        "date": "2026-03-04",
-        "changes": [
-          {
-            "type": "feat",
-            "scope": "loop",
-            "description": "staging branch workflow for autonomous loop (#109)",
-            "breaking": false,
-            "hash": "8aab9425538b6b18f5375bddf5e65dd9a029e513"
-          },
-          {
-            "type": "feat",
-            "description": "add token budget instruction to Aider prompt based on club/model (#108)",
-            "breaking": false,
-            "hash": "dad2171d3078089622252d8252fc65c0af519bcb"
-          },
-          {
-            "type": "fix",
-            "scope": "loop",
-            "description": "start backlog counter after highest existing result file (#107)",
-            "breaking": false,
-            "hash": "04575b8cf31297bb248e3391919e4d755d912919"
-          },
-          {
-            "type": "feat",
-            "scope": "loop",
-            "description": "roadmap-driven backlog generation + planner/executor separation (#106)",
-            "breaking": false,
-            "hash": "e76f41be5ec2af0882c773a537b6b40619fb3bfd"
-          },
-          {
-            "type": "feat",
-            "scope": "loop",
-            "description": "add planner/executor separation for concrete execution plans (#103)",
-            "breaking": false,
-            "hash": "cb79235c5944dfa38f21be21a257baca460d85ba"
-          },
-          {
-            "type": "docs",
-            "scope": "roadmap",
-            "description": "unify scattered per-phase roadmaps into single document (#102)",
-            "breaking": false,
-            "hash": "62b8b2e5085f1260ed207ab7781f5ae4a3ac924e"
-          },
-          {
-            "type": "fix",
-            "scope": "analyze",
-            "description": "exclude test files from hotspot source_files (#101)",
-            "breaking": false,
-            "hash": "89dcc3831eec3033cc4c0507171df2108534801a"
-          },
-          {
-            "type": "feat",
-            "scope": "loop",
-            "description": "improve prompt quality, substantiveness guard, and ticket descriptions (#100)",
-            "breaking": false,
-            "hash": "0512b219cb337a87803da2f1cd8bc595e289bf7b"
-          }
-        ]
-      },
-      {
-        "version": "v1.17.0",
-        "date": "2026-03-03",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.17.0 (#99)",
-            "breaking": false,
-            "hash": "a7c916a15b8b9cde0a1818e429887d1efaeef620"
-          },
-          {
-            "type": "fix",
-            "scope": "analyze",
-            "description": "filter stale file refs during backlog generation (#98)",
-            "breaking": false,
-            "hash": "1d55c62c5dd995b18571072fcfb52fa4f7ee2dc7"
-          },
-          {
-            "type": "fix",
-            "scope": "docs",
-            "description": "correct loop-generated CLAUDE.md inaccuracies (#97)",
-            "breaking": false,
-            "hash": "3ea22eff221256eb34cafcddfa0c94fb051e181f"
-          },
-          {
-            "type": "docs",
-            "description": "Update CLAUDE.md Self-Development Loop section to document slope loop CLI (#96)",
-            "breaking": false,
-            "hash": "2b55600cb0b7579526fef157278bb7b8ece71b04"
-          },
-          {
-            "type": "test",
-            "description": "add edge case tests for parallel module overlap detection (#95)",
-            "breaking": false,
-            "hash": "991c5e338a05740ad2f85d1b9f257e13dba5d358"
-          },
-          {
-            "type": "fix",
-            "scope": "loop",
-            "description": "truncate oversized context instead of discarding it (#94)",
-            "breaking": false,
-            "hash": "acd38cb99a1b5c1f594ef4eb63f36352c19efdd3"
-          },
-          {
-            "type": "other",
-            "description": "S-LOCAL-064-2: Update SKILL.md to reference slope CLI commands instead of shell scripts (#93)",
-            "breaking": false,
-            "hash": "6fd08dbf969741dccd6aea747b26c35f2612d221"
-          },
-          {
-            "type": "fix",
-            "scope": "loop",
-            "description": "pass strategy to selectModel in status display (#92)",
-            "breaking": false,
-            "hash": "59d20dd1f0405210d180035de3ef83e074152d94"
-          },
-          {
-            "type": "fix",
-            "scope": "loop",
-            "description": "route documentation strategy tickets to API model (#91)",
-            "breaking": false,
-            "hash": "13efe660627624a9556b874f9dd0cab59d4fb521"
-          },
-          {
-            "type": "fix",
-            "description": "remove junk file created by Aider misinterpreting SKILL.md line (#90)",
-            "breaking": false,
-            "hash": "228cecc5d22ec521a71d0b5782844199613fd995"
-          },
-          {
-            "type": "docs",
-            "description": "update SKILL.md to replace shell script references with CLI commands (#89)",
-            "breaking": false,
-            "hash": "800e107ffe26e0a7139f3cfa174bcbe32ce28ab5"
-          },
-          {
-            "type": "fix",
-            "scope": "loop",
-            "description": "mirror .slope/ config and database into worktrees (#88)",
-            "breaking": false,
-            "hash": "68ab45e917f78798d61e46a4e01e50a84c08dd31"
-          },
-          {
-            "type": "other",
-            "description": "S-LOCAL-061-2: harden MCP test assertions and add settings.json error coverage (#87)",
-            "breaking": false,
-            "hash": "b3afdfcbdb7cdd42428f78e6f1d3c83fc222b697"
-          },
-          {
-            "type": "feat",
-            "scope": "S-LOCAL-059",
-            "description": "Harden loop executor with unit tests (#86)",
-            "breaking": false,
-            "hash": "636aa2ad7f249e6b117b8fb166e9cecc47d1a473"
-          }
-        ]
-      },
-      {
-        "version": "v1.16.0",
-        "date": "2026-03-03",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to v1.16.0 (#85)",
-            "breaking": false,
-            "hash": "6be298da3710e2962acbbca6a9eb7f4bdf87a868"
-          },
-          {
-            "type": "feat",
-            "scope": "loop",
-            "description": "TypeScript rewrite of autonomous sprint execution (#84)",
-            "breaking": false,
-            "hash": "1584095e1d6c02d08eb53221b3dc5bfb2b82c240"
-          }
-        ]
-      },
-      {
-        "version": "v1.15.1",
-        "date": "2026-03-03",
-        "changes": [
-          {
-            "type": "fix",
-            "scope": "guard",
-            "description": "make stop-check worktree-aware (#83)",
-            "breaking": false,
-            "hash": "aafcfa0d1133ed2af0b1ca603dcfa46752b1e82c"
-          },
-          {
-            "type": "fix",
-            "scope": "guard",
-            "description": "hard-block concurrent sessions in worktree-check (#82)",
-            "breaking": false,
-            "hash": "5f20647c8e9c6127e47a686beda04b0aa28e592b"
-          },
-          {
-            "type": "feat",
-            "scope": "guard",
-            "description": "enforce worktree usage for SLOPE projects (#80)",
-            "breaking": false,
-            "hash": "5935eeac5a1135e4176ad45096be5301ef3185f1"
-          },
-          {
-            "type": "other",
-            "description": "Expand priority synonym matching for vision roadmaps (#79)",
-            "breaking": false,
-            "hash": "1d017bebd55496eadbf42009ef5f48179dcb87f0"
-          },
-          {
-            "type": "feat",
-            "scope": "cli",
-            "description": "add slope docs command for documentation manifest generation (#78)",
-            "breaking": false,
-            "hash": "1476f4d03fd40054ad03caed922e421f89874628"
           }
         ]
       }
