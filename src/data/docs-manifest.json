@@ -1,15 +1,15 @@
 {
-  "version": "1.26.1",
-  "generatedAt": "2026-03-13T22:45:45.227Z",
-  "gitSha": "57f1967be6caad970e53f32a8d36c19a39dcadad",
+  "version": "1.27.1",
+  "generatedAt": "2026-03-14T15:43:45.222Z",
+  "gitSha": "d08952ec94a8c5a100f513adbbb6d9efb889d668",
   "checksums": {
-    "commands": "d33943742a051482d0d89ca7138cc3369fff9f695741022fb176c7d1b141b91a",
-    "guards": "f073dc3a9a8da6f015b7e2637cd565a9eb31ae0480e0b3ae9d7a4b1db6478085",
+    "commands": "7582d29ae635802ea073e81d9fc15b0030f0ee589c80621cf0d7d8d3917a4b4c",
+    "guards": "6846a608451716e624ac3b22672f8f03bffa6034d6fae64bbfb6d83cfe709750",
     "mcpTools": "0ffb466d1c98f542e4a954dd07eae2746d740e76ea30a8715cc9f0d54d8fdbe0",
     "metaphors": "fbf85ac929a8738df5d6e26262029e4a1a1495eac6acd3c0316073f3bf1795f0",
     "roles": "ad096c5377dd772f8d1ecc7f4868196bf1045cd606b97eda368da4e6bd9dd102",
     "constants": "107d1a94e19454050bf16f8e246678fcb6b93044186a71b8acf6481c14a92569",
-    "changelog": "e28d1a06dc157e53baaec32c6e2465f0f08d92655a500b6e4593781b9e1f50e1"
+    "changelog": "3784fb49a40e963e55757b7a4d628aeac484627fab158ad241cb69d7501caac0"
   },
   "commands": [
     {
@@ -1304,6 +1304,27 @@
       ]
     },
     {
+      "cmd": "stats",
+      "desc": "Export stats JSON for slope-web live dashboard",
+      "category": "tooling",
+      "subcommands": [
+        {
+          "name": "export",
+          "desc": "Compute SlopeStats JSON from local scorecards + registries",
+          "flags": [
+            {
+              "flag": "--pretty",
+              "desc": "Pretty-print JSON output"
+            },
+            {
+              "flag": "--stdout",
+              "desc": "Write to stdout (default behavior)"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "cmd": "docs",
       "desc": "Generate documentation manifest and changelog",
       "category": "tooling",
@@ -1355,6 +1376,16 @@
           ]
         },
         {
+          "name": "validate",
+          "desc": "Fetch remote manifest and compare against local (exit 1 on drift)",
+          "flags": [
+            {
+              "flag": "--url=<url>",
+              "desc": "Remote manifest URL (default: slope-web GitHub raw)"
+            }
+          ]
+        },
+        {
           "name": "sync",
           "desc": "Copy manifest to slope-web or target directory",
           "flags": [
@@ -1375,9 +1406,10 @@
       "toolCategories": [
         "read_file",
         "search_files",
-        "search_content"
+        "search_content",
+        "write_file"
       ],
-      "matcher": "Read|Glob|Grep",
+      "matcher": "Read|Glob|Grep|Edit|Write",
       "level": "full"
     },
     {
@@ -1424,12 +1456,12 @@
     },
     {
       "name": "subagent-gate",
-      "description": "Force haiku model and cap max_turns on Explore/Plan subagents",
+      "description": "Enforce model selection on Explore/Plan subagents",
       "hookEvent": "PreToolUse",
       "toolCategories": [
         "create_subagent"
       ],
-      "matcher": "Task",
+      "matcher": "Agent",
       "level": "full"
     },
     {
@@ -2621,9 +2653,78 @@
     "status": "success",
     "entries": [
       {
-        "version": "Unreleased",
-        "date": "2026-03-13",
+        "version": "v1.27.1",
+        "date": "2026-03-14",
         "changes": [
+          {
+            "type": "fix",
+            "description": "remove stale max_turns references from subagent-gate (#167)",
+            "breaking": false,
+            "hash": "d08952ec94a8c5a100f513adbbb6d9efb889d668"
+          },
+          {
+            "type": "docs",
+            "description": "local-install-first README with in-harness setup prompts (#166)",
+            "breaking": false,
+            "hash": "4a20befc8675a5cd2ab9db12ecff0aea40bead22"
+          },
+          {
+            "type": "docs",
+            "description": "rewrite README with per-platform setup guides (#165)",
+            "breaking": false,
+            "hash": "73aa21676e894d443a1ee4f21dea6beeb2584364"
+          },
+          {
+            "type": "fix",
+            "scope": "ci",
+            "description": "fix sync-docs workflow failure on push events (#164)",
+            "breaking": false,
+            "hash": "c4cbc029d40460af538067bb18421337b342e466"
+          }
+        ]
+      },
+      {
+        "version": "v1.27.0",
+        "date": "2026-03-14",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.27.0 (#163)",
+            "breaking": false,
+            "hash": "bddbeafd5454313f3c88ccfab9f55b8fe333da7f"
+          },
+          {
+            "type": "feat",
+            "description": "slash commands for sprint lifecycle automation (#160)",
+            "breaking": false,
+            "hash": "968d17254271438d307c34fd682e757dff9ceeee"
+          },
+          {
+            "type": "feat",
+            "description": "FATHOMS-driven guard improvements + deferred findings (#161)",
+            "breaking": false,
+            "hash": "6b2453520c26f277b23ce7e566af1233f7889e64"
+          },
+          {
+            "type": "feat",
+            "description": "live stats API — CLI export, CF Worker, CI publish (#155)",
+            "breaking": false,
+            "hash": "6599d7aae2294a0f045276c7193e9d4849f9ed17"
+          },
+          {
+            "type": "fix",
+            "scope": "guards",
+            "description": "update subagent-gate for Agent tool (Task → Agent) (#154)",
+            "breaking": false,
+            "hash": "a3bf88e8d3fc80c40457c2ed16d1db1965713259"
+          },
+          {
+            "type": "feat",
+            "scope": "docs",
+            "description": "add slope docs validate subcommand (#153)",
+            "breaking": false,
+            "hash": "21ebada2506f2423b4f14a4d917efd5ced84b1dc"
+          },
           {
             "type": "fix",
             "scope": "ci",
@@ -2921,138 +3022,6 @@
             "description": "add test plan parsing and testing_plan_status MCP tool",
             "breaking": false,
             "hash": "3b05b14a7502f4c856df996e8fedcedba7d89273"
-          }
-        ]
-      },
-      {
-        "version": "v1.23.0",
-        "date": "2026-03-07",
-        "changes": [
-          {
-            "type": "feat",
-            "description": "testing session flow via MCP tools (#127)",
-            "breaking": false,
-            "hash": "249fe4cd527b38ca1933c624860e09b95c42b9f4"
-          },
-          {
-            "type": "chore",
-            "description": "bump version to 1.23.0 (#126)",
-            "breaking": false,
-            "hash": "10442efec536e471ed6bd085a982037717d1fff1"
-          },
-          {
-            "type": "feat",
-            "description": "fix stop-check false positives + slope version bump (#125)",
-            "breaking": false,
-            "hash": "43743504fb6420586c197ab0f6ac418700978487"
-          },
-          {
-            "type": "chore",
-            "description": "bump version to 1.22.0 (#124)",
-            "breaking": false,
-            "hash": "00cd5eaff660c58b0e5e17d00ab8d289ae2331b3"
-          },
-          {
-            "type": "feat",
-            "scope": "S61",
-            "description": "roadmap refresh + slope doctor command (#123)",
-            "breaking": false,
-            "hash": "cfad2195cc053ed599552986535f1af397ad8102"
-          },
-          {
-            "type": "feat",
-            "scope": "init",
-            "description": "add .slope/ to .gitignore during slope init (#122)",
-            "breaking": false,
-            "hash": "093e534ebc378e1fa834817fff6cec6703c3e748"
-          },
-          {
-            "type": "chore",
-            "description": "bump version to 1.21.0 (#121)",
-            "breaking": false,
-            "hash": "d994efc4193f80b5acee0ab7956b5a271d66c57b"
-          },
-          {
-            "type": "feat",
-            "scope": "guards",
-            "description": "transition sprint to scoring on PR merge (#120)",
-            "breaking": false,
-            "hash": "fa055c4cf8fbecb822e1d4c1f777dd359d810548"
-          },
-          {
-            "type": "docs",
-            "scope": "S60",
-            "description": "sprint 60 scorecard + codebase map (#119)",
-            "breaking": false,
-            "hash": "b22a9e2a668a3ab634bdea461fbf6138dbb8d2e3"
-          },
-          {
-            "type": "feat",
-            "scope": "guards",
-            "description": "worktree-merge guard (#118)",
-            "breaking": false,
-            "hash": "dbe9d2c726ce9acea0a1d1ac7a7786f1b0475ba4"
-          },
-          {
-            "type": "feat",
-            "scope": "S60",
-            "description": "compaction-proof review gates (#117)",
-            "breaking": false,
-            "hash": "1cfd589cec1917e06fa5a6d9353feac404961d5e"
-          }
-        ]
-      },
-      {
-        "version": "v1.20.0",
-        "date": "2026-03-04",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.20.0",
-            "breaking": false,
-            "hash": "e6e3d6470609c3cd53055a8a85d6c6052ba36a51"
-          },
-          {
-            "type": "docs",
-            "scope": "S22",
-            "description": "add sprint 59 scorecard",
-            "breaking": false,
-            "hash": "a5d1181cb05183766c8a1291a1813018c6b86440"
-          },
-          {
-            "type": "fix",
-            "scope": "S22",
-            "description": "address review findings",
-            "breaking": false,
-            "hash": "0926ce4925974701128d59ee813c038637326454"
-          },
-          {
-            "type": "feat",
-            "scope": "S22-T4",
-            "description": "tests, next-action integration, and test fixes",
-            "breaking": false,
-            "hash": "620e24f86fabb5b84f11ff3704f502646bb742ce"
-          },
-          {
-            "type": "feat",
-            "scope": "S22-T3",
-            "description": "integrate state writers and add sprint CLI command",
-            "breaking": false,
-            "hash": "fe79ddfd43f97d197f321a8a1fe716468b4f955f"
-          },
-          {
-            "type": "feat",
-            "scope": "S22-T2",
-            "description": "add sprint-completion guard",
-            "breaking": false,
-            "hash": "bbf78e3678fa39581e3a3b745c7a520fce56ab47"
-          },
-          {
-            "type": "feat",
-            "scope": "S22-T1",
-            "description": "add sprint-state schema and helpers",
-            "breaking": false,
-            "hash": "198e66f43400bdc19954d02e17207ec8352f0653"
           }
         ]
       }
