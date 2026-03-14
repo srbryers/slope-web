@@ -1,4 +1,4 @@
-const API_URL = 'https://caddystack.fly.dev/public/slope-stats';
+const API_URL = 'https://slope-stats.srbryers.workers.dev/stats';
 const POLL_INTERVAL = 60_000;
 
 export interface LatestScorecard {
@@ -55,48 +55,48 @@ interface ScorecardSummary {
 }
 
 // Fallback data baked at build time — single source of truth for initial render
-export const FALLBACK_SPRINTS = 28;
+export const FALLBACK_SPRINTS = 64;
 
 const FALLBACK: SlopeStats = {
-  sprints_completed: 28,
-  total_tests: 1173,
-  cli_commands: 27,
-  guards: 13,
-  packages: 1,
+  sprints_completed: 64,
+  total_tests: 149,
+  cli_commands: 45,
+  guards: 22,
+  packages: 6,
   metaphors: 7,
   handicap: {
-    last_5: { handicap: 1.0, fairway_pct: 90, gir_pct: 82, avg_putts: 1.3 },
-    last_10: { handicap: 1.2, fairway_pct: 86, gir_pct: 78, avg_putts: 1.4 },
-    all_time: { handicap: 1.5, fairway_pct: 80, gir_pct: 74, avg_putts: 1.5 },
+    last_5: { handicap: 0, fairway_pct: 87.5, gir_pct: 87.5, avg_putts: 0 },
+    last_10: { handicap: 0.2, fairway_pct: 93.9, gir_pct: 93.9, avg_putts: 0 },
+    all_time: { handicap: 0.2, fairway_pct: 98.5, gir_pct: 90.1, avg_putts: 0.5 },
   },
   recent_scorecards: [
-    { sprint: 28, par: 4, score: 4, score_label: 'par', theme: 'The Pro Tour' },
-    { sprint: 27, par: 4, score: 4, score_label: 'par', theme: 'web + tokens' },
+    { sprint: 64, par: 5, score: 5, score_label: 'par', theme: 'Claim Hygiene, Worktree Safety & Loop Planner Context' },
+    { sprint: 63, par: 5, score: 3, score_label: 'eagle', theme: 'The Handbook + Template Integration' },
+    { sprint: 62, par: 5, score: 5, score_label: 'par', theme: 'The Welcome Mat v2 + Templates' },
+    { sprint: 61, par: 3, score: 2, score_label: 'birdie', theme: 'The Terminal Caddy — OB1 Adapter' },
+    { sprint: 60, par: 3, score: 3, score_label: 'par', theme: 'Compaction-proof review gates + worktree-merge guard' },
   ],
-  miss_pattern: { long: 10, short: 6, left: 4, right: 3 },
-  phase_status: {
-    phase_1: 'COMPLETE',
-    phase_2: 'COMPLETE',
-    phase_3: 'COMPLETE',
-    phase_4: 'COMPLETE',
-    phase_5: '~75%',
-    phase_6: '~20%',
-  },
+  miss_pattern: { long: 3, short: 2, left: 3, right: 3 },
+  phase_status: {},
   latest_scorecard: {
-    sprint: 28,
-    par: 4,
-    score: 4,
+    sprint: 64,
+    par: 5,
+    score: 5,
     score_label: 'par',
-    theme: 'The Pro Tour',
-    stats: { fairway_hits: 4, fairway_total: 4, gir: 3, hazards_hit: 1 },
+    theme: 'Claim Hygiene, Worktree Safety & Loop Planner Context',
+    stats: { fairway_hits: 5, fairway_total: 5, gir: 5, hazards_hit: 1 },
   },
   handicap_milestones: [
-    { sprint: 5, handicap: 3.2 },
-    { sprint: 10, handicap: 2.5 },
-    { sprint: 15, handicap: 2.0 },
-    { sprint: 20, handicap: 1.8 },
-    { sprint: 25, handicap: 1.4 },
-    { sprint: 28, handicap: 1.2 },
+    { sprint: 5, handicap: 0.8 },
+    { sprint: 10, handicap: 0.3 },
+    { sprint: 15, handicap: 0.3 },
+    { sprint: 20, handicap: 0.3 },
+    { sprint: 25, handicap: 0.2 },
+    { sprint: 30, handicap: 0.2 },
+    { sprint: 40, handicap: 0.2 },
+    { sprint: 50, handicap: 0.3 },
+    { sprint: 60, handicap: 0.2 },
+    { sprint: 64, handicap: 0.2 },
   ],
 };
 
