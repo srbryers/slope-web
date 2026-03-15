@@ -28,6 +28,7 @@ import PluginSystem from '../sections/framework/PluginSystem.astro';
 import TeamMultiAgent from '../sections/framework/TeamMultiAgent.astro';
 import EscalationSystem from '../sections/framework/EscalationSystem.astro';
 import FlowTracking from '../sections/framework/FlowTracking.astro';
+import InspirationTracking from '../sections/framework/InspirationTracking.astro';
 import RoadmapTools from '../sections/framework/RoadmapTools.astro';
 import TournamentReview from '../sections/framework/TournamentReview.astro';
 import { METAPHORS } from '../data/manifest';
@@ -107,6 +108,7 @@ const sidebarGroups = [
       { id: 'team-multi-agent', name: 'Team & Multi-Agent' },
       { id: 'escalation-system', name: 'Escalation System' },
       { id: 'flow-tracking', name: 'Flow Tracking' },
+      { id: 'inspiration-tracking', name: 'Inspiration Tracking' },
       { id: 'roadmap-tools', name: 'Roadmap Tools' },
       { id: 'tournament-review', name: 'Tournament Review', parts: [{ term: 'vocabulary.tournament', text: 'Tournament' }, { text: ' Review' }] },
     ],
@@ -234,6 +236,7 @@ const sidebarGroups = [
         <TeamMultiAgent />
         <EscalationSystem />
         <FlowTracking />
+        <InspirationTracking />
         <RoadmapTools />
         <TournamentReview />
 
