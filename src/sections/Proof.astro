@@ -9,6 +9,9 @@
       <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
         Consistent routines compound.
       </h2>
+      <p class="text-text-secondary max-w-2xl mx-auto text-sm">
+        Across <span id="proof-sample-size" class="text-emerald font-medium">66</span> sprints on the SLOPE monorepo. Estimation accuracy = par vs actual score. Delivery accuracy = tickets completed vs planned.
+      </p>
     </div>
 
     <!-- Stats wall -->
@@ -40,14 +43,17 @@
       </div>
     </div>
 
-    <!-- Anecdote -->
+    <!-- Source + methodology -->
     <div class="text-center max-w-2xl mx-auto" data-reveal>
       <p class="text-text-secondary leading-relaxed mb-4">
         In Sprint 12, the same bug appeared for the third time. SLOPE flagged it as a recurring hazard. It never appeared again.
       </p>
-      <p class="text-text-muted text-sm italic">
-        Every metric on this page comes from the reference implementation — <span id="proof-sprint-total" class="text-emerald">28</span> sprints of real work.
+      <p class="text-text-muted text-sm mb-3">
+        Every metric on this page comes from the reference implementation — <span id="proof-sprint-total" class="text-emerald font-medium">66</span> sprints of real work, scored with the same framework you install.
       </p>
+      <a href="https://github.com/srbryers/slope/tree/main/docs/retros" target="_blank" rel="noopener noreferrer" class="text-emerald text-sm font-medium hover:underline">
+        View the scorecards &rarr;
+      </a>
     </div>
   </div>
 </section>
@@ -60,6 +66,7 @@
   const girEl = document.getElementById('proof-gir');
   const handicapEl = document.getElementById('proof-handicap');
   const totalEl = document.getElementById('proof-sprint-total');
+  const sampleEl = document.getElementById('proof-sample-size');
 
   onStatsUpdate((stats) => {
     const h = stats.handicap.all_time;
@@ -68,5 +75,6 @@
     if (girEl) animateCounter(girEl, Math.round(h.gir_pct));
     if (handicapEl) handicapEl.textContent = h.handicap.toFixed(1);
     if (totalEl) animateCounter(totalEl, stats.sprints_completed);
+    if (sampleEl) animateCounter(sampleEl, stats.sprints_completed);
   });
 </script>
