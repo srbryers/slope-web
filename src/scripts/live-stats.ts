@@ -55,13 +55,13 @@ interface ScorecardSummary {
 }
 
 // Fallback data baked at build time — single source of truth for initial render
-export const FALLBACK_SPRINTS = 64;
+export const FALLBACK_SPRINTS = 66;
 
 const FALLBACK: SlopeStats = {
-  sprints_completed: 64,
-  total_tests: 149,
-  cli_commands: 45,
-  guards: 22,
+  sprints_completed: 66,
+  total_tests: 155,
+  cli_commands: 46,
+  guards: 27,
   packages: 6,
   metaphors: 7,
   handicap: {
