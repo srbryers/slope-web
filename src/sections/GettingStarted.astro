@@ -1,70 +1,13 @@
 ---
-const commandSteps = [
-  {
-    num: '1',
-    cmd: 'slope init',
-    title: 'Initialize',
-    detail: 'Set up SLOPE in your project. Pick a metaphor. Configure guards.',
-  },
-  {
-    num: '2',
-    cmd: 'slope briefing',
-    title: 'Get briefed',
-    detail: 'Get a pre-sprint briefing: risk index, performance snapshot, known issues.',
-  },
-  {
-    num: '3',
-    cmd: 'slope card',
-    title: 'Check your card',
-    detail: 'Check your performance card — rolling stats across multiple windows.',
-  },
-  {
-    num: '4',
-    cmd: 'slope review',
-    title: 'Review the sprint',
-    detail: 'Generate a sprint review with ticket-by-ticket analysis and improvement recommendations.',
-  },
+const platforms = [
+  { id: 'claude-code', name: 'Claude Code' },
+  { id: 'cursor', name: 'Cursor' },
+  { id: 'windsurf', name: 'Windsurf' },
+  { id: 'cline', name: 'Cline' },
+  { id: 'ob1', name: 'OB1' },
+  { id: 'opencode', name: 'OpenCode' },
 ];
 
-interface PromptPart {
-  text: string;
-  term?: string;
-}
-
-const promptSteps: { num: string; prompt: string; title: string; detail: string | PromptPart[] }[] = [
-  {
-    num: '1',
-    prompt: 'Initialize SLOPE in this project with the golf metaphor',
-    title: 'Initialize',
-    detail: 'The agent sets up .slope/config.json, enables guards, and configures your metaphor.',
-  },
-  {
-    num: '2',
-    prompt: 'Give me a pre-sprint briefing for my next sprint',
-    title: 'Get briefed',
-    detail: [
-      { text: 'The agent reads your ' }, { text: 'scorecard', term: 'vocabulary.scorecard' },
-      { text: 's, surfaces hazards, and sets ' }, { text: 'par', term: 'vocabulary.par' },
-      { text: ' based on your backlog.' },
-    ],
-  },
-  {
-    num: '3',
-    prompt: 'Show me my performance card',
-    title: 'Check your card',
-    detail: 'The agent computes rolling stats across your last 5, 10, and all-time sprints.',
-  },
-  {
-    num: '4',
-    prompt: 'Review this sprint and score it',
-    title: 'Review the sprint',
-    detail: [
-      { text: 'The agent audits commits, scores each ticket, builds a ' },
-      { text: 'scorecard', term: 'vocabulary.scorecard' },
-      { text: ', and updates your ' }, { text: 'handicap', term: 'vocabulary.handicap' }, { text: '.' },
-    ],
-  },
-];
 ---
 
 <section id="getting-started" class="py-24 sm:py-32">
@@ -72,26 +15,14 @@ const promptSteps: { num: string; prompt: string; title: string; detail: string 
     <div class="text-center mb-12" data-reveal>
       <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">Quick Start</p>
       <h2 class="font-heading font-bold text-3xl sm:text-4xl mb-4">
-        Four steps. First sprint.
+        Three commands. First sprint.
       </h2>
       <p class="text-text-secondary max-w-2xl mx-auto">
-        Get started with CLI commands or natural language prompts. Same flow, your choice.
+        Install SLOPE, initialize your project, and connect your agent.
       </p>
     </div>
 
-    <!-- Mode selector -->
-    <div class="flex justify-center mb-8" data-reveal>
-      <div class="inline-flex rounded-lg border border-border bg-bg-surface/50 p-1 gap-1">
-        <button data-start-mode="commands" class="start-mode-pill px-5 py-2 rounded-md text-sm font-heading font-bold transition-colors bg-emerald/10 text-emerald border border-emerald/20">
-          Commands
-        </button>
-        <button data-start-mode="prompts" class="start-mode-pill px-5 py-2 rounded-md text-sm font-heading font-bold transition-colors text-text-muted hover:text-text-secondary border border-transparent">
-          Prompts
-        </button>
-      </div>
-    </div>
-
-    <!-- Install toggle (commands mode only) -->
+    <!-- Install toggle -->
     <div id="install-toggle" class="flex flex-col items-center gap-3 mb-10" data-reveal>
       <div class="inline-flex rounded-lg border border-border bg-bg-surface/50 p-0.5">
         <button data-pkg="npm" class="px-4 py-1.5 rounded-md text-xs font-mono font-medium transition-colors bg-emerald/10 text-emerald border border-emerald/20">npm</button>
@@ -110,42 +41,81 @@ const promptSteps: { num: string; prompt: string; title: string; detail: string 
       </div>
     </div>
 
-    <!-- Commands mode -->
-    <div id="start-commands" class="grid sm:grid-cols-2 gap-6" data-stagger>
-      {commandSteps.map(({ num, cmd, title, detail }) => (
-        <div class="rounded-xl border border-border bg-bg-card p-6 hover:border-emerald/20 transition-colors">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-8 h-8 rounded-lg bg-emerald/10 flex items-center justify-center shrink-0">
-              <span class="text-emerald text-sm font-bold">{num}</span>
-            </div>
-            <code class="text-emerald text-sm font-mono">{cmd}</code>
+    <!-- Three steps -->
+    <div class="grid sm:grid-cols-3 gap-6 mb-10" data-stagger>
+      <!-- Step 1: Install -->
+      <div class="rounded-xl border border-border bg-bg-card p-6 hover:border-emerald/20 transition-colors">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-emerald/10 flex items-center justify-center shrink-0">
+            <span class="text-emerald text-sm font-bold">1</span>
           </div>
-          <h3 class="font-heading font-bold text-lg text-text-primary mb-1">{title}</h3>
-          <p class="text-text-muted text-sm leading-relaxed">{detail}</p>
+          <code class="text-emerald text-sm font-mono">slope init</code>
         </div>
-      ))}
+        <h3 class="font-heading font-bold text-lg text-text-primary mb-1">Initialize</h3>
+        <p class="text-text-muted text-sm leading-relaxed">Set up SLOPE in your project. Pick a metaphor. Configure guards.</p>
+      </div>
+
+      <!-- Step 2: Hook -->
+      <div class="rounded-xl border border-border bg-bg-card p-6 hover:border-emerald/20 transition-colors">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-emerald/10 flex items-center justify-center shrink-0">
+            <span class="text-emerald text-sm font-bold">2</span>
+          </div>
+          <code id="hook-cmd-display" class="text-emerald text-sm font-mono">slope hook add claude-code</code>
+        </div>
+        <h3 class="font-heading font-bold text-lg text-text-primary mb-1">Connect your agent</h3>
+        <p class="text-text-muted text-sm leading-relaxed">Install guard hooks so SLOPE can inject context, warnings, and blocks in real time.</p>
+        <!-- Platform tabs -->
+        <div class="flex flex-wrap gap-1 mt-3">
+          {platforms.map(({ id, name }) => (
+            <button
+              data-platform={id}
+              class:list={[
+                'platform-pill px-2 py-1 rounded text-[10px] font-mono font-medium transition-colors cursor-pointer',
+                id === 'claude-code'
+                  ? 'bg-emerald/10 text-emerald border border-emerald/20'
+                  : 'text-text-muted hover:text-text-secondary border border-transparent',
+              ]}
+            >
+              {name}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Step 3: Sprint -->
+      <div class="rounded-xl border border-border bg-bg-card p-6 hover:border-emerald/20 transition-colors">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-emerald/10 flex items-center justify-center shrink-0">
+            <span class="text-emerald text-sm font-bold">3</span>
+          </div>
+          <code class="text-emerald text-sm font-mono">slope briefing</code>
+        </div>
+        <h3 class="font-heading font-bold text-lg text-text-primary mb-1">Start your first sprint</h3>
+        <p class="text-text-muted text-sm leading-relaxed">Get a pre-sprint briefing with risk index, performance snapshot, and known issues. Then code.</p>
+      </div>
     </div>
 
-    <!-- Prompts mode (hidden by default) -->
-    <div id="start-prompts" class="grid sm:grid-cols-2 gap-6 hidden" data-stagger>
-      {promptSteps.map(({ num, prompt, title, detail }) => (
-        <div class="rounded-xl border border-border bg-bg-card p-6 hover:border-emerald/20 transition-colors">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-8 h-8 rounded-lg bg-emerald/10 flex items-center justify-center shrink-0">
-              <span class="text-emerald text-sm font-bold">{num}</span>
-            </div>
-          </div>
-          <h3 class="font-heading font-bold text-lg text-text-primary mb-1">{title}</h3>
-          <p class="text-emerald text-sm font-mono leading-relaxed mb-2 bg-emerald/5 border border-emerald/10 rounded-lg px-3 py-2">"{prompt}"</p>
-          <p class="text-text-muted text-sm leading-relaxed">
-            {Array.isArray(detail) ? detail.map(p => p.term ? <span data-term={p.term}>{p.text}</span> : p.text) : detail}
-          </p>
+    <!-- Alternative: natural language -->
+    <details class="read-the-green mb-16" data-reveal>
+      <summary>
+        <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="text-sm font-heading font-bold text-text-primary">Alternative: paste this prompt into your agent</span>
+        <span class="text-text-muted text-xs ml-auto">No CLI needed</span>
+      </summary>
+      <div class="deep-content">
+        <p class="text-text-secondary text-sm mb-3">If you prefer natural language, paste this into your AI agent's chat:</p>
+        <div class="rounded-lg border border-border bg-bg-surface p-4 font-mono text-sm text-emerald leading-relaxed">
+          "Initialize SLOPE in this project. Set up the config, enable guard hooks for [your platform], and give me a pre-sprint briefing."
         </div>
-      ))}
-    </div>
+        <p class="text-text-muted text-xs mt-3">Works with any agent that has SLOPE's MCP tools or CLI access.</p>
+      </div>
+    </details>
 
     <!-- Pro Tips -->
-    <div class="mt-16 text-center" data-reveal>
+    <div class="text-center" data-reveal>
       <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">Pro Tips</p>
       <h3 class="font-heading font-bold text-2xl sm:text-3xl mb-3">Get more from every <span data-term="vocabulary.sprint">hole</span>.</h3>
       <p class="text-text-secondary max-w-2xl mx-auto mb-8">Workflow habits that separate <span data-term="scoreLabels.birdie">birdies</span> from <span data-term="scoreLabels.bogey">bogeys</span>.</p>
@@ -228,19 +198,26 @@ const promptSteps: { num: string; prompt: string; title: string; detail: string 
   import { initInstallToggle } from '../scripts/interactions';
   initInstallToggle();
 
-  // Mode toggle
-  const pills = document.querySelectorAll<HTMLButtonElement>('[data-start-mode]');
-  const commandsPanel = document.getElementById('start-commands');
-  const promptsPanel = document.getElementById('start-prompts');
-  const installToggle = document.getElementById('install-toggle');
+  // Platform tab switching
+  const hookCommands: Record<string, string> = {
+    'claude-code': 'slope hook add claude-code',
+    'cursor': 'slope hook add cursor',
+    'windsurf': 'slope hook add windsurf',
+    'cline': 'slope hook add cline',
+    'ob1': 'slope hook add ob1',
+    'opencode': 'slope hook add opencode',
+  };
 
-  pills.forEach((pill) => {
+  const platformPills = document.querySelectorAll<HTMLButtonElement>('[data-platform]');
+  const hookDisplay = document.getElementById('hook-cmd-display');
+
+  platformPills.forEach((pill) => {
     pill.addEventListener('click', () => {
-      const mode = pill.dataset.startMode;
+      const platform = pill.dataset.platform ?? 'claude-code';
 
       // Update pill styles
-      pills.forEach((p) => {
-        if (p.dataset.startMode === mode) {
+      platformPills.forEach((p) => {
+        if (p.dataset.platform === platform) {
           p.classList.add('bg-emerald/10', 'text-emerald', 'border-emerald/20');
           p.classList.remove('text-text-muted', 'hover:text-text-secondary', 'border-transparent');
         } else {
@@ -249,15 +226,9 @@ const promptSteps: { num: string; prompt: string; title: string; detail: string 
         }
       });
 
-      // Toggle panels
-      if (mode === 'commands') {
-        commandsPanel?.classList.remove('hidden');
-        promptsPanel?.classList.add('hidden');
-        installToggle?.classList.remove('hidden');
-      } else {
-        commandsPanel?.classList.add('hidden');
-        promptsPanel?.classList.remove('hidden');
-        installToggle?.classList.add('hidden');
+      // Update command display
+      if (hookDisplay) {
+        hookDisplay.textContent = hookCommands[platform] || hookCommands['claude-code'];
       }
     });
   });

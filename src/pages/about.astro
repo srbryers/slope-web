@@ -1,0 +1,185 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/global.css';
+---
+
+<Base
+  title="About SLOPE — Why Sprint Scoring Matters"
+  description="SLOPE is an open-source framework that brings quantified metrics to AI-assisted sprints. Scorecards, handicap tracking, and guard hooks — for developers and teams."
+  canonicalPath="/about"
+>
+  <main>
+    <section class="py-24 sm:py-32">
+      <div class="max-w-3xl mx-auto px-6">
+
+        <!-- Dogfooding — lead with credibility -->
+        <div id="about-dogfooding" class="mb-16" data-reveal>
+          <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">Dogfooding</p>
+          <h1 class="font-heading font-extrabold text-4xl sm:text-5xl tracking-tight mb-6">
+            SLOPE scores its own development.
+          </h1>
+          <p class="text-text-secondary text-lg leading-relaxed mb-2">
+            Every sprint since S1 has a scorecard — <span id="about-sprints" class="text-emerald font-medium">66</span> sprints of real work, all public. The metrics on this site are computed from real scorecards, not synthetic benchmarks.
+          </p>
+          <a href="https://github.com/srbryers/slope/tree/main/docs/retros" target="_blank" rel="noopener noreferrer" class="text-emerald text-sm font-medium hover:underline">
+            View every scorecard on GitHub &rarr;
+          </a>
+        </div>
+
+        <!-- What SLOPE Is -->
+        <div id="about-what" class="mb-16" data-reveal>
+          <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">What SLOPE Is</p>
+          <h2 class="font-heading font-bold text-2xl sm:text-3xl mb-4">Retrospectives with data instead of feelings.</h2>
+          <p class="text-text-secondary leading-relaxed">
+            Every sprint gets a scorecard. Over time, scorecards reveal patterns — which types of tasks get over-scoped, where hazards cluster, how estimation accuracy trends. SLOPE is the structured feedback loop that turns ad-hoc AI coding sessions into a measurable, improving process.
+          </p>
+        </div>
+
+        <!-- How It Works -->
+        <div id="about-how" class="mb-16" data-reveal>
+          <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">How It Works</p>
+          <h2 class="font-heading font-bold text-2xl sm:text-3xl mb-6">Four layers of structured feedback.</h2>
+          <div class="space-y-4">
+            <div class="rounded-xl border border-border bg-bg-card p-5">
+              <h3 class="font-heading font-bold text-text-primary mb-1">Scorecards</h3>
+              <p class="text-text-secondary text-sm leading-relaxed">Each sprint records approach complexity, outcomes, and hazards per ticket. The raw data behind every insight.</p>
+            </div>
+            <div class="rounded-xl border border-border bg-bg-card p-5">
+              <h3 class="font-heading font-bold text-text-primary mb-1">Handicap tracking</h3>
+              <p class="text-text-secondary text-sm leading-relaxed">Rolling performance metrics reveal trends across sprints — estimation accuracy, delivery rate, miss patterns.</p>
+            </div>
+            <div class="rounded-xl border border-border bg-bg-card p-5">
+              <h3 class="font-heading font-bold text-text-primary mb-1">Guard hooks</h3>
+              <p class="text-text-secondary text-sm leading-relaxed"><span id="about-guards" class="text-emerald font-medium">27</span> real-time checks that inject context, warnings, and blocks into your agent's workflow as you code.</p>
+            </div>
+            <div class="rounded-xl border border-border bg-bg-card p-5">
+              <h3 class="font-heading font-bold text-text-primary mb-1">Pluggable metaphors</h3>
+              <p class="text-text-secondary text-sm leading-relaxed">Same scoring engine, <span id="about-metaphors" class="text-emerald font-medium">7</span> vocabulary options — golf, agile, tennis, baseball, gaming, D&D, matrix.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Who It's For -->
+        <div id="about-audience" class="mb-16" data-reveal>
+          <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">Who It's For</p>
+          <h2 class="font-heading font-bold text-2xl sm:text-3xl mb-6">Built for people shipping with AI agents.</h2>
+          <div class="space-y-4">
+            <div class="flex gap-4">
+              <div class="w-1 rounded-full bg-emerald/30 shrink-0"></div>
+              <div>
+                <h3 class="font-heading font-bold text-text-primary mb-1">Developers</h3>
+                <p class="text-text-secondary text-sm leading-relaxed">Using AI coding agents — Claude Code, Cursor, Windsurf, Cline, OB1, OpenCode — who want measurable improvement over time.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="w-1 rounded-full bg-emerald/30 shrink-0"></div>
+              <div>
+                <h3 class="font-heading font-bold text-text-primary mb-1">Tech leads and PMs</h3>
+                <p class="text-text-secondary text-sm leading-relaxed">Who need visibility into AI-assisted development quality without reading every diff.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="w-1 rounded-full bg-emerald/30 shrink-0"></div>
+              <div>
+                <h3 class="font-heading font-bold text-text-primary mb-1">Teams</h3>
+                <p class="text-text-secondary text-sm leading-relaxed">Building processes around AI pair programming who want consistency across agents and sessions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Numbers -->
+        <div id="about-numbers" class="mb-16" data-reveal>
+          <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">The Numbers</p>
+          <h2 class="font-heading font-bold text-2xl sm:text-3xl mb-6">Live stats from the reference implementation.</h2>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" data-stagger>
+            <div class="rounded-xl border border-border bg-bg-card p-5 text-center">
+              <span id="about-stat-sprints" class="text-3xl font-heading font-bold text-emerald">66</span>
+              <p class="text-text-muted text-xs font-mono uppercase tracking-wider mt-1">Sprints</p>
+            </div>
+            <div class="rounded-xl border border-border bg-bg-card p-5 text-center">
+              <span id="about-stat-handicap" class="text-3xl font-heading font-bold text-emerald">0.2</span>
+              <p class="text-text-muted text-xs font-mono uppercase tracking-wider mt-1">Handicap</p>
+            </div>
+            <div class="rounded-xl border border-border bg-bg-card p-5 text-center">
+              <span id="about-stat-tests" class="text-3xl font-heading font-bold text-emerald">155</span>
+              <p class="text-text-muted text-xs font-mono uppercase tracking-wider mt-1">Tests</p>
+            </div>
+            <div class="rounded-xl border border-border bg-bg-card p-5 text-center">
+              <span id="about-stat-guards" class="text-3xl font-heading font-bold text-emerald">27</span>
+              <p class="text-text-muted text-xs font-mono uppercase tracking-wider mt-1">Guards</p>
+            </div>
+            <div class="rounded-xl border border-border bg-bg-card p-5 text-center">
+              <span id="about-stat-commands" class="text-3xl font-heading font-bold text-emerald">46</span>
+              <p class="text-text-muted text-xs font-mono uppercase tracking-wider mt-1">CLI Commands</p>
+            </div>
+            <div class="rounded-xl border border-border bg-bg-card p-5 text-center">
+              <span id="about-stat-metaphors" class="text-3xl font-heading font-bold text-emerald">7</span>
+              <p class="text-text-muted text-xs font-mono uppercase tracking-wider mt-1">Metaphors</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Open Source -->
+        <div class="mb-8" data-reveal>
+          <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">Open Source</p>
+          <h2 class="font-heading font-bold text-2xl sm:text-3xl mb-4">MIT licensed. Contributions welcome.</h2>
+          <div class="flex flex-wrap gap-4">
+            <a href="https://github.com/srbryers/slope" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border bg-bg-card text-sm font-medium text-text-primary hover:border-emerald/30 transition-colors">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              GitHub
+            </a>
+            <a href="https://www.npmjs.com/package/@slope-dev/slope" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border bg-bg-card text-sm font-medium text-text-primary hover:border-emerald/30 transition-colors">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331zM10.665 10H12v2.667h-1.335V10z" />
+              </svg>
+              npm
+            </a>
+            <a href="/docs" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-emerald/20 bg-emerald/10 text-sm font-medium text-emerald hover:bg-emerald/15 transition-colors">
+              Read the docs &rarr;
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+</Base>
+
+<script>
+  import { initLiveStats, onStatsUpdate } from '../scripts/live-stats';
+  import { animateCounter, initAnimations } from '../scripts/animations';
+
+  initAnimations();
+
+  const els = {
+    sprints: document.getElementById('about-sprints'),
+    guards: document.getElementById('about-guards'),
+    metaphors: document.getElementById('about-metaphors'),
+    statSprints: document.getElementById('about-stat-sprints'),
+    statHandicap: document.getElementById('about-stat-handicap'),
+    statTests: document.getElementById('about-stat-tests'),
+    statGuards: document.getElementById('about-stat-guards'),
+    statCommands: document.getElementById('about-stat-commands'),
+    statMetaphors: document.getElementById('about-stat-metaphors'),
+  };
+
+  onStatsUpdate((stats) => {
+    if (els.sprints) animateCounter(els.sprints, stats.sprints_completed, 1.5);
+    if (els.guards) animateCounter(els.guards, stats.guards);
+    if (els.metaphors) animateCounter(els.metaphors, stats.metaphors);
+
+    if (els.statSprints) animateCounter(els.statSprints, stats.sprints_completed, 1.5);
+    if (els.statHandicap && stats.handicap?.all_time) {
+      els.statHandicap.textContent = stats.handicap.all_time.handicap.toFixed(1);
+    }
+    if (els.statTests) animateCounter(els.statTests, stats.total_tests, 1.5);
+    if (els.statGuards) animateCounter(els.statGuards, stats.guards);
+    if (els.statCommands) animateCounter(els.statCommands, stats.cli_commands);
+    if (els.statMetaphors) animateCounter(els.statMetaphors, stats.metaphors);
+  });
+
+  initLiveStats();
+</script>
