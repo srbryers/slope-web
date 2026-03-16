@@ -1,5 +1,5 @@
 /**
- * Dynamic OG image for slope.dev — fetches live stats and renders a mini dashboard.
+ * Dynamic OG image for getslope.dev — fetches live stats and renders a mini dashboard.
  * Uses satori (JSX → SVG) + resvg (SVG → PNG). Generates at build time.
  */
 import satori from 'satori';
@@ -292,7 +292,7 @@ function buildOGImage(stats: SlopeStats): VNode {
           color: EMERALD,
           opacity: 0.7,
           marginTop: 20,
-        }, 'slope.dev'),
+        }, 'getslope.dev'),
       ),
 
       // Right column: recent scorecards + sparkline
