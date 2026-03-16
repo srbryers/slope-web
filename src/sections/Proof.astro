@@ -36,7 +36,7 @@
 
       <div class="rounded-xl border border-border bg-bg-card p-6 text-center">
         <div class="flex items-baseline justify-center">
-          <span id="proof-handicap" class="text-4xl sm:text-5xl font-heading font-bold text-emerald">1.2</span>
+          <span id="proof-handicap" class="text-4xl sm:text-5xl font-heading font-bold text-emerald">0.2</span>
         </div>
         <p class="text-text-muted text-xs font-mono uppercase tracking-wider mt-2">Performance Index</p>
         <p class="text-text-secondary text-xs mt-1">Overall rating (lower is better)</p>
@@ -69,7 +69,8 @@
   const sampleEl = document.getElementById('proof-sample-size');
 
   onStatsUpdate((stats) => {
-    const h = stats.handicap.all_time;
+    const h = stats.handicap?.all_time;
+    if (!h) return;
 
     if (fairwayEl) animateCounter(fairwayEl, Math.round(h.fairway_pct));
     if (girEl) animateCounter(girEl, Math.round(h.gir_pct));

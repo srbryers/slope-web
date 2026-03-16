@@ -8,19 +8,6 @@ const platforms = [
   { id: 'opencode', name: 'OpenCode' },
 ];
 
-const hookCommands: Record<string, string> = {
-  'claude-code': 'slope hook add claude-code',
-  'cursor': 'slope hook add cursor',
-  'windsurf': 'slope hook add windsurf',
-  'cline': 'slope hook add cline',
-  'ob1': 'slope hook add ob1',
-  'opencode': 'slope hook add opencode',
-};
-
-interface PromptPart {
-  text: string;
-  term?: string;
-}
 ---
 
 <section id="getting-started" class="py-24 sm:py-32">
@@ -226,7 +213,7 @@ interface PromptPart {
 
   platformPills.forEach((pill) => {
     pill.addEventListener('click', () => {
-      const platform = pill.dataset.platform!;
+      const platform = pill.dataset.platform ?? 'claude-code';
 
       // Update pill styles
       platformPills.forEach((p) => {

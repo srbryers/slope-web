@@ -12,28 +12,31 @@ import '../styles/global.css';
     <section class="py-24 sm:py-32">
       <div class="max-w-3xl mx-auto px-6">
 
-        <!-- The Problem -->
-        <div class="mb-16" data-reveal>
-          <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">The Problem</p>
+        <!-- Dogfooding — lead with credibility -->
+        <div id="about-dogfooding" class="mb-16" data-reveal>
+          <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">Dogfooding</p>
           <h1 class="font-heading font-extrabold text-4xl sm:text-5xl tracking-tight mb-6">
-            AI coding agents don't learn from their mistakes.
+            SLOPE scores its own development.
           </h1>
-          <p class="text-text-secondary text-lg leading-relaxed">
-            Every session starts from zero — same over-engineering, same missed edge cases, same scope creep. Without structured feedback, there's no improvement loop.
+          <p class="text-text-secondary text-lg leading-relaxed mb-2">
+            Every sprint since S1 has a scorecard — <span id="about-sprints" class="text-emerald font-medium">66</span> sprints of real work, all public. The metrics on this site are computed from real scorecards, not synthetic benchmarks.
           </p>
+          <a href="https://github.com/srbryers/slope/tree/main/docs/retros" target="_blank" rel="noopener noreferrer" class="text-emerald text-sm font-medium hover:underline">
+            View every scorecard on GitHub &rarr;
+          </a>
         </div>
 
         <!-- What SLOPE Is -->
-        <div class="mb-16" data-reveal>
+        <div id="about-what" class="mb-16" data-reveal>
           <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">What SLOPE Is</p>
           <h2 class="font-heading font-bold text-2xl sm:text-3xl mb-4">Retrospectives with data instead of feelings.</h2>
           <p class="text-text-secondary leading-relaxed">
-            SLOPE is an open-source framework that brings quantified metrics to AI-assisted sprints. Every sprint gets a scorecard. Over time, scorecards reveal patterns — which types of tasks get over-scoped, where hazards cluster, how estimation accuracy trends. It's the feedback loop that AI agents are missing.
+            Every sprint gets a scorecard. Over time, scorecards reveal patterns — which types of tasks get over-scoped, where hazards cluster, how estimation accuracy trends. SLOPE is the structured feedback loop that turns ad-hoc AI coding sessions into a measurable, improving process.
           </p>
         </div>
 
         <!-- How It Works -->
-        <div class="mb-16" data-reveal>
+        <div id="about-how" class="mb-16" data-reveal>
           <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">How It Works</p>
           <h2 class="font-heading font-bold text-2xl sm:text-3xl mb-6">Four layers of structured feedback.</h2>
           <div class="space-y-4">
@@ -47,7 +50,7 @@ import '../styles/global.css';
             </div>
             <div class="rounded-xl border border-border bg-bg-card p-5">
               <h3 class="font-heading font-bold text-text-primary mb-1">Guard hooks</h3>
-              <p class="text-text-secondary text-sm leading-relaxed"><span id="about-guards" class="text-emerald font-medium">22</span> real-time checks that inject context, warnings, and blocks into your agent's workflow as you code.</p>
+              <p class="text-text-secondary text-sm leading-relaxed"><span id="about-guards" class="text-emerald font-medium">27</span> real-time checks that inject context, warnings, and blocks into your agent's workflow as you code.</p>
             </div>
             <div class="rounded-xl border border-border bg-bg-card p-5">
               <h3 class="font-heading font-bold text-text-primary mb-1">Pluggable metaphors</h3>
@@ -57,7 +60,7 @@ import '../styles/global.css';
         </div>
 
         <!-- Who It's For -->
-        <div class="mb-16" data-reveal>
+        <div id="about-audience" class="mb-16" data-reveal>
           <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">Who It's For</p>
           <h2 class="font-heading font-bold text-2xl sm:text-3xl mb-6">Built for people shipping with AI agents.</h2>
           <div class="space-y-4">
@@ -85,23 +88,11 @@ import '../styles/global.css';
           </div>
         </div>
 
-        <!-- Dogfooding -->
-        <div class="mb-16" data-reveal>
-          <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">Dogfooding</p>
-          <h2 class="font-heading font-bold text-2xl sm:text-3xl mb-4">SLOPE scores its own development.</h2>
-          <p class="text-text-secondary leading-relaxed mb-2">
-            Every sprint since S1 has a scorecard — <span id="about-sprints" class="text-emerald font-medium">66</span> sprints, <span id="about-tests" class="text-emerald font-medium">2700</span>+ tests, all public. The metrics on this site are computed from real scorecards, not synthetic benchmarks.
-          </p>
-          <a href="https://github.com/srbryers/slope/tree/main/docs/retros" target="_blank" rel="noopener noreferrer" class="text-emerald text-sm font-medium hover:underline">
-            View every scorecard on GitHub &rarr;
-          </a>
-        </div>
-
         <!-- The Numbers -->
-        <div class="mb-16" data-reveal>
+        <div id="about-numbers" class="mb-16" data-reveal>
           <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">The Numbers</p>
           <h2 class="font-heading font-bold text-2xl sm:text-3xl mb-6">Live stats from the reference implementation.</h2>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" data-stagger>
             <div class="rounded-xl border border-border bg-bg-card p-5 text-center">
               <span id="about-stat-sprints" class="text-3xl font-heading font-bold text-emerald">66</span>
               <p class="text-text-muted text-xs font-mono uppercase tracking-wider mt-1">Sprints</p>
@@ -111,11 +102,11 @@ import '../styles/global.css';
               <p class="text-text-muted text-xs font-mono uppercase tracking-wider mt-1">Handicap</p>
             </div>
             <div class="rounded-xl border border-border bg-bg-card p-5 text-center">
-              <span id="about-stat-tests" class="text-3xl font-heading font-bold text-emerald">2700</span>
+              <span id="about-stat-tests" class="text-3xl font-heading font-bold text-emerald">155</span>
               <p class="text-text-muted text-xs font-mono uppercase tracking-wider mt-1">Tests</p>
             </div>
             <div class="rounded-xl border border-border bg-bg-card p-5 text-center">
-              <span id="about-stat-guards" class="text-3xl font-heading font-bold text-emerald">22</span>
+              <span id="about-stat-guards" class="text-3xl font-heading font-bold text-emerald">27</span>
               <p class="text-text-muted text-xs font-mono uppercase tracking-wider mt-1">Guards</p>
             </div>
             <div class="rounded-xl border border-border bg-bg-card p-5 text-center">
@@ -159,16 +150,12 @@ import '../styles/global.css';
 
 <script>
   import { initLiveStats, onStatsUpdate } from '../scripts/live-stats';
-  import { animateCounter } from '../scripts/animations';
-  import { initAnimations } from '../scripts/animations';
+  import { animateCounter, initAnimations } from '../scripts/animations';
 
-  document.addEventListener('DOMContentLoaded', () => {
-    initAnimations();
-  });
+  initAnimations();
 
   const els = {
     sprints: document.getElementById('about-sprints'),
-    tests: document.getElementById('about-tests'),
     guards: document.getElementById('about-guards'),
     metaphors: document.getElementById('about-metaphors'),
     statSprints: document.getElementById('about-stat-sprints'),
@@ -181,12 +168,13 @@ import '../styles/global.css';
 
   onStatsUpdate((stats) => {
     if (els.sprints) animateCounter(els.sprints, stats.sprints_completed, 1.5);
-    if (els.tests) animateCounter(els.tests, stats.total_tests, 1.5);
     if (els.guards) animateCounter(els.guards, stats.guards);
     if (els.metaphors) animateCounter(els.metaphors, stats.metaphors);
 
     if (els.statSprints) animateCounter(els.statSprints, stats.sprints_completed, 1.5);
-    if (els.statHandicap) els.statHandicap.textContent = stats.handicap.all_time.handicap.toFixed(1);
+    if (els.statHandicap && stats.handicap?.all_time) {
+      els.statHandicap.textContent = stats.handicap.all_time.handicap.toFixed(1);
+    }
     if (els.statTests) animateCounter(els.statTests, stats.total_tests, 1.5);
     if (els.statGuards) animateCounter(els.statGuards, stats.guards);
     if (els.statCommands) animateCounter(els.statCommands, stats.cli_commands);
