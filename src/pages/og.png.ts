@@ -42,26 +42,26 @@ interface SlopeStats {
 }
 
 const FALLBACK: SlopeStats = {
-  sprints_completed: 66,
-  total_tests: 155,
-  cli_commands: 46,
-  guards: 22,
+  sprints_completed: 69,
+  total_tests: 167,
+  cli_commands: 48,
+  guards: 29,
   handicap: {
-    last_5: { handicap: 0, fairway_pct: 100, gir_pct: 100, avg_putts: 0 },
-    last_10: { handicap: 0.2, fairway_pct: 93.9, gir_pct: 93.9, avg_putts: 0 },
-    all_time: { handicap: 0.2, fairway_pct: 98.5, gir_pct: 90.1, avg_putts: 0.5 },
+    last_5: { handicap: 1.2, fairway_pct: 78.9, gir_pct: 78.9, avg_putts: 0 },
+    last_10: { handicap: 0.3, fairway_pct: 83.7, gir_pct: 83.7, avg_putts: 0 },
+    all_time: { handicap: 0.2, fairway_pct: 97.2, gir_pct: 89.3, avg_putts: 0.5 },
   },
   recent_scorecards: [
+    { sprint: 69, par: 3, score: 5, score_label: 'double_bogey', theme: 'The Patch Kit — S68 Carryover Fixes' },
+    { sprint: 68, par: 4, score: 4, score_label: 'par', theme: 'The Fence — Workflow Engine Test Coverage' },
+    { sprint: 67, par: 4, score: 7, score_label: 'triple_plus', theme: 'The Skill Shelf — Skill System Restructuring' },
     { sprint: 66, par: 4, score: 4, score_label: 'par', theme: 'The Scorekeeper — Sprint Analytics Dashboard' },
-    { sprint: 65, par: 4, score: 5, score_label: 'bogey', theme: 'The Inspiration Engine' },
-    { sprint: 64, par: 5, score: 5, score_label: 'par', theme: 'Claim Hygiene, Worktree Safety & Loop' },
-    { sprint: 63, par: 5, score: 3, score_label: 'eagle', theme: 'The Handbook + Template Integration' },
   ],
   handicap_milestones: [
-    { sprint: 5, handicap: 0.8 }, { sprint: 10, handicap: 0.3 },
+    { sprint: 5, handicap: 0 }, { sprint: 10, handicap: 0.6 },
     { sprint: 20, handicap: 0.3 }, { sprint: 30, handicap: 0.2 },
     { sprint: 40, handicap: 0.2 }, { sprint: 50, handicap: 0.3 },
-    { sprint: 60, handicap: 0.2 }, { sprint: 66, handicap: 0.2 },
+    { sprint: 60, handicap: 0.2 }, { sprint: 69, handicap: 0.2 },
   ],
 };
 

@@ -1,1 +1,3329 @@
-{"version":"1.31.0","generatedAt":"2026-03-16T15:46:41.894Z","gitSha":"7d44895ef93c981b22f01ed834c2d878e7414b1b","checksums":{"commands":"03801893cef0478d5a5ca89e7a4960ae18b8213c5bcf64ea53ef788d269ad3ad","guards":"0e388d5e01b7f766436e656b6fc6420c550b044e18a9000b8265643ef41dd593","mcpTools":"e0b384cf7b2bfd15cdf5c321d3cf308281daf839592d3460470fcd28abbb20fe","metaphors":"fbf85ac929a8738df5d6e26262029e4a1a1495eac6acd3c0316073f3bf1795f0","roles":"ad096c5377dd772f8d1ecc7f4868196bf1045cd606b97eda368da4e6bd9dd102","constants":"107d1a94e19454050bf16f8e246678fcb6b93044186a71b8acf6481c14a92569","changelog":"9a141a47c5642d1bcac794a032a2fc0970a73987f8e624911bc2e721394f6583"},"commands":[{"cmd":"init","desc":"Initialize .slope/ directory","category":"lifecycle","flags":[{"flag":"--metaphor=<id>","desc":"Set metaphor theme (golf, gaming, dnd, etc.)"},{"flag":"--interactive","desc":"Rich interactive setup wizard"}]},{"cmd":"help","desc":"Show detailed per-command usage","category":"lifecycle","flags":[{"flag":"<command>","desc":"Command name to show details for"}]},{"cmd":"quickstart","desc":"Interactive tutorial for new users","category":"lifecycle"},{"cmd":"doctor","desc":"Check repo health and auto-fix issues","category":"lifecycle","flags":[{"flag":"--fix","desc":"Auto-fix detected issues"}]},{"cmd":"version","desc":"Show version or bump with automated PR workflow","category":"lifecycle","subcommands":[{"name":"bump","desc":"Bump version with automated PR workflow","flags":[{"flag":"<version>","desc":"Explicit version (e.g. 1.28.0)"},{"flag":"--patch","desc":"Patch bump (x.y.Z+1) — bug fixes only"},{"flag":"--major","desc":"Major bump (X+1.0.0) — breaking changes"},{"flag":"--dry-run","desc":"Preview changes without committing"}]},{"name":"recommend","desc":"Analyze commits and recommend version tier"}]},{"cmd":"session","desc":"Manage live sessions","category":"lifecycle","subcommands":[{"name":"start","desc":"Start a new session","flags":[{"flag":"--role=<role>","desc":"Session role (primary, secondary, observer)"},{"flag":"--ide=<id>","desc":"IDE identifier (claude-code, cursor, etc.)"},{"flag":"--branch=<name>","desc":"Git branch name"},{"flag":"--swarm=<id>","desc":"Join an existing swarm"},{"flag":"--agent-role=<role>","desc":"Role within the swarm"}]},{"name":"end","desc":"End active session","flags":[{"flag":"--session-id=<id>","desc":"Specific session to end"}]},{"name":"heartbeat","desc":"Send session heartbeat","flags":[{"flag":"--session-id=<id>","desc":"Specific session to heartbeat"}]},{"name":"list","desc":"List active sessions","flags":[{"flag":"--swarm=<id>","desc":"Filter by swarm"}]}]},{"cmd":"claim","desc":"Claim a ticket or area for the sprint","category":"lifecycle","flags":[{"flag":"--target=<path>","desc":"File or directory to claim"},{"flag":"--ticket=<key>","desc":"Ticket key (e.g. S48-1)"},{"flag":"--force","desc":"Override conflicting claims"}]},{"cmd":"release","desc":"Release a claim by ID or target","category":"lifecycle","flags":[{"flag":"--id=<id>","desc":"Claim ID to release"},{"flag":"--target=<path>","desc":"Release claim by target path"}]},{"cmd":"status","desc":"Show sprint course status and conflicts","category":"lifecycle","flags":[{"flag":"--json","desc":"Output as JSON"}]},{"cmd":"next","desc":"Show next sprint number (auto-detect)","category":"lifecycle"},{"cmd":"sprint","desc":"Manage sprint lifecycle state and gates","category":"lifecycle","subcommands":[{"name":"start","desc":"Start a new sprint","flags":[{"flag":"--number=<N>","desc":"Sprint number (required)"},{"flag":"--phase=<phase>","desc":"Initial phase (default: planning)"}]},{"name":"gate","desc":"Mark a gate as complete","flags":[{"flag":"<name>","desc":"Gate name to complete"}]},{"name":"status","desc":"Show current sprint state and gates"},{"name":"reset","desc":"Reset sprint state"}]},{"cmd":"card","desc":"Display handicap card","category":"scoring","flags":[{"flag":"--metaphor=<id>","desc":"Display theme override"},{"flag":"--player=<name>","desc":"Filter to a specific player"},{"flag":"--swarm","desc":"Show swarm/multi-agent handicap"},{"flag":"--team","desc":"Show team handicap card"}]},{"cmd":"validate","desc":"Validate scorecard(s)","category":"scoring","flags":[{"flag":"<path>","desc":"Scorecard JSON file to validate"}]},{"cmd":"review","desc":"Format sprint review or manage review state","category":"scoring","subcommands":[{"name":"start","desc":"Start a plan review","flags":[{"flag":"--tier=<tier>","desc":"Review tier (skip, light, standard, deep)"}]},{"name":"round","desc":"Record completion of a review round"},{"name":"status","desc":"Show current review state"},{"name":"reset","desc":"Reset review state"},{"name":"recommend","desc":"Check which review types apply to the sprint"},{"name":"findings","desc":"Manage review findings","flags":[{"flag":"add","desc":"Add a finding (--type, --ticket, --severity, --description)"},{"flag":"list","desc":"List recorded findings"},{"flag":"clear","desc":"Clear all findings"}]},{"name":"amend","desc":"Inject review findings as hazards into scorecard"}],"flags":[{"flag":"--metaphor=<id>","desc":"Display theme override"},{"flag":"<path>","desc":"Scorecard file to review (default: latest)"}]},{"cmd":"auto-card","desc":"Generate scorecard from git + CI signals","category":"scoring","flags":[{"flag":"--sprint=<N>","desc":"Sprint number (required)"},{"flag":"--since=<date>","desc":"Start date for git log"},{"flag":"--branch=<ref>","desc":"Git branch to analyze"},{"flag":"--theme=<text>","desc":"Sprint theme description"},{"flag":"--player=<name>","desc":"Player name for scorecard"},{"flag":"--test-output=<file>","desc":"Path to test output for CI signal parsing"},{"flag":"--pr=<number>","desc":"PR number for PR signal parsing"},{"flag":"--swarm=<id>","desc":"Swarm ID for multi-agent scorecard"},{"flag":"--dry-run","desc":"Preview without writing"}]},{"cmd":"classify","desc":"Classify a shot from execution trace","category":"scoring","flags":[{"flag":"--scope=<files>","desc":"Comma-separated file scope"},{"flag":"--modified=<files>","desc":"Comma-separated modified files"},{"flag":"--tests=<result>","desc":"Test result (pass, fail, partial)"},{"flag":"--reverts=<N>","desc":"Number of reverts"},{"flag":"--hazards=<N>","desc":"Number of hazards encountered"}]},{"cmd":"tournament","desc":"Build tournament review from sprints","category":"scoring","flags":[{"flag":"--id=<id>","desc":"Tournament identifier"},{"flag":"--name=<name>","desc":"Tournament display name"},{"flag":"--sprints=<N-M>","desc":"Sprint range (e.g. 1-10)"},{"flag":"--output=<path>","desc":"Output file path"}]},{"cmd":"briefing","desc":"Pre-round briefing with hazards and nutrition","category":"analysis","flags":[{"flag":"--categories=<list>","desc":"Filter by issue categories (comma-separated)"},{"flag":"--keywords=<list>","desc":"Filter by keywords (comma-separated)"},{"flag":"--sprint=<N>","desc":"Sprint number"},{"flag":"--role=<id>","desc":"Filter by role"},{"flag":"--player=<name>","desc":"Filter to a specific player"},{"flag":"--personal","desc":"Show personal stats only"},{"flag":"--no-training","desc":"Skip training recommendations"},{"flag":"--compact","desc":"Shorter output for session hooks"}]},{"cmd":"plan","desc":"Pre-shot advisor (club + training + hazards)","category":"analysis","flags":[{"flag":"--complexity=<level>","desc":"Complexity (trivial, small, medium, large)"},{"flag":"--slope-factors=<list>","desc":"Comma-separated slope factors"},{"flag":"--areas=<list>","desc":"Comma-separated code areas"},{"flag":"--sprint=<N>","desc":"Sprint number for context"}]},{"cmd":"report","desc":"Generate HTML performance report","category":"analysis","flags":[{"flag":"--html","desc":"Generate HTML report"},{"flag":"--output=<path>","desc":"Output file path"}]},{"cmd":"dashboard","desc":"Live local performance dashboard","category":"analysis","flags":[{"flag":"--port=<N>","desc":"HTTP port (default: 3000)"},{"flag":"--no-open","desc":"Don't auto-open browser"},{"flag":"--refresh=<N>","desc":"Auto-refresh interval in seconds (0=disable)"},{"flag":"--metaphor=<id>","desc":"Display theme override"},{"flag":"--player=<name>","desc":"Filter to a specific player"}]},{"cmd":"standup","desc":"Generate or ingest standup report","category":"analysis","flags":[{"flag":"--session=<id>","desc":"Session ID for standup generation"},{"flag":"--role=<id>","desc":"Agent role filter"},{"flag":"--sprint=<N>","desc":"Sprint number"},{"flag":"--ingest=<path>","desc":"Ingest standup from file (or stdin with --ingest)"},{"flag":"--aggregate","desc":"Aggregate team standups"},{"flag":"--json","desc":"Output as JSON"}]},{"cmd":"analyze","desc":"Scan repo and generate profile","category":"analysis","flags":[{"flag":"--analyzers=<list>","desc":"Run specific analyzers (comma-separated: stack, git, etc.)"},{"flag":"--json","desc":"Output full profile as JSON"}]},{"cmd":"hook","desc":"Manage lifecycle hooks","category":"tooling","subcommands":[{"name":"add","desc":"Install guard hooks","flags":[{"flag":"--level=<level>","desc":"Hook level (full, scoring)"},{"flag":"--harness=<id>","desc":"Target harness (auto-detect or specify)"}]},{"name":"remove","desc":"Remove installed hooks"},{"name":"list","desc":"Show installed hooks","flags":[{"flag":"--available","desc":"Show full catalog of available hooks"}]}]},{"cmd":"guard","desc":"Run guard handler or manage guard activation","category":"tooling","subcommands":[{"name":"<name>","desc":"Run a guard (reads hook JSON from stdin)"},{"name":"list","desc":"Show all available guards"},{"name":"status","desc":"Show per-harness guard installation state"},{"name":"recommend","desc":"Show missing guards with relevance to your workflow"},{"name":"docs","desc":"Show detailed guard documentation","flags":[{"flag":"<name>","desc":"Guard name (optional — shows all if omitted)"}]},{"name":"enable","desc":"Enable a disabled guard","flags":[{"flag":"<name>","desc":"Guard name to enable"}]},{"name":"disable","desc":"Disable a guard","flags":[{"flag":"<name>","desc":"Guard name to disable"}]}]},{"cmd":"extract","desc":"Extract events into SLOPE store","category":"tooling","flags":[{"flag":"--file=<path>","desc":"Event file to extract"},{"flag":"--session-id=<id>","desc":"Session ID to tag events"},{"flag":"--sprint=<N>","desc":"Sprint number"}]},{"cmd":"distill","desc":"Promote event patterns to common issues","category":"tooling","flags":[{"flag":"--auto","desc":"Auto-promote patterns above threshold"},{"flag":"--dry-run","desc":"Preview without writing"},{"flag":"--sprint=<N>","desc":"Filter to a specific sprint"},{"flag":"--threshold=<N>","desc":"Minimum occurrence threshold"}]},{"cmd":"map","desc":"Generate/update codebase map","category":"tooling","flags":[{"flag":"--check","desc":"Check staleness (exit 1 if stale)"},{"flag":"--output=<path>","desc":"Custom output path (default: CODEBASE.md)"}]},{"cmd":"flows","desc":"Manage user flow definitions","category":"tooling","subcommands":[{"name":"init","desc":"Create .slope/flows.json with example template"},{"name":"list","desc":"List all flows with staleness indicators"},{"name":"check","desc":"Validate all flows (file existence, staleness); exit 1 if stale"}]},{"cmd":"inspirations","desc":"Track external OSS inspiration sources","category":"tooling","subcommands":[{"name":"add","desc":"Add an inspiration source","flags":[{"flag":"--url=<url>","desc":"Source URL (required)"},{"flag":"--project=<name>","desc":"Project name (required)"},{"flag":"--idea=\"<text>\"","desc":"Idea extracted (repeatable, required)"},{"flag":"--id=<id>","desc":"Override auto-derived ID"}]},{"name":"list","desc":"List tracked inspirations","flags":[{"flag":"--status=<status>","desc":"Filter by status (backlogged, planned, implemented, rejected)"}]},{"name":"link","desc":"Link inspiration to a sprint","flags":[{"flag":"--id=<id>","desc":"Inspiration ID (required)"},{"flag":"--sprint=<N>","desc":"Sprint number (required)"}]}]},{"cmd":"metaphor","desc":"Manage metaphor display themes","category":"tooling","subcommands":[{"name":"list","desc":"Show all available metaphors"},{"name":"set","desc":"Set the active metaphor","flags":[{"flag":"<id>","desc":"Metaphor ID to activate"}]},{"name":"show","desc":"Show all terms for a metaphor","flags":[{"flag":"<id>","desc":"Metaphor ID to display"}]}]},{"cmd":"plugin","desc":"Manage custom plugins","category":"tooling","subcommands":[{"name":"list","desc":"Show all plugins (built-in + custom)"},{"name":"validate","desc":"Validate a plugin file","flags":[{"flag":"<path>","desc":"Plugin file path"}]}]},{"cmd":"store","desc":"Store diagnostics and management","category":"tooling","subcommands":[{"name":"status","desc":"Show store type, schema version, and stats","flags":[{"flag":"--json","desc":"Output as JSON"}]},{"name":"backup","desc":"Back up the store","flags":[{"flag":"--output=<path>","desc":"Backup output path"}]}]},{"cmd":"escalate","desc":"Escalate issues based on severity triggers","category":"tooling","flags":[{"flag":"--reason=<text>","desc":"Manual escalation reason"},{"flag":"--session-id=<id>","desc":"Session ID context"},{"flag":"--swarm=<id>","desc":"Auto-detect escalations in a swarm"},{"flag":"--sprint=<N>","desc":"Sprint number"}]},{"cmd":"transcript","desc":"View session transcript data","category":"tooling","subcommands":[{"name":"list","desc":"List available transcripts"},{"name":"show","desc":"Show turn-by-turn summary","flags":[{"flag":"<session-id>","desc":"Session ID to display"}]},{"name":"stats","desc":"Aggregate metrics","flags":[{"flag":"<session-id>","desc":"Session ID (optional, all if omitted)"}]}]},{"cmd":"roadmap","desc":"Strategic planning and roadmap tools","category":"planning","subcommands":[{"name":"validate","desc":"Schema + dependency graph checks","flags":[{"flag":"--path=<file>","desc":"Roadmap file path"}]},{"name":"review","desc":"Automated architect review","flags":[{"flag":"--path=<file>","desc":"Roadmap file path"}]},{"name":"status","desc":"Current progress","flags":[{"flag":"--path=<file>","desc":"Roadmap file path"},{"flag":"--sprint=<N>","desc":"Focus on specific sprint"}]},{"name":"show","desc":"Render summary (critical path, parallel tracks)","flags":[{"flag":"--path=<file>","desc":"Roadmap file path"}]},{"name":"sync","desc":"Sync scorecards into roadmap","flags":[{"flag":"--path=<file>","desc":"Roadmap file path"},{"flag":"--dry-run","desc":"Preview without writing"}]},{"name":"generate","desc":"Generate from vision + backlog analysis","flags":[{"flag":"--path=<file>","desc":"Output roadmap file path"}]}]},{"cmd":"vision","desc":"Display project vision document","category":"planning","subcommands":[{"name":"create","desc":"Create a new vision document","flags":[{"flag":"--purpose=<text>","desc":"Project purpose"},{"flag":"--priorities=<list>","desc":"Comma-separated priorities"}]},{"name":"update","desc":"Update existing vision fields","flags":[{"flag":"--purpose=<text>","desc":"Updated purpose"},{"flag":"--priorities=<list>","desc":"Updated priorities"}]}],"flags":[{"flag":"--json","desc":"Output as JSON"}]},{"cmd":"initiative","desc":"Multi-sprint initiative orchestration","category":"planning","subcommands":[{"name":"create","desc":"Create a new initiative"},{"name":"status","desc":"Show current initiative state"},{"name":"next","desc":"Show next sprint in the initiative"},{"name":"advance","desc":"Advance to the next phase"},{"name":"review","desc":"Record a review gate result","flags":[{"flag":"--sprint=<N>","desc":"Sprint number"},{"flag":"--gate=<gate>","desc":"Gate type (plan, pr)"},{"flag":"--reviewer=<type>","desc":"Reviewer type"},{"flag":"--findings=<N>","desc":"Number of findings"}]},{"name":"checklist","desc":"Show review checklist"}]},{"cmd":"loop","desc":"Autonomous sprint execution loop","category":"tooling","subcommands":[{"name":"run","desc":"Single sprint execution","flags":[{"flag":"--sprint=<ID>","desc":"Sprint ID to execute"},{"flag":"--dry-run","desc":"Preview without executing"}]},{"name":"continuous","desc":"Multi-sprint loop","flags":[{"flag":"--max=<N>","desc":"Maximum sprints to run (default: 10)"},{"flag":"--pause=<S>","desc":"Pause between sprints in seconds"},{"flag":"--staging","desc":"Use staging branch"},{"flag":"--dry-run","desc":"Preview without executing"}]},{"name":"parallel","desc":"Dual-sprint parallel execution via worktrees","flags":[{"flag":"--dry-run","desc":"Preview without executing"}]},{"name":"status","desc":"Show loop progress, next sprint, config","flags":[{"flag":"--sprint=<ID>","desc":"Show status for a specific sprint"}]},{"name":"config","desc":"Loop configuration management","flags":[{"flag":"--show","desc":"Display current config"},{"flag":"--set","desc":"Set a config value (k=v)"}]},{"name":"results","desc":"Format/display sprint results","flags":[{"flag":"--sprint=<ID>","desc":"Show results for a specific sprint"},{"flag":"--json","desc":"Output as JSON"}]},{"name":"analyze","desc":"Mine scorecards, generate backlog","flags":[{"flag":"--regenerate","desc":"Force regeneration"}]},{"name":"models","desc":"Model selection analytics","flags":[{"flag":"--analyze","desc":"Run model analysis"},{"flag":"--show","desc":"Show current model config"}]},{"name":"guide","desc":"SKILL.md word count and hazard check","flags":[{"flag":"--check","desc":"Validate guide"},{"flag":"--synthesize","desc":"Synthesize guide content"}]},{"name":"clean","desc":"Cleanup loop artifacts","flags":[{"flag":"--results","desc":"Clean result files"},{"flag":"--logs","desc":"Clean log files"},{"flag":"--worktrees","desc":"Clean git worktrees"},{"flag":"--all","desc":"Clean everything"}]}]},{"cmd":"worktree","desc":"Manage git worktrees","category":"tooling","subcommands":[{"name":"cleanup","desc":"Clean up stale worktrees (remove, delete branch, delete remote)","flags":[{"flag":"--path=<path>","desc":"Target a specific worktree"},{"flag":"--all","desc":"Clean up all secondary worktrees"},{"flag":"--dry-run","desc":"Preview without making changes"}]}]},{"cmd":"index-cmd","desc":"Semantic embedding index management","category":"tooling","flags":[{"flag":"--full","desc":"Full reindex (drop + rebuild)"},{"flag":"--status","desc":"Show index stats"},{"flag":"--prune","desc":"Remove embeddings for deleted files"},{"flag":"--json","desc":"Output stats as JSON"}]},{"cmd":"context","desc":"Semantic context search for agents","category":"tooling","flags":[{"flag":"<query>","desc":"Free-text semantic search query"},{"flag":"--ticket=<key>","desc":"Use ticket title as query"},{"flag":"--file=<path>","desc":"Find files related to a given file"},{"flag":"--top=<N>","desc":"Limit results (default: 5)"},{"flag":"--format=<fmt>","desc":"Output format (paths, snippets, full)"}]},{"cmd":"prep","desc":"Generate execution plan for a ticket","category":"tooling","flags":[{"flag":"<ticket-id>","desc":"Ticket ID to prepare"},{"flag":"--json","desc":"Output as JSON"},{"flag":"--lite","desc":"Hazards + similar tickets only (no embedding required)"},{"flag":"--top=<N>","desc":"Limit context results (default: 5)"}]},{"cmd":"enrich","desc":"Batch-enrich backlog with file context","category":"tooling","flags":[{"flag":"<backlog-path>","desc":"Path to backlog file"},{"flag":"--output=<path>","desc":"Output path for enriched backlog"},{"flag":"--with-plans","desc":"Include execution plans"},{"flag":"--top=<N>","desc":"Limit context results per ticket (default: 5)"}]},{"cmd":"stats","desc":"Export stats JSON for slope-web live dashboard","category":"tooling","subcommands":[{"name":"export","desc":"Compute SlopeStats JSON from local scorecards + registries","flags":[{"flag":"--pretty","desc":"Pretty-print JSON output"},{"flag":"--stdout","desc":"Write to stdout (default behavior)"}]}]},{"cmd":"docs","desc":"Generate documentation manifest and changelog","category":"tooling","subcommands":[{"name":"generate","desc":"Build manifest JSON from registries + git history","flags":[{"flag":"--output=<path>","desc":"Write manifest to path (default: .slope/docs.json)"},{"flag":"--pretty","desc":"Pretty-print JSON output"},{"flag":"--incremental","desc":"Skip changelog generation"},{"flag":"--stdout","desc":"Write to stdout instead of file"}]},{"name":"changelog","desc":"Generate changelog from conventional commits","flags":[{"flag":"--since=<version>","desc":"Changelog since this version/tag"},{"flag":"--format=<fmt>","desc":"Output format: markdown (default) or json"}]},{"name":"check","desc":"Compare saved manifest against current state (exit 1 on drift)","flags":[{"flag":"--manifest=<path>","desc":"Path to saved manifest (default: .slope/docs.json)"}]},{"name":"validate","desc":"Fetch remote manifest and compare against local (exit 1 on drift)","flags":[{"flag":"--url=<url>","desc":"Remote manifest URL (default: slope-web GitHub raw)"}]},{"name":"sync","desc":"Copy manifest to slope-web or target directory","flags":[{"flag":"--target=<path>","desc":"Target directory (default: adjacent slope-web repo)"}]}]}],"guards":[{"name":"explore","description":"Suggest checking codebase index before deep exploration","hookEvent":"PreToolUse","toolCategories":["read_file","search_files","search_content","write_file"],"matcher":"Read|Glob|Grep|Edit|Write","level":"full"},{"name":"hazard","description":"Warn about known issues in file areas being edited","hookEvent":"PreToolUse","toolCategories":["write_file"],"matcher":"Edit|Write","level":"full"},{"name":"commit-nudge","description":"Nudge to commit/push after prolonged editing","hookEvent":"PostToolUse","toolCategories":["write_file"],"matcher":"Edit|Write","level":"full"},{"name":"scope-drift","description":"Warn when editing files outside claimed ticket scope","hookEvent":"PreToolUse","toolCategories":["write_file"],"matcher":"Edit|Write","level":"full"},{"name":"compaction","description":"Extract events before context compaction","hookEvent":"PreCompact","level":"full"},{"name":"stop-check","description":"Check for uncommitted/unpushed work before session end","hookEvent":"Stop","level":"full"},{"name":"subagent-gate","description":"Enforce model selection on Explore/Plan subagents","hookEvent":"PreToolUse","toolCategories":["create_subagent"],"matcher":"Agent","level":"full"},{"name":"push-nudge","description":"Nudge to push after git commits when unpushed count or time is high","hookEvent":"PostToolUse","toolCategories":["execute_command"],"matcher":"Bash","level":"full"},{"name":"workflow-gate","description":"Block ExitPlanMode until review rounds are complete","hookEvent":"PreToolUse","toolCategories":["exit_plan"],"matcher":"ExitPlanMode","level":"full"},{"name":"review-tier","description":"Suggest plan review with specialist reviewers after plan file write","hookEvent":"PostToolUse","toolCategories":["write_file"],"matcher":"Edit|Write","level":"full"},{"name":"version-check","description":"Block push to main when package versions have not been bumped","hookEvent":"PreToolUse","toolCategories":["execute_command"],"matcher":"Bash","level":"full"},{"name":"stale-flows","description":"Warn when editing files belonging to a stale flow definition","hookEvent":"PreToolUse","toolCategories":["write_file"],"matcher":"Edit|Write","level":"full"},{"name":"next-action","description":"Suggest next actions before session end","hookEvent":"Stop","level":"full"},{"name":"pr-review","description":"Prompt for review workflow after PR creation","hookEvent":"PostToolUse","toolCategories":["execute_command"],"matcher":"Bash","level":"full"},{"name":"transcript","description":"Append tool call metadata to session transcript","hookEvent":"PostToolUse","level":"full"},{"name":"branch-before-commit","description":"Block git commit on main/master — create a feature branch first","hookEvent":"PreToolUse","toolCategories":["execute_command"],"matcher":"Bash","level":"full"},{"name":"worktree-check","description":"Block concurrent sessions without worktree isolation","hookEvent":"PreToolUse","toolCategories":["read_file","search_files","search_content","write_file","execute_command"],"matcher":"Read|Glob|Grep|Edit|Write|Bash","level":"full"},{"name":"sprint-completion","description":"Block PR creation when sprint gates are incomplete","hookEvent":"PreToolUse","toolCategories":["execute_command"],"matcher":"Bash","level":"full"},{"name":"sprint-completion","description":"Block session end when sprint gates are incomplete","hookEvent":"Stop","level":"full"},{"name":"sprint-completion","description":"Auto-detect test pass and mark gate complete","hookEvent":"PostToolUse","toolCategories":["execute_command"],"matcher":"Bash","level":"full"},{"name":"worktree-merge","description":"Block gh pr merge --delete-branch in worktrees (causes false failure)","hookEvent":"PreToolUse","toolCategories":["execute_command"],"matcher":"Bash","level":"full"},{"name":"worktree-self-remove","description":"Block git worktree remove when targeting own cwd","hookEvent":"PreToolUse","toolCategories":["execute_command"],"matcher":"Bash","level":"full"},{"name":"phase-boundary","description":"Block starting sprint in new phase if previous phase cleanup incomplete","hookEvent":"PreToolUse","toolCategories":["execute_command"],"matcher":"Bash","level":"full"},{"name":"claim-required","description":"Warn when editing code without an active sprint claim","hookEvent":"PreToolUse","toolCategories":["write_file"],"matcher":"Edit|Write","level":"full"},{"name":"post-push","description":"Suggest next workflow step after git push","hookEvent":"PostToolUse","toolCategories":["execute_command"],"matcher":"Bash","level":"full"},{"name":"session-briefing","description":"Inject sprint context on first tool call of session","hookEvent":"PostToolUse","level":"full"},{"name":"review-stale","description":"Warn about scored sprints with missing reviews at session end","hookEvent":"Stop","level":"full"}],"mcpTools":[{"name":"search","desc":"Discover the SLOPE API — functions, types, constants, flows, and codebase map","params":[{"name":"query","type":"string","desc":"Search term to filter results"},{"name":"module","type":"string","desc":"Filter by module (core, fs, constants, store, flows, inspirations, init, testing, types, map)"}],"requiresStore":false},{"name":"execute","desc":"Run JavaScript in a sandboxed node:vm with the full SLOPE API pre-injected","params":[{"name":"code","type":"string","desc":"JavaScript code to execute (must return a value)","required":true}],"requiresStore":false},{"name":"context_search","desc":"Semantic code search — returns relevant snippets instead of full files. Falls back to grep without embedding index.","params":[{"name":"query","type":"string","desc":"Natural language query or code concept to search for","required":true},{"name":"top","type":"number","desc":"Max results (default: 5)"},{"name":"format","type":"string","desc":"Output format: paths, snippets, or full (default: snippets)"}],"requiresStore":false},{"name":"session_status","desc":"Show active sessions and claims from the SLOPE store","params":[],"requiresStore":true},{"name":"acquire_claim","desc":"Claim a ticket or area for the current sprint","params":[{"name":"target","type":"string","desc":"File or directory to claim","required":true},{"name":"scope","type":"string","desc":"Claim scope (file, directory, module, ticket)"},{"name":"ticket","type":"string","desc":"Ticket key (e.g. S48-1)"},{"name":"sprint","type":"number","desc":"Sprint number"}],"requiresStore":true},{"name":"check_conflicts","desc":"Detect overlapping and adjacent conflicts among active claims","params":[{"name":"sprint","type":"number","desc":"Filter to a specific sprint"}],"requiresStore":true},{"name":"store_status","desc":"Check store health — schema version, row counts, and error status","params":[],"requiresStore":true},{"name":"testing_session_start","desc":"Start a manual testing session with git worktree isolation","params":[{"name":"purpose","type":"string","desc":"Purpose of the testing session"},{"name":"sprint","type":"number","desc":"Sprint number"}],"requiresStore":true},{"name":"testing_session_finding","desc":"Record a finding (bug, observation) during an active testing session","params":[{"name":"description","type":"string","desc":"Finding description","required":true},{"name":"severity","type":"string","desc":"Severity (low, medium, high, critical)"},{"name":"ticket","type":"string","desc":"Related ticket key"}],"requiresStore":true},{"name":"testing_session_end","desc":"End the active testing session, return summary, cleanup worktree","params":[{"name":"session_id","type":"string","desc":"Specific session ID to end"},{"name":"skip_cleanup","type":"boolean","desc":"Skip worktree cleanup"}],"requiresStore":true},{"name":"testing_session_status","desc":"Show active testing session info and findings","params":[],"requiresStore":true},{"name":"testing_plan_status","desc":"Show test plan coverage summary: tested, untested, stale, and issue counts per section","params":[],"requiresStore":false}],"metaphors":[{"id":"golf","name":"Golf","description":"The original SLOPE metaphor — sprints are holes, tickets are shots, and your handicap tracks improvement over time.","vocabulary":{"sprint":"hole","ticket":"shot","scorecard":"scorecard","handicapCard":"handicap card","briefing":"pre-round briefing","perfectScore":"hole-in-one","onTarget":"par","review":"19th hole"},"clubs":{"driver":"Driver","long_iron":"Long Iron","short_iron":"Short Iron","wedge":"Wedge","putter":"Putter"},"shotResults":{"fairway":"Fairway","green":"Green","in_the_hole":"In the Hole","missed_long":"Missed Long","missed_short":"Missed Short","missed_left":"Missed Left","missed_right":"Missed Right"},"hazards":{"bunker":"Bunker","water":"Water","ob":"Out of Bounds","rough":"Rough","trees":"Trees"},"conditions":{"wind":"Wind","rain":"Rain","frost_delay":"Frost Delay","altitude":"Altitude","pin_position":"Pin Position"},"specialPlays":{"gimme":"Gimme","mulligan":"Mulligan","provisional":"Provisional","lay_up":"Lay Up","scramble":"Scramble"},"missDirections":{"long":"Long (over-engineered)","short":"Short (under-scoped)","left":"Left (wrong approach)","right":"Right (spec drift)"},"scoreLabels":{"eagle":"Eagle","birdie":"Birdie","par":"Par","bogey":"Bogey","double_bogey":"Double Bogey","triple_plus":"Triple+"},"sprintTypes":{"feature":"Feature","feedback":"Feedback","infra":"Infrastructure","bugfix":"Bug Fix","research":"Research","flow":"Flow","test-coverage":"Test Coverage","audit":"Course Review"},"trainingTypes":{"driving_range":"Driving Range","chipping_practice":"Chipping Practice","putting_practice":"Putting Practice","lessons":"Lessons"},"nutrition":{"hydration":"Hydration","diet":"Diet","recovery":"Recovery","supplements":"Supplements","stretching":"Stretching"}},{"id":"tennis","name":"Tennis","description":"Sprints are sets, tickets are points, and your ranking tracks improvement. Aces, volleys, and match strategy.","vocabulary":{"sprint":"set","ticket":"point","scorecard":"match report","handicapCard":"player ranking","briefing":"pre-match scouting","perfectScore":"ace","onTarget":"game point","review":"post-match"},"clubs":{"driver":"Power Serve","long_iron":"Baseline Rally","short_iron":"Approach Shot","wedge":"Drop Shot","putter":"Tap-in"},"shotResults":{"fairway":"In Play","green":"Winner","in_the_hole":"Ace","missed_long":"Long (out of bounds)","missed_short":"Short (into net)","missed_left":"Wide Left","missed_right":"Wide Right"},"hazards":{"bunker":"Double Fault","water":"Unforced Error","ob":"Foot Fault","rough":"Bad Bounce","trees":"Net Cord"},"conditions":{"wind":"Wind","rain":"Rain Delay","frost_delay":"Schedule Delay","altitude":"Surface Change","pin_position":"Opponent Shift"},"specialPlays":{"gimme":"Walkover","mulligan":"Let (replay)","provisional":"Challenge","lay_up":"Moonball","scramble":"Doubles Rally"},"missDirections":{"long":"Long (over-hit)","short":"Short (under-hit)","left":"Wide Left","right":"Wide Right"},"scoreLabels":{"eagle":"Bagel Set","birdie":"Break of Serve","par":"Game Point","bogey":"Deuce","double_bogey":"Broken Serve","triple_plus":"Bageled"},"sprintTypes":{"feature":"Offensive Set","feedback":"Return Game","infra":"Court Maintenance","bugfix":"Error Correction","research":"Film Study","flow":"Rally","test-coverage":"Practice Match","audit":"Film Review"},"trainingTypes":{"driving_range":"Serve Practice","chipping_practice":"Volley Drills","putting_practice":"Touch Practice","lessons":"Coaching Session"},"nutrition":{"hydration":"Hydration","diet":"Match Fitness","recovery":"Recovery","supplements":"Equipment","stretching":"Warm-up"}},{"id":"baseball","name":"Baseball","description":"Sprints are innings, tickets are at-bats, and your batting average tracks improvement. Home runs, strikeouts, and dugout strategy.","vocabulary":{"sprint":"inning","ticket":"at-bat","scorecard":"box score","handicapCard":"batting average","briefing":"scouting report","perfectScore":"home run","onTarget":"on base","review":"dugout"},"clubs":{"driver":"Power Swing","long_iron":"Line Drive","short_iron":"Contact Hit","wedge":"Bunt","putter":"Sacrifice"},"shotResults":{"fairway":"Single","green":"Double","in_the_hole":"Home Run","missed_long":"Fly Out (over-swung)","missed_short":"Ground Out (under-swung)","missed_left":"Foul Left (wrong approach)","missed_right":"Foul Right (drifted)"},"hazards":{"bunker":"Pickle","water":"Error","ob":"Strikeout","rough":"Bad Hop","trees":"Obstruction"},"conditions":{"wind":"Wind","rain":"Rain Delay","frost_delay":"Delayed Start","altitude":"High Altitude","pin_position":"Shift"},"specialPlays":{"gimme":"Intentional Walk","mulligan":"Pinch Hitter","provisional":"Switch Hitter","lay_up":"Sacrifice Bunt","scramble":"Double Play"},"missDirections":{"long":"Fly Out (over-swung)","short":"Ground Out (under-swung)","left":"Foul Left","right":"Foul Right"},"scoreLabels":{"eagle":"Grand Slam","birdie":"Triple","par":"On Base","bogey":"Strikeout","double_bogey":"Double Play","triple_plus":"Shutout"},"sprintTypes":{"feature":"Offensive Inning","feedback":"Defensive Inning","infra":"Field Maintenance","bugfix":"Error Recovery","research":"Scouting","flow":"Rally","test-coverage":"Batting Practice","audit":"Tape Review"},"trainingTypes":{"driving_range":"Batting Cage","chipping_practice":"Fielding Drills","putting_practice":"Bunting Practice","lessons":"Coaching"},"nutrition":{"hydration":"Hydration","diet":"Game Fitness","recovery":"Recovery","supplements":"Equipment","stretching":"Warm-up"}},{"id":"gaming","name":"Gaming","description":"Sprints are levels, tickets are quests, and your XP tracks improvement. Boss fights, power-ups, and speedruns.","vocabulary":{"sprint":"level","ticket":"quest","scorecard":"score screen","handicapCard":"player stats","briefing":"quest log","perfectScore":"S-rank","onTarget":"clear","review":"save point"},"clubs":{"driver":"Boss Fight","long_iron":"Dungeon","short_iron":"Side Quest","wedge":"Fetch Quest","putter":"Tutorial"},"shotResults":{"fairway":"Progress","green":"Clear","in_the_hole":"S-Rank","missed_long":"Over-leveled","missed_short":"Under-leveled","missed_left":"Wrong Path","missed_right":"Side-tracked"},"hazards":{"bunker":"Trap","water":"Glitch","ob":"Soft Lock","rough":"Lag","trees":"Maze"},"conditions":{"wind":"RNG","rain":"Server Issues","frost_delay":"Loading Screen","altitude":"Difficulty Spike","pin_position":"Meta Shift"},"specialPlays":{"gimme":"Skip Cutscene","mulligan":"Quick Load","provisional":"Save Scum","lay_up":"Grind","scramble":"Co-op"},"missDirections":{"long":"Over-leveled (too much scope)","short":"Under-leveled (not enough)","left":"Wrong Path (bad approach)","right":"Side-tracked (drifted)"},"scoreLabels":{"eagle":"S-Rank","birdie":"A-Rank","par":"B-Rank","bogey":"C-Rank","double_bogey":"D-Rank","triple_plus":"Game Over"},"sprintTypes":{"feature":"Main Quest","feedback":"Side Quest","infra":"Base Building","bugfix":"Bug Hunt","research":"Exploration","flow":"Speedrun","test-coverage":"Training Arena","audit":"Code Review"},"trainingTypes":{"driving_range":"Exploration","chipping_practice":"Combo Practice","putting_practice":"Precision Training","lessons":"Tutorial"},"nutrition":{"hydration":"Mana","diet":"HP","recovery":"Rest at Inn","supplements":"Power-ups","stretching":"Buff"}},{"id":"dnd","name":"D&D","description":"Sprints are encounters, tickets are actions, and your character sheet tracks improvement. Crits, saves, and campaign progress.","vocabulary":{"sprint":"encounter","ticket":"action","scorecard":"adventure log","handicapCard":"character sheet","briefing":"quest briefing","perfectScore":"natural 20","onTarget":"hit","review":"long rest"},"clubs":{"driver":"Fireball","long_iron":"Greatsword","short_iron":"Longsword","wedge":"Dagger","putter":"Cantrip"},"shotResults":{"fairway":"Hit","green":"Critical Hit","in_the_hole":"Natural 20","missed_long":"Overshoot (wasted spell slot)","missed_short":"Whiff (under-prepared)","missed_left":"Fumble (wrong action)","missed_right":"Distracted (off-target)"},"hazards":{"bunker":"Trap","water":"Curse","ob":"TPK Risk","rough":"Difficult Terrain","trees":"Fog of War"},"conditions":{"wind":"Wild Magic","rain":"Environmental Hazard","frost_delay":"Long Rest Required","altitude":"Level Scaling","pin_position":"DM Adjustment"},"specialPlays":{"gimme":"Inspiration","mulligan":"Lucky Feat","provisional":"Held Action","lay_up":"Dodge Action","scramble":"Party Assist"},"missDirections":{"long":"Overshoot (too much force)","short":"Whiff (not enough)","left":"Fumble (wrong action)","right":"Distracted (off-target)"},"scoreLabels":{"eagle":"Natural 20","birdie":"Critical Hit","par":"Hit","bogey":"Miss","double_bogey":"Critical Fail","triple_plus":"Natural 1"},"sprintTypes":{"feature":"Main Quest","feedback":"Side Quest","infra":"Downtime","bugfix":"Healing","research":"Investigation","flow":"Combat","test-coverage":"Training Montage","audit":"Inspection"},"trainingTypes":{"driving_range":"Study","chipping_practice":"Sparring","putting_practice":"Meditation","lessons":"Mentoring"},"nutrition":{"hydration":"Mana","diet":"Rations","recovery":"Long Rest","supplements":"Potions","stretching":"Short Rest"}},{"id":"matrix","name":"Matrix","description":"Sprints are simulations, tickets are operations, and your operator rating tracks improvement. Red pills, glitches, and bullettime.","vocabulary":{"sprint":"simulation","ticket":"operation","scorecard":"mission debrief","handicapCard":"operator rating","briefing":"operator briefing","perfectScore":"bullettime","onTarget":"connected","review":"debrief"},"clubs":{"driver":"Red Pill","long_iron":"Upload","short_iron":"Patch","wedge":"Hotfix","putter":"Tweak"},"shotResults":{"fairway":"Connected","green":"Decoded","in_the_hole":"Bullettime","missed_long":"Overload (too much scope)","missed_short":"Dropout (incomplete)","missed_left":"Glitch (wrong path)","missed_right":"Drift (off-mission)"},"hazards":{"bunker":"Firewall","water":"Memory Leak","ob":"System Crash","rough":"Latency","trees":"Encryption"},"conditions":{"wind":"Signal Noise","rain":"Cascade Failure","frost_delay":"Boot Sequence","altitude":"Stack Overflow","pin_position":"Protocol Shift"},"specialPlays":{"gimme":"Auto-complete","mulligan":"System Restore","provisional":"Fork","lay_up":"Safe Mode","scramble":"Swarm"},"missDirections":{"long":"Overload (too much scope)","short":"Dropout (incomplete)","left":"Glitch (wrong path)","right":"Drift (off-mission)"},"scoreLabels":{"eagle":"The One","birdie":"Bullettime","par":"Connected","bogey":"Lag","double_bogey":"Blue Screen","triple_plus":"Unplugged"},"sprintTypes":{"feature":"Upload","feedback":"Feedback Loop","infra":"System Upgrade","bugfix":"Debug","research":"Recon","flow":"Overclock","test-coverage":"Diagnostic","audit":"System Audit"},"trainingTypes":{"driving_range":"Simulation","chipping_practice":"Calibration","putting_practice":"Fine-tuning","lessons":"Download"},"nutrition":{"hydration":"Bandwidth","diet":"Core Integrity","recovery":"Defrag","supplements":"Plugins","stretching":"Pre-flight"}},{"id":"agile","name":"Agile","description":"Sprints are sprints, tickets are stories, and velocity tracks improvement. Standups, retros, and continuous delivery.","vocabulary":{"sprint":"sprint","ticket":"story","scorecard":"retro report","handicapCard":"velocity tracker","briefing":"sprint planning","perfectScore":"shipped early","onTarget":"on track","review":"retrospective"},"clubs":{"driver":"Epic","long_iron":"Feature","short_iron":"Story","wedge":"Task","putter":"Chore"},"shotResults":{"fairway":"In Progress","green":"Done","in_the_hole":"Shipped Early","missed_long":"Over-scoped","missed_short":"Under-delivered","missed_left":"Wrong Priority","missed_right":"Scope Creep"},"hazards":{"bunker":"Blocker","water":"Regression","ob":"Rollback","rough":"Tech Debt","trees":"Dependency"},"conditions":{"wind":"Changing Requirements","rain":"Team Absence","frost_delay":"Blocked Sprint","altitude":"Complexity Spike","pin_position":"Priority Shift"},"specialPlays":{"gimme":"Auto-merge","mulligan":"Revert & Redo","provisional":"Spike","lay_up":"Descope","scramble":"Mob Programming"},"missDirections":{"long":"Over-scoped (too much work)","short":"Under-delivered (incomplete)","left":"Wrong Priority (bad ordering)","right":"Scope Creep (drifted)"},"scoreLabels":{"eagle":"Crushed It","birdie":"Ahead of Schedule","par":"On Track","bogey":"Slipped","double_bogey":"Missed Sprint Goal","triple_plus":"Failed Sprint"},"sprintTypes":{"feature":"Feature Sprint","feedback":"Feedback Sprint","infra":"Platform Sprint","bugfix":"Bug Fix Sprint","research":"Spike Sprint","flow":"Flow Sprint","test-coverage":"Quality Sprint","audit":"Code Review Sprint"},"trainingTypes":{"driving_range":"Tech Talk","chipping_practice":"Pair Programming","putting_practice":"Code Review","lessons":"Workshop"},"nutrition":{"hydration":"Communication","diet":"Process Health","recovery":"Cooldown","supplements":"Tooling","stretching":"Refinement"}}],"roles":[{"id":"generalist","name":"Generalist","description":"Default role — no special focus area filtering","focusAreas":[],"clubPreferences":{},"briefingFilter":{"emphasize":[],"deemphasize":[]}},{"id":"backend","name":"Backend","description":"API, database, server-side logic specialist","focusAreas":["packages/core","packages/store-*","src/api","src/server","src/db","migrations"],"clubPreferences":{"database":"short_iron","api":"short_iron","migration":"wedge"},"briefingFilter":{"emphasize":["database","api","testing","migration","schema"],"deemphasize":["accessibility","styling","bundle"]}},{"id":"frontend","name":"Frontend","description":"UI, components, styling, accessibility specialist","focusAreas":["src/components","src/pages","src/styles","src/hooks","public"],"clubPreferences":{"component":"short_iron","styling":"wedge","accessibility":"short_iron"},"briefingFilter":{"emphasize":["accessibility","styling","component","bundle","rendering"],"deemphasize":["database","migration","schema"]}},{"id":"architect","name":"Architect","description":"Cross-package dependencies, API surface, tech debt specialist","focusAreas":["packages/*","docs","src/types","src/config"],"clubPreferences":{"refactor":"long_iron","architecture":"driver","types":"short_iron"},"briefingFilter":{"emphasize":["architecture","dependency","api","tech-debt","cross-package"],"deemphasize":[]}},{"id":"devops","name":"DevOps","description":"CI/CD, deployment, infrastructure specialist","focusAreas":[".github","Dockerfile","docker-compose","scripts",".env","infra"],"clubPreferences":{"ci":"short_iron","deployment":"short_iron","infra":"long_iron"},"briefingFilter":{"emphasize":["ci","deployment","infrastructure","docker","monitoring"],"deemphasize":["styling","component","accessibility"]}},{"id":"ml-engineer","name":"ML Engineer","description":"Model integration, embeddings, and inference specialist","focusAreas":["src/**/ml*","src/**/embed*","src/**/model*","src/**/inference*"],"clubPreferences":{"model-integration":"short_iron","embeddings":"wedge","inference":"short_iron"},"briefingFilter":{"emphasize":["model","embedding","inference","token","vector","prediction"],"deemphasize":["styling","accessibility","component"]}},{"id":"database","name":"Database Engineer","description":"Schema design, migrations, query optimization specialist","focusAreas":["src/store*","src/**/migration*","src/**/schema*"],"clubPreferences":{"migration":"wedge","schema":"short_iron","query":"short_iron"},"briefingFilter":{"emphasize":["schema","migration","query","store","database","index"],"deemphasize":["styling","component","accessibility"]}},{"id":"ux-designer","name":"UX Designer","description":"User flows, onboarding, accessibility, and progressive disclosure specialist","focusAreas":["src/**/init*","src/**/interview*","src/**/template*","docs/tutorial*","docs/getting-started*"],"clubPreferences":{"onboarding":"short_iron","flow":"short_iron","accessibility":"wedge"},"briefingFilter":{"emphasize":["flow","onboarding","accessibility","tutorial","ux","interview"],"deemphasize":["schema","migration","query","database"]}}],"constants":{"parThresholds":{"3":[1,2],"4":[3,4],"5":[5,null]},"slopeFactors":["cross_package","schema_migration","new_area","external_dep","concurrent_agents"],"scoreLabels":{"0":"par","1":"bogey","2":"double_bogey","-2":"eagle","-1":"birdie"},"hazardPenalties":{"minor":0,"moderate":0.5,"major":1,"critical":2}},"changelog":{"status":"success","entries":[{"version":"Unreleased","date":"2026-03-16","changes":[{"type":"chore","description":"bump version to 1.31.0 (#178)","breaking":false,"hash":"7d44895ef93c981b22f01ed834c2d878e7414b1b"},{"type":"feat","description":"suggestion engine — structured guard responses + 5 new guards (#177)","breaking":false,"hash":"2aa02bda365fee6da4898909a9cfd06a921679c4"},{"type":"chore","description":"bump version to 1.30.0 (#176)","breaking":false,"hash":"0bd64183e9dcae9f39b0a17b74a48ea3f070a85a"},{"type":"fix","description":"slope hook add removes stale SLOPE entries before re-installing (#175)","breaking":false,"hash":"0bb977efacdb1e283dd4034902693d406dc8589e"},{"type":"fix","description":"subagent-gate denies Explore/Plan agents with no model specified (#174)","breaking":false,"hash":"ac45a8f85d5e85cbd8a0ba6b38ea89526df53a49"},{"type":"feat","scope":"S65-S66","description":"inspiration registry, analytics dashboard (#172)","breaking":false,"hash":"dc7a8868ee9220f0410c029016bbf945fbc2f8ae"},{"type":"chore","description":"bump version to 1.29.0 (#171)","breaking":false,"hash":"23e231247cc08405957e457a0390c00bd05daed3"},{"type":"docs","description":"regenerate CODEBASE.md with version recommend subcommand","breaking":false,"hash":"4d2d866ebd56678eb13d3c4a5fffe205124538ab"},{"type":"feat","scope":"S65","description":"inspiration registry, context tiers, import-graph blast radius (#170)","breaking":false,"hash":"8e7e8560b63a6b8a11b3d5d1ca30da886adb647a"},{"type":"chore","description":"bump version to 1.28.0 (#169)","breaking":false,"hash":"484ceaba71153177e9354ab9e6dd7d347da90f7a"},{"type":"feat","description":"context_search MCP tool + richer CODEBASE.md signatures (#168)","breaking":false,"hash":"1b3f6b16439e08dd1210c406edee9fcd2354c802"},{"type":"fix","description":"remove stale max_turns references from subagent-gate (#167)","breaking":false,"hash":"d08952ec94a8c5a100f513adbbb6d9efb889d668"},{"type":"docs","description":"local-install-first README with in-harness setup prompts (#166)","breaking":false,"hash":"4a20befc8675a5cd2ab9db12ecff0aea40bead22"},{"type":"docs","description":"rewrite README with per-platform setup guides (#165)","breaking":false,"hash":"73aa21676e894d443a1ee4f21dea6beeb2584364"},{"type":"fix","scope":"ci","description":"fix sync-docs workflow failure on push events (#164)","breaking":false,"hash":"c4cbc029d40460af538067bb18421337b342e466"}]},{"version":"v1.27.0","date":"2026-03-14","changes":[{"type":"chore","description":"bump version to 1.27.0 (#163)","breaking":false,"hash":"bddbeafd5454313f3c88ccfab9f55b8fe333da7f"},{"type":"feat","description":"slash commands for sprint lifecycle automation (#160)","breaking":false,"hash":"968d17254271438d307c34fd682e757dff9ceeee"},{"type":"feat","description":"FATHOMS-driven guard improvements + deferred findings (#161)","breaking":false,"hash":"6b2453520c26f277b23ce7e566af1233f7889e64"},{"type":"feat","description":"live stats API — CLI export, CF Worker, CI publish (#155)","breaking":false,"hash":"6599d7aae2294a0f045276c7193e9d4849f9ed17"},{"type":"fix","scope":"guards","description":"update subagent-gate for Agent tool (Task → Agent) (#154)","breaking":false,"hash":"a3bf88e8d3fc80c40457c2ed16d1db1965713259"},{"type":"feat","scope":"docs","description":"add slope docs validate subcommand (#153)","breaking":false,"hash":"21ebada2506f2423b4f14a4d917efd5ced84b1dc"},{"type":"fix","scope":"ci","description":"fix GitHub Actions expression syntax in sync-docs workflow (#152)","breaking":false,"hash":"57f1967be6caad970e53f32a8d36c19a39dcadad"}]},{"version":"v1.26.1","date":"2026-03-13","changes":[{"type":"test","scope":"guards","description":"update stop-check tests to expect warning instead of block (#151)","breaking":false,"hash":"70d6b919632a75de2438e7a46ba985176c628e49"},{"type":"fix","scope":"guards","description":"resolve hook recursion bug + stop-check improvements (#150)","breaking":false,"hash":"1d3f5125399bf6cfe1f6942d34f139e8a6c190aa"}]},{"version":"v1.26.0","date":"2026-03-13","changes":[{"type":"chore","description":"bump version to 1.26.0 (#148)","breaking":false,"hash":"32bc4cedb34e9e5c02ac46186de573c0de4a98de"},{"type":"chore","description":"update slope-guard.sh managed section to use SLOPE_BIN_PREAMBLE (#147)","breaking":false,"hash":"60d32fc17f0f74d045bb78178d00ae36e5535b7e"},{"type":"feat","scope":"S65","description":"Doctor v2 — version hygiene, hook drift & smart guard recommendations (#146)","breaking":false,"hash":"5c404bff1bec3273624960587160ffccf346dcc7"},{"type":"feat","scope":"guards","description":"auto-update managed section of hook scripts on reinstall (#139)","breaking":false,"hash":"7279898006b0ffb34af74bd34b3882ecebb1cec6"},{"type":"chore","description":"sprint housekeeping — scorecards, roadmap, stale cleanup (#145)","breaking":false,"hash":"dc53aec72339db361b26686ffd9473664568e56b"},{"type":"feat","scope":"S64","description":"claim hygiene, worktree safety & loop planner context (#144)","breaking":false,"hash":"a75a75932e143ce451a8e28114e011c7bb28fa83"},{"type":"fix","scope":"guards","description":"resolve slope binary at runtime via npx (#138)","breaking":false,"hash":"b453fc0e616608543e9df045919b28b2b00d84e9"},{"type":"feat","scope":"s63","description":"help, quickstart, and guard docs commands","breaking":false,"hash":"9281c2c975db3270c4be4da70a82995ba508ef20"},{"type":"chore","description":"Install slope opencode plugin","breaking":false,"hash":"d592502c0d5885d6c546d0b48ab574b023d9f64d"},{"type":"feat","scope":"init","description":"add stack detection and smart guard recommendations","breaking":false,"hash":"56c71307ca659a621e2a4d09115a29e2f08104ba"}]},{"version":"v1.25.4","date":"2026-03-12","changes":[{"type":"other","description":"release: v1.25.4","breaking":false,"hash":"cec07f42b7bb95eda45b63c8e84411e2fa12796b"},{"type":"feat","scope":"loop","description":"add analysis paralysis timeout and planner/executor separation","breaking":false,"hash":"a758d621b075c2e56fabfda87ef03f84deaecfb0"}]},{"version":"v1.25.3","date":"2026-03-12","changes":[{"type":"other","description":"release: v1.25.3","breaking":false,"hash":"c3a10eaee22de103eede9d57c7c1ac1f6a1b89f1"},{"type":"fix","scope":"cli","description":"add --version and --help flags, improve version command","breaking":false,"hash":"f793f5656029fc150d925961e63ff1efa0404527"}]},{"version":"v1.25.2","date":"2026-03-12","changes":[{"type":"other","description":"release: v1.25.2","breaking":false,"hash":"964db4368a156595f1463fc8610e3d70b00333d0"},{"type":"fix","scope":"test","description":"update stale schema version assertion in PG store test","breaking":false,"hash":"2d66db3cf097f9632601e34a8be18fdc59fa3e19"},{"type":"chore","description":"update pnpm lockfile","breaking":false,"hash":"dd5ceaaca984089be2dadb00f3192ac8a539ed54"},{"type":"chore","description":"cleanup and fixes","breaking":false,"hash":"62720e617a5194da2789b33f27ff0ced88588634"},{"type":"feat","scope":"adapter","description":"add OB1 harness adapter","breaking":false,"hash":"8d74e382726d14b92c803b0daf633640c8d300e4"},{"type":"feat","scope":"loop","description":"integrate SLOPE into autonomous loop (Layers 1-3)","breaking":false,"hash":"9fcb9427d1c1f7e921a6dc7a1d61ae7ec66d16ff"},{"type":"feat","scope":"loop","description":"executor improvements from E2E analysis","breaking":false,"hash":"0280e807491513d0328b3cdff401ec1de411d45d"},{"type":"fix","scope":"loop","description":"address review findings from PR #135","breaking":false,"hash":"2729207a0f0e5d9b19cf1aa7a87b5ec33a441257"},{"type":"test","scope":"loop","description":"add tests for executor adapter, aider executor, and slope executor","breaking":false,"hash":"ad234058c5fa9513191c8149a2f746eb3fb99a89"},{"type":"feat","scope":"loop","description":"add A/B test command for executor comparison","breaking":false,"hash":"5557089fa5692884c9a7e1084fe47e61a1fd7ad1"},{"type":"feat","scope":"loop","description":"add inner-loop guard integration to SlopeExecutor","breaking":false,"hash":"1b1f4088308c2f1a7a432bf99f735535b3c0cd66"},{"type":"feat","scope":"loop","description":"add SlopeExecutor — custom agentic tool loop on Anthropic API","breaking":false,"hash":"85633eddcd73991ea75e0a54ab7dc871f1e25860"},{"type":"feat","scope":"loop","description":"extract ExecutorAdapter interface and AiderExecutor wrapper","breaking":false,"hash":"d5186819c990e144fca7db427229336720fd1079"}]},{"version":"v1.25.1","date":"2026-03-11","changes":[{"type":"other","description":"1.25.1","breaking":false,"hash":"d178493909fa543df8c649f536a15cf50e40e322"},{"type":"fix","scope":"guards","description":"force AskUserQuestion via blockReason (#134)","breaking":false,"hash":"d16eb0e92c74b121411e229691df2bdb6bcde403"}]},{"version":"v1.25.0","date":"2026-03-11","changes":[{"type":"feat","description":"branch discipline, worktree enforcement, docs manifest sync (#133)","breaking":false,"hash":"afb62e3c224eed3bb45b8efc9deeb15104a11989"},{"type":"fix","description":"remove string concatenation from workflow expression (#132)","breaking":false,"hash":"4a713decfa43f0897526818e75622d303afa6678"},{"type":"feat","description":"docs manifest sync pipeline (#129)","breaking":false,"hash":"faceaf93e8111530fe2d78979cea1e8a890ee7fb"}]},{"version":"v1.24.0","date":"2026-03-10","changes":[{"type":"chore","description":"bump version to 1.24.0","breaking":false,"hash":"ed6a5046987941ba264b2cd4c497e256d2bc53a4"},{"type":"test","description":"add test-plan parser tests, update tool count assertion","breaking":false,"hash":"0c77ce196ba58a9ec7b838e6ea57074e0e20c910"},{"type":"feat","description":"add test plan parsing and testing_plan_status MCP tool","breaking":false,"hash":"3b05b14a7502f4c856df996e8fedcedba7d89273"}]},{"version":"v1.23.0","date":"2026-03-07","changes":[{"type":"feat","description":"testing session flow via MCP tools (#127)","breaking":false,"hash":"249fe4cd527b38ca1933c624860e09b95c42b9f4"},{"type":"chore","description":"bump version to 1.23.0 (#126)","breaking":false,"hash":"10442efec536e471ed6bd085a982037717d1fff1"},{"type":"feat","description":"fix stop-check false positives + slope version bump (#125)","breaking":false,"hash":"43743504fb6420586c197ab0f6ac418700978487"}]}]}}
+{
+  "version": "1.37.0",
+  "generatedAt": "2026-03-25T16:44:18.868Z",
+  "gitSha": "4ce947fe2dd08436aff5877490d876712a854f31",
+  "checksums": {
+    "commands": "7574513fd289b2d0e781c880a12cbe69a91eaa776c11d43a71dea0ba5101a900",
+    "guards": "7fa2ebf5f557ca12f68d4cc8ebbf84206da6142f24a6d028072edd775e95ca4a",
+    "mcpTools": "b0c415a0e33f6e15afb4d68d60c131dff5de70b344f994c7fd5a3d21593d1753",
+    "metaphors": "fbf85ac929a8738df5d6e26262029e4a1a1495eac6acd3c0316073f3bf1795f0",
+    "roles": "ad096c5377dd772f8d1ecc7f4868196bf1045cd606b97eda368da4e6bd9dd102",
+    "constants": "107d1a94e19454050bf16f8e246678fcb6b93044186a71b8acf6481c14a92569",
+    "changelog": "09447a32c67ede212061a1fb8bf0ff9e424a6ee1ff8e2d2a215c6e5c544674af"
+  },
+  "commands": [
+    {
+      "cmd": "init",
+      "desc": "Initialize .slope/ directory",
+      "category": "lifecycle",
+      "flags": [
+        {
+          "flag": "--metaphor=<id>",
+          "desc": "Set metaphor theme (golf, gaming, dnd, etc.)"
+        },
+        {
+          "flag": "--interactive",
+          "desc": "Rich interactive setup wizard"
+        }
+      ]
+    },
+    {
+      "cmd": "help",
+      "desc": "Show detailed per-command usage",
+      "category": "lifecycle",
+      "flags": [
+        {
+          "flag": "<command>",
+          "desc": "Command name to show details for"
+        }
+      ]
+    },
+    {
+      "cmd": "quickstart",
+      "desc": "Interactive tutorial for new users",
+      "category": "lifecycle"
+    },
+    {
+      "cmd": "doctor",
+      "desc": "Check repo health and auto-fix issues",
+      "category": "lifecycle",
+      "flags": [
+        {
+          "flag": "--fix",
+          "desc": "Auto-fix detected issues"
+        }
+      ]
+    },
+    {
+      "cmd": "version",
+      "desc": "Show version or bump with automated PR workflow",
+      "category": "lifecycle",
+      "subcommands": [
+        {
+          "name": "bump",
+          "desc": "Bump version with automated PR workflow",
+          "flags": [
+            {
+              "flag": "<version>",
+              "desc": "Explicit version (e.g. 1.28.0)"
+            },
+            {
+              "flag": "--patch",
+              "desc": "Patch bump (x.y.Z+1) — bug fixes only"
+            },
+            {
+              "flag": "--major",
+              "desc": "Major bump (X+1.0.0) — breaking changes"
+            },
+            {
+              "flag": "--dry-run",
+              "desc": "Preview changes without committing"
+            }
+          ]
+        },
+        {
+          "name": "recommend",
+          "desc": "Analyze commits and recommend version tier"
+        }
+      ]
+    },
+    {
+      "cmd": "session",
+      "desc": "Manage live sessions",
+      "category": "lifecycle",
+      "subcommands": [
+        {
+          "name": "start",
+          "desc": "Start a new session",
+          "flags": [
+            {
+              "flag": "--role=<role>",
+              "desc": "Session role (primary, secondary, observer)"
+            },
+            {
+              "flag": "--ide=<id>",
+              "desc": "IDE identifier (claude-code, cursor, etc.)"
+            },
+            {
+              "flag": "--branch=<name>",
+              "desc": "Git branch name"
+            },
+            {
+              "flag": "--swarm=<id>",
+              "desc": "Join an existing swarm"
+            },
+            {
+              "flag": "--agent-role=<role>",
+              "desc": "Role within the swarm"
+            }
+          ]
+        },
+        {
+          "name": "end",
+          "desc": "End active session",
+          "flags": [
+            {
+              "flag": "--session-id=<id>",
+              "desc": "Specific session to end"
+            }
+          ]
+        },
+        {
+          "name": "heartbeat",
+          "desc": "Send session heartbeat",
+          "flags": [
+            {
+              "flag": "--session-id=<id>",
+              "desc": "Specific session to heartbeat"
+            }
+          ]
+        },
+        {
+          "name": "list",
+          "desc": "List active sessions",
+          "flags": [
+            {
+              "flag": "--swarm=<id>",
+              "desc": "Filter by swarm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "claim",
+      "desc": "Claim a ticket or area for the sprint",
+      "category": "lifecycle",
+      "flags": [
+        {
+          "flag": "--target=<path>",
+          "desc": "File or directory to claim"
+        },
+        {
+          "flag": "--ticket=<key>",
+          "desc": "Ticket key (e.g. S48-1)"
+        },
+        {
+          "flag": "--force",
+          "desc": "Override conflicting claims"
+        }
+      ]
+    },
+    {
+      "cmd": "release",
+      "desc": "Release a claim by ID or target",
+      "category": "lifecycle",
+      "flags": [
+        {
+          "flag": "--id=<id>",
+          "desc": "Claim ID to release"
+        },
+        {
+          "flag": "--target=<path>",
+          "desc": "Release claim by target path"
+        }
+      ]
+    },
+    {
+      "cmd": "status",
+      "desc": "Show sprint course status and conflicts",
+      "category": "lifecycle",
+      "flags": [
+        {
+          "flag": "--json",
+          "desc": "Output as JSON"
+        }
+      ]
+    },
+    {
+      "cmd": "next",
+      "desc": "Show next sprint number (auto-detect)",
+      "category": "lifecycle"
+    },
+    {
+      "cmd": "sprint",
+      "desc": "Manage sprint lifecycle state and gates",
+      "category": "lifecycle",
+      "subcommands": [
+        {
+          "name": "start",
+          "desc": "Start a new sprint",
+          "flags": [
+            {
+              "flag": "--number=<N>",
+              "desc": "Sprint number (required)"
+            },
+            {
+              "flag": "--phase=<phase>",
+              "desc": "Initial phase (default: planning)"
+            }
+          ]
+        },
+        {
+          "name": "gate",
+          "desc": "Mark a gate as complete",
+          "flags": [
+            {
+              "flag": "<name>",
+              "desc": "Gate name to complete"
+            }
+          ]
+        },
+        {
+          "name": "status",
+          "desc": "Show current sprint state and gates"
+        },
+        {
+          "name": "reset",
+          "desc": "Reset sprint state"
+        }
+      ]
+    },
+    {
+      "cmd": "card",
+      "desc": "Display handicap card",
+      "category": "scoring",
+      "flags": [
+        {
+          "flag": "--metaphor=<id>",
+          "desc": "Display theme override"
+        },
+        {
+          "flag": "--player=<name>",
+          "desc": "Filter to a specific player"
+        },
+        {
+          "flag": "--swarm",
+          "desc": "Show swarm/multi-agent handicap"
+        },
+        {
+          "flag": "--team",
+          "desc": "Show team handicap card"
+        }
+      ]
+    },
+    {
+      "cmd": "validate",
+      "desc": "Validate scorecard(s)",
+      "category": "scoring",
+      "flags": [
+        {
+          "flag": "<path>",
+          "desc": "Scorecard JSON file to validate"
+        }
+      ]
+    },
+    {
+      "cmd": "review",
+      "desc": "Format sprint review or manage review state",
+      "category": "scoring",
+      "subcommands": [
+        {
+          "name": "start",
+          "desc": "Start a plan review",
+          "flags": [
+            {
+              "flag": "--tier=<tier>",
+              "desc": "Review tier (skip, light, standard, deep)"
+            }
+          ]
+        },
+        {
+          "name": "round",
+          "desc": "Record completion of a review round"
+        },
+        {
+          "name": "status",
+          "desc": "Show current review state"
+        },
+        {
+          "name": "reset",
+          "desc": "Reset review state"
+        },
+        {
+          "name": "recommend",
+          "desc": "Check which review types apply to the sprint"
+        },
+        {
+          "name": "findings",
+          "desc": "Manage review findings",
+          "flags": [
+            {
+              "flag": "add",
+              "desc": "Add a finding (--type, --ticket, --severity, --description)"
+            },
+            {
+              "flag": "list",
+              "desc": "List recorded findings"
+            },
+            {
+              "flag": "clear",
+              "desc": "Clear all findings"
+            }
+          ]
+        },
+        {
+          "name": "amend",
+          "desc": "Inject review findings as hazards into scorecard"
+        }
+      ],
+      "flags": [
+        {
+          "flag": "--metaphor=<id>",
+          "desc": "Display theme override"
+        },
+        {
+          "flag": "<path>",
+          "desc": "Scorecard file to review (default: latest)"
+        }
+      ]
+    },
+    {
+      "cmd": "auto-card",
+      "desc": "Generate scorecard from git + CI signals",
+      "category": "scoring",
+      "flags": [
+        {
+          "flag": "--sprint=<N>",
+          "desc": "Sprint number (required)"
+        },
+        {
+          "flag": "--since=<date>",
+          "desc": "Start date for git log"
+        },
+        {
+          "flag": "--branch=<ref>",
+          "desc": "Git branch to analyze"
+        },
+        {
+          "flag": "--theme=<text>",
+          "desc": "Sprint theme description"
+        },
+        {
+          "flag": "--player=<name>",
+          "desc": "Player name for scorecard"
+        },
+        {
+          "flag": "--test-output=<file>",
+          "desc": "Path to test output for CI signal parsing"
+        },
+        {
+          "flag": "--pr=<number>",
+          "desc": "PR number for PR signal parsing"
+        },
+        {
+          "flag": "--swarm=<id>",
+          "desc": "Swarm ID for multi-agent scorecard"
+        },
+        {
+          "flag": "--dry-run",
+          "desc": "Preview without writing"
+        }
+      ]
+    },
+    {
+      "cmd": "classify",
+      "desc": "Classify a shot from execution trace",
+      "category": "scoring",
+      "flags": [
+        {
+          "flag": "--scope=<files>",
+          "desc": "Comma-separated file scope"
+        },
+        {
+          "flag": "--modified=<files>",
+          "desc": "Comma-separated modified files"
+        },
+        {
+          "flag": "--tests=<result>",
+          "desc": "Test result (pass, fail, partial)"
+        },
+        {
+          "flag": "--reverts=<N>",
+          "desc": "Number of reverts"
+        },
+        {
+          "flag": "--hazards=<N>",
+          "desc": "Number of hazards encountered"
+        }
+      ]
+    },
+    {
+      "cmd": "tournament",
+      "desc": "Build tournament review from sprints",
+      "category": "scoring",
+      "flags": [
+        {
+          "flag": "--id=<id>",
+          "desc": "Tournament identifier"
+        },
+        {
+          "flag": "--name=<name>",
+          "desc": "Tournament display name"
+        },
+        {
+          "flag": "--sprints=<N-M>",
+          "desc": "Sprint range (e.g. 1-10)"
+        },
+        {
+          "flag": "--output=<path>",
+          "desc": "Output file path"
+        }
+      ]
+    },
+    {
+      "cmd": "briefing",
+      "desc": "Pre-round briefing with hazards and nutrition",
+      "category": "analysis",
+      "flags": [
+        {
+          "flag": "--categories=<list>",
+          "desc": "Filter by issue categories (comma-separated)"
+        },
+        {
+          "flag": "--keywords=<list>",
+          "desc": "Filter by keywords (comma-separated)"
+        },
+        {
+          "flag": "--sprint=<N>",
+          "desc": "Sprint number"
+        },
+        {
+          "flag": "--role=<id>",
+          "desc": "Filter by role"
+        },
+        {
+          "flag": "--player=<name>",
+          "desc": "Filter to a specific player"
+        },
+        {
+          "flag": "--personal",
+          "desc": "Show personal stats only"
+        },
+        {
+          "flag": "--no-training",
+          "desc": "Skip training recommendations"
+        },
+        {
+          "flag": "--compact",
+          "desc": "Shorter output for session hooks"
+        }
+      ]
+    },
+    {
+      "cmd": "plan",
+      "desc": "Pre-shot advisor (club + training + hazards)",
+      "category": "analysis",
+      "flags": [
+        {
+          "flag": "--complexity=<level>",
+          "desc": "Complexity (trivial, small, medium, large)"
+        },
+        {
+          "flag": "--slope-factors=<list>",
+          "desc": "Comma-separated slope factors"
+        },
+        {
+          "flag": "--areas=<list>",
+          "desc": "Comma-separated code areas"
+        },
+        {
+          "flag": "--sprint=<N>",
+          "desc": "Sprint number for context"
+        }
+      ]
+    },
+    {
+      "cmd": "report",
+      "desc": "Generate HTML performance report",
+      "category": "analysis",
+      "flags": [
+        {
+          "flag": "--html",
+          "desc": "Generate HTML report"
+        },
+        {
+          "flag": "--output=<path>",
+          "desc": "Output file path"
+        }
+      ]
+    },
+    {
+      "cmd": "dashboard",
+      "desc": "Live local performance dashboard",
+      "category": "analysis",
+      "flags": [
+        {
+          "flag": "--port=<N>",
+          "desc": "HTTP port (default: 3000)"
+        },
+        {
+          "flag": "--no-open",
+          "desc": "Don't auto-open browser"
+        },
+        {
+          "flag": "--refresh=<N>",
+          "desc": "Auto-refresh interval in seconds (0=disable)"
+        },
+        {
+          "flag": "--metaphor=<id>",
+          "desc": "Display theme override"
+        },
+        {
+          "flag": "--player=<name>",
+          "desc": "Filter to a specific player"
+        }
+      ]
+    },
+    {
+      "cmd": "standup",
+      "desc": "Generate or ingest standup report",
+      "category": "analysis",
+      "flags": [
+        {
+          "flag": "--session=<id>",
+          "desc": "Session ID for standup generation"
+        },
+        {
+          "flag": "--role=<id>",
+          "desc": "Agent role filter"
+        },
+        {
+          "flag": "--sprint=<N>",
+          "desc": "Sprint number"
+        },
+        {
+          "flag": "--ingest=<path>",
+          "desc": "Ingest standup from file (or stdin with --ingest)"
+        },
+        {
+          "flag": "--aggregate",
+          "desc": "Aggregate team standups"
+        },
+        {
+          "flag": "--json",
+          "desc": "Output as JSON"
+        }
+      ]
+    },
+    {
+      "cmd": "analyze",
+      "desc": "Scan repo and generate profile",
+      "category": "analysis",
+      "flags": [
+        {
+          "flag": "--analyzers=<list>",
+          "desc": "Run specific analyzers (comma-separated: stack, git, etc.)"
+        },
+        {
+          "flag": "--json",
+          "desc": "Output full profile as JSON"
+        }
+      ]
+    },
+    {
+      "cmd": "hook",
+      "desc": "Manage lifecycle hooks",
+      "category": "tooling",
+      "subcommands": [
+        {
+          "name": "add",
+          "desc": "Install guard hooks",
+          "flags": [
+            {
+              "flag": "--level=<level>",
+              "desc": "Hook level (full, scoring)"
+            },
+            {
+              "flag": "--harness=<id>",
+              "desc": "Target harness (auto-detect or specify)"
+            }
+          ]
+        },
+        {
+          "name": "remove",
+          "desc": "Remove installed hooks"
+        },
+        {
+          "name": "list",
+          "desc": "Show installed hooks",
+          "flags": [
+            {
+              "flag": "--available",
+              "desc": "Show full catalog of available hooks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "guard",
+      "desc": "Run guard handler or manage guard activation",
+      "category": "tooling",
+      "subcommands": [
+        {
+          "name": "<name>",
+          "desc": "Run a guard (reads hook JSON from stdin)"
+        },
+        {
+          "name": "list",
+          "desc": "Show all available guards"
+        },
+        {
+          "name": "status",
+          "desc": "Show per-harness guard installation state"
+        },
+        {
+          "name": "recommend",
+          "desc": "Show missing guards with relevance to your workflow"
+        },
+        {
+          "name": "docs",
+          "desc": "Show detailed guard documentation",
+          "flags": [
+            {
+              "flag": "<name>",
+              "desc": "Guard name (optional — shows all if omitted)"
+            }
+          ]
+        },
+        {
+          "name": "enable",
+          "desc": "Enable a disabled guard",
+          "flags": [
+            {
+              "flag": "<name>",
+              "desc": "Guard name to enable"
+            }
+          ]
+        },
+        {
+          "name": "disable",
+          "desc": "Disable a guard",
+          "flags": [
+            {
+              "flag": "<name>",
+              "desc": "Guard name to disable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "extract",
+      "desc": "Extract events into SLOPE store",
+      "category": "tooling",
+      "flags": [
+        {
+          "flag": "--file=<path>",
+          "desc": "Event file to extract"
+        },
+        {
+          "flag": "--session-id=<id>",
+          "desc": "Session ID to tag events"
+        },
+        {
+          "flag": "--sprint=<N>",
+          "desc": "Sprint number"
+        }
+      ]
+    },
+    {
+      "cmd": "distill",
+      "desc": "Promote event patterns to common issues",
+      "category": "tooling",
+      "flags": [
+        {
+          "flag": "--auto",
+          "desc": "Auto-promote patterns above threshold"
+        },
+        {
+          "flag": "--dry-run",
+          "desc": "Preview without writing"
+        },
+        {
+          "flag": "--sprint=<N>",
+          "desc": "Filter to a specific sprint"
+        },
+        {
+          "flag": "--threshold=<N>",
+          "desc": "Minimum occurrence threshold"
+        }
+      ]
+    },
+    {
+      "cmd": "map",
+      "desc": "Generate/update codebase map",
+      "category": "tooling",
+      "flags": [
+        {
+          "flag": "--check",
+          "desc": "Check staleness (exit 1 if stale)"
+        },
+        {
+          "flag": "--output=<path>",
+          "desc": "Custom output path (default: CODEBASE.md)"
+        }
+      ]
+    },
+    {
+      "cmd": "workflow",
+      "desc": "Manage workflow definitions",
+      "category": "tooling",
+      "subcommands": [
+        {
+          "name": "validate",
+          "desc": "Parse and validate a workflow definition"
+        },
+        {
+          "name": "list",
+          "desc": "List all available workflows (project + built-in)"
+        },
+        {
+          "name": "show",
+          "desc": "Pretty-print a workflow with phase/step tree"
+        }
+      ]
+    },
+    {
+      "cmd": "flows",
+      "desc": "Manage user flow definitions",
+      "category": "tooling",
+      "subcommands": [
+        {
+          "name": "init",
+          "desc": "Create .slope/flows.json with example template"
+        },
+        {
+          "name": "list",
+          "desc": "List all flows with staleness indicators"
+        },
+        {
+          "name": "check",
+          "desc": "Validate all flows (file existence, staleness); exit 1 if stale"
+        }
+      ]
+    },
+    {
+      "cmd": "inspirations",
+      "desc": "Track external OSS inspiration sources",
+      "category": "tooling",
+      "subcommands": [
+        {
+          "name": "add",
+          "desc": "Add an inspiration source",
+          "flags": [
+            {
+              "flag": "--url=<url>",
+              "desc": "Source URL (required)"
+            },
+            {
+              "flag": "--project=<name>",
+              "desc": "Project name (required)"
+            },
+            {
+              "flag": "--idea=\"<text>\"",
+              "desc": "Idea extracted (repeatable, required)"
+            },
+            {
+              "flag": "--id=<id>",
+              "desc": "Override auto-derived ID"
+            }
+          ]
+        },
+        {
+          "name": "list",
+          "desc": "List tracked inspirations",
+          "flags": [
+            {
+              "flag": "--status=<status>",
+              "desc": "Filter by status (backlogged, planned, implemented, rejected)"
+            }
+          ]
+        },
+        {
+          "name": "link",
+          "desc": "Link inspiration to a sprint",
+          "flags": [
+            {
+              "flag": "--id=<id>",
+              "desc": "Inspiration ID (required)"
+            },
+            {
+              "flag": "--sprint=<N>",
+              "desc": "Sprint number (required)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "metaphor",
+      "desc": "Manage metaphor display themes",
+      "category": "tooling",
+      "subcommands": [
+        {
+          "name": "list",
+          "desc": "Show all available metaphors"
+        },
+        {
+          "name": "set",
+          "desc": "Set the active metaphor",
+          "flags": [
+            {
+              "flag": "<id>",
+              "desc": "Metaphor ID to activate"
+            }
+          ]
+        },
+        {
+          "name": "show",
+          "desc": "Show all terms for a metaphor",
+          "flags": [
+            {
+              "flag": "<id>",
+              "desc": "Metaphor ID to display"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "plugin",
+      "desc": "Manage custom plugins",
+      "category": "tooling",
+      "subcommands": [
+        {
+          "name": "list",
+          "desc": "Show all plugins (built-in + custom)"
+        },
+        {
+          "name": "validate",
+          "desc": "Validate a plugin file",
+          "flags": [
+            {
+              "flag": "<path>",
+              "desc": "Plugin file path"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "store",
+      "desc": "Store diagnostics and management",
+      "category": "tooling",
+      "subcommands": [
+        {
+          "name": "status",
+          "desc": "Show store type, schema version, and stats",
+          "flags": [
+            {
+              "flag": "--json",
+              "desc": "Output as JSON"
+            }
+          ]
+        },
+        {
+          "name": "backup",
+          "desc": "Back up the store",
+          "flags": [
+            {
+              "flag": "--output=<path>",
+              "desc": "Backup output path"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "escalate",
+      "desc": "Escalate issues based on severity triggers",
+      "category": "tooling",
+      "flags": [
+        {
+          "flag": "--reason=<text>",
+          "desc": "Manual escalation reason"
+        },
+        {
+          "flag": "--session-id=<id>",
+          "desc": "Session ID context"
+        },
+        {
+          "flag": "--swarm=<id>",
+          "desc": "Auto-detect escalations in a swarm"
+        },
+        {
+          "flag": "--sprint=<N>",
+          "desc": "Sprint number"
+        }
+      ]
+    },
+    {
+      "cmd": "transcript",
+      "desc": "View session transcript data",
+      "category": "tooling",
+      "subcommands": [
+        {
+          "name": "list",
+          "desc": "List available transcripts"
+        },
+        {
+          "name": "show",
+          "desc": "Show turn-by-turn summary",
+          "flags": [
+            {
+              "flag": "<session-id>",
+              "desc": "Session ID to display"
+            }
+          ]
+        },
+        {
+          "name": "stats",
+          "desc": "Aggregate metrics",
+          "flags": [
+            {
+              "flag": "<session-id>",
+              "desc": "Session ID (optional, all if omitted)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "roadmap",
+      "desc": "Strategic planning and roadmap tools",
+      "category": "planning",
+      "subcommands": [
+        {
+          "name": "validate",
+          "desc": "Schema + dependency graph checks",
+          "flags": [
+            {
+              "flag": "--path=<file>",
+              "desc": "Roadmap file path"
+            }
+          ]
+        },
+        {
+          "name": "review",
+          "desc": "Automated architect review",
+          "flags": [
+            {
+              "flag": "--path=<file>",
+              "desc": "Roadmap file path"
+            }
+          ]
+        },
+        {
+          "name": "status",
+          "desc": "Current progress",
+          "flags": [
+            {
+              "flag": "--path=<file>",
+              "desc": "Roadmap file path"
+            },
+            {
+              "flag": "--sprint=<N>",
+              "desc": "Focus on specific sprint"
+            }
+          ]
+        },
+        {
+          "name": "show",
+          "desc": "Render summary (critical path, parallel tracks)",
+          "flags": [
+            {
+              "flag": "--path=<file>",
+              "desc": "Roadmap file path"
+            }
+          ]
+        },
+        {
+          "name": "sync",
+          "desc": "Sync scorecards into roadmap",
+          "flags": [
+            {
+              "flag": "--path=<file>",
+              "desc": "Roadmap file path"
+            },
+            {
+              "flag": "--dry-run",
+              "desc": "Preview without writing"
+            }
+          ]
+        },
+        {
+          "name": "generate",
+          "desc": "Generate from vision + backlog analysis",
+          "flags": [
+            {
+              "flag": "--path=<file>",
+              "desc": "Output roadmap file path"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "vision",
+      "desc": "Display project vision document",
+      "category": "planning",
+      "subcommands": [
+        {
+          "name": "create",
+          "desc": "Create a new vision document",
+          "flags": [
+            {
+              "flag": "--purpose=<text>",
+              "desc": "Project purpose"
+            },
+            {
+              "flag": "--priorities=<list>",
+              "desc": "Comma-separated priorities"
+            }
+          ]
+        },
+        {
+          "name": "update",
+          "desc": "Update existing vision fields",
+          "flags": [
+            {
+              "flag": "--purpose=<text>",
+              "desc": "Updated purpose"
+            },
+            {
+              "flag": "--priorities=<list>",
+              "desc": "Updated priorities"
+            }
+          ]
+        }
+      ],
+      "flags": [
+        {
+          "flag": "--json",
+          "desc": "Output as JSON"
+        }
+      ]
+    },
+    {
+      "cmd": "initiative",
+      "desc": "Multi-sprint initiative orchestration",
+      "category": "planning",
+      "subcommands": [
+        {
+          "name": "create",
+          "desc": "Create a new initiative"
+        },
+        {
+          "name": "status",
+          "desc": "Show current initiative state"
+        },
+        {
+          "name": "next",
+          "desc": "Show next sprint in the initiative"
+        },
+        {
+          "name": "advance",
+          "desc": "Advance to the next phase"
+        },
+        {
+          "name": "review",
+          "desc": "Record a review gate result",
+          "flags": [
+            {
+              "flag": "--sprint=<N>",
+              "desc": "Sprint number"
+            },
+            {
+              "flag": "--gate=<gate>",
+              "desc": "Gate type (plan, pr)"
+            },
+            {
+              "flag": "--reviewer=<type>",
+              "desc": "Reviewer type"
+            },
+            {
+              "flag": "--findings=<N>",
+              "desc": "Number of findings"
+            }
+          ]
+        },
+        {
+          "name": "checklist",
+          "desc": "Show review checklist"
+        }
+      ]
+    },
+    {
+      "cmd": "loop",
+      "desc": "Autonomous sprint execution loop",
+      "category": "tooling",
+      "subcommands": [
+        {
+          "name": "run",
+          "desc": "Single sprint execution",
+          "flags": [
+            {
+              "flag": "--sprint=<ID>",
+              "desc": "Sprint ID to execute"
+            },
+            {
+              "flag": "--dry-run",
+              "desc": "Preview without executing"
+            }
+          ]
+        },
+        {
+          "name": "continuous",
+          "desc": "Multi-sprint loop",
+          "flags": [
+            {
+              "flag": "--max=<N>",
+              "desc": "Maximum sprints to run (default: 10)"
+            },
+            {
+              "flag": "--pause=<S>",
+              "desc": "Pause between sprints in seconds"
+            },
+            {
+              "flag": "--staging",
+              "desc": "Use staging branch"
+            },
+            {
+              "flag": "--dry-run",
+              "desc": "Preview without executing"
+            }
+          ]
+        },
+        {
+          "name": "parallel",
+          "desc": "Dual-sprint parallel execution via worktrees",
+          "flags": [
+            {
+              "flag": "--dry-run",
+              "desc": "Preview without executing"
+            }
+          ]
+        },
+        {
+          "name": "status",
+          "desc": "Show loop progress, next sprint, config",
+          "flags": [
+            {
+              "flag": "--sprint=<ID>",
+              "desc": "Show status for a specific sprint"
+            }
+          ]
+        },
+        {
+          "name": "config",
+          "desc": "Loop configuration management",
+          "flags": [
+            {
+              "flag": "--show",
+              "desc": "Display current config"
+            },
+            {
+              "flag": "--set",
+              "desc": "Set a config value (k=v)"
+            }
+          ]
+        },
+        {
+          "name": "results",
+          "desc": "Format/display sprint results",
+          "flags": [
+            {
+              "flag": "--sprint=<ID>",
+              "desc": "Show results for a specific sprint"
+            },
+            {
+              "flag": "--json",
+              "desc": "Output as JSON"
+            }
+          ]
+        },
+        {
+          "name": "analyze",
+          "desc": "Mine scorecards, generate backlog",
+          "flags": [
+            {
+              "flag": "--regenerate",
+              "desc": "Force regeneration"
+            }
+          ]
+        },
+        {
+          "name": "models",
+          "desc": "Model selection analytics",
+          "flags": [
+            {
+              "flag": "--analyze",
+              "desc": "Run model analysis"
+            },
+            {
+              "flag": "--show",
+              "desc": "Show current model config"
+            }
+          ]
+        },
+        {
+          "name": "guide",
+          "desc": "SKILL.md word count and hazard check",
+          "flags": [
+            {
+              "flag": "--check",
+              "desc": "Validate guide"
+            },
+            {
+              "flag": "--synthesize",
+              "desc": "Synthesize guide content"
+            }
+          ]
+        },
+        {
+          "name": "clean",
+          "desc": "Cleanup loop artifacts",
+          "flags": [
+            {
+              "flag": "--results",
+              "desc": "Clean result files"
+            },
+            {
+              "flag": "--logs",
+              "desc": "Clean log files"
+            },
+            {
+              "flag": "--worktrees",
+              "desc": "Clean git worktrees"
+            },
+            {
+              "flag": "--all",
+              "desc": "Clean everything"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "worktree",
+      "desc": "Manage git worktrees",
+      "category": "tooling",
+      "subcommands": [
+        {
+          "name": "cleanup",
+          "desc": "Clean up stale worktrees (remove, delete branch, delete remote)",
+          "flags": [
+            {
+              "flag": "--path=<path>",
+              "desc": "Target a specific worktree"
+            },
+            {
+              "flag": "--all",
+              "desc": "Clean up all secondary worktrees"
+            },
+            {
+              "flag": "--dry-run",
+              "desc": "Preview without making changes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "index-cmd",
+      "desc": "Semantic embedding index management",
+      "category": "tooling",
+      "flags": [
+        {
+          "flag": "--full",
+          "desc": "Full reindex (drop + rebuild)"
+        },
+        {
+          "flag": "--status",
+          "desc": "Show index stats"
+        },
+        {
+          "flag": "--prune",
+          "desc": "Remove embeddings for deleted files"
+        },
+        {
+          "flag": "--json",
+          "desc": "Output stats as JSON"
+        }
+      ]
+    },
+    {
+      "cmd": "context",
+      "desc": "Semantic context search for agents",
+      "category": "tooling",
+      "flags": [
+        {
+          "flag": "<query>",
+          "desc": "Free-text semantic search query"
+        },
+        {
+          "flag": "--ticket=<key>",
+          "desc": "Use ticket title as query"
+        },
+        {
+          "flag": "--file=<path>",
+          "desc": "Find files related to a given file"
+        },
+        {
+          "flag": "--top=<N>",
+          "desc": "Limit results (default: 5)"
+        },
+        {
+          "flag": "--format=<fmt>",
+          "desc": "Output format (paths, snippets, full)"
+        }
+      ]
+    },
+    {
+      "cmd": "prep",
+      "desc": "Generate execution plan for a ticket",
+      "category": "tooling",
+      "flags": [
+        {
+          "flag": "<ticket-id>",
+          "desc": "Ticket ID to prepare"
+        },
+        {
+          "flag": "--json",
+          "desc": "Output as JSON"
+        },
+        {
+          "flag": "--lite",
+          "desc": "Hazards + similar tickets only (no embedding required)"
+        },
+        {
+          "flag": "--top=<N>",
+          "desc": "Limit context results (default: 5)"
+        }
+      ]
+    },
+    {
+      "cmd": "enrich",
+      "desc": "Batch-enrich backlog with file context",
+      "category": "tooling",
+      "flags": [
+        {
+          "flag": "<backlog-path>",
+          "desc": "Path to backlog file"
+        },
+        {
+          "flag": "--output=<path>",
+          "desc": "Output path for enriched backlog"
+        },
+        {
+          "flag": "--with-plans",
+          "desc": "Include execution plans"
+        },
+        {
+          "flag": "--top=<N>",
+          "desc": "Limit context results per ticket (default: 5)"
+        }
+      ]
+    },
+    {
+      "cmd": "stats",
+      "desc": "Export stats JSON for slope-web live dashboard",
+      "category": "tooling",
+      "subcommands": [
+        {
+          "name": "export",
+          "desc": "Compute SlopeStats JSON from local scorecards + registries",
+          "flags": [
+            {
+              "flag": "--pretty",
+              "desc": "Pretty-print JSON output"
+            },
+            {
+              "flag": "--stdout",
+              "desc": "Write to stdout (default behavior)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "docs",
+      "desc": "Generate documentation manifest and changelog",
+      "category": "tooling",
+      "subcommands": [
+        {
+          "name": "generate",
+          "desc": "Build manifest JSON from registries + git history",
+          "flags": [
+            {
+              "flag": "--output=<path>",
+              "desc": "Write manifest to path (default: .slope/docs.json)"
+            },
+            {
+              "flag": "--pretty",
+              "desc": "Pretty-print JSON output"
+            },
+            {
+              "flag": "--incremental",
+              "desc": "Skip changelog generation"
+            },
+            {
+              "flag": "--stdout",
+              "desc": "Write to stdout instead of file"
+            }
+          ]
+        },
+        {
+          "name": "changelog",
+          "desc": "Generate changelog from conventional commits",
+          "flags": [
+            {
+              "flag": "--since=<version>",
+              "desc": "Changelog since this version/tag"
+            },
+            {
+              "flag": "--format=<fmt>",
+              "desc": "Output format: markdown (default) or json"
+            }
+          ]
+        },
+        {
+          "name": "check",
+          "desc": "Compare saved manifest against current state (exit 1 on drift)",
+          "flags": [
+            {
+              "flag": "--manifest=<path>",
+              "desc": "Path to saved manifest (default: .slope/docs.json)"
+            }
+          ]
+        },
+        {
+          "name": "validate",
+          "desc": "Fetch remote manifest and compare against local (exit 1 on drift)",
+          "flags": [
+            {
+              "flag": "--url=<url>",
+              "desc": "Remote manifest URL (default: slope-web GitHub raw)"
+            }
+          ]
+        },
+        {
+          "name": "sync",
+          "desc": "Copy manifest to slope-web or target directory",
+          "flags": [
+            {
+              "flag": "--target=<path>",
+              "desc": "Target directory (default: adjacent slope-web repo)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "org",
+      "desc": "Multi-repo aggregation and org-level metrics",
+      "category": "analysis",
+      "subcommands": [
+        {
+          "name": "init",
+          "desc": "Create .slope/org.json template"
+        },
+        {
+          "name": "status",
+          "desc": "Show all repos with handicaps and sprint counts",
+          "flags": [
+            {
+              "flag": "--json",
+              "desc": "Output as JSON"
+            }
+          ]
+        },
+        {
+          "name": "issues",
+          "desc": "Show recurring patterns shared across repos",
+          "flags": [
+            {
+              "flag": "--json",
+              "desc": "Output as JSON"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "guards": [
+    {
+      "name": "explore",
+      "description": "Suggest checking codebase index before deep exploration",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "read_file",
+        "search_files",
+        "search_content",
+        "write_file"
+      ],
+      "matcher": "Read|Glob|Grep|Edit|Write",
+      "level": "full",
+      "guardType": "mixed"
+    },
+    {
+      "name": "hazard",
+      "description": "Warn about known issues in file areas being edited",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "write_file"
+      ],
+      "matcher": "Edit|Write",
+      "level": "full",
+      "guardType": "advisory"
+    },
+    {
+      "name": "commit-nudge",
+      "description": "Nudge to commit/push after prolonged editing",
+      "hookEvent": "PostToolUse",
+      "toolCategories": [
+        "write_file"
+      ],
+      "matcher": "Edit|Write",
+      "level": "full",
+      "guardType": "advisory"
+    },
+    {
+      "name": "scope-drift",
+      "description": "Warn when editing files outside claimed ticket scope",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "write_file"
+      ],
+      "matcher": "Edit|Write",
+      "level": "full",
+      "guardType": "advisory"
+    },
+    {
+      "name": "compaction",
+      "description": "Extract events before context compaction",
+      "hookEvent": "PreCompact",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "stop-check",
+      "description": "Check for uncommitted/unpushed work before session end",
+      "hookEvent": "Stop",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "subagent-gate",
+      "description": "Enforce model selection on Explore/Plan subagents",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "create_subagent"
+      ],
+      "matcher": "Agent",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "push-nudge",
+      "description": "Nudge to push after git commits when unpushed count or time is high",
+      "hookEvent": "PostToolUse",
+      "toolCategories": [
+        "execute_command"
+      ],
+      "matcher": "Bash",
+      "level": "full",
+      "guardType": "advisory"
+    },
+    {
+      "name": "workflow-gate",
+      "description": "Block ExitPlanMode until review rounds are complete",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "exit_plan"
+      ],
+      "matcher": "ExitPlanMode",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "review-tier",
+      "description": "Suggest plan review with specialist reviewers after plan file write",
+      "hookEvent": "PostToolUse",
+      "toolCategories": [
+        "write_file"
+      ],
+      "matcher": "Edit|Write",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "version-check",
+      "description": "Block push to main when package versions have not been bumped",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "execute_command"
+      ],
+      "matcher": "Bash",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "workflow-step-gate",
+      "description": "Check if current workflow step allows agent_work before editing",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "write_file"
+      ],
+      "matcher": "Edit|Write",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "stale-flows",
+      "description": "Warn when editing files belonging to a stale flow definition",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "write_file"
+      ],
+      "matcher": "Edit|Write",
+      "level": "full",
+      "guardType": "advisory"
+    },
+    {
+      "name": "next-action",
+      "description": "Suggest next actions before session end",
+      "hookEvent": "Stop",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "pr-review",
+      "description": "Prompt for review workflow after PR creation",
+      "hookEvent": "PostToolUse",
+      "toolCategories": [
+        "execute_command"
+      ],
+      "matcher": "Bash",
+      "level": "full",
+      "guardType": "advisory"
+    },
+    {
+      "name": "transcript",
+      "description": "Append tool call metadata to session transcript",
+      "hookEvent": "PostToolUse",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "branch-before-commit",
+      "description": "Block git commit on main/master — create a feature branch first",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "execute_command"
+      ],
+      "matcher": "Bash",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "worktree-check",
+      "description": "Block concurrent sessions without worktree isolation",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "write_file",
+        "execute_command"
+      ],
+      "matcher": "Edit|Write|Bash",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "sprint-completion",
+      "description": "Block PR creation when sprint gates are incomplete",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "execute_command"
+      ],
+      "matcher": "Bash",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "sprint-completion",
+      "description": "Block session end when sprint gates are incomplete",
+      "hookEvent": "Stop",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "sprint-completion",
+      "description": "Auto-detect test pass and mark gate complete",
+      "hookEvent": "PostToolUse",
+      "toolCategories": [
+        "execute_command"
+      ],
+      "matcher": "Bash",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "worktree-merge",
+      "description": "Block gh pr merge --delete-branch in worktrees (causes false failure)",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "execute_command"
+      ],
+      "matcher": "Bash",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "worktree-self-remove",
+      "description": "Block git worktree remove when targeting own cwd",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "execute_command"
+      ],
+      "matcher": "Bash",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "phase-boundary",
+      "description": "Block starting sprint in new phase if previous phase cleanup incomplete",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "execute_command"
+      ],
+      "matcher": "Bash",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "claim-required",
+      "description": "Warn when editing code without an active sprint claim",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "write_file"
+      ],
+      "matcher": "Edit|Write",
+      "level": "full",
+      "guardType": "advisory"
+    },
+    {
+      "name": "post-push",
+      "description": "Suggest next workflow step after git push",
+      "hookEvent": "PostToolUse",
+      "toolCategories": [
+        "execute_command"
+      ],
+      "matcher": "Bash",
+      "level": "full",
+      "guardType": "advisory"
+    },
+    {
+      "name": "session-briefing",
+      "description": "Inject sprint context on first tool call of session",
+      "hookEvent": "PostToolUse",
+      "level": "full",
+      "guardType": "advisory"
+    },
+    {
+      "name": "review-stale",
+      "description": "Warn about scored sprints with missing reviews at session end",
+      "hookEvent": "Stop",
+      "level": "full",
+      "guardType": "advisory"
+    },
+    {
+      "name": "worktree-reuse",
+      "description": "Guide agent to reuse existing worktrees instead of recreating",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "enter_worktree"
+      ],
+      "matcher": "EnterWorktree",
+      "level": "full",
+      "guardType": "advisory"
+    }
+  ],
+  "mcpTools": [
+    {
+      "name": "search",
+      "desc": "Discover the SLOPE API — functions, types, constants, flows, and codebase map",
+      "params": [
+        {
+          "name": "query",
+          "type": "string",
+          "desc": "Search term to filter results"
+        },
+        {
+          "name": "module",
+          "type": "string",
+          "desc": "Filter by module (core, fs, constants, store, flows, inspirations, init, testing, types, map)"
+        }
+      ],
+      "requiresStore": false
+    },
+    {
+      "name": "execute",
+      "desc": "Run JavaScript in a sandboxed node:vm with the full SLOPE API pre-injected",
+      "params": [
+        {
+          "name": "code",
+          "type": "string",
+          "desc": "JavaScript code to execute (must return a value)",
+          "required": true
+        }
+      ],
+      "requiresStore": false
+    },
+    {
+      "name": "context_search",
+      "desc": "Semantic code search — returns relevant snippets instead of full files. Falls back to grep without embedding index.",
+      "params": [
+        {
+          "name": "query",
+          "type": "string",
+          "desc": "Natural language query or code concept to search for",
+          "required": true
+        },
+        {
+          "name": "top",
+          "type": "number",
+          "desc": "Max results (default: 5)"
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "desc": "Output format: paths, snippets, or full (default: snippets)"
+        }
+      ],
+      "requiresStore": false
+    },
+    {
+      "name": "session_status",
+      "desc": "Show active sessions and claims from the SLOPE store",
+      "params": [],
+      "requiresStore": true
+    },
+    {
+      "name": "acquire_claim",
+      "desc": "Claim a ticket or area for the current sprint",
+      "params": [
+        {
+          "name": "target",
+          "type": "string",
+          "desc": "File or directory to claim",
+          "required": true
+        },
+        {
+          "name": "scope",
+          "type": "string",
+          "desc": "Claim scope (file, directory, module, ticket)"
+        },
+        {
+          "name": "ticket",
+          "type": "string",
+          "desc": "Ticket key (e.g. S48-1)"
+        },
+        {
+          "name": "sprint",
+          "type": "number",
+          "desc": "Sprint number"
+        }
+      ],
+      "requiresStore": true
+    },
+    {
+      "name": "check_conflicts",
+      "desc": "Detect overlapping and adjacent conflicts among active claims",
+      "params": [
+        {
+          "name": "sprint",
+          "type": "number",
+          "desc": "Filter to a specific sprint"
+        }
+      ],
+      "requiresStore": true
+    },
+    {
+      "name": "store_status",
+      "desc": "Check store health — schema version, row counts, and error status",
+      "params": [],
+      "requiresStore": true
+    },
+    {
+      "name": "testing_session_start",
+      "desc": "Start a manual testing session with git worktree isolation",
+      "params": [
+        {
+          "name": "purpose",
+          "type": "string",
+          "desc": "Purpose of the testing session"
+        },
+        {
+          "name": "sprint",
+          "type": "number",
+          "desc": "Sprint number"
+        }
+      ],
+      "requiresStore": true
+    },
+    {
+      "name": "testing_session_finding",
+      "desc": "Record a finding (bug, observation) during an active testing session",
+      "params": [
+        {
+          "name": "description",
+          "type": "string",
+          "desc": "Finding description",
+          "required": true
+        },
+        {
+          "name": "severity",
+          "type": "string",
+          "desc": "Severity (low, medium, high, critical)"
+        },
+        {
+          "name": "ticket",
+          "type": "string",
+          "desc": "Related ticket key"
+        }
+      ],
+      "requiresStore": true
+    },
+    {
+      "name": "testing_session_end",
+      "desc": "End the active testing session, return summary, cleanup worktree",
+      "params": [
+        {
+          "name": "session_id",
+          "type": "string",
+          "desc": "Specific session ID to end"
+        },
+        {
+          "name": "skip_cleanup",
+          "type": "boolean",
+          "desc": "Skip worktree cleanup"
+        }
+      ],
+      "requiresStore": true
+    },
+    {
+      "name": "testing_session_status",
+      "desc": "Show active testing session info and findings",
+      "params": [],
+      "requiresStore": true
+    },
+    {
+      "name": "testing_plan_status",
+      "desc": "Show test plan coverage summary: tested, untested, stale, and issue counts per section",
+      "params": [],
+      "requiresStore": false
+    },
+    {
+      "name": "workflow_next",
+      "desc": "Get the next step in a workflow execution. Returns step info or completion status.",
+      "params": [
+        {
+          "name": "execution_id",
+          "type": "string",
+          "desc": "Workflow execution ID (optional if session_id provided)",
+          "required": false
+        },
+        {
+          "name": "session_id",
+          "type": "string",
+          "desc": "Session ID to find active execution",
+          "required": false
+        }
+      ],
+      "requiresStore": true
+    },
+    {
+      "name": "workflow_complete",
+      "desc": "Complete the current step and advance the workflow execution.",
+      "params": [
+        {
+          "name": "execution_id",
+          "type": "string",
+          "desc": "Workflow execution ID",
+          "required": true
+        },
+        {
+          "name": "step_id",
+          "type": "string",
+          "desc": "Step ID being completed",
+          "required": true
+        },
+        {
+          "name": "output",
+          "type": "object",
+          "desc": "Step output data",
+          "required": false
+        },
+        {
+          "name": "exit_code",
+          "type": "number",
+          "desc": "Exit code for command steps",
+          "required": false
+        }
+      ],
+      "requiresStore": true
+    },
+    {
+      "name": "workflow_status",
+      "desc": "Show workflow execution status with progress (completed/total steps).",
+      "params": [
+        {
+          "name": "execution_id",
+          "type": "string",
+          "desc": "Specific execution ID, or omit for all active",
+          "required": false
+        }
+      ],
+      "requiresStore": true
+    }
+  ],
+  "metaphors": [
+    {
+      "id": "golf",
+      "name": "Golf",
+      "description": "The original SLOPE metaphor — sprints are holes, tickets are shots, and your handicap tracks improvement over time.",
+      "vocabulary": {
+        "sprint": "hole",
+        "ticket": "shot",
+        "scorecard": "scorecard",
+        "handicapCard": "handicap card",
+        "briefing": "pre-round briefing",
+        "perfectScore": "hole-in-one",
+        "onTarget": "par",
+        "review": "19th hole"
+      },
+      "clubs": {
+        "driver": "Driver",
+        "long_iron": "Long Iron",
+        "short_iron": "Short Iron",
+        "wedge": "Wedge",
+        "putter": "Putter"
+      },
+      "shotResults": {
+        "fairway": "Fairway",
+        "green": "Green",
+        "in_the_hole": "In the Hole",
+        "missed_long": "Missed Long",
+        "missed_short": "Missed Short",
+        "missed_left": "Missed Left",
+        "missed_right": "Missed Right"
+      },
+      "hazards": {
+        "bunker": "Bunker",
+        "water": "Water",
+        "ob": "Out of Bounds",
+        "rough": "Rough",
+        "trees": "Trees"
+      },
+      "conditions": {
+        "wind": "Wind",
+        "rain": "Rain",
+        "frost_delay": "Frost Delay",
+        "altitude": "Altitude",
+        "pin_position": "Pin Position"
+      },
+      "specialPlays": {
+        "gimme": "Gimme",
+        "mulligan": "Mulligan",
+        "provisional": "Provisional",
+        "lay_up": "Lay Up",
+        "scramble": "Scramble"
+      },
+      "missDirections": {
+        "long": "Long (over-engineered)",
+        "short": "Short (under-scoped)",
+        "left": "Left (wrong approach)",
+        "right": "Right (spec drift)"
+      },
+      "scoreLabels": {
+        "eagle": "Eagle",
+        "birdie": "Birdie",
+        "par": "Par",
+        "bogey": "Bogey",
+        "double_bogey": "Double Bogey",
+        "triple_plus": "Triple+"
+      },
+      "sprintTypes": {
+        "feature": "Feature",
+        "feedback": "Feedback",
+        "infra": "Infrastructure",
+        "bugfix": "Bug Fix",
+        "research": "Research",
+        "flow": "Flow",
+        "test-coverage": "Test Coverage",
+        "audit": "Course Review"
+      },
+      "trainingTypes": {
+        "driving_range": "Driving Range",
+        "chipping_practice": "Chipping Practice",
+        "putting_practice": "Putting Practice",
+        "lessons": "Lessons"
+      },
+      "nutrition": {
+        "hydration": "Hydration",
+        "diet": "Diet",
+        "recovery": "Recovery",
+        "supplements": "Supplements",
+        "stretching": "Stretching"
+      }
+    },
+    {
+      "id": "tennis",
+      "name": "Tennis",
+      "description": "Sprints are sets, tickets are points, and your ranking tracks improvement. Aces, volleys, and match strategy.",
+      "vocabulary": {
+        "sprint": "set",
+        "ticket": "point",
+        "scorecard": "match report",
+        "handicapCard": "player ranking",
+        "briefing": "pre-match scouting",
+        "perfectScore": "ace",
+        "onTarget": "game point",
+        "review": "post-match"
+      },
+      "clubs": {
+        "driver": "Power Serve",
+        "long_iron": "Baseline Rally",
+        "short_iron": "Approach Shot",
+        "wedge": "Drop Shot",
+        "putter": "Tap-in"
+      },
+      "shotResults": {
+        "fairway": "In Play",
+        "green": "Winner",
+        "in_the_hole": "Ace",
+        "missed_long": "Long (out of bounds)",
+        "missed_short": "Short (into net)",
+        "missed_left": "Wide Left",
+        "missed_right": "Wide Right"
+      },
+      "hazards": {
+        "bunker": "Double Fault",
+        "water": "Unforced Error",
+        "ob": "Foot Fault",
+        "rough": "Bad Bounce",
+        "trees": "Net Cord"
+      },
+      "conditions": {
+        "wind": "Wind",
+        "rain": "Rain Delay",
+        "frost_delay": "Schedule Delay",
+        "altitude": "Surface Change",
+        "pin_position": "Opponent Shift"
+      },
+      "specialPlays": {
+        "gimme": "Walkover",
+        "mulligan": "Let (replay)",
+        "provisional": "Challenge",
+        "lay_up": "Moonball",
+        "scramble": "Doubles Rally"
+      },
+      "missDirections": {
+        "long": "Long (over-hit)",
+        "short": "Short (under-hit)",
+        "left": "Wide Left",
+        "right": "Wide Right"
+      },
+      "scoreLabels": {
+        "eagle": "Bagel Set",
+        "birdie": "Break of Serve",
+        "par": "Game Point",
+        "bogey": "Deuce",
+        "double_bogey": "Broken Serve",
+        "triple_plus": "Bageled"
+      },
+      "sprintTypes": {
+        "feature": "Offensive Set",
+        "feedback": "Return Game",
+        "infra": "Court Maintenance",
+        "bugfix": "Error Correction",
+        "research": "Film Study",
+        "flow": "Rally",
+        "test-coverage": "Practice Match",
+        "audit": "Film Review"
+      },
+      "trainingTypes": {
+        "driving_range": "Serve Practice",
+        "chipping_practice": "Volley Drills",
+        "putting_practice": "Touch Practice",
+        "lessons": "Coaching Session"
+      },
+      "nutrition": {
+        "hydration": "Hydration",
+        "diet": "Match Fitness",
+        "recovery": "Recovery",
+        "supplements": "Equipment",
+        "stretching": "Warm-up"
+      }
+    },
+    {
+      "id": "baseball",
+      "name": "Baseball",
+      "description": "Sprints are innings, tickets are at-bats, and your batting average tracks improvement. Home runs, strikeouts, and dugout strategy.",
+      "vocabulary": {
+        "sprint": "inning",
+        "ticket": "at-bat",
+        "scorecard": "box score",
+        "handicapCard": "batting average",
+        "briefing": "scouting report",
+        "perfectScore": "home run",
+        "onTarget": "on base",
+        "review": "dugout"
+      },
+      "clubs": {
+        "driver": "Power Swing",
+        "long_iron": "Line Drive",
+        "short_iron": "Contact Hit",
+        "wedge": "Bunt",
+        "putter": "Sacrifice"
+      },
+      "shotResults": {
+        "fairway": "Single",
+        "green": "Double",
+        "in_the_hole": "Home Run",
+        "missed_long": "Fly Out (over-swung)",
+        "missed_short": "Ground Out (under-swung)",
+        "missed_left": "Foul Left (wrong approach)",
+        "missed_right": "Foul Right (drifted)"
+      },
+      "hazards": {
+        "bunker": "Pickle",
+        "water": "Error",
+        "ob": "Strikeout",
+        "rough": "Bad Hop",
+        "trees": "Obstruction"
+      },
+      "conditions": {
+        "wind": "Wind",
+        "rain": "Rain Delay",
+        "frost_delay": "Delayed Start",
+        "altitude": "High Altitude",
+        "pin_position": "Shift"
+      },
+      "specialPlays": {
+        "gimme": "Intentional Walk",
+        "mulligan": "Pinch Hitter",
+        "provisional": "Switch Hitter",
+        "lay_up": "Sacrifice Bunt",
+        "scramble": "Double Play"
+      },
+      "missDirections": {
+        "long": "Fly Out (over-swung)",
+        "short": "Ground Out (under-swung)",
+        "left": "Foul Left",
+        "right": "Foul Right"
+      },
+      "scoreLabels": {
+        "eagle": "Grand Slam",
+        "birdie": "Triple",
+        "par": "On Base",
+        "bogey": "Strikeout",
+        "double_bogey": "Double Play",
+        "triple_plus": "Shutout"
+      },
+      "sprintTypes": {
+        "feature": "Offensive Inning",
+        "feedback": "Defensive Inning",
+        "infra": "Field Maintenance",
+        "bugfix": "Error Recovery",
+        "research": "Scouting",
+        "flow": "Rally",
+        "test-coverage": "Batting Practice",
+        "audit": "Tape Review"
+      },
+      "trainingTypes": {
+        "driving_range": "Batting Cage",
+        "chipping_practice": "Fielding Drills",
+        "putting_practice": "Bunting Practice",
+        "lessons": "Coaching"
+      },
+      "nutrition": {
+        "hydration": "Hydration",
+        "diet": "Game Fitness",
+        "recovery": "Recovery",
+        "supplements": "Equipment",
+        "stretching": "Warm-up"
+      }
+    },
+    {
+      "id": "gaming",
+      "name": "Gaming",
+      "description": "Sprints are levels, tickets are quests, and your XP tracks improvement. Boss fights, power-ups, and speedruns.",
+      "vocabulary": {
+        "sprint": "level",
+        "ticket": "quest",
+        "scorecard": "score screen",
+        "handicapCard": "player stats",
+        "briefing": "quest log",
+        "perfectScore": "S-rank",
+        "onTarget": "clear",
+        "review": "save point"
+      },
+      "clubs": {
+        "driver": "Boss Fight",
+        "long_iron": "Dungeon",
+        "short_iron": "Side Quest",
+        "wedge": "Fetch Quest",
+        "putter": "Tutorial"
+      },
+      "shotResults": {
+        "fairway": "Progress",
+        "green": "Clear",
+        "in_the_hole": "S-Rank",
+        "missed_long": "Over-leveled",
+        "missed_short": "Under-leveled",
+        "missed_left": "Wrong Path",
+        "missed_right": "Side-tracked"
+      },
+      "hazards": {
+        "bunker": "Trap",
+        "water": "Glitch",
+        "ob": "Soft Lock",
+        "rough": "Lag",
+        "trees": "Maze"
+      },
+      "conditions": {
+        "wind": "RNG",
+        "rain": "Server Issues",
+        "frost_delay": "Loading Screen",
+        "altitude": "Difficulty Spike",
+        "pin_position": "Meta Shift"
+      },
+      "specialPlays": {
+        "gimme": "Skip Cutscene",
+        "mulligan": "Quick Load",
+        "provisional": "Save Scum",
+        "lay_up": "Grind",
+        "scramble": "Co-op"
+      },
+      "missDirections": {
+        "long": "Over-leveled (too much scope)",
+        "short": "Under-leveled (not enough)",
+        "left": "Wrong Path (bad approach)",
+        "right": "Side-tracked (drifted)"
+      },
+      "scoreLabels": {
+        "eagle": "S-Rank",
+        "birdie": "A-Rank",
+        "par": "B-Rank",
+        "bogey": "C-Rank",
+        "double_bogey": "D-Rank",
+        "triple_plus": "Game Over"
+      },
+      "sprintTypes": {
+        "feature": "Main Quest",
+        "feedback": "Side Quest",
+        "infra": "Base Building",
+        "bugfix": "Bug Hunt",
+        "research": "Exploration",
+        "flow": "Speedrun",
+        "test-coverage": "Training Arena",
+        "audit": "Code Review"
+      },
+      "trainingTypes": {
+        "driving_range": "Exploration",
+        "chipping_practice": "Combo Practice",
+        "putting_practice": "Precision Training",
+        "lessons": "Tutorial"
+      },
+      "nutrition": {
+        "hydration": "Mana",
+        "diet": "HP",
+        "recovery": "Rest at Inn",
+        "supplements": "Power-ups",
+        "stretching": "Buff"
+      }
+    },
+    {
+      "id": "dnd",
+      "name": "D&D",
+      "description": "Sprints are encounters, tickets are actions, and your character sheet tracks improvement. Crits, saves, and campaign progress.",
+      "vocabulary": {
+        "sprint": "encounter",
+        "ticket": "action",
+        "scorecard": "adventure log",
+        "handicapCard": "character sheet",
+        "briefing": "quest briefing",
+        "perfectScore": "natural 20",
+        "onTarget": "hit",
+        "review": "long rest"
+      },
+      "clubs": {
+        "driver": "Fireball",
+        "long_iron": "Greatsword",
+        "short_iron": "Longsword",
+        "wedge": "Dagger",
+        "putter": "Cantrip"
+      },
+      "shotResults": {
+        "fairway": "Hit",
+        "green": "Critical Hit",
+        "in_the_hole": "Natural 20",
+        "missed_long": "Overshoot (wasted spell slot)",
+        "missed_short": "Whiff (under-prepared)",
+        "missed_left": "Fumble (wrong action)",
+        "missed_right": "Distracted (off-target)"
+      },
+      "hazards": {
+        "bunker": "Trap",
+        "water": "Curse",
+        "ob": "TPK Risk",
+        "rough": "Difficult Terrain",
+        "trees": "Fog of War"
+      },
+      "conditions": {
+        "wind": "Wild Magic",
+        "rain": "Environmental Hazard",
+        "frost_delay": "Long Rest Required",
+        "altitude": "Level Scaling",
+        "pin_position": "DM Adjustment"
+      },
+      "specialPlays": {
+        "gimme": "Inspiration",
+        "mulligan": "Lucky Feat",
+        "provisional": "Held Action",
+        "lay_up": "Dodge Action",
+        "scramble": "Party Assist"
+      },
+      "missDirections": {
+        "long": "Overshoot (too much force)",
+        "short": "Whiff (not enough)",
+        "left": "Fumble (wrong action)",
+        "right": "Distracted (off-target)"
+      },
+      "scoreLabels": {
+        "eagle": "Natural 20",
+        "birdie": "Critical Hit",
+        "par": "Hit",
+        "bogey": "Miss",
+        "double_bogey": "Critical Fail",
+        "triple_plus": "Natural 1"
+      },
+      "sprintTypes": {
+        "feature": "Main Quest",
+        "feedback": "Side Quest",
+        "infra": "Downtime",
+        "bugfix": "Healing",
+        "research": "Investigation",
+        "flow": "Combat",
+        "test-coverage": "Training Montage",
+        "audit": "Inspection"
+      },
+      "trainingTypes": {
+        "driving_range": "Study",
+        "chipping_practice": "Sparring",
+        "putting_practice": "Meditation",
+        "lessons": "Mentoring"
+      },
+      "nutrition": {
+        "hydration": "Mana",
+        "diet": "Rations",
+        "recovery": "Long Rest",
+        "supplements": "Potions",
+        "stretching": "Short Rest"
+      }
+    },
+    {
+      "id": "matrix",
+      "name": "Matrix",
+      "description": "Sprints are simulations, tickets are operations, and your operator rating tracks improvement. Red pills, glitches, and bullettime.",
+      "vocabulary": {
+        "sprint": "simulation",
+        "ticket": "operation",
+        "scorecard": "mission debrief",
+        "handicapCard": "operator rating",
+        "briefing": "operator briefing",
+        "perfectScore": "bullettime",
+        "onTarget": "connected",
+        "review": "debrief"
+      },
+      "clubs": {
+        "driver": "Red Pill",
+        "long_iron": "Upload",
+        "short_iron": "Patch",
+        "wedge": "Hotfix",
+        "putter": "Tweak"
+      },
+      "shotResults": {
+        "fairway": "Connected",
+        "green": "Decoded",
+        "in_the_hole": "Bullettime",
+        "missed_long": "Overload (too much scope)",
+        "missed_short": "Dropout (incomplete)",
+        "missed_left": "Glitch (wrong path)",
+        "missed_right": "Drift (off-mission)"
+      },
+      "hazards": {
+        "bunker": "Firewall",
+        "water": "Memory Leak",
+        "ob": "System Crash",
+        "rough": "Latency",
+        "trees": "Encryption"
+      },
+      "conditions": {
+        "wind": "Signal Noise",
+        "rain": "Cascade Failure",
+        "frost_delay": "Boot Sequence",
+        "altitude": "Stack Overflow",
+        "pin_position": "Protocol Shift"
+      },
+      "specialPlays": {
+        "gimme": "Auto-complete",
+        "mulligan": "System Restore",
+        "provisional": "Fork",
+        "lay_up": "Safe Mode",
+        "scramble": "Swarm"
+      },
+      "missDirections": {
+        "long": "Overload (too much scope)",
+        "short": "Dropout (incomplete)",
+        "left": "Glitch (wrong path)",
+        "right": "Drift (off-mission)"
+      },
+      "scoreLabels": {
+        "eagle": "The One",
+        "birdie": "Bullettime",
+        "par": "Connected",
+        "bogey": "Lag",
+        "double_bogey": "Blue Screen",
+        "triple_plus": "Unplugged"
+      },
+      "sprintTypes": {
+        "feature": "Upload",
+        "feedback": "Feedback Loop",
+        "infra": "System Upgrade",
+        "bugfix": "Debug",
+        "research": "Recon",
+        "flow": "Overclock",
+        "test-coverage": "Diagnostic",
+        "audit": "System Audit"
+      },
+      "trainingTypes": {
+        "driving_range": "Simulation",
+        "chipping_practice": "Calibration",
+        "putting_practice": "Fine-tuning",
+        "lessons": "Download"
+      },
+      "nutrition": {
+        "hydration": "Bandwidth",
+        "diet": "Core Integrity",
+        "recovery": "Defrag",
+        "supplements": "Plugins",
+        "stretching": "Pre-flight"
+      }
+    },
+    {
+      "id": "agile",
+      "name": "Agile",
+      "description": "Sprints are sprints, tickets are stories, and velocity tracks improvement. Standups, retros, and continuous delivery.",
+      "vocabulary": {
+        "sprint": "sprint",
+        "ticket": "story",
+        "scorecard": "retro report",
+        "handicapCard": "velocity tracker",
+        "briefing": "sprint planning",
+        "perfectScore": "shipped early",
+        "onTarget": "on track",
+        "review": "retrospective"
+      },
+      "clubs": {
+        "driver": "Epic",
+        "long_iron": "Feature",
+        "short_iron": "Story",
+        "wedge": "Task",
+        "putter": "Chore"
+      },
+      "shotResults": {
+        "fairway": "In Progress",
+        "green": "Done",
+        "in_the_hole": "Shipped Early",
+        "missed_long": "Over-scoped",
+        "missed_short": "Under-delivered",
+        "missed_left": "Wrong Priority",
+        "missed_right": "Scope Creep"
+      },
+      "hazards": {
+        "bunker": "Blocker",
+        "water": "Regression",
+        "ob": "Rollback",
+        "rough": "Tech Debt",
+        "trees": "Dependency"
+      },
+      "conditions": {
+        "wind": "Changing Requirements",
+        "rain": "Team Absence",
+        "frost_delay": "Blocked Sprint",
+        "altitude": "Complexity Spike",
+        "pin_position": "Priority Shift"
+      },
+      "specialPlays": {
+        "gimme": "Auto-merge",
+        "mulligan": "Revert & Redo",
+        "provisional": "Spike",
+        "lay_up": "Descope",
+        "scramble": "Mob Programming"
+      },
+      "missDirections": {
+        "long": "Over-scoped (too much work)",
+        "short": "Under-delivered (incomplete)",
+        "left": "Wrong Priority (bad ordering)",
+        "right": "Scope Creep (drifted)"
+      },
+      "scoreLabels": {
+        "eagle": "Crushed It",
+        "birdie": "Ahead of Schedule",
+        "par": "On Track",
+        "bogey": "Slipped",
+        "double_bogey": "Missed Sprint Goal",
+        "triple_plus": "Failed Sprint"
+      },
+      "sprintTypes": {
+        "feature": "Feature Sprint",
+        "feedback": "Feedback Sprint",
+        "infra": "Platform Sprint",
+        "bugfix": "Bug Fix Sprint",
+        "research": "Spike Sprint",
+        "flow": "Flow Sprint",
+        "test-coverage": "Quality Sprint",
+        "audit": "Code Review Sprint"
+      },
+      "trainingTypes": {
+        "driving_range": "Tech Talk",
+        "chipping_practice": "Pair Programming",
+        "putting_practice": "Code Review",
+        "lessons": "Workshop"
+      },
+      "nutrition": {
+        "hydration": "Communication",
+        "diet": "Process Health",
+        "recovery": "Cooldown",
+        "supplements": "Tooling",
+        "stretching": "Refinement"
+      }
+    }
+  ],
+  "roles": [
+    {
+      "id": "generalist",
+      "name": "Generalist",
+      "description": "Default role — no special focus area filtering",
+      "focusAreas": [],
+      "clubPreferences": {},
+      "briefingFilter": {
+        "emphasize": [],
+        "deemphasize": []
+      }
+    },
+    {
+      "id": "backend",
+      "name": "Backend",
+      "description": "API, database, server-side logic specialist",
+      "focusAreas": [
+        "packages/core",
+        "packages/store-*",
+        "src/api",
+        "src/server",
+        "src/db",
+        "migrations"
+      ],
+      "clubPreferences": {
+        "database": "short_iron",
+        "api": "short_iron",
+        "migration": "wedge"
+      },
+      "briefingFilter": {
+        "emphasize": [
+          "database",
+          "api",
+          "testing",
+          "migration",
+          "schema"
+        ],
+        "deemphasize": [
+          "accessibility",
+          "styling",
+          "bundle"
+        ]
+      }
+    },
+    {
+      "id": "frontend",
+      "name": "Frontend",
+      "description": "UI, components, styling, accessibility specialist",
+      "focusAreas": [
+        "src/components",
+        "src/pages",
+        "src/styles",
+        "src/hooks",
+        "public"
+      ],
+      "clubPreferences": {
+        "component": "short_iron",
+        "styling": "wedge",
+        "accessibility": "short_iron"
+      },
+      "briefingFilter": {
+        "emphasize": [
+          "accessibility",
+          "styling",
+          "component",
+          "bundle",
+          "rendering"
+        ],
+        "deemphasize": [
+          "database",
+          "migration",
+          "schema"
+        ]
+      }
+    },
+    {
+      "id": "architect",
+      "name": "Architect",
+      "description": "Cross-package dependencies, API surface, tech debt specialist",
+      "focusAreas": [
+        "packages/*",
+        "docs",
+        "src/types",
+        "src/config"
+      ],
+      "clubPreferences": {
+        "refactor": "long_iron",
+        "architecture": "driver",
+        "types": "short_iron"
+      },
+      "briefingFilter": {
+        "emphasize": [
+          "architecture",
+          "dependency",
+          "api",
+          "tech-debt",
+          "cross-package"
+        ],
+        "deemphasize": []
+      }
+    },
+    {
+      "id": "devops",
+      "name": "DevOps",
+      "description": "CI/CD, deployment, infrastructure specialist",
+      "focusAreas": [
+        ".github",
+        "Dockerfile",
+        "docker-compose",
+        "scripts",
+        ".env",
+        "infra"
+      ],
+      "clubPreferences": {
+        "ci": "short_iron",
+        "deployment": "short_iron",
+        "infra": "long_iron"
+      },
+      "briefingFilter": {
+        "emphasize": [
+          "ci",
+          "deployment",
+          "infrastructure",
+          "docker",
+          "monitoring"
+        ],
+        "deemphasize": [
+          "styling",
+          "component",
+          "accessibility"
+        ]
+      }
+    },
+    {
+      "id": "ml-engineer",
+      "name": "ML Engineer",
+      "description": "Model integration, embeddings, and inference specialist",
+      "focusAreas": [
+        "src/**/ml*",
+        "src/**/embed*",
+        "src/**/model*",
+        "src/**/inference*"
+      ],
+      "clubPreferences": {
+        "model-integration": "short_iron",
+        "embeddings": "wedge",
+        "inference": "short_iron"
+      },
+      "briefingFilter": {
+        "emphasize": [
+          "model",
+          "embedding",
+          "inference",
+          "token",
+          "vector",
+          "prediction"
+        ],
+        "deemphasize": [
+          "styling",
+          "accessibility",
+          "component"
+        ]
+      }
+    },
+    {
+      "id": "database",
+      "name": "Database Engineer",
+      "description": "Schema design, migrations, query optimization specialist",
+      "focusAreas": [
+        "src/store*",
+        "src/**/migration*",
+        "src/**/schema*"
+      ],
+      "clubPreferences": {
+        "migration": "wedge",
+        "schema": "short_iron",
+        "query": "short_iron"
+      },
+      "briefingFilter": {
+        "emphasize": [
+          "schema",
+          "migration",
+          "query",
+          "store",
+          "database",
+          "index"
+        ],
+        "deemphasize": [
+          "styling",
+          "component",
+          "accessibility"
+        ]
+      }
+    },
+    {
+      "id": "ux-designer",
+      "name": "UX Designer",
+      "description": "User flows, onboarding, accessibility, and progressive disclosure specialist",
+      "focusAreas": [
+        "src/**/init*",
+        "src/**/interview*",
+        "src/**/template*",
+        "docs/tutorial*",
+        "docs/getting-started*"
+      ],
+      "clubPreferences": {
+        "onboarding": "short_iron",
+        "flow": "short_iron",
+        "accessibility": "wedge"
+      },
+      "briefingFilter": {
+        "emphasize": [
+          "flow",
+          "onboarding",
+          "accessibility",
+          "tutorial",
+          "ux",
+          "interview"
+        ],
+        "deemphasize": [
+          "schema",
+          "migration",
+          "query",
+          "database"
+        ]
+      }
+    }
+  ],
+  "constants": {
+    "parThresholds": {
+      "3": [
+        1,
+        2
+      ],
+      "4": [
+        3,
+        4
+      ],
+      "5": [
+        5,
+        null
+      ]
+    },
+    "slopeFactors": [
+      "cross_package",
+      "schema_migration",
+      "new_area",
+      "external_dep",
+      "concurrent_agents"
+    ],
+    "scoreLabels": {
+      "0": "par",
+      "1": "bogey",
+      "2": "double_bogey",
+      "-2": "eagle",
+      "-1": "birdie"
+    },
+    "hazardPenalties": {
+      "minor": 0,
+      "moderate": 0.5,
+      "major": 1,
+      "critical": 2
+    }
+  },
+  "changelog": {
+    "status": "success",
+    "entries": [
+      {
+        "version": "Unreleased",
+        "date": "2026-03-25",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.37.0 (#213)",
+            "breaking": false,
+            "hash": "4ce947fe2dd08436aff5877490d876712a854f31"
+          },
+          {
+            "type": "fix",
+            "description": "align recommend table columns — reason moved to end, dynamic key width (#212)",
+            "breaking": false,
+            "hash": "77e05b65184cd1049145dc512adf244cfd42b0cc"
+          },
+          {
+            "type": "fix",
+            "description": "route guard audit/recommend to guardManageCommand (#211)",
+            "breaking": false,
+            "hash": "89bc13fc92877e832466498e0e1a228760c16010"
+          },
+          {
+            "type": "feat",
+            "scope": "S72",
+            "description": "The Foursome v2 — multi-agent session coordination (#210)",
+            "breaking": false,
+            "hash": "6e63b232dd56afb7ad5d5544adbb7920e1c6b902"
+          },
+          {
+            "type": "feat",
+            "scope": "S70+S71",
+            "description": "Session Insights + Multi-Repo Aggregation (#209)",
+            "breaking": false,
+            "hash": "e09adcd346c4e6ac89e5c8c386833dece121d925"
+          },
+          {
+            "type": "feat",
+            "scope": "S77",
+            "description": "The 19th Hole — workflow engine assessment & phase wrap-up (#208)",
+            "breaking": false,
+            "hash": "4f539ef2349d9128e23c261151ece499aafbb5be"
+          },
+          {
+            "type": "feat",
+            "scope": "S75",
+            "description": "The Convergence — loop self-improvement (#207)",
+            "breaking": false,
+            "hash": "3d046105cdd3665c211ab897d3b75b00b602449a"
+          },
+          {
+            "type": "feat",
+            "scope": "S74",
+            "description": "The Assembly Line — batch sprint execution (#206)",
+            "breaking": false,
+            "hash": "5dc302ee567857707eb7e3242f94efdf248de5fe"
+          },
+          {
+            "type": "feat",
+            "scope": "S73",
+            "description": "The Autopilot v2 — smart model routing (#205)",
+            "breaking": false,
+            "hash": "a96ace085036f07c1f53758019558901202ecc29"
+          },
+          {
+            "type": "feat",
+            "scope": "S76",
+            "description": "The Referee — advisory-to-mechanical guard conversion (#204)",
+            "breaking": false,
+            "hash": "99026f3f5567e16dc5c1bfa61974864524639191"
+          },
+          {
+            "type": "feat",
+            "description": "add slope guard audit subcommand with type grouping and warnings (#203)",
+            "breaking": false,
+            "hash": "4ff04ba1a8c392071ca109ba5e41ea6833992386"
+          },
+          {
+            "type": "feat",
+            "description": "add slope guard audit subcommand with type grouping and warnings (#202)",
+            "breaking": false,
+            "hash": "1daa7e6aaa7b0578b3e3002daee3f0a657a1aa6b"
+          },
+          {
+            "type": "docs",
+            "description": "sprint plans for S73 + S76 (parallel execution) (#201)",
+            "breaking": false,
+            "hash": "fe5589c72385c8c064bd7066d36bf93b926d56bb"
+          },
+          {
+            "type": "chore",
+            "description": "update roadmap — add S76 (Referee), S77 (19th Hole), fix S69 divergence (#200)",
+            "breaking": false,
+            "hash": "5f63e57b1207633309ef2037e7f4f64e8b9f6bf9"
+          },
+          {
+            "type": "other",
+            "description": "S68-S69: Workflow engine tests + carryover patch fixes (#198)",
+            "breaking": false,
+            "hash": "80fd06dfa2fb386d6eaee74163e1533bb2b6adc2"
+          },
+          {
+            "type": "chore",
+            "description": "update CODEBASE.md generated metadata",
+            "breaking": false,
+            "hash": "06172132728e575c1d0469bb3eeff236b2125ae2"
+          },
+          {
+            "type": "docs",
+            "description": "regenerate CODEBASE.md — 166 test files after S68",
+            "breaking": false,
+            "hash": "6c81faca2f4d538c92d86c3954848d37588fd4fd"
+          },
+          {
+            "type": "fix",
+            "scope": "S68",
+            "description": "amend scorecard with architect + code review findings",
+            "breaking": false,
+            "hash": "2e75d7f397395860a0eac12cb5a2f7685f59d3ed"
+          },
+          {
+            "type": "fix",
+            "scope": "S68",
+            "description": "address review findings — mislabeled test, bare toThrow, fragile exit mock",
+            "breaking": false,
+            "hash": "a7b7d64ce560403d2e5cda0c4328e1cdc0b55b06"
+          },
+          {
+            "type": "docs",
+            "scope": "S68",
+            "description": "add sprint scorecard — par (4/4), 46 new workflow tests",
+            "breaking": false,
+            "hash": "8dffd6512acabf157c06695229ff4df22dd12460"
+          },
+          {
+            "type": "chore",
+            "description": "update CODEBASE.md test counts",
+            "breaking": false,
+            "hash": "fc2d608d67f82ccda541122551a6b63ec59dc820"
+          },
+          {
+            "type": "test",
+            "scope": "S68-T4",
+            "description": "add engine edge cases and store integrity tests",
+            "breaking": false,
+            "hash": "e17305499ea516fdbc3c5b56481f8c9160aa40cb"
+          },
+          {
+            "type": "test",
+            "scope": "S68-T3",
+            "description": "add E2E tests for sprint-autonomous and sprint-lightweight",
+            "breaking": false,
+            "hash": "1091faaa9a1e6304c09fadd01eafd082e40901f8"
+          },
+          {
+            "type": "test",
+            "scope": "S68-T2",
+            "description": "add sprint CLI workflow integration tests",
+            "breaking": false,
+            "hash": "7fd18043a3e88facb26c672ec3d3e927080e4265"
+          },
+          {
+            "type": "test",
+            "scope": "S68-T1",
+            "description": "add dedicated workflow-gate guard tests",
+            "breaking": false,
+            "hash": "d3aca5650f153e9895ea3a2acd2786c80635e4ba"
+          },
+          {
+            "type": "docs",
+            "scope": "S68",
+            "description": "add sprint plan — workflow engine test coverage",
+            "breaking": false,
+            "hash": "dcc5b2ac1d57cbefce01532de5436183811aac65"
+          }
+        ]
+      },
+      {
+        "version": "v1.36.0",
+        "date": "2026-03-21",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.36.0 (#196)",
+            "breaking": false,
+            "hash": "276798423fa198fc4c53f1e9d52e0cb56ac41def"
+          },
+          {
+            "type": "chore",
+            "description": "update scorecard with review findings and regenerate CODEBASE.md (#195)",
+            "breaking": false,
+            "hash": "5624166522087ebf87cda1a3f6c0a903962ee3a4"
+          },
+          {
+            "type": "feat",
+            "description": "workflow engine — core & store layer (Sprint 1/5) (#194)",
+            "breaking": false,
+            "hash": "689d70f7cfbf5f34a95396015152b33de7ec610a"
+          }
+        ]
+      },
+      {
+        "version": "v1.35.0",
+        "date": "2026-03-18",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.35.0 (#192)",
+            "breaking": false,
+            "hash": "17d6cc714b8bb980735d8f45a6e86986ebbd7b5c"
+          },
+          {
+            "type": "fix",
+            "description": "stale session blocks worktree sessions (#189) (#191)",
+            "breaking": false,
+            "hash": "d28a6bbc237966129aa0653d509a0b1a7b385b33"
+          }
+        ]
+      },
+      {
+        "version": "v1.34.0",
+        "date": "2026-03-18",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.34.0 (#190)",
+            "breaking": false,
+            "hash": "1659a07f2537adf59a01e769c1a041ad3b5bd682"
+          },
+          {
+            "type": "feat",
+            "description": "skill system restructuring — folder-based progressive disclosure (#188)",
+            "breaking": false,
+            "hash": "f7fbe442f3191916bb0c8c95abbccb950d040f78"
+          }
+        ]
+      },
+      {
+        "version": "v1.33.0",
+        "date": "2026-03-16",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.33.0 (#187)",
+            "breaking": false,
+            "hash": "eed58ba362588303c53dcf4a2fb4c373fdea98ff"
+          },
+          {
+            "type": "feat",
+            "description": "worktree-reuse guard — detect and guide reuse of existing worktrees (#186)",
+            "breaking": false,
+            "hash": "efab9fa0abd86b44cc0d7b371b3b1768af4b1377"
+          }
+        ]
+      },
+      {
+        "version": "v1.32.0",
+        "date": "2026-03-16",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.32.0 (#184)",
+            "breaking": false,
+            "hash": "1a890174948daf614dd171630d157b5c78498add"
+          },
+          {
+            "type": "feat",
+            "description": "adhoc session mode — silence sprint guards for non-sprint work (#183)",
+            "breaking": false,
+            "hash": "18f04a07d21fe0b88baceb956138032ae83d7fb5"
+          }
+        ]
+      },
+      {
+        "version": "v1.31.2",
+        "date": "2026-03-16",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.31.2 (#182)",
+            "breaking": false,
+            "hash": "5f38512c81efc5daf6076aadfbfdee2f6fe6a55d"
+          },
+          {
+            "type": "fix",
+            "description": "update sprint-completion tests + add `slope hook add <platform>` shorthand (#181)",
+            "breaking": false,
+            "hash": "8c7e53d5d451adef2dee5e0e3a2aaa0472eac51d"
+          }
+        ]
+      },
+      {
+        "version": "v1.31.1",
+        "date": "2026-03-16",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.31.1 (#180)",
+            "breaking": false,
+            "hash": "462601a670a4c896db24f6fa3b0d89387ac04923"
+          },
+          {
+            "type": "fix",
+            "description": "stop guards from trapping ad-hoc sessions (#179)",
+            "breaking": false,
+            "hash": "a8c49db59b7bb8d16cab107d4af4d65f5a1e67a6"
+          }
+        ]
+      },
+      {
+        "version": "v1.31.0",
+        "date": "2026-03-16",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.31.0 (#178)",
+            "breaking": false,
+            "hash": "7d44895ef93c981b22f01ed834c2d878e7414b1b"
+          },
+          {
+            "type": "feat",
+            "description": "suggestion engine — structured guard responses + 5 new guards (#177)",
+            "breaking": false,
+            "hash": "2aa02bda365fee6da4898909a9cfd06a921679c4"
+          }
+        ]
+      },
+      {
+        "version": "v1.30.0",
+        "date": "2026-03-15",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.30.0 (#176)",
+            "breaking": false,
+            "hash": "0bd64183e9dcae9f39b0a17b74a48ea3f070a85a"
+          },
+          {
+            "type": "fix",
+            "description": "slope hook add removes stale SLOPE entries before re-installing (#175)",
+            "breaking": false,
+            "hash": "0bb977efacdb1e283dd4034902693d406dc8589e"
+          },
+          {
+            "type": "fix",
+            "description": "subagent-gate denies Explore/Plan agents with no model specified (#174)",
+            "breaking": false,
+            "hash": "ac45a8f85d5e85cbd8a0ba6b38ea89526df53a49"
+          },
+          {
+            "type": "feat",
+            "scope": "S65-S66",
+            "description": "inspiration registry, analytics dashboard (#172)",
+            "breaking": false,
+            "hash": "dc7a8868ee9220f0410c029016bbf945fbc2f8ae"
+          }
+        ]
+      },
+      {
+        "version": "v1.29.0",
+        "date": "2026-03-15",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.29.0 (#171)",
+            "breaking": false,
+            "hash": "23e231247cc08405957e457a0390c00bd05daed3"
+          },
+          {
+            "type": "docs",
+            "description": "regenerate CODEBASE.md with version recommend subcommand",
+            "breaking": false,
+            "hash": "4d2d866ebd56678eb13d3c4a5fffe205124538ab"
+          },
+          {
+            "type": "feat",
+            "scope": "S65",
+            "description": "inspiration registry, context tiers, import-graph blast radius (#170)",
+            "breaking": false,
+            "hash": "8e7e8560b63a6b8a11b3d5d1ca30da886adb647a"
+          }
+        ]
+      }
+    ]
+  }
+}
