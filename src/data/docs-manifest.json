@@ -1,7 +1,7 @@
 {
-  "version": "1.37.0",
-  "generatedAt": "2026-03-25T16:44:18.868Z",
-  "gitSha": "4ce947fe2dd08436aff5877490d876712a854f31",
+  "version": "1.38.0",
+  "generatedAt": "2026-03-25T21:09:14.517Z",
+  "gitSha": "9112dbafe9e11af365b4c89df76dc3a97ceda938",
   "checksums": {
     "commands": "7574513fd289b2d0e781c880a12cbe69a91eaa776c11d43a71dea0ba5101a900",
     "guards": "7fa2ebf5f557ca12f68d4cc8ebbf84206da6142f24a6d028072edd775e95ca4a",
@@ -9,7 +9,7 @@
     "metaphors": "fbf85ac929a8738df5d6e26262029e4a1a1495eac6acd3c0316073f3bf1795f0",
     "roles": "ad096c5377dd772f8d1ecc7f4868196bf1045cd606b97eda368da4e6bd9dd102",
     "constants": "107d1a94e19454050bf16f8e246678fcb6b93044186a71b8acf6481c14a92569",
-    "changelog": "09447a32c67ede212061a1fb8bf0ff9e424a6ee1ff8e2d2a215c6e5c544674af"
+    "changelog": "5a66de5f4434c15c39065ab8dfe20615c3ad6c8b1482ad37315d3dfa7ae8a271"
   },
   "commands": [
     {
@@ -2947,6 +2947,66 @@
         "changes": [
           {
             "type": "chore",
+            "description": "bump version to 1.38.0 (#223)",
+            "breaking": false,
+            "hash": "9112dbafe9e11af365b4c89df76dc3a97ceda938"
+          },
+          {
+            "type": "docs",
+            "description": "add MCP optimization research (#222)",
+            "breaking": false,
+            "hash": "63b3d7870f30f23ded9e2259134fb581f364217f"
+          },
+          {
+            "type": "feat",
+            "description": "context compression — 60-80% token reduction across guards, briefing, and MCP (#221)",
+            "breaking": false,
+            "hash": "1a3f8ce833613e7644bcc8c2e8f2501f4a6fd23f"
+          }
+        ]
+      },
+      {
+        "version": "v1.37.2",
+        "date": "2026-03-25",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.37.2 (#219)",
+            "breaking": false,
+            "hash": "967c3114f02bdbf4fd1827d53a93b92a20f067b3"
+          },
+          {
+            "type": "fix",
+            "description": "review guards bypass when plan described without plan mode (#217) (#218)",
+            "breaking": false,
+            "hash": "3399632d7578ad2ed532f7b0505a9ed70f2731be"
+          }
+        ]
+      },
+      {
+        "version": "v1.37.1",
+        "date": "2026-03-25",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.37.1 (#216)",
+            "breaking": false,
+            "hash": "f290def3998082d4994b0826334e2dfa418491fe"
+          },
+          {
+            "type": "fix",
+            "description": "initiative sync + templates bundling (#199, #214) (#215)",
+            "breaking": false,
+            "hash": "00a60bd305fb21b30fde0f668d9707ef6a6b88b0"
+          }
+        ]
+      },
+      {
+        "version": "v1.37.0",
+        "date": "2026-03-25",
+        "changes": [
+          {
+            "type": "chore",
             "description": "bump version to 1.37.0 (#213)",
             "breaking": false,
             "hash": "4ce947fe2dd08436aff5877490d876712a854f31"
@@ -3247,80 +3307,6 @@
             "description": "stop guards from trapping ad-hoc sessions (#179)",
             "breaking": false,
             "hash": "a8c49db59b7bb8d16cab107d4af4d65f5a1e67a6"
-          }
-        ]
-      },
-      {
-        "version": "v1.31.0",
-        "date": "2026-03-16",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.31.0 (#178)",
-            "breaking": false,
-            "hash": "7d44895ef93c981b22f01ed834c2d878e7414b1b"
-          },
-          {
-            "type": "feat",
-            "description": "suggestion engine — structured guard responses + 5 new guards (#177)",
-            "breaking": false,
-            "hash": "2aa02bda365fee6da4898909a9cfd06a921679c4"
-          }
-        ]
-      },
-      {
-        "version": "v1.30.0",
-        "date": "2026-03-15",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.30.0 (#176)",
-            "breaking": false,
-            "hash": "0bd64183e9dcae9f39b0a17b74a48ea3f070a85a"
-          },
-          {
-            "type": "fix",
-            "description": "slope hook add removes stale SLOPE entries before re-installing (#175)",
-            "breaking": false,
-            "hash": "0bb977efacdb1e283dd4034902693d406dc8589e"
-          },
-          {
-            "type": "fix",
-            "description": "subagent-gate denies Explore/Plan agents with no model specified (#174)",
-            "breaking": false,
-            "hash": "ac45a8f85d5e85cbd8a0ba6b38ea89526df53a49"
-          },
-          {
-            "type": "feat",
-            "scope": "S65-S66",
-            "description": "inspiration registry, analytics dashboard (#172)",
-            "breaking": false,
-            "hash": "dc7a8868ee9220f0410c029016bbf945fbc2f8ae"
-          }
-        ]
-      },
-      {
-        "version": "v1.29.0",
-        "date": "2026-03-15",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.29.0 (#171)",
-            "breaking": false,
-            "hash": "23e231247cc08405957e457a0390c00bd05daed3"
-          },
-          {
-            "type": "docs",
-            "description": "regenerate CODEBASE.md with version recommend subcommand",
-            "breaking": false,
-            "hash": "4d2d866ebd56678eb13d3c4a5fffe205124538ab"
-          },
-          {
-            "type": "feat",
-            "scope": "S65",
-            "description": "inspiration registry, context tiers, import-graph blast radius (#170)",
-            "breaking": false,
-            "hash": "8e7e8560b63a6b8a11b3d5d1ca30da886adb647a"
           }
         ]
       }
