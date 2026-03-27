@@ -1,7 +1,7 @@
 {
-  "version": "1.45.0",
-  "generatedAt": "2026-03-27T11:12:09.981Z",
-  "gitSha": "8dfff0e22cae6ee8a8a19ba4025c934c59c27e05",
+  "version": "1.45.1",
+  "generatedAt": "2026-03-27T12:53:02.751Z",
+  "gitSha": "a0a7dd0e33d688f323c4d03cfea0bcfdd3531919",
   "checksums": {
     "commands": "028e2b6140f78d3c3cc483df89c2e42de5600ef6e96a7130285e0bb4cd4bdcbd",
     "guards": "7fa2ebf5f557ca12f68d4cc8ebbf84206da6142f24a6d028072edd775e95ca4a",
@@ -9,7 +9,7 @@
     "metaphors": "fbf85ac929a8738df5d6e26262029e4a1a1495eac6acd3c0316073f3bf1795f0",
     "roles": "ad096c5377dd772f8d1ecc7f4868196bf1045cd606b97eda368da4e6bd9dd102",
     "constants": "107d1a94e19454050bf16f8e246678fcb6b93044186a71b8acf6481c14a92569",
-    "changelog": "0b9f0034ff7c19c025630aa66fe8127456c9296e1f3cff9ce97bdc98a3d35ba1"
+    "changelog": "3b5e09c21f00ac38f9cb0d8329341de1c933df9911a76f64e1dea65244b40481"
   },
   "commands": [
     {
@@ -2964,7 +2964,25 @@
     "status": "success",
     "entries": [
       {
-        "version": "Unreleased",
+        "version": "v1.45.1",
+        "date": "2026-03-27",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.45.1 (#248)",
+            "breaking": false,
+            "hash": "a0a7dd0e33d688f323c4d03cfea0bcfdd3531919"
+          },
+          {
+            "type": "fix",
+            "description": "stop hook suggestions non-blocking — don't interrupt background agents (#247)",
+            "breaking": false,
+            "hash": "2a17fb25c2974546e26c66175eece87f053ff0ff"
+          }
+        ]
+      },
+      {
+        "version": "v1.45.0",
         "date": "2026-03-27",
         "changes": [
           {
@@ -3130,48 +3148,6 @@
             "description": "review recommend reads current sprint scorecard, not all (#224) (#225)",
             "breaking": false,
             "hash": "72f144ee43c049fde9fb7510e8d6e7ae00c68380"
-          }
-        ]
-      },
-      {
-        "version": "v1.38.0",
-        "date": "2026-03-25",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.38.0 (#223)",
-            "breaking": false,
-            "hash": "9112dbafe9e11af365b4c89df76dc3a97ceda938"
-          },
-          {
-            "type": "docs",
-            "description": "add MCP optimization research (#222)",
-            "breaking": false,
-            "hash": "63b3d7870f30f23ded9e2259134fb581f364217f"
-          },
-          {
-            "type": "feat",
-            "description": "context compression — 60-80% token reduction across guards, briefing, and MCP (#221)",
-            "breaking": false,
-            "hash": "1a3f8ce833613e7644bcc8c2e8f2501f4a6fd23f"
-          }
-        ]
-      },
-      {
-        "version": "v1.37.2",
-        "date": "2026-03-25",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.37.2 (#219)",
-            "breaking": false,
-            "hash": "967c3114f02bdbf4fd1827d53a93b92a20f067b3"
-          },
-          {
-            "type": "fix",
-            "description": "review guards bypass when plan described without plan mode (#217) (#218)",
-            "breaking": false,
-            "hash": "3399632d7578ad2ed532f7b0505a9ed70f2731be"
           }
         ]
       }
