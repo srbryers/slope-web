@@ -1,15 +1,15 @@
 {
-  "version": "1.38.0",
-  "generatedAt": "2026-03-25T21:09:14.517Z",
-  "gitSha": "9112dbafe9e11af365b4c89df76dc3a97ceda938",
+  "version": "1.45.0",
+  "generatedAt": "2026-03-27T11:12:09.981Z",
+  "gitSha": "8dfff0e22cae6ee8a8a19ba4025c934c59c27e05",
   "checksums": {
-    "commands": "7574513fd289b2d0e781c880a12cbe69a91eaa776c11d43a71dea0ba5101a900",
+    "commands": "028e2b6140f78d3c3cc483df89c2e42de5600ef6e96a7130285e0bb4cd4bdcbd",
     "guards": "7fa2ebf5f557ca12f68d4cc8ebbf84206da6142f24a6d028072edd775e95ca4a",
     "mcpTools": "b0c415a0e33f6e15afb4d68d60c131dff5de70b344f994c7fd5a3d21593d1753",
     "metaphors": "fbf85ac929a8738df5d6e26262029e4a1a1495eac6acd3c0316073f3bf1795f0",
     "roles": "ad096c5377dd772f8d1ecc7f4868196bf1045cd606b97eda368da4e6bd9dd102",
     "constants": "107d1a94e19454050bf16f8e246678fcb6b93044186a71b8acf6481c14a92569",
-    "changelog": "5a66de5f4434c15c39065ab8dfe20615c3ad6c8b1482ad37315d3dfa7ae8a271"
+    "changelog": "0b9f0034ff7c19c025630aa66fe8127456c9296e1f3cff9ce97bdc98a3d35ba1"
   },
   "commands": [
     {
@@ -325,6 +325,28 @@
         {
           "name": "amend",
           "desc": "Inject review findings as hazards into scorecard"
+        },
+        {
+          "name": "run",
+          "desc": "Generate subagent review prompts from PR diff",
+          "flags": [
+            {
+              "flag": "--pr=<N>",
+              "desc": "PR number (default: current branch)"
+            },
+            {
+              "flag": "--type=<type>",
+              "desc": "Review type: architect, code, or both (default: both)"
+            },
+            {
+              "flag": "--sprint=<N>",
+              "desc": "Sprint number for findings"
+            },
+            {
+              "flag": "--json",
+              "desc": "Output as JSON for programmatic use"
+            }
+          ]
         }
       ],
       "flags": [
@@ -2943,6 +2965,176 @@
     "entries": [
       {
         "version": "Unreleased",
+        "date": "2026-03-27",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.45.0 (#246)",
+            "breaking": false,
+            "hash": "8dfff0e22cae6ee8a8a19ba4025c934c59c27e05"
+          },
+          {
+            "type": "feat",
+            "description": "token budget cap + CODEBASE.md regen (#245)",
+            "breaking": false,
+            "hash": "8cec5107b379677f831b37b04f7e019190ea92fc"
+          }
+        ]
+      },
+      {
+        "version": "v1.44.1",
+        "date": "2026-03-27",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.44.1 (#244)",
+            "breaking": false,
+            "hash": "26c0580cf9a239f33d64069f90f791292c107e61"
+          },
+          {
+            "type": "feat",
+            "description": "context compression v2 — dedup explore + commit-nudge guards (#243)",
+            "breaking": false,
+            "hash": "80cb266fb33b1591547fcf4807a3e3496b746b57"
+          }
+        ]
+      },
+      {
+        "version": "v1.44.0",
+        "date": "2026-03-27",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.44.0 (#242)",
+            "breaking": false,
+            "hash": "39d468529e50d39eaef5dfc3b07e0928528adca0"
+          },
+          {
+            "type": "feat",
+            "description": "enforce completion conditions on workflow steps (#241)",
+            "breaking": false,
+            "hash": "4e3232b087dc3700b5c8d8b239b1282d208debda"
+          }
+        ]
+      },
+      {
+        "version": "v1.43.1",
+        "date": "2026-03-26",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.43.1 (#240)",
+            "breaking": false,
+            "hash": "a1751eb967d78293d4a006a25d652738dd3306c2"
+          },
+          {
+            "type": "fix",
+            "description": "scaffold workflows on init + post-push fires per push (#228, #238) (#239)",
+            "breaking": false,
+            "hash": "34396c04cd49681608c46ebe7ea5b807b9ce0fa4"
+          }
+        ]
+      },
+      {
+        "version": "v1.43.0",
+        "date": "2026-03-26",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.43.0 (#237)",
+            "breaking": false,
+            "hash": "a03e77e020d5a93ccd83f182b51db3c92f0d16a3"
+          },
+          {
+            "type": "fix",
+            "description": "snapshot workflow definition at execution start (#235) (#236)",
+            "breaking": false,
+            "hash": "f902dab44fe9d8b83621510dd4536378b75c694d"
+          }
+        ]
+      },
+      {
+        "version": "v1.42.0",
+        "date": "2026-03-26",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.42.0 (#234)",
+            "breaking": false,
+            "hash": "d0ece2ee3812ddc02b534c4f4a63e7164f62f568"
+          },
+          {
+            "type": "feat",
+            "scope": "S79",
+            "description": "add plan review phase to workflow definitions (#233)",
+            "breaking": false,
+            "hash": "781abe5ae21802f8816bb75472ee369bab640d8e"
+          }
+        ]
+      },
+      {
+        "version": "v1.41.0",
+        "date": "2026-03-26",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.41.0 (#232)",
+            "breaking": false,
+            "hash": "c97d111fcfe8fab0afed244ca03566f86fe17c5b"
+          },
+          {
+            "type": "feat",
+            "scope": "S78",
+            "description": "The Wiring — fix gaps (forceApi, pause/resume, guard metrics, CODEBASE.md) (#231)",
+            "breaking": false,
+            "hash": "ca2644156915e4cc3bdd8bee2e7e124fce8e14a7"
+          }
+        ]
+      },
+      {
+        "version": "v1.40.0",
+        "date": "2026-03-26",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.40.0 (#230)",
+            "breaking": false,
+            "hash": "00fdc2d514e6fb1a577599553cad1eb0290d5026"
+          },
+          {
+            "type": "feat",
+            "description": "make workflow engine the default sprint execution path (#229)",
+            "breaking": false,
+            "hash": "11cc029029acf625f54d415ed522896a3461919e"
+          }
+        ]
+      },
+      {
+        "version": "v1.39.0",
+        "date": "2026-03-26",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.39.0 (#227)",
+            "breaking": false,
+            "hash": "35f00d9ca2e1490ef03eaafb96fed835f069ad8d"
+          },
+          {
+            "type": "feat",
+            "description": "subagent-based PR reviews — slope review run (#224) (#226)",
+            "breaking": false,
+            "hash": "14b1b07cd0c93050704b5edafa58869f8baaf880"
+          },
+          {
+            "type": "fix",
+            "description": "review recommend reads current sprint scorecard, not all (#224) (#225)",
+            "breaking": false,
+            "hash": "72f144ee43c049fde9fb7510e8d6e7ae00c68380"
+          }
+        ]
+      },
+      {
+        "version": "v1.38.0",
         "date": "2026-03-25",
         "changes": [
           {
@@ -2980,333 +3172,6 @@
             "description": "review guards bypass when plan described without plan mode (#217) (#218)",
             "breaking": false,
             "hash": "3399632d7578ad2ed532f7b0505a9ed70f2731be"
-          }
-        ]
-      },
-      {
-        "version": "v1.37.1",
-        "date": "2026-03-25",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.37.1 (#216)",
-            "breaking": false,
-            "hash": "f290def3998082d4994b0826334e2dfa418491fe"
-          },
-          {
-            "type": "fix",
-            "description": "initiative sync + templates bundling (#199, #214) (#215)",
-            "breaking": false,
-            "hash": "00a60bd305fb21b30fde0f668d9707ef6a6b88b0"
-          }
-        ]
-      },
-      {
-        "version": "v1.37.0",
-        "date": "2026-03-25",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.37.0 (#213)",
-            "breaking": false,
-            "hash": "4ce947fe2dd08436aff5877490d876712a854f31"
-          },
-          {
-            "type": "fix",
-            "description": "align recommend table columns — reason moved to end, dynamic key width (#212)",
-            "breaking": false,
-            "hash": "77e05b65184cd1049145dc512adf244cfd42b0cc"
-          },
-          {
-            "type": "fix",
-            "description": "route guard audit/recommend to guardManageCommand (#211)",
-            "breaking": false,
-            "hash": "89bc13fc92877e832466498e0e1a228760c16010"
-          },
-          {
-            "type": "feat",
-            "scope": "S72",
-            "description": "The Foursome v2 — multi-agent session coordination (#210)",
-            "breaking": false,
-            "hash": "6e63b232dd56afb7ad5d5544adbb7920e1c6b902"
-          },
-          {
-            "type": "feat",
-            "scope": "S70+S71",
-            "description": "Session Insights + Multi-Repo Aggregation (#209)",
-            "breaking": false,
-            "hash": "e09adcd346c4e6ac89e5c8c386833dece121d925"
-          },
-          {
-            "type": "feat",
-            "scope": "S77",
-            "description": "The 19th Hole — workflow engine assessment & phase wrap-up (#208)",
-            "breaking": false,
-            "hash": "4f539ef2349d9128e23c261151ece499aafbb5be"
-          },
-          {
-            "type": "feat",
-            "scope": "S75",
-            "description": "The Convergence — loop self-improvement (#207)",
-            "breaking": false,
-            "hash": "3d046105cdd3665c211ab897d3b75b00b602449a"
-          },
-          {
-            "type": "feat",
-            "scope": "S74",
-            "description": "The Assembly Line — batch sprint execution (#206)",
-            "breaking": false,
-            "hash": "5dc302ee567857707eb7e3242f94efdf248de5fe"
-          },
-          {
-            "type": "feat",
-            "scope": "S73",
-            "description": "The Autopilot v2 — smart model routing (#205)",
-            "breaking": false,
-            "hash": "a96ace085036f07c1f53758019558901202ecc29"
-          },
-          {
-            "type": "feat",
-            "scope": "S76",
-            "description": "The Referee — advisory-to-mechanical guard conversion (#204)",
-            "breaking": false,
-            "hash": "99026f3f5567e16dc5c1bfa61974864524639191"
-          },
-          {
-            "type": "feat",
-            "description": "add slope guard audit subcommand with type grouping and warnings (#203)",
-            "breaking": false,
-            "hash": "4ff04ba1a8c392071ca109ba5e41ea6833992386"
-          },
-          {
-            "type": "feat",
-            "description": "add slope guard audit subcommand with type grouping and warnings (#202)",
-            "breaking": false,
-            "hash": "1daa7e6aaa7b0578b3e3002daee3f0a657a1aa6b"
-          },
-          {
-            "type": "docs",
-            "description": "sprint plans for S73 + S76 (parallel execution) (#201)",
-            "breaking": false,
-            "hash": "fe5589c72385c8c064bd7066d36bf93b926d56bb"
-          },
-          {
-            "type": "chore",
-            "description": "update roadmap — add S76 (Referee), S77 (19th Hole), fix S69 divergence (#200)",
-            "breaking": false,
-            "hash": "5f63e57b1207633309ef2037e7f4f64e8b9f6bf9"
-          },
-          {
-            "type": "other",
-            "description": "S68-S69: Workflow engine tests + carryover patch fixes (#198)",
-            "breaking": false,
-            "hash": "80fd06dfa2fb386d6eaee74163e1533bb2b6adc2"
-          },
-          {
-            "type": "chore",
-            "description": "update CODEBASE.md generated metadata",
-            "breaking": false,
-            "hash": "06172132728e575c1d0469bb3eeff236b2125ae2"
-          },
-          {
-            "type": "docs",
-            "description": "regenerate CODEBASE.md — 166 test files after S68",
-            "breaking": false,
-            "hash": "6c81faca2f4d538c92d86c3954848d37588fd4fd"
-          },
-          {
-            "type": "fix",
-            "scope": "S68",
-            "description": "amend scorecard with architect + code review findings",
-            "breaking": false,
-            "hash": "2e75d7f397395860a0eac12cb5a2f7685f59d3ed"
-          },
-          {
-            "type": "fix",
-            "scope": "S68",
-            "description": "address review findings — mislabeled test, bare toThrow, fragile exit mock",
-            "breaking": false,
-            "hash": "a7b7d64ce560403d2e5cda0c4328e1cdc0b55b06"
-          },
-          {
-            "type": "docs",
-            "scope": "S68",
-            "description": "add sprint scorecard — par (4/4), 46 new workflow tests",
-            "breaking": false,
-            "hash": "8dffd6512acabf157c06695229ff4df22dd12460"
-          },
-          {
-            "type": "chore",
-            "description": "update CODEBASE.md test counts",
-            "breaking": false,
-            "hash": "fc2d608d67f82ccda541122551a6b63ec59dc820"
-          },
-          {
-            "type": "test",
-            "scope": "S68-T4",
-            "description": "add engine edge cases and store integrity tests",
-            "breaking": false,
-            "hash": "e17305499ea516fdbc3c5b56481f8c9160aa40cb"
-          },
-          {
-            "type": "test",
-            "scope": "S68-T3",
-            "description": "add E2E tests for sprint-autonomous and sprint-lightweight",
-            "breaking": false,
-            "hash": "1091faaa9a1e6304c09fadd01eafd082e40901f8"
-          },
-          {
-            "type": "test",
-            "scope": "S68-T2",
-            "description": "add sprint CLI workflow integration tests",
-            "breaking": false,
-            "hash": "7fd18043a3e88facb26c672ec3d3e927080e4265"
-          },
-          {
-            "type": "test",
-            "scope": "S68-T1",
-            "description": "add dedicated workflow-gate guard tests",
-            "breaking": false,
-            "hash": "d3aca5650f153e9895ea3a2acd2786c80635e4ba"
-          },
-          {
-            "type": "docs",
-            "scope": "S68",
-            "description": "add sprint plan — workflow engine test coverage",
-            "breaking": false,
-            "hash": "dcc5b2ac1d57cbefce01532de5436183811aac65"
-          }
-        ]
-      },
-      {
-        "version": "v1.36.0",
-        "date": "2026-03-21",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.36.0 (#196)",
-            "breaking": false,
-            "hash": "276798423fa198fc4c53f1e9d52e0cb56ac41def"
-          },
-          {
-            "type": "chore",
-            "description": "update scorecard with review findings and regenerate CODEBASE.md (#195)",
-            "breaking": false,
-            "hash": "5624166522087ebf87cda1a3f6c0a903962ee3a4"
-          },
-          {
-            "type": "feat",
-            "description": "workflow engine — core & store layer (Sprint 1/5) (#194)",
-            "breaking": false,
-            "hash": "689d70f7cfbf5f34a95396015152b33de7ec610a"
-          }
-        ]
-      },
-      {
-        "version": "v1.35.0",
-        "date": "2026-03-18",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.35.0 (#192)",
-            "breaking": false,
-            "hash": "17d6cc714b8bb980735d8f45a6e86986ebbd7b5c"
-          },
-          {
-            "type": "fix",
-            "description": "stale session blocks worktree sessions (#189) (#191)",
-            "breaking": false,
-            "hash": "d28a6bbc237966129aa0653d509a0b1a7b385b33"
-          }
-        ]
-      },
-      {
-        "version": "v1.34.0",
-        "date": "2026-03-18",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.34.0 (#190)",
-            "breaking": false,
-            "hash": "1659a07f2537adf59a01e769c1a041ad3b5bd682"
-          },
-          {
-            "type": "feat",
-            "description": "skill system restructuring — folder-based progressive disclosure (#188)",
-            "breaking": false,
-            "hash": "f7fbe442f3191916bb0c8c95abbccb950d040f78"
-          }
-        ]
-      },
-      {
-        "version": "v1.33.0",
-        "date": "2026-03-16",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.33.0 (#187)",
-            "breaking": false,
-            "hash": "eed58ba362588303c53dcf4a2fb4c373fdea98ff"
-          },
-          {
-            "type": "feat",
-            "description": "worktree-reuse guard — detect and guide reuse of existing worktrees (#186)",
-            "breaking": false,
-            "hash": "efab9fa0abd86b44cc0d7b371b3b1768af4b1377"
-          }
-        ]
-      },
-      {
-        "version": "v1.32.0",
-        "date": "2026-03-16",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.32.0 (#184)",
-            "breaking": false,
-            "hash": "1a890174948daf614dd171630d157b5c78498add"
-          },
-          {
-            "type": "feat",
-            "description": "adhoc session mode — silence sprint guards for non-sprint work (#183)",
-            "breaking": false,
-            "hash": "18f04a07d21fe0b88baceb956138032ae83d7fb5"
-          }
-        ]
-      },
-      {
-        "version": "v1.31.2",
-        "date": "2026-03-16",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.31.2 (#182)",
-            "breaking": false,
-            "hash": "5f38512c81efc5daf6076aadfbfdee2f6fe6a55d"
-          },
-          {
-            "type": "fix",
-            "description": "update sprint-completion tests + add `slope hook add <platform>` shorthand (#181)",
-            "breaking": false,
-            "hash": "8c7e53d5d451adef2dee5e0e3a2aaa0472eac51d"
-          }
-        ]
-      },
-      {
-        "version": "v1.31.1",
-        "date": "2026-03-16",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.31.1 (#180)",
-            "breaking": false,
-            "hash": "462601a670a4c896db24f6fa3b0d89387ac04923"
-          },
-          {
-            "type": "fix",
-            "description": "stop guards from trapping ad-hoc sessions (#179)",
-            "breaking": false,
-            "hash": "a8c49db59b7bb8d16cab107d4af4d65f5a1e67a6"
           }
         ]
       }
