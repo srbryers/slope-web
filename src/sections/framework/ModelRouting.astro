@@ -1,0 +1,51 @@
+---
+---
+
+<section id="model-routing" class="mb-16 scroll-mt-20">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Smart Model Routing</h2>
+  <p class="text-text-secondary mb-6">
+    SLOPE's model selector chooses the optimal AI model for each task based on complexity, sprint type, and historical success rates — balancing quality against cost.
+  </p>
+
+  <!-- Routing hierarchy -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">5-Layer Routing Hierarchy</h3>
+  <div class="space-y-2 mb-6">
+    <div class="flex items-start gap-3 p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-emerald font-mono text-xs font-bold mt-0.5 shrink-0">1</span>
+      <div>
+        <span class="text-text-primary text-sm font-medium">Token-based</span>
+        <p class="text-text-muted text-xs mt-0.5">Estimated tokens &gt; 24k? Route to API model for larger context window.</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-3 p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-emerald font-mono text-xs font-bold mt-0.5 shrink-0">2</span>
+      <div>
+        <span class="text-text-primary text-sm font-medium">File-based</span>
+        <p class="text-text-muted text-xs mt-0.5">Multi-package changes (2+ file groups)? Route to API for broader reasoning.</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-3 p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-emerald font-mono text-xs font-bold mt-0.5 shrink-0">3</span>
+      <div>
+        <span class="text-text-primary text-sm font-medium">Strategy-based</span>
+        <p class="text-text-muted text-xs mt-0.5">Documentation or roadmap work? Route to API for natural language strength.</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-3 p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-emerald font-mono text-xs font-bold mt-0.5 shrink-0">4</span>
+      <div>
+        <span class="text-text-primary text-sm font-medium">Data-driven</span>
+        <p class="text-text-muted text-xs mt-0.5">Historical success rates from your scorecards — cost-adjusted to prefer better value (success_rate / cost). Checked at club+type, club+strategy, then club-only granularity.</p>
+      </div>
+    </div>
+    <div class="flex items-start gap-3 p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-emerald font-mono text-xs font-bold mt-0.5 shrink-0">5</span>
+      <div>
+        <span class="text-text-primary text-sm font-medium">Club defaults</span>
+        <p class="text-text-muted text-xs mt-0.5">Putter/wedge/short iron → local model. Long iron/driver → API model.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-text-muted text-sm">Run <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs font-mono">slope loop config recommend</code> to see model recommendations based on your scorecard history, or <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs font-mono">slope loop models --analyze</code> for per-model performance analytics.</p>
+</section>

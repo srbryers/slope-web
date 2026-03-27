@@ -30,6 +30,10 @@ import BatchExecution from '../sections/framework/BatchExecution.astro';
 import TeamMultiAgent from '../sections/framework/TeamMultiAgent.astro';
 import MultiRepoOrg from '../sections/framework/MultiRepoOrg.astro';
 import ContextCompression from '../sections/framework/ContextCompression.astro';
+import SessionManagement from '../sections/framework/SessionManagement.astro';
+import ModelRouting from '../sections/framework/ModelRouting.astro';
+import SubagentReviews from '../sections/framework/SubagentReviews.astro';
+import GuardAuditMetrics from '../sections/framework/GuardAuditMetrics.astro';
 import EscalationSystem from '../sections/framework/EscalationSystem.astro';
 import FlowTracking from '../sections/framework/FlowTracking.astro';
 import InspirationTracking from '../sections/framework/InspirationTracking.astro';
@@ -114,6 +118,10 @@ const sidebarGroups = [
       { id: 'team-multi-agent', name: 'Team & Multi-Agent' },
       { id: 'multi-repo-org', name: 'Multi-Repo & Org' },
       { id: 'context-compression', name: 'Context Compression' },
+      { id: 'session-management', name: 'Session Management' },
+      { id: 'model-routing', name: 'Smart Model Routing' },
+      { id: 'subagent-reviews', name: 'Subagent PR Reviews' },
+      { id: 'guard-audit-metrics', name: 'Guard Audit & Metrics' },
       { id: 'escalation-system', name: 'Escalation System' },
       { id: 'flow-tracking', name: 'Flow Tracking' },
       { id: 'inspiration-tracking', name: 'Inspiration Tracking' },
@@ -246,6 +254,10 @@ const sidebarGroups = [
         <TeamMultiAgent />
         <MultiRepoOrg />
         <ContextCompression />
+        <SessionManagement />
+        <ModelRouting />
+        <SubagentReviews />
+        <GuardAuditMetrics />
         <EscalationSystem />
         <FlowTracking />
         <InspirationTracking />

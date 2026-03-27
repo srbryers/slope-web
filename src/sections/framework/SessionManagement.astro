@@ -1,0 +1,52 @@
+---
+---
+
+<section id="session-management" class="mb-16 scroll-mt-20">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Session Management</h2>
+  <p class="text-text-secondary mb-6">
+    <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs font-mono">slope session</code> coordinates multiple agents working on the same codebase. Live dashboards, structured handoffs, and per-ticket agent assignment.
+  </p>
+
+  <!-- Commands -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Commands</h3>
+  <div class="rounded-xl border border-border bg-bg-card overflow-hidden mb-6">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-border bg-bg-surface/50">
+          <th class="text-left px-5 py-3 text-text-muted text-xs font-mono uppercase">Command</th>
+          <th class="text-left px-5 py-3 text-text-muted text-xs uppercase">Purpose</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border-subtle">
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs">slope session dashboard</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Live view of all active agents — claims, staleness, swarm grouping</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs">slope session handoff --from --to</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Structured context transfer between agents</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs">slope session assign --ticket --agent</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Assign specific tickets to specific agents</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs">slope session plan</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Ticket-to-agent assignment matrix for the sprint</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Key concepts -->
+  <div class="grid sm:grid-cols-2 gap-3">
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Claim Guard</span>
+      <p class="text-text-muted text-xs mt-1">The <code class="text-emerald text-xs font-mono">claim-required</code> guard prevents two agents from editing the same files. Cross-session overlap alerts fire when claims conflict.</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Handoff Protocol</span>
+      <p class="text-text-muted text-xs mt-1">Structured JSON handoffs in <code class="text-emerald text-xs font-mono">.slope/handoffs/</code> capture git state, active claims, review phase, and sprint context — so the receiving agent has full situational awareness.</p>
+    </div>
+  </div>
+</section>

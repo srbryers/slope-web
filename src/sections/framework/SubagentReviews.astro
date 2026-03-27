@@ -1,0 +1,51 @@
+---
+---
+
+<section id="subagent-reviews" class="mb-16 scroll-mt-20">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Subagent PR Reviews</h2>
+  <p class="text-text-secondary mb-6">
+    <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs font-mono">slope review run</code> generates isolated review prompts from your PR diff and dispatches them to fresh subagents — each with clean context and no implementation memory.
+  </p>
+
+  <!-- How it works -->
+  <div class="grid sm:grid-cols-2 gap-3 mb-6">
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Architect Review</span>
+      <p class="text-text-muted text-xs mt-1">Evaluates structure, patterns, and design decisions. Flags over-engineering, missing abstractions, and architectural drift.</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Code Review</span>
+      <p class="text-text-muted text-xs mt-1">Line-level review: bugs, edge cases, security, naming, test coverage. Focused on implementation quality.</p>
+    </div>
+  </div>
+
+  <!-- Usage -->
+  <div class="rounded-xl border border-border bg-bg-card overflow-hidden">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-border bg-bg-surface/50">
+          <th class="text-left px-5 py-3 text-text-muted text-xs font-mono uppercase">Command</th>
+          <th class="text-left px-5 py-3 text-text-muted text-xs uppercase">Purpose</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border-subtle">
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs">slope review run</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Review current branch diff (both architect + code)</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs">slope review run --pr=N</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Review a specific pull request by number</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs">slope review run --type=architect</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Architecture review only</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs">slope review run --json</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Output structured JSON for CI integration</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

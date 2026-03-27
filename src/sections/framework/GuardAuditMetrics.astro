@@ -1,0 +1,43 @@
+---
+---
+
+<section id="guard-audit-metrics" class="mb-16 scroll-mt-20">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Guard Audit & Metrics</h2>
+  <p class="text-text-secondary mb-6">
+    Understand your guard system's enforcement posture and effectiveness with built-in audit and metrics commands.
+  </p>
+
+  <!-- Commands -->
+  <div class="space-y-3 mb-6">
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <code class="text-emerald text-xs font-mono bg-emerald/5 px-2 py-0.5 rounded">slope guard audit</code>
+      </div>
+      <p class="text-text-secondary text-sm">Groups all guards by enforcement type: <strong class="text-text-primary">mechanical</strong> (blocks the action), <strong class="text-text-primary">advisory</strong> (injects context), or <strong class="text-text-primary">mixed</strong> (both). Shows which guards write disk state for compaction survival.</p>
+    </div>
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <code class="text-emerald text-xs font-mono bg-emerald/5 px-2 py-0.5 rounded">slope guard metrics</code>
+      </div>
+      <p class="text-text-secondary text-sm">Per-guard execution statistics: allow/deny/context/silent counts and block percentage. Identifies which guards fire most often and which have the highest block rate.</p>
+    </div>
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <code class="text-emerald text-xs font-mono bg-emerald/5 px-2 py-0.5 rounded">slope guard recommend</code>
+      </div>
+      <p class="text-text-secondary text-sm">Suggests guards you haven't enabled yet, ranked by relevance to your workflow and repo profile. Workflow-aware — recommendations change based on whether you use <code class="text-emerald text-xs font-mono">sprint-standard</code> or a custom workflow.</p>
+    </div>
+  </div>
+
+  <!-- Guard state -->
+  <div class="grid sm:grid-cols-2 gap-3">
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Disk State</span>
+      <p class="text-text-muted text-xs mt-1">Critical guard state persists to <code class="text-emerald text-xs font-mono">.slope/guard-state/</code> with 7-day pruning and 24-hour staleness detection. Survives context compaction.</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Advisory → Mechanical</span>
+      <p class="text-text-muted text-xs mt-1">Guards that consistently catch real issues can be promoted from advisory to mechanical using <code class="text-emerald text-xs font-mono">slope guard recommend</code> — tightening enforcement over time.</p>
+    </div>
+  </div>
+</section>
