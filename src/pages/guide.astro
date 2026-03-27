@@ -1,0 +1,257 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/global.css';
+import { GUIDE_STEPS, GUIDE_PHASES, buildFileTree, formatAgentResponse } from '../data/guide-steps';
+
+const fullTree = buildFileTree(GUIDE_STEPS.length - 1);
+
+// Collect all artifact paths→content for the preview panel
+const allArtifacts = new Map<string, { content: string; language: string }>();
+for (const step of GUIDE_STEPS) {
+  if (step.artifacts) {
+    for (const a of step.artifacts) {
+      allArtifacts.set(a.path, { content: a.content, language: a.language });
+    }
+  }
+  if (step.branches) {
+    for (const branch of step.branches) {
+      if (branch.artifacts) {
+        for (const a of branch.artifacts) {
+          allArtifacts.set(a.path, { content: a.content, language: a.language });
+        }
+      }
+    }
+  }
+}
+
+// Helper: render file tree recursively
+function renderTreeDepth(nodes: ReturnType<typeof buildFileTree>, depth: number): string {
+  return nodes.map(node => {
+    const icon = node.type === 'directory'
+      ? `<svg class="w-3.5 h-3.5 text-text-muted shrink-0" viewBox="0 0 16 16" fill="currentColor"><path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2A1.75 1.75 0 0 0 5 1H1.75Z"/></svg>`
+      : `<svg class="w-3.5 h-3.5 text-text-muted shrink-0" viewBox="0 0 16 16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg>`;
+    return `<button class="guide-tree-entry hidden" data-guide-file="${node.path}" data-guide-file-step="${node.addedAtStep}" data-guide-file-type="${node.type}" style="padding-left: ${depth * 1 + 0.75}rem">${icon}<span>${node.name}</span></button>${node.children ? renderTreeDepth(node.children, depth + 1) : ''}`;
+  }).join('');
+}
+---
+
+<Base
+  title="Interactive Guide — SLOPE"
+  description="Walk through a complete SLOPE sprint lifecycle in an interactive simulation."
+  canonicalPath="/guide"
+>
+  <main>
+    <!-- Intro -->
+    <section class="pt-12 pb-6 max-w-7xl mx-auto px-4 sm:px-6">
+      <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3" data-reveal>Interactive Walkthrough</p>
+      <h1 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight mb-2" data-reveal>
+        Walk through a full SLOPE sprint.
+      </h1>
+      <p class="text-text-secondary text-lg mb-2" data-reveal>
+        This guided tour simulates a complete sprint lifecycle — from initialization to trend analysis.
+      </p>
+      <p class="text-text-muted text-sm" data-reveal>
+        Click <strong class="text-text-secondary">Continue</strong> to advance, or explore branches along the way.
+      </p>
+    </section>
+
+    <!-- Phase indicator -->
+    <div id="guide-phase-bar" class="max-w-7xl mx-auto px-4 sm:px-6 mb-4">
+      <div class="flex items-center">
+        {GUIDE_PHASES.map((phase, i) => (
+          <>
+            {i > 0 && <div class="guide-phase-line bg-border" data-guide-phase-line={i}></div>}
+            <button
+              data-guide-phase={phase.id}
+              data-guide-phase-index={i}
+              class="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg text-text-muted cursor-default transition-colors"
+            >
+              <span class="guide-phase-dot future"></span>
+              <span class="text-xs font-mono font-medium hidden sm:inline">{phase.label}</span>
+            </button>
+          </>
+        ))}
+      </div>
+    </div>
+
+    <!-- IAE Container -->
+    <div id="guide-iae" class="max-w-7xl mx-auto px-4 sm:px-6 mb-24">
+      <div class="rounded-xl border border-border bg-bg-primary overflow-hidden flex flex-col lg:grid lg:grid-cols-[240px_1fr_380px]" style="min-height: 600px; max-height: 80vh;">
+
+        <!-- FILE TREE PANEL (desktop) -->
+        <div id="guide-file-tree" class="hidden lg:flex flex-col bg-bg-surface border-r border-border-subtle overflow-y-auto">
+          <div class="px-4 py-3 border-b border-border-subtle flex items-center gap-2">
+            <svg class="w-4 h-4 text-text-muted" viewBox="0 0 16 16" fill="currentColor"><path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2A1.75 1.75 0 0 0 5 1H1.75Z"/></svg>
+            <span class="text-xs font-mono uppercase tracking-wider text-text-muted">Explorer</span>
+          </div>
+          <div class="p-2 space-y-0.5" set:html={renderTreeDepth(fullTree, 0)} />
+        </div>
+
+        <!-- Mobile file tree toggle + overlay -->
+        <button id="guide-tree-toggle" class="lg:hidden flex items-center gap-2 px-4 py-2 border-b border-border-subtle text-xs font-mono text-text-muted hover:text-text-secondary transition-colors">
+          <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor"><path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2A1.75 1.75 0 0 0 5 1H1.75Z"/></svg>
+          Explorer
+        </button>
+
+        <!-- Mobile file tree overlay -->
+        <div id="guide-tree-overlay" class="hidden fixed inset-0 z-40 lg:hidden">
+          <div id="guide-tree-backdrop" class="absolute inset-0 bg-black/50"></div>
+          <div class="absolute inset-y-0 left-0 w-72 bg-bg-surface border-r border-border overflow-y-auto z-50">
+            <div class="px-4 py-3 border-b border-border-subtle flex items-center justify-between">
+              <span class="text-xs font-mono uppercase tracking-wider text-text-muted">Explorer</span>
+              <button id="guide-tree-close" class="text-text-muted hover:text-text-primary transition-colors">
+                <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/></svg>
+              </button>
+            </div>
+            <div class="p-2 space-y-0.5" set:html={renderTreeDepth(fullTree, 0)} />
+          </div>
+        </div>
+
+        <!-- CHAT PANEL -->
+        <div class="flex flex-col overflow-hidden min-h-0">
+          <div id="guide-messages" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
+            <!-- Welcome message (always visible) -->
+            <div class="flex justify-start">
+              <div class="guide-agent-bubble">
+                <p class="text-sm text-text-secondary leading-relaxed">
+                  Welcome to the SLOPE sprint walkthrough. I'll guide you through a complete sprint lifecycle — from setting up your project to analyzing trends over time.
+                </p>
+              </div>
+            </div>
+
+            {GUIDE_STEPS.map((step, i) => (
+              <div data-guide-step={step.id} data-guide-step-index={i} class="hidden space-y-4">
+                {/* User message */}
+                <div class="flex justify-end">
+                  <div class="guide-user-bubble">
+                    <p class="text-sm text-text-primary">{step.userPrompt}</p>
+                  </div>
+                </div>
+
+                {/* Agent message */}
+                <div data-guide-agent={step.id} class="hidden">
+                  <div class="flex justify-start">
+                    <div class="guide-agent-bubble">
+                      <div class="text-sm text-text-secondary leading-relaxed" set:html={formatAgentResponse(step.agentResponse)} />
+                    </div>
+                  </div>
+
+                  {/* Mobile inline artifacts */}
+                  {step.artifacts?.map(artifact => (
+                    <details class="guide-inline-artifact lg:hidden rounded-lg border border-border bg-bg-surface overflow-hidden mt-3">
+                      <summary class="px-4 py-2 text-xs font-mono text-emerald cursor-pointer flex items-center gap-2">
+                        <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 16 16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg>
+                        {artifact.path}
+                      </summary>
+                      <pre class="p-4 font-mono text-xs text-text-secondary overflow-x-auto border-t border-border-subtle whitespace-pre">{artifact.content}</pre>
+                    </details>
+                  ))}
+
+                  {/* Docs link */}
+                  {step.docsRef && (
+                    <div class="mt-2 pl-1">
+                      <a href={`/docs${step.docsRef}`} class="text-xs font-mono text-emerald/60 hover:text-emerald transition-colors">
+                        Read more in the docs &rarr;
+                      </a>
+                    </div>
+                  )}
+                </div>
+
+                {/* Branch buttons */}
+                {step.branches && (
+                  <div data-guide-branches={step.id} class="hidden flex flex-wrap gap-2 pl-1">
+                    {step.branches.map((_branch, bi) => (
+                      <button
+                        data-guide-branch={`${step.id}-${bi}`}
+                        class="px-3 py-1.5 rounded-lg border border-border bg-bg-card text-xs font-mono text-text-secondary hover:border-emerald/30 hover:text-emerald cursor-pointer transition-colors"
+                      >
+                        {_branch.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {/* Branch responses (hidden until clicked) */}
+                {step.branches?.map((branch, bi) => (
+                  <div data-guide-branch-response={`${step.id}-${bi}`} class="hidden space-y-4">
+                    <div class="flex justify-end">
+                      <div class="guide-user-bubble">
+                        <p class="text-sm text-text-primary">{branch.label}</p>
+                      </div>
+                    </div>
+                    <div class="flex justify-start">
+                      <div class="guide-agent-bubble">
+                        <div class="text-sm text-text-secondary leading-relaxed" set:html={formatAgentResponse(branch.response)} />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+
+            <!-- Completion message (hidden) -->
+            <div id="guide-complete" class="hidden space-y-4">
+              <div class="flex justify-start">
+                <div class="guide-agent-bubble">
+                  <div class="text-sm text-text-secondary leading-relaxed">
+                    <p><strong class="text-text-primary font-semibold">You've completed the SLOPE sprint lifecycle tour.</strong></p>
+                    <p class="mt-3">The core loop is: <strong class="text-emerald font-semibold">score &rarr; review &rarr; learn &rarr; improve</strong>. Every sprint makes the next one better because your agent carries forward what it learned.</p>
+                    <p class="mt-3">Ready to try it for real?</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-3 pl-1">
+                <a href="/docs#installation" class="px-4 py-2 rounded-lg bg-emerald text-bg-primary font-heading font-bold text-sm hover:bg-emerald/90 transition-colors">
+                  Get started
+                </a>
+                <a href="/docs" class="px-4 py-2 rounded-lg border border-border text-text-secondary font-heading font-bold text-sm hover:border-emerald/30 hover:text-text-primary transition-colors">
+                  Read the docs
+                </a>
+                <button id="guide-restart" class="px-4 py-2 rounded-lg border border-border text-text-secondary font-heading font-bold text-sm hover:border-emerald/30 hover:text-text-primary transition-colors cursor-pointer">
+                  Restart tour
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Input / Continue area -->
+          <div id="guide-input-area" class="border-t border-border p-3 sm:p-4 bg-bg-surface/50">
+            <button id="guide-continue" class="w-full flex items-center justify-between px-4 py-3 rounded-lg border border-border bg-bg-card text-sm font-mono text-text-secondary hover:border-emerald/30 hover:text-emerald transition-colors cursor-pointer">
+              <span id="guide-continue-text">{GUIDE_STEPS[0].userPrompt}</span>
+              <span class="text-xs text-text-muted shrink-0 ml-4">Continue &rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ARTIFACT PREVIEW PANEL (desktop only) -->
+        <div id="guide-artifact" class="hidden lg:flex flex-col bg-bg-surface border-l border-border-subtle overflow-hidden">
+          <div class="px-4 py-3 border-b border-border-subtle flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 text-text-muted" viewBox="0 0 16 16" fill="currentColor"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg>
+            <span id="guide-artifact-path" class="text-xs font-mono text-text-muted truncate">No file selected</span>
+          </div>
+          <div id="guide-artifact-content" class="flex-1 overflow-y-auto p-4">
+            <p class="text-text-muted text-xs italic">Select a file from the explorer, or advance the chat to see artifacts.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Hidden artifact content store (for JS to read) -->
+    <div id="guide-artifact-store" class="hidden" aria-hidden="true">
+      {[...allArtifacts.entries()].map(([path, { content, language }]) => (
+        <template data-guide-artifact={path} data-guide-artifact-lang={language}>
+          {content}
+        </template>
+      ))}
+    </div>
+  </main>
+</Base>
+
+<script>
+  import { initGuide } from '../scripts/guide';
+  import { initAnimations } from '../scripts/animations';
+
+  initAnimations();
+  initGuide();
+</script>

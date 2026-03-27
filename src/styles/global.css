@@ -154,3 +154,92 @@ details.read-the-green .deep-content {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
+
+/* ===== Guide: file tree entries ===== */
+.guide-tree-entry {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: background-color 0.15s, color 0.15s;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+}
+
+.guide-tree-entry:hover {
+  background-color: var(--color-bg-card);
+  color: var(--color-text-primary);
+}
+
+.guide-tree-entry.active {
+  background-color: var(--color-bg-card-hover);
+  color: var(--color-emerald);
+}
+
+/* ===== Guide: chat bubbles ===== */
+.guide-user-bubble {
+  background: rgba(74, 230, 138, 0.06);
+  border: 1px solid rgba(74, 230, 138, 0.15);
+  border-radius: 0.75rem 0.75rem 0.25rem 0.75rem;
+  padding: 0.75rem 1rem;
+  max-width: 28rem;
+}
+
+.guide-agent-bubble {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem 0.75rem 0.75rem 0.25rem;
+  padding: 0.75rem 1rem;
+  max-width: 32rem;
+}
+
+/* ===== Guide: phase indicator ===== */
+.guide-phase-dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.guide-phase-dot.active {
+  background-color: var(--color-emerald);
+  box-shadow: 0 0 8px rgba(74, 230, 138, 0.4);
+}
+
+.guide-phase-dot.visited {
+  background-color: var(--color-emerald);
+  opacity: 0.5;
+}
+
+.guide-phase-dot.future {
+  background-color: var(--color-border);
+}
+
+.guide-phase-line {
+  height: 2px;
+  flex: 1;
+  min-width: 1rem;
+  transition: background-color 0.3s;
+}
+
+/* ===== Guide: inline artifact card (mobile) ===== */
+.guide-inline-artifact summary {
+  list-style: none;
+  user-select: none;
+}
+.guide-inline-artifact summary::-webkit-details-marker { display: none; }
+.guide-inline-artifact summary::marker { display: none; content: ''; }
+
+/* ===== Guide: syntax highlight tokens ===== */
+.guide-tok-key { color: var(--color-emerald); }
+.guide-tok-str { color: var(--color-gold); }
+.guide-tok-num { color: #60a5fa; }
+.guide-tok-bool { color: #fbbf24; }
