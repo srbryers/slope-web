@@ -15,6 +15,7 @@ const state: GuideState = {
 };
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const STORAGE_KEY = 'slope-guide-state';
 
 // ---------------------------------------------------------------------------
 // DOM references (cached on init)
@@ -156,6 +157,73 @@ function updatePhaseBar() {
 }
 
 // ---------------------------------------------------------------------------
+// Typing animation — staggered reveal of agent response blocks
+// ---------------------------------------------------------------------------
+
+function typeReveal(agentEl: HTMLElement, onComplete: () => void) {
+  // Find the content div inside the agent bubble
+  const bubble = agentEl.querySelector('.guide-agent-bubble');
+  if (!bubble) { onComplete(); return; }
+
+  const contentDiv = bubble.querySelector('div');
+  if (!contentDiv) { onComplete(); return; }
+
+  // Get all direct children (p, pre, ul, etc.)
+  const children = Array.from(contentDiv.children) as HTMLElement[];
+  if (children.length === 0) { onComplete(); return; }
+
+  // Hide all children initially
+  children.forEach(child => {
+    child.style.opacity = '0';
+    child.style.transform = 'translateY(4px)';
+  });
+
+  // Reveal them one by one with stagger
+  let i = 0;
+  const interval = 80; // ms between each block
+
+  function revealNext() {
+    if (i >= children.length) {
+      onComplete();
+      return;
+    }
+    const child = children[i];
+    child.style.transition = 'opacity 0.2s, transform 0.2s';
+    child.style.opacity = '1';
+    child.style.transform = 'translateY(0)';
+    i++;
+    scrollChatToBottom();
+    setTimeout(revealNext, interval);
+  }
+
+  revealNext();
+}
+
+function showPostAgentContent(step: typeof GUIDE_STEPS[number], index: number) {
+  // Show branch buttons
+  const branchesEl = document.querySelector<HTMLElement>(`[data-guide-branches="${step.id}"]`);
+  if (branchesEl) branchesEl.classList.remove('hidden');
+
+  // Reveal file tree entries for this step
+  if (step.artifacts) {
+    revealTreeFiles(index);
+    showArtifact(step.artifacts[0].path);
+  }
+
+  // Update phase bar
+  updatePhaseBar();
+
+  // Update continue button
+  updateContinueButton();
+
+  // Scroll to bottom of chat
+  scrollChatToBottom();
+
+  // Persist progress
+  saveState();
+}
+
+// ---------------------------------------------------------------------------
 // Core: advance to step
 // ---------------------------------------------------------------------------
 
@@ -181,27 +249,19 @@ function advanceToStep(index: number) {
   const delay = prefersReducedMotion ? 0 : 300;
 
   setTimeout(() => {
-    if (agentEl) agentEl.classList.remove('hidden');
-
-    // Show branch buttons
-    const branchesEl = document.querySelector<HTMLElement>(`[data-guide-branches="${step.id}"]`);
-    if (branchesEl) branchesEl.classList.remove('hidden');
-
-    // Reveal file tree entries for this step
-    if (step.artifacts) {
-      revealTreeFiles(index);
-      // Auto-select first artifact
-      showArtifact(step.artifacts[0].path);
+    if (agentEl) {
+      agentEl.classList.remove('hidden');
+      // Staggered reveal of agent response content
+      if (!prefersReducedMotion) {
+        typeReveal(agentEl, () => {
+          showPostAgentContent(step, index);
+        });
+      } else {
+        showPostAgentContent(step, index);
+      }
+    } else {
+      showPostAgentContent(step, index);
     }
-
-    // Update phase bar
-    updatePhaseBar();
-
-    // Update continue button
-    updateContinueButton();
-
-    // Scroll to bottom of chat
-    scrollChatToBottom();
   }, delay);
 
   // Scroll to show user message immediately
@@ -230,6 +290,9 @@ function showBranch(stepId: string, branchIndex: number) {
   requestAnimationFrame(() => {
     responseEl.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
   });
+
+  // Persist progress
+  saveState();
 }
 
 // ---------------------------------------------------------------------------
@@ -291,6 +354,83 @@ function scrollChatToBottom() {
   requestAnimationFrame(() => {
     messagesEl.scrollTop = messagesEl.scrollHeight;
   });
+}
+
+// ---------------------------------------------------------------------------
+// State persistence
+// ---------------------------------------------------------------------------
+
+function saveState() {
+  try {
+    const data = {
+      currentStepIndex: state.currentStepIndex,
+      visitedSteps: [...state.visitedSteps],
+      openedBranches: [...document.querySelectorAll<HTMLElement>('[data-guide-branch].hidden')]
+        .map(el => el.dataset.guideBranch)
+        .filter(Boolean),
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch { /* storage full or unavailable */ }
+}
+
+function restoreState(): boolean {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false;
+    const data = JSON.parse(raw);
+    if (typeof data.currentStepIndex !== 'number' || data.currentStepIndex < 0) return false;
+
+    // Replay all visited steps instantly (no animation)
+    const maxStep = Math.min(data.currentStepIndex, GUIDE_STEPS.length - 1);
+    for (let i = 0; i <= maxStep; i++) {
+      state.currentStepIndex = i;
+      state.visitedSteps.add(i);
+      const step = GUIDE_STEPS[i];
+      const stepEl = document.querySelector<HTMLElement>(`[data-guide-step="${step.id}"]`);
+      const agentEl = document.querySelector<HTMLElement>(`[data-guide-agent="${step.id}"]`);
+      const branchesEl = document.querySelector<HTMLElement>(`[data-guide-branches="${step.id}"]`);
+
+      if (stepEl) stepEl.classList.remove('hidden');
+      if (agentEl) agentEl.classList.remove('hidden');
+      if (branchesEl) branchesEl.classList.remove('hidden');
+
+      if (step.artifacts) {
+        revealTreeFiles(i);
+      }
+    }
+
+    // Restore opened branches
+    if (Array.isArray(data.openedBranches)) {
+      for (const key of data.openedBranches) {
+        const btn = document.querySelector<HTMLElement>(`[data-guide-branch="${key}"]`);
+        if (btn) btn.classList.add('hidden');
+        const responseEl = document.querySelector<HTMLElement>(`[data-guide-branch-response="${key}"]`);
+        if (responseEl) responseEl.classList.remove('hidden');
+      }
+    }
+
+    // Show completion if past last step
+    if (data.currentStepIndex >= GUIDE_STEPS.length) {
+      showCompletion();
+    } else {
+      // Select last artifact if available
+      const lastStep = GUIDE_STEPS[maxStep];
+      if (lastStep.artifacts) {
+        showArtifact(lastStep.artifacts[0].path);
+      }
+    }
+
+    updatePhaseBar();
+    updateContinueButton();
+    scrollChatToBottom();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function clearState() {
+  try { localStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
 }
 
 // ---------------------------------------------------------------------------
@@ -357,9 +497,12 @@ export function initGuide() {
 
   // Restart button
   document.getElementById('guide-restart')?.addEventListener('click', () => {
+    clearState();
     window.location.reload();
   });
 
-  // Start the tour — show first step
-  advanceToStep(0);
+  // Restore saved state or start fresh
+  if (!restoreState()) {
+    advanceToStep(0);
+  }
 }

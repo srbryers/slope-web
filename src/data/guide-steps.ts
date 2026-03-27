@@ -264,6 +264,29 @@ export const GUIDE_STEPS: GuideStep[] = [
       `- **Your common issues database** — recurring hazards from past sprints (empty for now)\n` +
       `- **Your handicap card** — rolling performance metrics that reveal trends\n\n` +
       `Your agent reads this briefing before starting work. It's like a pre-round warmup — your agent knows the par, the risks, and what to watch for.`,
+    branches: [
+      {
+        label: 'What does par mean?',
+        response:
+          `**Par** is the expected number of tickets for a sprint, based on complexity and your track record.\n\n` +
+          `- A **par 3** sprint has 3 tickets — a focused sprint\n` +
+          `- A **par 5** sprint has 5 tickets — a bigger effort\n\n` +
+          `**Slope** is the difficulty modifier (0–3). Higher slope means more unknowns, dependencies, or new territory. It's like a golf course's slope rating — it adjusts expectations.\n\n` +
+          `If you finish a par 4 sprint in 3 strokes, that's a **birdie**. If it takes 5, that's a **bogey**. Over time, your handicap tracks how often you land at or under par.`,
+      },
+      {
+        label: 'How does the workflow engine fit in?',
+        response:
+          `The briefing is actually the first step of a **workflow**. SLOPE has a built-in workflow engine that structures your sprint:\n\n` +
+          `**sprint-standard** (the default) runs through:\n` +
+          `1. **Pre-hole** — briefing, context setup\n` +
+          `2. **Plan review** — write a plan, get it reviewed, revise if needed\n` +
+          `3. **Per-ticket** — implement each claimed ticket\n` +
+          `4. **Post-hole** — scorecard, review, retrospective\n\n` +
+          `Each phase has **completion conditions** — for example, the plan review phase requires a plan file to exist before advancing. You can also \`slope sprint pause\` mid-workflow and \`slope sprint resume\` later.\n\n` +
+          `For autonomous execution, there's \`sprint-autonomous\` (minimal gates, designed for \`slope loop\`) and \`sprint-lightweight\` (implement and validate, no review).`,
+      },
+    ],
     docsRef: '#briefing',
   },
 
@@ -293,6 +316,18 @@ export const GUIDE_STEPS: GuideStep[] = [
           `Each guard can be **mechanical** (blocks the action) or **advisory** (injects context but doesn't block). Over time, advisory guards that consistently catch real issues can be promoted to mechanical.\n\n` +
           `Your agent sees guard output as context injections — it's like having a caddy who whispers "you sliced left the last three times on this hole."`,
       },
+      {
+        label: 'Which AI agents does SLOPE work with?',
+        response:
+          `SLOPE works with any AI coding agent that supports hook events. Currently supported:\n\n` +
+          `- **Claude Code** — native hook integration via \`slope hook add --claude-code\`\n` +
+          `- **Cursor** — rules-based integration via \`slope hook add --cursor\`\n` +
+          `- **Windsurf** — rules-based integration via \`slope hook add --windsurf\`\n` +
+          `- **Cline** — rules-based integration via \`slope hook add --cline\`\n` +
+          `- **OB1** — adapter-based via \`slope hook add --ob1\`\n` +
+          `- **OpenCode** — generic adapter via \`slope hook add --opencode\`\n\n` +
+          `The hook system works by injecting SLOPE's guards and context into your agent's workflow. Each harness adapter translates SLOPE events (PreToolUse, PostToolUse, Stop, etc.) into the agent's native format. You can also use \`slope hook add --generic\` for any agent that reads a rules file.`,
+      },
     ],
     docsRef: '#guards',
   },
@@ -312,6 +347,31 @@ export const GUIDE_STEPS: GuideStep[] = [
       `The token format issue from S1-2 has been added to your **common issues database**. Next time your agent encounters token handling, it'll flag this pattern before you start.`,
     artifacts: [
       { path: 'docs/retros/sprint-1.json', content: SCORECARD_JSON, language: 'json', action: 'create' },
+    ],
+    branches: [
+      {
+        label: 'What do the shot results mean?',
+        response:
+          `Each ticket gets a **shot result** based on how cleanly it was delivered:\n\n` +
+          `- **In the hole** — delivered perfectly, ahead of expectations\n` +
+          `- **Green** — delivered as planned, on target\n` +
+          `- **Fairway** — delivered but with minor issues (hit rough or a known gotcha)\n` +
+          `- **Missed fairway** — delivered but off-plan (scope changed, approach pivoted)\n` +
+          `- **Missed green** — not delivered as scoped, needs rework\n\n` +
+          `**Clubs** represent the planned complexity: **driver** (high risk, new territory), **long iron** (complex but known), **short iron** (standard), **wedge** (small/simple), **putter** (trivial fix).\n\n` +
+          `The combination of club selection and shot result tells you whether you're scoping accurately. If you consistently pick wedge but land in the rough, your "simple" tickets aren't actually simple.`,
+      },
+      {
+        label: 'What happens to common issues?',
+        response:
+          `When a hazard is logged in your scorecard, SLOPE checks if it matches a known pattern in your **common issues database** (\`.slope/common-issues.json\`).\n\n` +
+          `If it's new, it gets added with:\n` +
+          `- A category (types, process, calibration, etc.)\n` +
+          `- The sprint(s) where it occurred\n` +
+          `- A description and prevention strategy\n\n` +
+          `On future sprints, the **briefing** surfaces relevant common issues before you start. If you're working on auth code and you've hit token format issues before, your agent gets warned proactively.\n\n` +
+          `If you use \`slope org\` across multiple repos, common issues that appear in **2+ repos** get promoted to org-level patterns — so all your agents learn from each other.`,
+      },
     ],
     docsRef: '#scoring',
   },
@@ -356,6 +416,33 @@ export const GUIDE_STEPS: GuideStep[] = [
       `- The common issues database now tracks **4 patterns**. Your agent flags these before you start each sprint, so you don't repeat mistakes.\n\n` +
       `This is the core loop: **score → review → learn → improve**. Every sprint makes the next one better because your agent carries forward what it learned.\n\n` +
       `Ready to try it? Install SLOPE with \`npx @slope-dev/slope init\` and run your first sprint.`,
+    branches: [
+      {
+        label: 'Can SLOPE run sprints autonomously?',
+        response:
+          `Yes — \`slope loop\` runs sprints without human intervention.\n\n` +
+          `**Three modes:**\n` +
+          `- \`slope loop run --sprint=S6\` — execute a single sprint\n` +
+          `- \`slope loop continuous --max=5\` — run up to 5 sprints sequentially\n` +
+          `- \`slope loop parallel --max-parallel=3\` — run non-overlapping sprints concurrently\n\n` +
+          `The loop uses the \`sprint-autonomous\` workflow (minimal gates, auto-commit) and supports **dependency-aware scheduling** — sprints declare what they depend on, and only unblocked work runs.\n\n` +
+          `\`slope loop convergence\` monitors whether scores are improving, plateauing, or reverting — and stops when diminishing returns kick in. \`slope loop config recommend\` suggests cost-optimized models based on historical success rates.`,
+      },
+      {
+        label: 'What about multiple repos or agents?',
+        response:
+          `SLOPE scales from solo to teams:\n\n` +
+          `**Multi-repo** (\`slope org\`):\n` +
+          `- \`slope org init\` links multiple repos in \`.slope/org.json\`\n` +
+          `- \`slope org status\` shows cross-repo handicaps at a glance\n` +
+          `- \`slope org issues\` promotes hazard patterns that appear in 2+ repos\n\n` +
+          `**Multi-agent** (\`slope session\`):\n` +
+          `- \`slope session dashboard\` — live view of all active agents, their claims, and staleness\n` +
+          `- \`slope session handoff --from agent-1 --to agent-2\` — structured context transfer between agents\n` +
+          `- \`slope session assign --ticket S5-2 --agent backend\` — assign tickets to specific agents\n\n` +
+          `The **claim-required guard** prevents two agents from working on the same files, and the session dashboard gives you visibility across the swarm.`,
+      },
+    ],
     docsRef: '#getting-started',
   },
 ];
