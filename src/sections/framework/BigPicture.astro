@@ -22,6 +22,19 @@
         <svg width="10" height="6" class="text-border shrink-0"><path d="M0,0 L5,6 L10,0" fill="currentColor"/></svg>
       </div>
 
+      <!-- Plan Review (workflow gate) -->
+      <div class="w-full max-w-sm rounded-lg border border-dashed border-gold/60 bg-bg-surface p-3 text-center">
+        <div class="font-heading font-semibold text-sm text-gold">Plan Review</div>
+        <p class="text-text-muted text-xs font-mono mt-1">Write plan &rarr; review &rarr; revise</p>
+        <p class="text-text-muted text-[10px] mt-1">Workflow gate — must complete before implementation</p>
+      </div>
+
+      <!-- Arrow -->
+      <div class="flex flex-col items-center">
+        <div class="w-px h-5 bg-border"></div>
+        <svg width="10" height="6" class="text-border shrink-0"><path d="M0,0 L5,6 L10,0" fill="currentColor"/></svg>
+      </div>
+
       <!-- Per-Ticket Loop Container -->
       <div class="w-full rounded-xl border border-dashed border-border p-4 sm:p-6">
         <p class="text-center text-text-muted text-[10px] font-mono uppercase tracking-[0.15em] mb-4">For each ticket</p>
@@ -118,8 +131,8 @@
     </summary>
     <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
       <p>AI coding agents lose context. They crash, compact, and restart. Without a fixed lifecycle, every session starts from zero — the agent has no idea what happened in the last 50 sprints.</p>
-      <p>SLOPE's lifecycle is designed around this constraint. Every artifact is <strong class="text-text-primary">written to disk</strong> at specific checkpoints: the sprint file after pre-round, the scorecard after post-hole, the handicap after the 19th hole. When context compacts, the agent reads these artifacts and picks up exactly where it left off.</p>
-      <p>The "for each ticket" loop is where most work happens. But the pre-round and post-hole routines are what make the data <em>compound</em>. Without them, you just have a git log. With them, you have a trajectory.</p>
+      <p>SLOPE's lifecycle is designed around this constraint. The <strong class="text-text-primary">workflow engine</strong> enforces this lifecycle automatically — <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs font-mono">sprint-standard</code> is the default workflow. Every artifact is <strong class="text-text-primary">written to disk</strong> at specific checkpoints: the plan file after plan review, the scorecard after post-hole, the handicap after the 19th hole. When context compacts, the agent reads these artifacts and picks up exactly where it left off.</p>
+      <p>The "plan review" gate ensures you have a reviewed approach before implementation starts. The "for each ticket" loop is where most work happens. But the pre-round and post-hole routines are what make the data <em>compound</em>. Without them, you just have a git log. With them, you have a trajectory.</p>
     </div>
   </details>
 </section>
