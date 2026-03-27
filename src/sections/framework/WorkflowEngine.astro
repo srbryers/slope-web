@@ -1,0 +1,140 @@
+---
+---
+
+<section id="workflow-engine" class="mb-16 scroll-mt-20">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Workflow Engine</h2>
+  <p class="text-text-secondary mb-6">
+    Workflows provide structured sprint execution with phase gates, completion conditions, and plan review. Every sprint runs through a workflow — <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs font-mono">sprint-standard</code> is the default.
+  </p>
+
+  <!-- Built-in workflows -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Built-in Workflows</h3>
+  <div class="space-y-3 mb-6">
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <code class="text-emerald text-xs font-mono bg-emerald/5 px-2 py-0.5 rounded">sprint-standard</code>
+        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald/10 border border-emerald/20 text-emerald">DEFAULT</span>
+      </div>
+      <p class="text-text-secondary text-sm">Full lifecycle: briefing &rarr; plan review &rarr; per-ticket implementation &rarr; scorecard &rarr; review. Includes plan review gates with tier-based approval.</p>
+    </div>
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <code class="text-emerald text-xs font-mono bg-emerald/5 px-2 py-0.5 rounded">sprint-autonomous</code>
+      </div>
+      <p class="text-text-secondary text-sm">Designed for <code class="text-emerald bg-bg-primary px-1 py-0.5 rounded text-xs font-mono">slope loop</code>. Minimal gates, auto-commit, per-ticket timeouts. Optimized for autonomous execution.</p>
+    </div>
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <code class="text-emerald text-xs font-mono bg-emerald/5 px-2 py-0.5 rounded">sprint-lightweight</code>
+      </div>
+      <p class="text-text-secondary text-sm">Minimal: implement, validate, done. For small fixes or tasks that don't need the full lifecycle.</p>
+    </div>
+  </div>
+
+  <!-- Key concepts -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Key Concepts</h3>
+  <div class="grid sm:grid-cols-2 gap-3 mb-6">
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Phases</span>
+      <p class="text-text-muted text-xs mt-1">Ordered groups of steps. A sprint moves through phases sequentially: <code class="text-emerald text-xs font-mono">pre_hole</code>, <code class="text-emerald text-xs font-mono">plan_review</code>, <code class="text-emerald text-xs font-mono">per_ticket</code>, <code class="text-emerald text-xs font-mono">post_hole</code>.</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Step Types</span>
+      <p class="text-text-muted text-xs mt-1"><code class="text-emerald text-xs font-mono">command</code> (run CLI), <code class="text-emerald text-xs font-mono">validation</code> (check conditions), <code class="text-emerald text-xs font-mono">agent_input</code> (collect fields), <code class="text-emerald text-xs font-mono">agent_work</code> (implement).</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Completion Conditions</span>
+      <p class="text-text-muted text-xs mt-1"><code class="text-emerald text-xs font-mono">files_exist</code> with glob patterns enforce that artifacts (plan files, reviews) exist before a step can advance.</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Definition Snapshot</span>
+      <p class="text-text-muted text-xs mt-1">When a sprint starts, the workflow YAML is snapshotted. Mid-execution changes to the definition don't affect the running sprint.</p>
+    </div>
+  </div>
+
+  <!-- Commands -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Commands</h3>
+  <div class="rounded-xl border border-border bg-bg-card overflow-hidden mb-6">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-border bg-bg-surface/50">
+          <th class="text-left px-5 py-3 text-text-muted text-xs font-mono uppercase">Command</th>
+          <th class="text-left px-5 py-3 text-text-muted text-xs uppercase">Purpose</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border-subtle">
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs whitespace-nowrap">slope sprint run &lt;id&gt; --workflow=&lt;name&gt;</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Execute a sprint through a workflow</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs whitespace-nowrap">slope sprint pause &lt;id&gt;</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Pause a running workflow</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs whitespace-nowrap">slope sprint resume &lt;id&gt;</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Resume a paused workflow</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs whitespace-nowrap">slope sprint skip &lt;id&gt; --step=&lt;s&gt;</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Skip a blocking step with reason (escape hatch)</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs whitespace-nowrap">slope workflow validate &lt;name&gt;</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Validate a workflow definition</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs whitespace-nowrap">slope workflow list</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">List available workflows</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs whitespace-nowrap">slope workflow show &lt;name&gt;</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Display a workflow's phases and steps</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Read the Green -->
+  <details class="read-the-green">
+    <summary>
+      <svg class="chevron shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <span class="text-emerald text-sm font-medium" data-term="vocabulary.readTheGreen">Read the Green</span>
+      <span class="text-text-muted text-xs">— Workflow YAML structure</span>
+    </summary>
+    <div class="deep-content pt-4 space-y-3 text-sm text-text-secondary">
+      <p>Workflows are defined as YAML files in <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs font-mono">.slope/workflows/</code>. A workflow has <strong class="text-text-primary">phases</strong>, each containing <strong class="text-text-primary">steps</strong>:</p>
+      <pre class="p-4 rounded-lg bg-bg-primary border border-border-subtle font-mono text-xs leading-relaxed overflow-x-auto whitespace-pre">name: sprint-standard
+phases:
+  - name: pre_hole
+    steps:
+      - name: briefing
+        type: command
+        command: slope briefing
+  - name: plan_review
+    steps:
+      - name: write_plan
+        type: agent_work
+        completion_conditions:
+          files_exist: ["docs/plans/S*.md"]
+      - name: review_plan
+        type: agent_input
+        required_fields: [review_tier, review_complete]
+  - name: per_ticket
+    repeat_for: tickets
+    steps:
+      - name: implement
+        type: agent_work
+      - name: validate
+        type: validation
+  - name: post_hole
+    steps:
+      - name: scorecard
+        type: command
+        command: slope review</pre>
+      <p>The <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs font-mono">repeat_for: tickets</code> directive runs the phase once per claimed ticket. Completion conditions enforce that required files exist before advancing. Set <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs font-mono">defaultWorkflow: 'sprint-standard'</code> in your config to use workflows by default.</p>
+    </div>
+  </details>
+</section>

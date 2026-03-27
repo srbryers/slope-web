@@ -1,0 +1,61 @@
+---
+---
+
+<section id="multi-repo-org" class="mb-16 scroll-mt-20">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Multi-Repo & Org</h2>
+  <p class="text-text-secondary mb-6">
+    <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs font-mono">slope org</code> aggregates metrics across multiple repositories. Track org-level handicap, surface recurring patterns that span repos, and get a unified view of sprint health.
+  </p>
+
+  <!-- Commands -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Commands</h3>
+  <div class="space-y-3 mb-6">
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <code class="text-emerald text-xs font-mono bg-emerald/5 px-2 py-0.5 rounded">slope org init</code>
+      </div>
+      <p class="text-text-secondary text-sm">Creates <code class="text-emerald bg-bg-primary px-1 py-0.5 rounded text-xs font-mono">.slope/org.json</code> with a repos array template. Add paths to your other SLOPE-tracked repositories.</p>
+    </div>
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <code class="text-emerald text-xs font-mono bg-emerald/5 px-2 py-0.5 rounded">slope org status</code>
+        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-bg-primary border border-border-subtle text-text-muted">--json</span>
+      </div>
+      <p class="text-text-secondary text-sm">Cross-repo dashboard showing each repo's sprint count, latest score, and handicap. Computes an org-level handicap from all repos' scorecards.</p>
+    </div>
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <code class="text-emerald text-xs font-mono bg-emerald/5 px-2 py-0.5 rounded">slope org issues</code>
+        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-bg-primary border border-border-subtle text-text-muted">--json</span>
+      </div>
+      <p class="text-text-secondary text-sm">Surfaces recurring hazard patterns that appear in 2+ repos. Promotes cross-repo common issues so all agents benefit from shared learnings.</p>
+    </div>
+  </div>
+
+  <!-- Config -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Configuration</h3>
+  <div class="rounded-xl border border-border bg-bg-card overflow-hidden mb-6">
+    <div class="px-5 py-3 border-b border-border-subtle">
+      <span class="text-xs font-mono text-text-muted">.slope/org.json</span>
+    </div>
+    <pre class="p-5 font-mono text-xs leading-relaxed text-text-secondary overflow-x-auto whitespace-pre" set:html={`{
+  "repos": [
+    { "name": "api", "path": "../api" },
+    { "name": "web", "path": "../web" },
+    { "name": "mobile", "path": "../mobile" }
+  ]
+}`} />
+  </div>
+
+  <!-- How it works -->
+  <div class="grid sm:grid-cols-2 gap-3">
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Org Handicap</span>
+      <p class="text-text-muted text-xs mt-1">Weighted average across all repos, computed from the last 10 scorecards in each repo.</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Issue Promotion</span>
+      <p class="text-text-muted text-xs mt-1">When the same hazard pattern appears in multiple repos, it's promoted to an org-level common issue. All agents get warned.</p>
+    </div>
+  </div>
+</section>

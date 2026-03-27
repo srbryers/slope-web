@@ -1,0 +1,51 @@
+---
+---
+
+<section id="context-compression" class="mb-16 scroll-mt-20">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Context Compression</h2>
+  <p class="text-text-secondary mb-6">
+    AI agents work within finite context windows. SLOPE minimizes token usage through guard deduplication, compact briefings, and compaction-safe handoff state — so your agent gets the signal without the noise.
+  </p>
+
+  <!-- Mechanisms -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Compression Mechanisms</h3>
+  <div class="space-y-3 mb-6">
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="text-text-primary text-sm font-medium">Guard Deduplication</span>
+        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald/10 border border-emerald/20 text-emerald">94% reduction</span>
+      </div>
+      <p class="text-text-secondary text-sm">Guards that fire repeatedly within a session are deduplicated. The session-briefing guard fires exactly once per session. Repeated scope-drift and commit-nudge warnings are suppressed after the first occurrence.</p>
+    </div>
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="text-text-primary text-sm font-medium">Top-3 Hazard Cap</span>
+        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald/10 border border-emerald/20 text-emerald">65% first-fire reduction</span>
+      </div>
+      <p class="text-text-secondary text-sm">Briefings include only the top 3 most relevant hazards, ranked by recency and frequency. Instead of dumping every historical pattern into context, your agent sees just the ones most likely to bite.</p>
+    </div>
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="text-text-primary text-sm font-medium">Compact Briefing</span>
+        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald/10 border border-emerald/20 text-emerald">98.7% reduction</span>
+      </div>
+      <p class="text-text-secondary text-sm"><code class="text-emerald bg-bg-primary px-1 py-0.5 rounded text-xs font-mono">slope briefing --compact</code> produces a ~200-token summary: handicap, fairways, GIR, top hazards, and claims. Designed for token-constrained environments or post-compaction re-injection.</p>
+    </div>
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <span class="text-text-primary text-sm font-medium">Compaction Handoff</span>
+      <p class="text-text-secondary text-sm mt-2">When your agent's context window compresses, the compaction guard saves structured session state to <code class="text-emerald bg-bg-primary px-1 py-0.5 rounded text-xs font-mono">.slope/handoffs/</code> — git state, active claims, review phase, sprint context. The session-briefing guard re-injects this on the next tool call.</p>
+    </div>
+  </div>
+
+  <!-- Agent guide word limit -->
+  <div class="grid sm:grid-cols-2 gap-3">
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Agent Guide Word Limit</span>
+      <p class="text-text-muted text-xs mt-1"><code class="text-emerald text-xs font-mono">slope loop guide --check</code> enforces a word ceiling on your SKILL.md / CLAUDE.md files. Keeps agent instructions within a manageable budget.</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Disk State Survival</span>
+      <p class="text-text-muted text-xs mt-1">Critical guard state (hazards, scope-drift, claims) is persisted to <code class="text-emerald text-xs font-mono">.slope/guard-state/</code> with 7-day pruning. Survives context compaction because it's on disk, not in memory.</p>
+    </div>
+  </div>
+</section>

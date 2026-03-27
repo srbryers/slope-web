@@ -59,7 +59,7 @@ const CONFIG_JSON = `{
     "packageManager": "npm",
     "runtime": "Node 22"
   },
-  "slopeVersion": "1.38.0"
+  "slopeVersion": "1.45.0"
 }`;
 
 const COMMON_ISSUES_JSON = `{

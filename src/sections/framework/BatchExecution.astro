@@ -1,0 +1,96 @@
+---
+---
+
+<section id="batch-execution" class="mb-16 scroll-mt-20">
+  <h2 class="font-heading font-bold text-2xl mb-4 text-text-primary">Batch & Loop Execution</h2>
+  <p class="text-text-secondary mb-6">
+    <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs font-mono">slope loop</code> runs sprints autonomously — single, sequential, or in parallel. Dependency-aware scheduling, failure recovery, convergence detection, and cost-optimized model routing.
+  </p>
+
+  <!-- Execution modes -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Execution Modes</h3>
+  <div class="space-y-3 mb-6">
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <code class="text-emerald text-xs font-mono bg-emerald/5 px-2 py-0.5 rounded">slope loop run --sprint=&lt;id&gt;</code>
+      </div>
+      <p class="text-text-secondary text-sm">Execute a single sprint. Supports <code class="text-emerald bg-bg-primary px-1 py-0.5 rounded text-xs font-mono">--dry-run</code> to preview without executing and <code class="text-emerald bg-bg-primary px-1 py-0.5 rounded text-xs font-mono">--executor=aider|slope</code> to choose the agent.</p>
+    </div>
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <code class="text-emerald text-xs font-mono bg-emerald/5 px-2 py-0.5 rounded">slope loop continuous</code>
+        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-bg-primary border border-border-subtle text-text-muted">--max=N --staging</span>
+      </div>
+      <p class="text-text-secondary text-sm">Sequential multi-sprint execution. Respects dependency order, retries on failure. <code class="text-emerald bg-bg-primary px-1 py-0.5 rounded text-xs font-mono">--staging</code> creates a branch and opens an umbrella PR when done.</p>
+    </div>
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <code class="text-emerald text-xs font-mono bg-emerald/5 px-2 py-0.5 rounded">slope loop parallel</code>
+        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-bg-primary border border-border-subtle text-text-muted">--max-parallel=N</span>
+      </div>
+      <p class="text-text-secondary text-sm">N-sprint concurrent execution. Greedy module-overlap detection ensures parallel sprints don't touch the same files. Default max: 3.</p>
+    </div>
+    <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <code class="text-emerald text-xs font-mono bg-emerald/5 px-2 py-0.5 rounded">slope loop ab --sprint=&lt;id&gt;</code>
+      </div>
+      <p class="text-text-secondary text-sm">A/B testing: runs the same sprint with both executors and produces a per-ticket comparison table.</p>
+    </div>
+  </div>
+
+  <!-- Key features -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Key Features</h3>
+  <div class="grid sm:grid-cols-2 gap-3 mb-6">
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Dependency Scheduling</span>
+      <p class="text-text-muted text-xs mt-1">Sprints declare <code class="text-emerald text-xs font-mono">depends_on</code> arrays. Only sprints with all dependencies completed are eligible to run.</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Failure Recovery</span>
+      <p class="text-text-muted text-xs mt-1">Configure <code class="text-emerald text-xs font-mono">maxRetries</code> and <code class="text-emerald text-xs font-mono">retryStrategy</code> (escalate to stronger model, or regenerate the plan).</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Convergence Detection</span>
+      <p class="text-text-muted text-xs mt-1"><code class="text-emerald text-xs font-mono">slope loop convergence</code> analyzes score trends to detect improvement, plateau, or reversion. Stops the loop when diminishing returns kick in.</p>
+    </div>
+    <div class="p-3 rounded-lg bg-bg-card border border-border-subtle">
+      <span class="text-text-primary text-sm font-medium">Model Routing</span>
+      <p class="text-text-muted text-xs mt-1"><code class="text-emerald text-xs font-mono">slope loop config recommend</code> suggests cost-optimized models based on historical success rates per complexity level and sprint type.</p>
+    </div>
+  </div>
+
+  <!-- Additional commands -->
+  <h3 class="font-heading font-bold text-lg mb-4 text-text-primary">Analysis & Reporting</h3>
+  <div class="rounded-xl border border-border bg-bg-card overflow-hidden">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-border bg-bg-surface/50">
+          <th class="text-left px-5 py-3 text-text-muted text-xs font-mono uppercase">Command</th>
+          <th class="text-left px-5 py-3 text-text-muted text-xs uppercase">Purpose</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-border-subtle">
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs whitespace-nowrap">slope loop status</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Loop progress, next sprint, current config</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs whitespace-nowrap">slope loop results --since=&lt;date&gt;</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Aggregated batch results</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs whitespace-nowrap">slope loop convergence</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Improvement rate, plateau, reversion analysis</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs whitespace-nowrap">slope loop models --analyze</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Model selection analytics and performance</td>
+        </tr>
+        <tr>
+          <td class="px-5 py-3 text-emerald font-mono text-xs whitespace-nowrap">slope loop analyze</td>
+          <td class="px-5 py-3 text-text-secondary text-sm">Mine scorecards to auto-generate backlog items</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
