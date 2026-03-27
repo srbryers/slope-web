@@ -10,11 +10,15 @@
     },
     {
       "name": "Phase 2 — Guide Polish & Mobile",
-      "sprints": [3, 4]
+      "sprints": [3, 4],
+      "status": "complete",
+      "note": "Layout fixes, typing animation, state persistence, 10 branch conversations. S4-5 (diff view) deferred. Shipped 2026-03-27."
     },
     {
       "name": "Phase 3 — Site Refresh",
-      "sprints": [5, 6]
+      "sprints": [5, 6],
+      "status": "complete",
+      "note": "Problem section 4th card, BigPicture workflow gates, GettingStarted workflow mention. 4 new doc sections (sessions, model routing, PR reviews, guard audit). Shipped 2026-03-27."
     }
   ],
   "sprints": [
@@ -98,6 +102,9 @@
       "par": 4,
       "slope": 2,
       "type": "bugfix",
+      "status": "complete",
+      "score": 3,
+      "score_label": "birdie",
       "depends_on": [1],
       "tickets": [
         {
@@ -132,6 +139,10 @@
       "par": 5,
       "slope": 2,
       "type": "feature",
+      "status": "complete",
+      "score": 4,
+      "score_label": "birdie",
+      "note": "S4-5 (artifact diff view) deferred — no repeated artifacts to diff yet.",
       "depends_on": [3],
       "tickets": [
         {
@@ -172,6 +183,9 @@
       "par": 4,
       "slope": 1,
       "type": "feature",
+      "status": "complete",
+      "score": 3,
+      "score_label": "birdie",
       "tickets": [
         {
           "key": "S5-1",
@@ -205,6 +219,9 @@
       "par": 4,
       "slope": 1,
       "type": "feature",
+      "status": "complete",
+      "score": 4,
+      "score_label": "par",
       "tickets": [
         {
           "key": "S6-1",
