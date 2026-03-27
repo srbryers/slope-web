@@ -1,0 +1,236 @@
+{
+  "name": "slope-web Roadmap",
+  "description": "Roadmap for getslope.dev — the marketing site, documentation, and interactive guide for SLOPE. Sprint numbering is independent from the main slope repo.",
+  "phases": [
+    {
+      "name": "Phase 1 — Foundation & Content",
+      "sprints": [1, 2],
+      "status": "complete",
+      "note": "Initial guide page + v1.45.0 content refresh. Shipped 2026-03-27."
+    },
+    {
+      "name": "Phase 2 — Guide Polish & Mobile",
+      "sprints": [3, 4]
+    },
+    {
+      "name": "Phase 3 — Site Refresh",
+      "sprints": [5, 6]
+    }
+  ],
+  "sprints": [
+    {
+      "id": 1,
+      "theme": "The Walkthrough — Interactive Guide Page",
+      "par": 4,
+      "slope": 2,
+      "type": "feature",
+      "status": "complete",
+      "score": 4,
+      "score_label": "par",
+      "note": "3-panel IAE layout (file tree | chat | artifact preview), scripted 6-step tour covering full sprint lifecycle, 3 branch stubs, JSON syntax highlighting, mobile inline artifacts. Known bugs: artifact panel not scrollable, continue button not sticky, mobile layout broken.",
+      "tickets": [
+        {
+          "key": "S1-1",
+          "title": "Tour data model — types, 6 steps, artifacts, branches, buildFileTree()",
+          "club": "short_iron",
+          "complexity": "standard"
+        },
+        {
+          "key": "S1-2",
+          "title": "Guide page template — 3-panel IAE with pre-rendered hidden DOM",
+          "club": "long_iron",
+          "complexity": "complex"
+        },
+        {
+          "key": "S1-3",
+          "title": "Client-side engine — state machine, step advancement, branch nav, artifact preview",
+          "club": "short_iron",
+          "complexity": "standard"
+        },
+        {
+          "key": "S1-4",
+          "title": "Nav + sitemap + CSS — guide link, guide-specific styles, sitemap fix",
+          "club": "wedge",
+          "complexity": "small"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "theme": "The Refresh — v1.45.0 Content Update",
+      "par": 4,
+      "slope": 1,
+      "type": "feature",
+      "status": "complete",
+      "score": 4,
+      "score_label": "par",
+      "note": "Manifest sync + 4 new doc sections + Hero/About messaging + HowItRuns scenario replacements. Reviewed by subagent for accuracy.",
+      "tickets": [
+        {
+          "key": "S2-1",
+          "title": "Hero + About page messaging — workflow orchestration, six layers, multi-repo/teams cards",
+          "club": "wedge",
+          "complexity": "small"
+        },
+        {
+          "key": "S2-2",
+          "title": "4 new doc sections — WorkflowEngine, BatchExecution, MultiRepoOrg, ContextCompression",
+          "club": "short_iron",
+          "complexity": "standard"
+        },
+        {
+          "key": "S2-3",
+          "title": "Wire into docs.astro — imports, sidebar links, component renders in correct groups",
+          "club": "wedge",
+          "complexity": "small"
+        },
+        {
+          "key": "S2-4",
+          "title": "HowItRuns — replace Research + Code Audit with Workflow Run + Org Status",
+          "club": "short_iron",
+          "complexity": "standard"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "theme": "The Fix — Guide Layout & Mobile Overhaul",
+      "par": 4,
+      "slope": 2,
+      "type": "bugfix",
+      "depends_on": [1],
+      "tickets": [
+        {
+          "key": "S3-1",
+          "title": "Fix artifact preview panel — add independent scroll, constrain height within IAE grid",
+          "club": "short_iron",
+          "complexity": "standard"
+        },
+        {
+          "key": "S3-2",
+          "title": "Sticky continue button — make input area fixed to bottom of chat panel",
+          "club": "short_iron",
+          "complexity": "standard"
+        },
+        {
+          "key": "S3-3",
+          "title": "Mobile layout overhaul — fix file tree overlay, hide desktop panels, constrain code blocks",
+          "club": "long_iron",
+          "complexity": "complex"
+        },
+        {
+          "key": "S3-4",
+          "title": "Full responsive QA — test all 6 steps + branches on mobile, tablet, desktop breakpoints",
+          "club": "wedge",
+          "complexity": "small"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "theme": "The Deep Dive — Guide v2 Interactivity",
+      "par": 5,
+      "slope": 2,
+      "type": "feature",
+      "depends_on": [3],
+      "tickets": [
+        {
+          "key": "S4-1",
+          "title": "Deeper branch content — full side-conversations for guards, scoring, handicap math, harness setup",
+          "club": "short_iron",
+          "complexity": "standard"
+        },
+        {
+          "key": "S4-2",
+          "title": "Typing animation — character-by-character agent response reveal with GSAP timeline",
+          "club": "short_iron",
+          "complexity": "standard"
+        },
+        {
+          "key": "S4-3",
+          "title": "Jump-to navigation — phase indicator clicks scroll to step, unlock-based gating",
+          "club": "wedge",
+          "complexity": "small"
+        },
+        {
+          "key": "S4-4",
+          "title": "State persistence — localStorage save/restore of progress, returning user resume",
+          "club": "short_iron",
+          "complexity": "standard"
+        },
+        {
+          "key": "S4-5",
+          "title": "Artifact diff view — show file changes between steps (e.g., handicap card before/after)",
+          "club": "long_iron",
+          "complexity": "complex"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "theme": "The Showcase — Home Page & Getting Started Refresh",
+      "par": 4,
+      "slope": 1,
+      "type": "feature",
+      "tickets": [
+        {
+          "key": "S5-1",
+          "title": "GettingStarted section — add workflow setup step, mention slope sprint run",
+          "club": "wedge",
+          "complexity": "small"
+        },
+        {
+          "key": "S5-2",
+          "title": "Problem section — add team coordination angle, context window challenges",
+          "club": "short_iron",
+          "complexity": "standard"
+        },
+        {
+          "key": "S5-3",
+          "title": "BigPicture diagram — add workflow gates and plan review to lifecycle flow",
+          "club": "short_iron",
+          "complexity": "standard"
+        },
+        {
+          "key": "S5-4",
+          "title": "Proof section — update sample anecdote, refresh hardcoded initial values if stats changed",
+          "club": "wedge",
+          "complexity": "small"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "theme": "The Directory — Doc Section Expansion",
+      "par": 4,
+      "slope": 1,
+      "type": "feature",
+      "tickets": [
+        {
+          "key": "S6-1",
+          "title": "Session Management doc section — slope session dashboard/handoff/assign/plan",
+          "club": "short_iron",
+          "complexity": "standard"
+        },
+        {
+          "key": "S6-2",
+          "title": "Smart Model Routing doc section — cost-adjusted selection, forceApi, selectModel hierarchy",
+          "club": "short_iron",
+          "complexity": "standard"
+        },
+        {
+          "key": "S6-3",
+          "title": "Subagent PR Reviews doc section — slope review run, isolated review prompts",
+          "club": "wedge",
+          "complexity": "small"
+        },
+        {
+          "key": "S6-4",
+          "title": "Guard Audit & Metrics doc section — slope guard audit/metrics/recommend",
+          "club": "wedge",
+          "complexity": "small"
+        }
+      ]
+    }
+  ]
+}
