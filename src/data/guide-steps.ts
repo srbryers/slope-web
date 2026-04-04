@@ -323,10 +323,12 @@ export const GUIDE_STEPS: GuideStep[] = [
           `- **Claude Code** — native hook integration via \`slope hook add --claude-code\`\n` +
           `- **Cursor** — rules-based integration via \`slope hook add --cursor\`\n` +
           `- **Windsurf** — rules-based integration via \`slope hook add --windsurf\`\n` +
+          `- **Codex CLI** — adapter-based via \`slope hook add --codex\`\n` +
+          `- **Pi.dev** — extension-based via \`slope hook add --pi\`\n` +
           `- **Cline** — rules-based integration via \`slope hook add --cline\`\n` +
           `- **OB1** — adapter-based via \`slope hook add --ob1\`\n` +
-          `- **OpenCode** — generic adapter via \`slope hook add --opencode\`\n\n` +
-          `The hook system works by injecting SLOPE's guards and context into your agent's workflow. Each harness adapter translates SLOPE events (PreToolUse, PostToolUse, Stop, etc.) into the agent's native format. You can also use \`slope hook add --generic\` for any agent that reads a rules file.`,
+          `- **OpenCode** — plugin-based via \`slope hook add --opencode\`\n\n` +
+          `The hook system works by injecting SLOPE's guards and context into your agent's workflow. Each harness adapter translates SLOPE events into the agent's native format. \`slope init\` also generates \`.agents/skills/\` and \`AGENTS.md\` for cross-agent compatibility with any agent following the Agent Skills spec.`,
       },
     ],
     docsRef: '#guards',

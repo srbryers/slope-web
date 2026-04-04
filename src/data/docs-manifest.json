@@ -1,15 +1,15 @@
 {
-  "version": "1.46.1",
-  "generatedAt": "2026-03-30T14:06:36.923Z",
-  "gitSha": "753acbe3d4e8a3b84dbee02c6f46e7656ef75ba5",
+  "version": "1.49.0",
+  "generatedAt": "2026-04-04T17:13:33.167Z",
+  "gitSha": "6c315d760c64c37f327fa0d9ec775411bf42dead",
   "checksums": {
     "commands": "028e2b6140f78d3c3cc483df89c2e42de5600ef6e96a7130285e0bb4cd4bdcbd",
-    "guards": "7fa2ebf5f557ca12f68d4cc8ebbf84206da6142f24a6d028072edd775e95ca4a",
+    "guards": "8b7d91b423840336fde42157f387f0d2fd96b83e1aa377ea5930ac0b350f0880",
     "mcpTools": "b0c415a0e33f6e15afb4d68d60c131dff5de70b344f994c7fd5a3d21593d1753",
     "metaphors": "fbf85ac929a8738df5d6e26262029e4a1a1495eac6acd3c0316073f3bf1795f0",
     "roles": "ad096c5377dd772f8d1ecc7f4868196bf1045cd606b97eda368da4e6bd9dd102",
     "constants": "107d1a94e19454050bf16f8e246678fcb6b93044186a71b8acf6481c14a92569",
-    "changelog": "f8860070ea8dfa51ee71f251404ed16245dd20e831a2fbf1b80bb43af4ec2945"
+    "changelog": "20124f8ac876bd6fa15d6aa09ab5aabb3c69a1f3069a943e131b06d5d814a5ea"
   },
   "commands": [
     {
@@ -1587,14 +1587,14 @@
       "name": "compaction",
       "description": "Extract events before context compaction",
       "hookEvent": "PreCompact",
-      "level": "full",
+      "level": "essential",
       "guardType": "mechanical"
     },
     {
       "name": "stop-check",
       "description": "Check for uncommitted/unpushed work before session end",
       "hookEvent": "Stop",
-      "level": "full",
+      "level": "essential",
       "guardType": "mechanical"
     },
     {
@@ -1605,7 +1605,7 @@
         "create_subagent"
       ],
       "matcher": "Agent",
-      "level": "full",
+      "level": "essential",
       "guardType": "mechanical"
     },
     {
@@ -1627,7 +1627,7 @@
         "exit_plan"
       ],
       "matcher": "ExitPlanMode",
-      "level": "full",
+      "level": "essential",
       "guardType": "mechanical"
     },
     {
@@ -1660,7 +1660,7 @@
         "write_file"
       ],
       "matcher": "Edit|Write",
-      "level": "full",
+      "level": "essential",
       "guardType": "mechanical"
     },
     {
@@ -1689,14 +1689,14 @@
         "execute_command"
       ],
       "matcher": "Bash",
-      "level": "full",
+      "level": "essential",
       "guardType": "advisory"
     },
     {
       "name": "transcript",
       "description": "Append tool call metadata to session transcript",
       "hookEvent": "PostToolUse",
-      "level": "full",
+      "level": "essential",
       "guardType": "mechanical"
     },
     {
@@ -1707,7 +1707,7 @@
         "execute_command"
       ],
       "matcher": "Bash",
-      "level": "full",
+      "level": "essential",
       "guardType": "mechanical"
     },
     {
@@ -1719,7 +1719,7 @@
         "execute_command"
       ],
       "matcher": "Edit|Write|Bash",
-      "level": "full",
+      "level": "essential",
       "guardType": "mechanical"
     },
     {
@@ -1730,14 +1730,14 @@
         "execute_command"
       ],
       "matcher": "Bash",
-      "level": "full",
+      "level": "essential",
       "guardType": "mechanical"
     },
     {
       "name": "sprint-completion",
       "description": "Block session end when sprint gates are incomplete",
       "hookEvent": "Stop",
-      "level": "full",
+      "level": "essential",
       "guardType": "mechanical"
     },
     {
@@ -1748,7 +1748,7 @@
         "execute_command"
       ],
       "matcher": "Bash",
-      "level": "full",
+      "level": "essential",
       "guardType": "mechanical"
     },
     {
@@ -1759,7 +1759,7 @@
         "execute_command"
       ],
       "matcher": "Bash",
-      "level": "full",
+      "level": "essential",
       "guardType": "mechanical"
     },
     {
@@ -1770,7 +1770,7 @@
         "execute_command"
       ],
       "matcher": "Bash",
-      "level": "full",
+      "level": "essential",
       "guardType": "mechanical"
     },
     {
@@ -2965,6 +2965,116 @@
     "entries": [
       {
         "version": "Unreleased",
+        "date": "2026-04-04",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.49.0 (#273)",
+            "breaking": false,
+            "hash": "6c315d760c64c37f327fa0d9ec775411bf42dead"
+          },
+          {
+            "type": "feat",
+            "scope": "S82",
+            "description": "testing polish — Pi/OpenCode integration tests + essential guard tier (#272)",
+            "breaking": false,
+            "hash": "0b7107bddfb54b50044b77e71927c6aff2331789"
+          }
+        ]
+      },
+      {
+        "version": "v1.48.1",
+        "date": "2026-04-04",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.48.1 (#271)",
+            "breaking": false,
+            "hash": "03788bcd201719a5f62a75ae4e0528e9b63a0de6"
+          },
+          {
+            "type": "test",
+            "description": "add Codex CLI adapter tests (18 tests) (#269)",
+            "breaking": false,
+            "hash": "d7f89d804a567de6cfef6a7ba8259bddf93ddeb6"
+          }
+        ]
+      },
+      {
+        "version": "v1.48.0",
+        "date": "2026-04-04",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.48.0 (#268)",
+            "breaking": false,
+            "hash": "fef679fe63d3ca28430ff83f2caabd19dec7d26b"
+          },
+          {
+            "type": "feat",
+            "scope": "S81",
+            "description": "universal adapter — Codex CLI, OpenCode, cross-agent support (#267)",
+            "breaking": false,
+            "hash": "eced249493ee54afadfdea875cc2f3fb518aef08"
+          }
+        ]
+      },
+      {
+        "version": "v1.47.2",
+        "date": "2026-04-04",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.47.2 (#266)",
+            "breaking": false,
+            "hash": "2c5a7afadf31407a931daab4c8ae608473b6488c"
+          },
+          {
+            "type": "fix",
+            "description": "scorecard scoring, stop hook loop, guard noise (#262, #264, #263) (#265)",
+            "breaking": false,
+            "hash": "5a8e95a43d7361700fb4d38caf004219e18c7e8b"
+          }
+        ]
+      },
+      {
+        "version": "v1.47.1",
+        "date": "2026-04-01",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.47.1 (#261)",
+            "breaking": false,
+            "hash": "0858ed75201797f8f16d3d14a973db6c5e1d5b7d"
+          },
+          {
+            "type": "fix",
+            "description": "add README.md to package.json files array for npm display (#260)",
+            "breaking": false,
+            "hash": "68031c1d69895cb1bb3052666fec4236db30c55a"
+          }
+        ]
+      },
+      {
+        "version": "v1.47.0",
+        "date": "2026-04-01",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.47.0 (#259)",
+            "breaking": false,
+            "hash": "5fe24e8a3e9560759680eb2520d14d9cb7ac6232"
+          },
+          {
+            "type": "feat",
+            "description": "pi.dev extension + cross-agent skills scaffolding (#258)",
+            "breaking": false,
+            "hash": "747188138f147442500d7f39134bb3c46541359b"
+          }
+        ]
+      },
+      {
+        "version": "v1.46.1",
         "date": "2026-03-30",
         "changes": [
           {
@@ -3051,116 +3161,6 @@
             "description": "context compression v2 — dedup explore + commit-nudge guards (#243)",
             "breaking": false,
             "hash": "80cb266fb33b1591547fcf4807a3e3496b746b57"
-          }
-        ]
-      },
-      {
-        "version": "v1.44.0",
-        "date": "2026-03-27",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.44.0 (#242)",
-            "breaking": false,
-            "hash": "39d468529e50d39eaef5dfc3b07e0928528adca0"
-          },
-          {
-            "type": "feat",
-            "description": "enforce completion conditions on workflow steps (#241)",
-            "breaking": false,
-            "hash": "4e3232b087dc3700b5c8d8b239b1282d208debda"
-          }
-        ]
-      },
-      {
-        "version": "v1.43.1",
-        "date": "2026-03-26",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.43.1 (#240)",
-            "breaking": false,
-            "hash": "a1751eb967d78293d4a006a25d652738dd3306c2"
-          },
-          {
-            "type": "fix",
-            "description": "scaffold workflows on init + post-push fires per push (#228, #238) (#239)",
-            "breaking": false,
-            "hash": "34396c04cd49681608c46ebe7ea5b807b9ce0fa4"
-          }
-        ]
-      },
-      {
-        "version": "v1.43.0",
-        "date": "2026-03-26",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.43.0 (#237)",
-            "breaking": false,
-            "hash": "a03e77e020d5a93ccd83f182b51db3c92f0d16a3"
-          },
-          {
-            "type": "fix",
-            "description": "snapshot workflow definition at execution start (#235) (#236)",
-            "breaking": false,
-            "hash": "f902dab44fe9d8b83621510dd4536378b75c694d"
-          }
-        ]
-      },
-      {
-        "version": "v1.42.0",
-        "date": "2026-03-26",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.42.0 (#234)",
-            "breaking": false,
-            "hash": "d0ece2ee3812ddc02b534c4f4a63e7164f62f568"
-          },
-          {
-            "type": "feat",
-            "scope": "S79",
-            "description": "add plan review phase to workflow definitions (#233)",
-            "breaking": false,
-            "hash": "781abe5ae21802f8816bb75472ee369bab640d8e"
-          }
-        ]
-      },
-      {
-        "version": "v1.41.0",
-        "date": "2026-03-26",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.41.0 (#232)",
-            "breaking": false,
-            "hash": "c97d111fcfe8fab0afed244ca03566f86fe17c5b"
-          },
-          {
-            "type": "feat",
-            "scope": "S78",
-            "description": "The Wiring — fix gaps (forceApi, pause/resume, guard metrics, CODEBASE.md) (#231)",
-            "breaking": false,
-            "hash": "ca2644156915e4cc3bdd8bee2e7e124fce8e14a7"
-          }
-        ]
-      },
-      {
-        "version": "v1.40.0",
-        "date": "2026-03-26",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.40.0 (#230)",
-            "breaking": false,
-            "hash": "00fdc2d514e6fb1a577599553cad1eb0290d5026"
-          },
-          {
-            "type": "feat",
-            "description": "make workflow engine the default sprint execution path (#229)",
-            "breaking": false,
-            "hash": "11cc029029acf625f54d415ed522896a3461919e"
           }
         ]
       }
