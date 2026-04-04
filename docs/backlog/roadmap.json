@@ -19,6 +19,10 @@
       "sprints": [5, 6],
       "status": "complete",
       "note": "Problem section 4th card, BigPicture workflow gates, GettingStarted workflow mention. 4 new doc sections (sessions, model routing, PR reviews, guard audit). Shipped 2026-03-27."
+    },
+    {
+      "name": "Phase 4 — SEO & Discoverability",
+      "sprints": [7]
     }
   ],
   "sprints": [
@@ -246,6 +250,39 @@
           "title": "Guard Audit & Metrics doc section — slope guard audit/metrics/recommend",
           "club": "wedge",
           "complexity": "small"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "theme": "The Spotlight — SEO & Discoverability",
+      "par": 4,
+      "slope": 1,
+      "type": "feature",
+      "tickets": [
+        {
+          "key": "S7-1",
+          "title": "Fix robots.txt domain — slope.dev → getslope.dev for sitemap discovery",
+          "club": "putter",
+          "complexity": "trivial"
+        },
+        {
+          "key": "S7-2",
+          "title": "Add SoftwareApplication structured data — name, version, offers:free, repo URL",
+          "club": "wedge",
+          "complexity": "small"
+        },
+        {
+          "key": "S7-3",
+          "title": "Add BreadcrumbList schema to docs page — sidebar hierarchy as breadcrumbs",
+          "club": "wedge",
+          "complexity": "small"
+        },
+        {
+          "key": "S7-4",
+          "title": "Per-page OG descriptions — differentiate social previews for /guide and /docs",
+          "club": "short_iron",
+          "complexity": "standard"
         }
       ]
     }

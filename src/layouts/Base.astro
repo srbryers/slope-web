@@ -64,7 +64,7 @@ const ogImageURL = `${SITE_URL}/og.png?v=3`;
       <script defer src="https://cloud.umami.is/script.js" data-website-id={import.meta.env.PUBLIC_UMAMI_ID}></script>
     )}
 
-    <!-- Structured Data -->
+    <!-- Structured Data: WebSite -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -76,6 +76,26 @@ const ogImageURL = `${SITE_URL}/og.png?v=3`;
         "name": "SLOPE",
         "url": "https://getslope.dev"
       }
+    })} />
+
+    <!-- Structured Data: SoftwareApplication -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "SLOPE",
+      "description": "Sprint Lifecycle & Operational Performance Engine — quantified sprint metrics for AI-assisted development.",
+      "url": SITE_URL,
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Cross-platform (Node.js)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "license": "https://opensource.org/licenses/MIT",
+      "codeRepository": "https://github.com/srbryers/slope",
+      "softwareVersion": "1.49.0",
+      "programmingLanguage": "TypeScript"
     })} />
   </head>
   <body>
