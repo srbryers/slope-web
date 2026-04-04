@@ -1,0 +1,162 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/global.css';
+---
+
+<Base
+  title="Scoring Methodology — SLOPE"
+  description="How SLOPE scores AI coding agent sprints. Par-based scoring, handicap calculation, guard hooks, and the structured feedback loop that makes every sprint better than the last."
+  canonicalPath="/methodology"
+>
+  <main>
+    <section class="py-24 sm:py-32">
+      <div class="max-w-3xl mx-auto px-6">
+
+        <div class="mb-16" data-reveal>
+          <p class="text-emerald text-xs font-mono uppercase tracking-widest mb-3">Scoring Methodology</p>
+          <h1 class="font-heading font-extrabold text-4xl sm:text-5xl tracking-tight mb-6">
+            How SLOPE scores AI coding sprints.
+          </h1>
+          <p class="text-text-secondary text-lg leading-relaxed">
+            SLOPE uses a par-based scoring system inspired by golf to quantify AI-assisted development sprints. Every sprint gets a scorecard. Over time, scorecards reveal patterns — which types of tasks get over-scoped, where hazards cluster, and how estimation accuracy trends.
+          </p>
+        </div>
+
+        <!-- Par System -->
+        <div class="mb-12" data-reveal>
+          <h2 class="font-heading font-bold text-2xl sm:text-3xl mb-4">Par-Based Scoring</h2>
+          <p class="text-text-secondary leading-relaxed mb-4">
+            Each sprint is assigned a <strong class="text-text-primary">par</strong> value — the expected number of tickets based on complexity and track record. A sprint with 3 planned tickets is par 3. A sprint with 5 is par 5.
+          </p>
+          <p class="text-text-secondary leading-relaxed mb-4">
+            The <strong class="text-text-primary">score</strong> is the actual number of tickets delivered (adjusted for hazards). If you finish a par 4 sprint in 3 strokes, that's a <strong class="text-emerald">birdie</strong> (-1). If it takes 5, that's a <strong class="text-gold">bogey</strong> (+1).
+          </p>
+          <div class="rounded-xl border border-border bg-bg-card overflow-hidden mb-4">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-border bg-bg-surface/50">
+                  <th class="text-left px-5 py-3 text-text-muted text-xs uppercase">Label</th>
+                  <th class="text-left px-5 py-3 text-text-muted text-xs uppercase">Relative to Par</th>
+                  <th class="text-left px-5 py-3 text-text-muted text-xs uppercase">Meaning</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border-subtle">
+                <tr><td class="px-5 py-3 text-gold font-bold">Eagle</td><td class="px-5 py-3 text-text-secondary">-2</td><td class="px-5 py-3 text-text-secondary">Delivered well under expected effort</td></tr>
+                <tr><td class="px-5 py-3 text-emerald font-bold">Birdie</td><td class="px-5 py-3 text-text-secondary">-1</td><td class="px-5 py-3 text-text-secondary">Delivered under expected effort</td></tr>
+                <tr><td class="px-5 py-3 text-text-primary font-bold">Par</td><td class="px-5 py-3 text-text-secondary">0</td><td class="px-5 py-3 text-text-secondary">Delivered as planned</td></tr>
+                <tr><td class="px-5 py-3 text-amber-400 font-bold">Bogey</td><td class="px-5 py-3 text-text-secondary">+1</td><td class="px-5 py-3 text-text-secondary">Took more effort than planned</td></tr>
+                <tr><td class="px-5 py-3 text-red-400 font-bold">Double Bogey+</td><td class="px-5 py-3 text-text-secondary">+2 or more</td><td class="px-5 py-3 text-text-secondary">Significantly over-scoped</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-text-secondary leading-relaxed">
+            <strong class="text-text-primary">Slope</strong> is the difficulty modifier (0-3). Higher slope means more unknowns, dependencies, or new territory. It adjusts expectations without changing the par.
+          </p>
+        </div>
+
+        <!-- Handicap -->
+        <div class="mb-12" data-reveal>
+          <h2 class="font-heading font-bold text-2xl sm:text-3xl mb-4">Handicap Calculation</h2>
+          <p class="text-text-secondary leading-relaxed mb-4">
+            The <strong class="text-text-primary">handicap</strong> is a rolling performance index that tracks improvement over time. Lower is better. It is computed from configurable windows (last 5, last 10, and all-time).
+          </p>
+          <h3 class="font-heading font-bold text-lg mb-3 text-text-primary">Inputs</h3>
+          <div class="space-y-3 mb-4">
+            <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+              <span class="text-text-primary text-sm font-medium">Estimation Accuracy (Fairway %)</span>
+              <p class="text-text-muted text-xs mt-1">How often sprint scoping is on target — tickets delivered as planned, without scope changes.</p>
+            </div>
+            <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+              <span class="text-text-primary text-sm font-medium">Delivery Accuracy (GIR %)</span>
+              <p class="text-text-muted text-xs mt-1">How often estimation is accurate — actual score at or under par.</p>
+            </div>
+            <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+              <span class="text-text-primary text-sm font-medium">Rework Cycles (Putts)</span>
+              <p class="text-text-muted text-xs mt-1">Revision cycles after landing on target — how much polishing was needed after the approach was correct.</p>
+            </div>
+            <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+              <span class="text-text-primary text-sm font-medium">Serious Hazards (Penalties)</span>
+              <p class="text-text-muted text-xs mt-1">Breaking changes, scope creep, data loss — hazards severe enough to warrant penalty strokes.</p>
+            </div>
+          </div>
+          <p class="text-text-secondary leading-relaxed">
+            A handicap of <strong class="text-emerald">0.0</strong> means consistent delivery at or under par. As it rises, the <strong class="text-text-primary">miss pattern</strong> (long/short/left/right) reveals <em>where</em> the drift is coming from — over-engineering, under-scoping, dependency blocks, or tech debt accumulation.
+          </p>
+        </div>
+
+        <!-- Scorecards -->
+        <div class="mb-12" data-reveal>
+          <h2 class="font-heading font-bold text-2xl sm:text-3xl mb-4">Scorecard Structure</h2>
+          <p class="text-text-secondary leading-relaxed mb-4">
+            Every sprint produces a JSON scorecard in <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs font-mono">docs/retros/</code>. Each scorecard records:
+          </p>
+          <ul class="space-y-2 text-text-secondary leading-relaxed mb-4">
+            <li class="flex gap-2"><span class="text-emerald shrink-0">-</span>Sprint number, theme, date, par, slope, score, and score label</li>
+            <li class="flex gap-2"><span class="text-emerald shrink-0">-</span>Per-ticket breakdown: ticket key, title, club (complexity), shot result, hazards encountered, and notes</li>
+            <li class="flex gap-2"><span class="text-emerald shrink-0">-</span>Aggregate stats: fairways hit, greens in regulation, putts, penalties, hazard penalties</li>
+            <li class="flex gap-2"><span class="text-emerald shrink-0">-</span>Optional metadata: tests before/after, findings, review notes</li>
+          </ul>
+          <p class="text-text-secondary leading-relaxed">
+            Scorecards are the source of truth for everything else — briefings, handicap cards, and trend analysis all derive from the scorecard history.
+          </p>
+        </div>
+
+        <!-- Guard System -->
+        <div class="mb-12" data-reveal>
+          <h2 class="font-heading font-bold text-2xl sm:text-3xl mb-4">Guard System</h2>
+          <p class="text-text-secondary leading-relaxed mb-4">
+            SLOPE includes 29 guard hooks that run during coding sessions. Guards inject context, warnings, and blocks into your agent's workflow in real time. They are organized by enforcement type:
+          </p>
+          <div class="grid sm:grid-cols-2 gap-3 mb-4">
+            <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+              <span class="text-text-primary text-sm font-medium">Mechanical Guards</span>
+              <p class="text-text-muted text-xs mt-1">Block actions until conditions are met — e.g., can't commit without tests, can't close a sprint without a review.</p>
+            </div>
+            <div class="rounded-lg border border-border-subtle bg-bg-card p-4">
+              <span class="text-text-primary text-sm font-medium">Advisory Guards</span>
+              <p class="text-text-muted text-xs mt-1">Inject context and suggestions without blocking — e.g., "you hit this same bug in Sprint 12, here's how you fixed it."</p>
+            </div>
+          </div>
+          <p class="text-text-secondary leading-relaxed">
+            Guard state persists to disk in <code class="text-emerald bg-bg-primary px-1.5 py-0.5 rounded text-xs font-mono">.slope/guard-state/</code>, surviving context window compression. The common issues database tracks recurring hazards across sprints — when a pattern appears again, the agent gets warned before it starts.
+          </p>
+        </div>
+
+        <!-- The Loop -->
+        <div class="mb-12" data-reveal>
+          <h2 class="font-heading font-bold text-2xl sm:text-3xl mb-4">The Feedback Loop</h2>
+          <p class="text-text-secondary leading-relaxed mb-4">
+            SLOPE's core value proposition is the compounding feedback loop:
+          </p>
+          <div class="rounded-xl border border-emerald/20 bg-emerald/5 p-6 text-center mb-4">
+            <p class="font-heading font-bold text-lg text-emerald">Score &rarr; Review &rarr; Learn &rarr; Improve</p>
+          </div>
+          <p class="text-text-secondary leading-relaxed mb-4">
+            Each sprint produces a scorecard. The scorecard feeds the handicap card. The handicap card feeds the next sprint's briefing. The briefing warns the agent about recurring hazards before it starts coding. Over time, the same mistakes stop appearing because the agent has structured memory of what went wrong.
+          </p>
+          <p class="text-text-secondary leading-relaxed">
+            In the SLOPE reference implementation, this loop has run for <strong class="text-emerald">69+ sprints</strong> with 97% estimation accuracy and a handicap of 0.2. <a href="https://github.com/srbryers/slope/tree/main/docs/retros" target="_blank" rel="noopener noreferrer" class="text-emerald hover:underline">Every scorecard is public.</a>
+          </p>
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center" data-reveal>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a href="/guide" class="px-6 py-2.5 rounded-lg bg-emerald text-bg-primary font-heading font-bold text-sm hover:bg-emerald/90 transition-colors">
+              Try the interactive guide
+            </a>
+            <a href="/docs" class="px-6 py-2.5 rounded-lg border border-border text-text-secondary font-heading font-bold text-sm hover:border-emerald/30 hover:text-text-primary transition-colors">
+              Full documentation
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+</Base>
+
+<script>
+  import { initAnimations } from '../scripts/animations';
+  initAnimations();
+</script>

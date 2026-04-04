@@ -22,7 +22,14 @@
     },
     {
       "name": "Phase 4 — SEO & Discoverability",
-      "sprints": [7]
+      "sprints": [7],
+      "status": "complete",
+      "note": "Robots.txt fix, SoftwareApplication schema, BreadcrumbList, improved page descriptions. Shipped 2026-04-04."
+    },
+    {
+      "name": "Phase 5 — Conversion & Signals",
+      "sprints": [8, 9],
+      "note": "Informed by Dunford (positioning), Hormozi (offer/CTA), Rachitsky (growth), Fishkin (SEO/GEO) reviews."
     }
   ],
   "sprints": [
@@ -283,6 +290,74 @@
           "title": "Per-page OG descriptions — differentiate social previews for /guide and /docs",
           "club": "short_iron",
           "complexity": "standard"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "theme": "The Conversion — Copy & CTA Overhaul",
+      "par": 4,
+      "slope": 2,
+      "type": "feature",
+      "note": "Informed by Dunford positioning audit, Hormozi value equation, Rachitsky activation analysis.",
+      "tickets": [
+        {
+          "key": "S8-1",
+          "title": "Rewrite hero subtitle — outcome-first, not feature list. Make guide a primary CTA.",
+          "club": "short_iron",
+          "complexity": "standard"
+        },
+        {
+          "key": "S8-2",
+          "title": "Fix canonical positioning phrase — consistent across all pages, Base.astro default title",
+          "club": "wedge",
+          "complexity": "small"
+        },
+        {
+          "key": "S8-3",
+          "title": "Add cost-of-delay, risk reversal, and time-to-value language to GettingStarted + CTA",
+          "club": "short_iron",
+          "complexity": "standard"
+        },
+        {
+          "key": "S8-4",
+          "title": "Promote Sprint 12 anecdote to visual callout in Proof section. Move 'Retrospectives with data' to home page.",
+          "club": "short_iron",
+          "complexity": "standard"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "theme": "The Signal — Structured Data & AI Citability",
+      "par": 4,
+      "slope": 1,
+      "type": "feature",
+      "note": "Informed by Fishkin SEO/GEO audit.",
+      "tickets": [
+        {
+          "key": "S9-1",
+          "title": "Add FAQPage schema to homepage + HowTo schema to GettingStarted",
+          "club": "wedge",
+          "complexity": "small"
+        },
+        {
+          "key": "S9-2",
+          "title": "Add sameAs to Organization schema + AI crawler directives to robots.txt",
+          "club": "putter",
+          "complexity": "trivial"
+        },
+        {
+          "key": "S9-3",
+          "title": "Create /methodology page — scoring system explainer optimized for AI citation",
+          "club": "short_iron",
+          "complexity": "standard"
+        },
+        {
+          "key": "S9-4",
+          "title": "Fix Base.astro default title to canonical phrase, drop backronym from primary surfaces",
+          "club": "wedge",
+          "complexity": "small"
         }
       ]
     }

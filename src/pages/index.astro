@@ -11,8 +11,8 @@ import '../styles/global.css';
 ---
 
 <Base
-  title="SLOPE — Sprint Scoring for AI Coding Agents"
-  description="Open-source framework for quantified sprint metrics in AI-assisted development. Scorecards, handicap tracking, workflow orchestration, and real-time guard hooks for Claude Code, Cursor, Windsurf, Codex CLI, and more."
+  title="SLOPE — Open-Source Sprint Scoring for AI Coding Agents"
+  description="Open-source sprint scoring framework for AI coding agents. Scorecards, handicap tracking, workflow orchestration, and real-time guard hooks for Claude Code, Cursor, Windsurf, Codex CLI, and more."
 >
   <main>
     <Hero />
@@ -23,6 +23,82 @@ import '../styles/global.css';
     <GettingStarted />
     <CTA />
   </main>
+
+  <!-- FAQ structured data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is SLOPE?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SLOPE is an open-source sprint scoring framework for AI coding agents. It adds scorecards, handicap tracking, workflow orchestration, and real-time guard hooks to AI-assisted development sessions across Claude Code, Cursor, Windsurf, Codex CLI, and more."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does SLOPE score AI coding sprints?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SLOPE uses a par-based scoring system. Each sprint is assigned a par value based on planned ticket count. Estimation accuracy measures how often the actual score matches par. Delivery accuracy measures tickets completed versus planned. The handicap is a rolling composite performance index where lower is better."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which AI coding agents does SLOPE work with?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SLOPE works with Claude Code, Cursor, Windsurf, Codex CLI, Pi.dev, Cline, OB1, and OpenCode. It uses hook-based integration that translates SLOPE events into each agent's native format."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is SLOPE free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. SLOPE is free, open-source, and MIT licensed. Install with npm install -g @slope-dev/slope. It writes standard JSON scorecards to your repo — uninstall anytime, your data stays."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are SLOPE guard hooks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Guards are real-time checks that run during coding sessions. SLOPE has 29 guards that inject context, warnings, and blocks into your agent's workflow — checking for scope drift, missing tests, uncommitted changes, recurring hazards, and more. Guards can be mechanical (block actions) or advisory (suggest improvements)."
+        }
+      }
+    ]
+  })} />
+
+  <!-- HowTo structured data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to set up SLOPE for AI coding agents",
+    "description": "Install SLOPE, initialize your project, and connect your AI coding agent in three commands.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Install SLOPE",
+        "text": "Run npm install -g @slope-dev/slope to install the SLOPE CLI globally."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Initialize your project",
+        "text": "Run slope init in your project directory. SLOPE detects your stack and creates the .slope/ configuration directory."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Connect your agent",
+        "text": "Run slope hook add followed by your platform name (claude-code, cursor, windsurf, codex, etc.) to install guard hooks."
+      }
+    ]
+  })} />
 </Base>
 
 <script>

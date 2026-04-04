@@ -10,8 +10,8 @@ interface Props {
 const SITE_URL = 'https://getslope.dev';
 
 const {
-  title = 'SLOPE — Sprint Lifecycle & Operational Performance Engine',
-  description = 'A framework for measuring and improving AI agent sprint performance — with golf-inspired scoring.',
+  title = 'SLOPE — Open-Source Sprint Scoring for AI Coding Agents',
+  description = 'Open-source sprint scoring framework for AI coding agents. Scorecards, handicap tracking, workflow orchestration, and real-time guard hooks for Claude Code, Cursor, Windsurf, and more.',
   canonicalPath = '',
 } = Astro.props;
 
@@ -74,7 +74,11 @@ const ogImageURL = `${SITE_URL}/og.png?v=3`;
       "creator": {
         "@type": "Organization",
         "name": "SLOPE",
-        "url": "https://getslope.dev"
+        "url": "https://getslope.dev",
+        "sameAs": [
+          "https://github.com/srbryers/slope",
+          "https://www.npmjs.com/package/@slope-dev/slope"
+        ]
       }
     })} />
 
@@ -83,7 +87,7 @@ const ogImageURL = `${SITE_URL}/og.png?v=3`;
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "SLOPE",
-      "description": "Sprint Lifecycle & Operational Performance Engine — quantified sprint metrics for AI-assisted development.",
+      "description": "Open-source sprint scoring framework for AI coding agents. Scorecards, handicap tracking, workflow orchestration, and real-time guard hooks.",
       "url": SITE_URL,
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Cross-platform (Node.js)",
