@@ -1,21 +1,22 @@
 {
-  "version": "1.49.0",
-  "generatedAt": "2026-04-04T17:13:33.167Z",
-  "gitSha": "6c315d760c64c37f327fa0d9ec775411bf42dead",
+  "version": "1.61.0",
+  "generatedAt": "2026-07-10T16:25:07.038Z",
+  "gitSha": "40c1f3f3869caef6e259545957cbdb9a6654ce3c",
   "checksums": {
-    "commands": "028e2b6140f78d3c3cc483df89c2e42de5600ef6e96a7130285e0bb4cd4bdcbd",
-    "guards": "8b7d91b423840336fde42157f387f0d2fd96b83e1aa377ea5930ac0b350f0880",
+    "commands": "3ae22e2fb903b0c9281a8f27e1b6619966eee6011614e0de0a1982c06725b1ae",
+    "guards": "781559bd40817bd019ea95d5303f8471c5be60f528134ab113168e371b77bae9",
     "mcpTools": "b0c415a0e33f6e15afb4d68d60c131dff5de70b344f994c7fd5a3d21593d1753",
     "metaphors": "fbf85ac929a8738df5d6e26262029e4a1a1495eac6acd3c0316073f3bf1795f0",
     "roles": "ad096c5377dd772f8d1ecc7f4868196bf1045cd606b97eda368da4e6bd9dd102",
     "constants": "107d1a94e19454050bf16f8e246678fcb6b93044186a71b8acf6481c14a92569",
-    "changelog": "20124f8ac876bd6fa15d6aa09ab5aabb3c69a1f3069a943e131b06d5d814a5ea"
+    "changelog": "f99af254c94601a1f3a57330b5820d626bc8be85420bd0db8e6c540348c413ef"
   },
   "commands": [
     {
       "cmd": "init",
       "desc": "Initialize .slope/ directory",
       "category": "lifecycle",
+      "audience": "human",
       "flags": [
         {
           "flag": "--metaphor=<id>",
@@ -24,6 +25,30 @@
         {
           "flag": "--interactive",
           "desc": "Rich interactive setup wizard"
+        },
+        {
+          "flag": "--allow-no-git",
+          "desc": "Explicit degraded mode without commit-backed completion evidence"
+        }
+      ]
+    },
+    {
+      "cmd": "interview",
+      "desc": "Run project interview (human or agent JSON mode)",
+      "category": "lifecycle",
+      "audience": "advanced",
+      "flags": [
+        {
+          "flag": "--agent",
+          "desc": "JSON I/O mode for agent harnesses"
+        },
+        {
+          "flag": "--force",
+          "desc": "Re-interview even if project already initialized"
+        },
+        {
+          "flag": "--allow-no-git",
+          "desc": "Explicit degraded mode without commit-backed completion evidence"
         }
       ]
     },
@@ -31,6 +56,7 @@
       "cmd": "help",
       "desc": "Show detailed per-command usage",
       "category": "lifecycle",
+      "audience": "human",
       "flags": [
         {
           "flag": "<command>",
@@ -39,14 +65,52 @@
       ]
     },
     {
+      "cmd": "now",
+      "desc": "Compact current-state cockpit",
+      "category": "lifecycle",
+      "audience": "human",
+      "flags": [
+        {
+          "flag": "--sprint=<N>",
+          "desc": "Override inferred current sprint"
+        },
+        {
+          "flag": "--json",
+          "desc": "Output as JSON"
+        }
+      ]
+    },
+    {
+      "cmd": "start",
+      "desc": "Human start-of-work cockpit",
+      "category": "lifecycle",
+      "audience": "human",
+      "flags": [
+        {
+          "flag": "--sprint=<N>",
+          "desc": "Override inferred current sprint"
+        },
+        {
+          "flag": "--ticket=<key>",
+          "desc": "Claim and begin a ticket"
+        },
+        {
+          "flag": "--allow-no-git",
+          "desc": "Explicit degraded mode without commit-backed completion evidence"
+        }
+      ]
+    },
+    {
       "cmd": "quickstart",
       "desc": "Interactive tutorial for new users",
-      "category": "lifecycle"
+      "category": "lifecycle",
+      "audience": "human"
     },
     {
       "cmd": "doctor",
       "desc": "Check repo health and auto-fix issues",
       "category": "lifecycle",
+      "audience": "human",
       "flags": [
         {
           "flag": "--fix",
@@ -58,6 +122,7 @@
       "cmd": "version",
       "desc": "Show version or bump with automated PR workflow",
       "category": "lifecycle",
+      "audience": "advanced",
       "subcommands": [
         {
           "name": "bump",
@@ -91,6 +156,7 @@
       "cmd": "session",
       "desc": "Manage live sessions",
       "category": "lifecycle",
+      "audience": "agent",
       "subcommands": [
         {
           "name": "start",
@@ -154,6 +220,7 @@
       "cmd": "claim",
       "desc": "Claim a ticket or area for the sprint",
       "category": "lifecycle",
+      "audience": "agent",
       "flags": [
         {
           "flag": "--target=<path>",
@@ -162,6 +229,14 @@
         {
           "flag": "--ticket=<key>",
           "desc": "Ticket key (e.g. S48-1)"
+        },
+        {
+          "flag": "--actor=<name>",
+          "desc": "Actor override for audit trail identity"
+        },
+        {
+          "flag": "--player=<name>",
+          "desc": "Legacy alias for --actor"
         },
         {
           "flag": "--force",
@@ -173,6 +248,7 @@
       "cmd": "release",
       "desc": "Release a claim by ID or target",
       "category": "lifecycle",
+      "audience": "agent",
       "flags": [
         {
           "flag": "--id=<id>",
@@ -181,6 +257,14 @@
         {
           "flag": "--target=<path>",
           "desc": "Release claim by target path"
+        },
+        {
+          "flag": "--actor=<name>",
+          "desc": "Actor override for target release lookup"
+        },
+        {
+          "flag": "--player=<name>",
+          "desc": "Legacy alias for --actor"
         }
       ]
     },
@@ -188,6 +272,7 @@
       "cmd": "status",
       "desc": "Show sprint course status and conflicts",
       "category": "lifecycle",
+      "audience": "human",
       "flags": [
         {
           "flag": "--json",
@@ -198,12 +283,42 @@
     {
       "cmd": "next",
       "desc": "Show next sprint number (auto-detect)",
-      "category": "lifecycle"
+      "category": "lifecycle",
+      "audience": "advanced"
+    },
+    {
+      "cmd": "resume",
+      "desc": "Portable sprint resume from tracked artifacts",
+      "category": "lifecycle",
+      "audience": "agent",
+      "flags": [
+        {
+          "flag": "--from=<path>",
+          "desc": "Resume pointer path (default: docs/backlog/.sprint-active.json)"
+        },
+        {
+          "flag": "--sprint=<N>",
+          "desc": "Explicit sprint number when no pointer exists"
+        },
+        {
+          "flag": "--phase=<phase>",
+          "desc": "Local sprint phase to recreate (default: implementing)"
+        },
+        {
+          "flag": "--force",
+          "desc": "Resume despite unsafe pointer checks"
+        },
+        {
+          "flag": "--dry-run",
+          "desc": "Preview local state without writing .slope files"
+        }
+      ]
     },
     {
       "cmd": "sprint",
       "desc": "Manage sprint lifecycle state and gates",
       "category": "lifecycle",
+      "audience": "agent",
       "subcommands": [
         {
           "name": "start",
@@ -216,6 +331,58 @@
             {
               "flag": "--phase=<phase>",
               "desc": "Initial phase (default: planning)"
+            },
+            {
+              "flag": "--touches=<paths>",
+              "desc": "Comma-separated paths to check against sibling worktrees"
+            },
+            {
+              "flag": "--actor=<name>",
+              "desc": "Actor override for sprint auto-claim"
+            },
+            {
+              "flag": "--force",
+              "desc": "Override pre-sprint reality-check blockers"
+            }
+          ]
+        },
+        {
+          "name": "begin",
+          "desc": "Bundled start + claim + briefing + prep flow",
+          "flags": [
+            {
+              "flag": "--sprint=<N>",
+              "desc": "Sprint number (required)"
+            },
+            {
+              "flag": "--ticket=<key>",
+              "desc": "Ticket key to claim and prep"
+            },
+            {
+              "flag": "--actor=<name>",
+              "desc": "Actor override for audit trail identity"
+            }
+          ]
+        },
+        {
+          "name": "rollover",
+          "desc": "Audit prior sprint state and create the next planning state",
+          "flags": [
+            {
+              "flag": "--from=<N>",
+              "desc": "Prior sprint number (required)"
+            },
+            {
+              "flag": "--to=<N>",
+              "desc": "Next sprint number (required)"
+            },
+            {
+              "flag": "--force",
+              "desc": "Allow rollover from an in-progress source sprint"
+            },
+            {
+              "flag": "--reason=<text>",
+              "desc": "Required justification for an in-progress rollover"
             }
           ]
         },
@@ -226,12 +393,70 @@
             {
               "flag": "<name>",
               "desc": "Gate name to complete"
+            },
+            {
+              "flag": "--reviewer=<id>",
+              "desc": "Independent reviewer id/name for code_review and architect_review"
+            },
+            {
+              "flag": "--evidence=<path-or-url>",
+              "desc": "Independent review transcript or output evidence"
+            },
+            {
+              "flag": "--pr-review=<url-or-id>",
+              "desc": "External PR review evidence"
+            },
+            {
+              "flag": "--self-review --reason=<text>",
+              "desc": "Explicit weaker self-review provenance"
+            },
+            {
+              "flag": "--waive-independent-review --reason=<text>",
+              "desc": "Explicit downgrade for a required independent review"
+            },
+            {
+              "flag": "--override=<reason>",
+              "desc": "Explicit weaker manual override provenance"
             }
           ]
         },
         {
           "name": "status",
           "desc": "Show current sprint state and gates"
+        },
+        {
+          "name": "resume",
+          "desc": "Resume workflow execution or recreate portable sprint state",
+          "flags": [
+            {
+              "flag": "<sprint_id>",
+              "desc": "Workflow execution sprint ID for legacy workflow resume"
+            },
+            {
+              "flag": "--portable",
+              "desc": "Reconstruct local sprint state from tracked artifacts"
+            },
+            {
+              "flag": "--from=<path>",
+              "desc": "Resume pointer path (default: docs/backlog/.sprint-active.json)"
+            },
+            {
+              "flag": "--write-pointer",
+              "desc": "Write tracked resume pointer from current local state"
+            },
+            {
+              "flag": "--output=<path>",
+              "desc": "Pointer output path for --write-pointer"
+            },
+            {
+              "flag": "--force",
+              "desc": "Resume despite unsafe pointer checks"
+            },
+            {
+              "flag": "--dry-run",
+              "desc": "Preview local state without writing .slope files"
+            }
+          ]
         },
         {
           "name": "reset",
@@ -243,6 +468,7 @@
       "cmd": "card",
       "desc": "Display handicap card",
       "category": "scoring",
+      "audience": "human",
       "flags": [
         {
           "flag": "--metaphor=<id>",
@@ -266,10 +492,15 @@
       "cmd": "validate",
       "desc": "Validate scorecard(s)",
       "category": "scoring",
+      "audience": "agent",
       "flags": [
         {
           "flag": "<path>",
           "desc": "Scorecard JSON file to validate"
+        },
+        {
+          "flag": "--skills",
+          "desc": "Check scorecard skill references against .slope/skills.json"
         }
       ]
     },
@@ -277,6 +508,7 @@
       "cmd": "review",
       "desc": "Format sprint review or manage review state",
       "category": "scoring",
+      "audience": "human",
       "subcommands": [
         {
           "name": "start",
@@ -310,11 +542,15 @@
           "flags": [
             {
               "flag": "add",
-              "desc": "Add a finding (--type, --ticket, --severity, --description)"
+              "desc": "Add a finding (--type, --ticket, --severity, --description; workaround supports --recurs --cost=s|m|l)"
             },
             {
               "flag": "list",
-              "desc": "List recorded findings"
+              "desc": "List recorded findings; filter codification ledger with --codification-status=open|paid_down|wontfix"
+            },
+            {
+              "flag": "resolve",
+              "desc": "Mark a codification candidate paid_down or wontfix by id"
             },
             {
               "flag": "clear",
@@ -364,6 +600,7 @@
       "cmd": "auto-card",
       "desc": "Generate scorecard from git + CI signals",
       "category": "scoring",
+      "audience": "agent",
       "flags": [
         {
           "flag": "--sprint=<N>",
@@ -407,6 +644,7 @@
       "cmd": "classify",
       "desc": "Classify a shot from execution trace",
       "category": "scoring",
+      "audience": "agent",
       "flags": [
         {
           "flag": "--scope=<files>",
@@ -434,6 +672,7 @@
       "cmd": "tournament",
       "desc": "Build tournament review from sprints",
       "category": "scoring",
+      "audience": "advanced",
       "flags": [
         {
           "flag": "--id=<id>",
@@ -457,6 +696,7 @@
       "cmd": "briefing",
       "desc": "Pre-round briefing with hazards and nutrition",
       "category": "analysis",
+      "audience": "human",
       "flags": [
         {
           "flag": "--categories=<list>",
@@ -496,6 +736,7 @@
       "cmd": "plan",
       "desc": "Pre-shot advisor (club + training + hazards)",
       "category": "analysis",
+      "audience": "agent",
       "flags": [
         {
           "flag": "--complexity=<level>",
@@ -519,6 +760,7 @@
       "cmd": "report",
       "desc": "Generate HTML performance report",
       "category": "analysis",
+      "audience": "advanced",
       "flags": [
         {
           "flag": "--html",
@@ -534,6 +776,7 @@
       "cmd": "dashboard",
       "desc": "Live local performance dashboard",
       "category": "analysis",
+      "audience": "advanced",
       "flags": [
         {
           "flag": "--port=<N>",
@@ -561,6 +804,7 @@
       "cmd": "standup",
       "desc": "Generate or ingest standup report",
       "category": "analysis",
+      "audience": "agent",
       "flags": [
         {
           "flag": "--session=<id>",
@@ -592,6 +836,7 @@
       "cmd": "analyze",
       "desc": "Scan repo and generate profile",
       "category": "analysis",
+      "audience": "advanced",
       "flags": [
         {
           "flag": "--analyzers=<list>",
@@ -607,6 +852,7 @@
       "cmd": "hook",
       "desc": "Manage lifecycle hooks",
       "category": "tooling",
+      "audience": "internal",
       "subcommands": [
         {
           "name": "add",
@@ -642,6 +888,7 @@
       "cmd": "guard",
       "desc": "Run guard handler or manage guard activation",
       "category": "tooling",
+      "audience": "internal",
       "subcommands": [
         {
           "name": "<name>",
@@ -695,6 +942,7 @@
       "cmd": "extract",
       "desc": "Extract events into SLOPE store",
       "category": "tooling",
+      "audience": "internal",
       "flags": [
         {
           "flag": "--file=<path>",
@@ -714,6 +962,7 @@
       "cmd": "distill",
       "desc": "Promote event patterns to common issues",
       "category": "tooling",
+      "audience": "agent",
       "flags": [
         {
           "flag": "--auto",
@@ -737,6 +986,7 @@
       "cmd": "map",
       "desc": "Generate/update codebase map",
       "category": "tooling",
+      "audience": "agent",
       "flags": [
         {
           "flag": "--check",
@@ -752,6 +1002,7 @@
       "cmd": "workflow",
       "desc": "Manage workflow definitions",
       "category": "tooling",
+      "audience": "internal",
       "subcommands": [
         {
           "name": "validate",
@@ -771,6 +1022,7 @@
       "cmd": "flows",
       "desc": "Manage user flow definitions",
       "category": "tooling",
+      "audience": "advanced",
       "subcommands": [
         {
           "name": "init",
@@ -790,6 +1042,7 @@
       "cmd": "inspirations",
       "desc": "Track external OSS inspiration sources",
       "category": "tooling",
+      "audience": "advanced",
       "subcommands": [
         {
           "name": "add",
@@ -840,9 +1093,124 @@
       ]
     },
     {
+      "cmd": "skills",
+      "desc": "Manage repo-local Agent Skills registry",
+      "category": "tooling",
+      "audience": "advanced",
+      "subcommands": [
+        {
+          "name": "scan",
+          "desc": "Scan configured skill roots into .slope/skills.json",
+          "flags": [
+            {
+              "flag": "--root=<path>",
+              "desc": "Skill root to scan (repeatable or comma-separated)"
+            },
+            {
+              "flag": "--output=<path>",
+              "desc": "Registry output path (default: .slope/skills.json)"
+            }
+          ]
+        },
+        {
+          "name": "list",
+          "desc": "List registered skills",
+          "flags": [
+            {
+              "flag": "--json",
+              "desc": "Output raw skill entries as JSON"
+            },
+            {
+              "flag": "--output=<path>",
+              "desc": "Registry path to read"
+            }
+          ]
+        },
+        {
+          "name": "validate",
+          "desc": "Validate registry metadata and source paths",
+          "flags": [
+            {
+              "flag": "--output=<path>",
+              "desc": "Registry path to read"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "issue",
+      "desc": "Detect and triage SLOPE-driven product issues",
+      "category": "tooling",
+      "audience": "agent",
+      "subcommands": [
+        {
+          "name": "scout",
+          "desc": "Scan common issues/transcripts and propose GitHub issues",
+          "flags": [
+            {
+              "flag": "--source=<path>",
+              "desc": "File or directory to scan (repeatable)"
+            },
+            {
+              "flag": "--repo=<owner/repo>",
+              "desc": "GitHub repository for dedupe/create"
+            },
+            {
+              "flag": "--dry-run",
+              "desc": "Print candidates without creating issues"
+            },
+            {
+              "flag": "--create",
+              "desc": "Create issues for non-duplicate candidates"
+            },
+            {
+              "flag": "--comment-duplicates",
+              "desc": "Comment on matched issues with fresh evidence"
+            },
+            {
+              "flag": "--output=<path>",
+              "desc": "Write JSON scout output"
+            },
+            {
+              "flag": "--json",
+              "desc": "Print machine-readable JSON"
+            }
+          ]
+        },
+        {
+          "name": "triage",
+          "desc": "Render daily approval digest for issue candidates",
+          "flags": [
+            {
+              "flag": "--source=<path>",
+              "desc": "File or directory to scan (repeatable)"
+            },
+            {
+              "flag": "--repo=<owner/repo>",
+              "desc": "GitHub repository for dedupe context"
+            },
+            {
+              "flag": "--daily-digest",
+              "desc": "Render the daily approval digest"
+            },
+            {
+              "flag": "--output=<path>",
+              "desc": "Write markdown digest"
+            },
+            {
+              "flag": "--json",
+              "desc": "Print digest and candidates as JSON"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "cmd": "metaphor",
       "desc": "Manage metaphor display themes",
       "category": "tooling",
+      "audience": "advanced",
       "subcommands": [
         {
           "name": "list",
@@ -874,6 +1242,7 @@
       "cmd": "plugin",
       "desc": "Manage custom plugins",
       "category": "tooling",
+      "audience": "advanced",
       "subcommands": [
         {
           "name": "list",
@@ -895,6 +1264,7 @@
       "cmd": "store",
       "desc": "Store diagnostics and management",
       "category": "tooling",
+      "audience": "internal",
       "subcommands": [
         {
           "name": "status",
@@ -922,6 +1292,7 @@
       "cmd": "escalate",
       "desc": "Escalate issues based on severity triggers",
       "category": "tooling",
+      "audience": "agent",
       "flags": [
         {
           "flag": "--reason=<text>",
@@ -945,6 +1316,7 @@
       "cmd": "transcript",
       "desc": "View session transcript data",
       "category": "tooling",
+      "audience": "internal",
       "subcommands": [
         {
           "name": "list",
@@ -974,9 +1346,28 @@
     },
     {
       "cmd": "roadmap",
-      "desc": "Strategic planning and roadmap tools",
+      "desc": "Strategic planning, interview handoff, and roadmap tools",
       "category": "planning",
+      "audience": "human",
       "subcommands": [
+        {
+          "name": "interview",
+          "desc": "Run project interview for planning input (alias of slope interview)",
+          "flags": [
+            {
+              "flag": "--agent",
+              "desc": "JSON I/O mode for agent harnesses"
+            },
+            {
+              "flag": "--force",
+              "desc": "Re-interview even if project already initialized"
+            },
+            {
+              "flag": "--allow-no-git",
+              "desc": "Explicit degraded mode without commit-backed completion evidence"
+            }
+          ]
+        },
         {
           "name": "validate",
           "desc": "Schema + dependency graph checks",
@@ -1012,6 +1403,70 @@
           ]
         },
         {
+          "name": "focus",
+          "desc": "Bounded sprint, phase, dependency, hazard, and evidence context",
+          "flags": [
+            {
+              "flag": "--sprint=<N>",
+              "desc": "Sprint number (required)"
+            },
+            {
+              "flag": "--path=<file>",
+              "desc": "Roadmap file path"
+            },
+            {
+              "flag": "--json",
+              "desc": "Emit machine-readable JSON"
+            }
+          ]
+        },
+        {
+          "name": "compile",
+          "desc": "Compile modular YAML sources to the compatibility roadmap",
+          "flags": [
+            {
+              "flag": "--source=<file>",
+              "desc": "Project manifest (default: docs/roadmap/project.yaml)"
+            },
+            {
+              "flag": "--dry-run",
+              "desc": "Preview projection changes without writing"
+            },
+            {
+              "flag": "--check",
+              "desc": "Fail when the compatibility projection has drifted"
+            }
+          ]
+        },
+        {
+          "name": "validate-sources",
+          "desc": "Validate modular sources, archive evidence, and projection drift",
+          "flags": [
+            {
+              "flag": "--source=<file>",
+              "desc": "Project manifest (default: docs/roadmap/project.yaml)"
+            }
+          ]
+        },
+        {
+          "name": "archive",
+          "desc": "Move whole terminal phases into the modular archive",
+          "flags": [
+            {
+              "flag": "--through=<N>",
+              "desc": "Archive complete phases through this sprint"
+            },
+            {
+              "flag": "--source=<file>",
+              "desc": "Project manifest (default: docs/roadmap/project.yaml)"
+            },
+            {
+              "flag": "--dry-run",
+              "desc": "Preview moves without writing"
+            }
+          ]
+        },
+        {
           "name": "show",
           "desc": "Render summary (critical path, parallel tracks)",
           "flags": [
@@ -1037,11 +1492,83 @@
         },
         {
           "name": "generate",
-          "desc": "Generate from vision + backlog analysis",
+          "desc": "Generate from vision + backlog analysis after slope vision create/update",
           "flags": [
             {
               "flag": "--path=<file>",
               "desc": "Output roadmap file path"
+            },
+            {
+              "flag": "--dry-run",
+              "desc": "Preview without writing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "retro",
+      "desc": "Retrospective scorecard utilities",
+      "category": "planning",
+      "audience": "agent",
+      "subcommands": [
+        {
+          "name": "backfill",
+          "desc": "Generate scorecard from git history (#318)",
+          "flags": [
+            {
+              "flag": "--sprint=<N>",
+              "desc": "Sprint number (or use --all-missing)"
+            },
+            {
+              "flag": "--all-missing",
+              "desc": "Backfill every shipped sprint without a scorecard"
+            },
+            {
+              "flag": "--dry-run",
+              "desc": "Preview without writing"
+            }
+          ]
+        },
+        {
+          "name": "post-merge",
+          "desc": "Capture post-PR-merge retro results and durable learnings",
+          "flags": [
+            {
+              "flag": "--sprint=<N>",
+              "desc": "Sprint number"
+            },
+            {
+              "flag": "--pr=<N>",
+              "desc": "Merged pull request number"
+            },
+            {
+              "flag": "--summary=<text>",
+              "desc": "Retro summary"
+            },
+            {
+              "flag": "--learning=<text>",
+              "desc": "Repeatable durable learning; supports workflow|style|project|hazard|other[:1-10]:text and process->workflow alias"
+            },
+            {
+              "flag": "--hazard=<text>",
+              "desc": "Repeatable hazard to persist as auto-retro memory"
+            },
+            {
+              "flag": "--follow-up=<text>",
+              "desc": "Repeatable follow-up to persist as workflow memory"
+            },
+            {
+              "flag": "--outcome=<status>",
+              "desc": "success, mixed, or follow_up"
+            },
+            {
+              "flag": "--dry-run",
+              "desc": "Preview without writing memories or retro record"
+            },
+            {
+              "flag": "--json",
+              "desc": "Output JSON payload"
             }
           ]
         }
@@ -1051,6 +1578,7 @@
       "cmd": "vision",
       "desc": "Display project vision document",
       "category": "planning",
+      "audience": "human",
       "subcommands": [
         {
           "name": "create",
@@ -1092,6 +1620,7 @@
       "cmd": "initiative",
       "desc": "Multi-sprint initiative orchestration",
       "category": "planning",
+      "audience": "advanced",
       "subcommands": [
         {
           "name": "create",
@@ -1141,6 +1670,7 @@
       "cmd": "loop",
       "desc": "Autonomous sprint execution loop",
       "category": "tooling",
+      "audience": "advanced",
       "subcommands": [
         {
           "name": "run",
@@ -1292,7 +1822,22 @@
       "cmd": "worktree",
       "desc": "Manage git worktrees",
       "category": "tooling",
+      "audience": "agent",
       "subcommands": [
+        {
+          "name": "status",
+          "desc": "Show sibling worktree dirty/ahead/migration state",
+          "flags": [
+            {
+              "flag": "--base=<ref>",
+              "desc": "Base ref for ahead/behind and changed-file detection"
+            },
+            {
+              "flag": "--touches=<paths>",
+              "desc": "Comma-separated paths to check for overlap"
+            }
+          ]
+        },
         {
           "name": "cleanup",
           "desc": "Clean up stale worktrees (remove, delete branch, delete remote)",
@@ -1317,6 +1862,7 @@
       "cmd": "index-cmd",
       "desc": "Semantic embedding index management",
       "category": "tooling",
+      "audience": "internal",
       "flags": [
         {
           "flag": "--full",
@@ -1340,6 +1886,7 @@
       "cmd": "context",
       "desc": "Semantic context search for agents",
       "category": "tooling",
+      "audience": "agent",
       "flags": [
         {
           "flag": "<query>",
@@ -1367,6 +1914,7 @@
       "cmd": "prep",
       "desc": "Generate execution plan for a ticket",
       "category": "tooling",
+      "audience": "agent",
       "flags": [
         {
           "flag": "<ticket-id>",
@@ -1390,6 +1938,7 @@
       "cmd": "enrich",
       "desc": "Batch-enrich backlog with file context",
       "category": "tooling",
+      "audience": "agent",
       "flags": [
         {
           "flag": "<backlog-path>",
@@ -1413,6 +1962,7 @@
       "cmd": "stats",
       "desc": "Export stats JSON for slope-web live dashboard",
       "category": "tooling",
+      "audience": "internal",
       "subcommands": [
         {
           "name": "export",
@@ -1434,6 +1984,7 @@
       "cmd": "docs",
       "desc": "Generate documentation manifest and changelog",
       "category": "tooling",
+      "audience": "agent",
       "subcommands": [
         {
           "name": "generate",
@@ -1507,6 +2058,7 @@
       "cmd": "org",
       "desc": "Multi-repo aggregation and org-level metrics",
       "category": "analysis",
+      "audience": "advanced",
       "subcommands": [
         {
           "name": "init",
@@ -1531,6 +2083,258 @@
               "desc": "Output as JSON"
             }
           ]
+        }
+      ]
+    },
+    {
+      "cmd": "memory",
+      "desc": "Cross-session memory management",
+      "category": "analysis",
+      "audience": "advanced",
+      "subcommands": [
+        {
+          "name": "add",
+          "desc": "Add a memory",
+          "flags": [
+            {
+              "flag": "--category=<cat>",
+              "desc": "Category: workflow, style, project, hazard, other"
+            },
+            {
+              "flag": "--weight=<N>",
+              "desc": "Relevance weight 1-10 (default: 8)"
+            }
+          ]
+        },
+        {
+          "name": "list",
+          "desc": "List memories",
+          "flags": [
+            {
+              "flag": "--category=<cat>",
+              "desc": "Filter by category"
+            },
+            {
+              "flag": "--limit=<N>",
+              "desc": "Max results"
+            }
+          ]
+        },
+        {
+          "name": "remove",
+          "desc": "Remove a memory by ID"
+        },
+        {
+          "name": "edit",
+          "desc": "Edit a memory by ID"
+        },
+        {
+          "name": "search",
+          "desc": "Search memories",
+          "flags": [
+            {
+              "flag": "--category=<cat>",
+              "desc": "Filter by category"
+            },
+            {
+              "flag": "--limit=<N>",
+              "desc": "Max results (default: 10)"
+            }
+          ]
+        },
+        {
+          "name": "import",
+          "desc": "Import memories from JSON file"
+        },
+        {
+          "name": "export",
+          "desc": "Export memories to JSON file"
+        }
+      ]
+    },
+    {
+      "cmd": "agent",
+      "desc": "Machine-readable operational primitives for AI agents",
+      "category": "tooling",
+      "audience": "agent",
+      "subcommands": [
+        {
+          "name": "status",
+          "desc": "Show current state (human or JSON)",
+          "flags": [
+            {
+              "flag": "--json",
+              "desc": "Emit AgentStatus JSON"
+            }
+          ]
+        },
+        {
+          "name": "next-md",
+          "desc": "Generate AGENT_NEXT.md (current-state handoff)",
+          "flags": [
+            {
+              "flag": "--output=<path>",
+              "desc": "Write to a custom path (default: AGENT_NEXT.md)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "ticket",
+      "desc": "Per-ticket lifecycle commands",
+      "category": "lifecycle",
+      "audience": "agent",
+      "subcommands": [
+        {
+          "name": "done",
+          "desc": "Mark ticket complete; release claim",
+          "flags": [
+            {
+              "flag": "<key>",
+              "desc": "Ticket key (e.g. S1-1)"
+            },
+            {
+              "flag": "--commit=<sha>",
+              "desc": "Attach a specific commit SHA (default: HEAD)"
+            },
+            {
+              "flag": "--notes=<text>",
+              "desc": "Attach completion notes"
+            },
+            {
+              "flag": "--actor=<name>",
+              "desc": "Actor override for claim lookup"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "commit-ready",
+      "desc": "Pre-commit checklist for agents",
+      "category": "tooling",
+      "audience": "agent",
+      "flags": [
+        {
+          "flag": "--json",
+          "desc": "Emit CommitReadyResult JSON"
+        },
+        {
+          "flag": "--strict",
+          "desc": "Exit non-zero when blockers exist"
+        }
+      ]
+    },
+    {
+      "cmd": "gate",
+      "desc": "Initiative review gate aliases (agent-friendly)",
+      "category": "tooling",
+      "audience": "agent",
+      "subcommands": [
+        {
+          "name": "status",
+          "desc": "Pending plan/pr gates per sprint",
+          "flags": [
+            {
+              "flag": "--json",
+              "desc": "Emit pending list as JSON"
+            }
+          ]
+        },
+        {
+          "name": "checklist",
+          "desc": "Print review checklist",
+          "flags": [
+            {
+              "flag": "<gate>",
+              "desc": "plan | pr"
+            },
+            {
+              "flag": "<reviewer>",
+              "desc": "reviewer type (architect, code, security, etc.)"
+            }
+          ]
+        },
+        {
+          "name": "complete",
+          "desc": "Record a completed review",
+          "flags": [
+            {
+              "flag": "<gate>",
+              "desc": "plan | pr"
+            },
+            {
+              "flag": "<reviewer>",
+              "desc": "reviewer type"
+            },
+            {
+              "flag": "--sprint=N",
+              "desc": "Sprint number (required)"
+            },
+            {
+              "flag": "--findings=N",
+              "desc": "Number of findings (default: 0)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cmd": "pr",
+      "desc": "Pull request helpers (auto-close, finalize, closeout)",
+      "category": "tooling",
+      "audience": "agent",
+      "subcommands": [
+        {
+          "name": "finalize",
+          "desc": "Inject Closes #N for issue refs in commit messages (#321)",
+          "flags": [
+            {
+              "flag": "--pr=<N>",
+              "desc": "PR number (default: resolved from current branch)"
+            },
+            {
+              "flag": "--dry-run",
+              "desc": "Print plan without modifying the PR body"
+            }
+          ]
+        },
+        {
+          "name": "review",
+          "desc": "Run post-PR implementation review workflow",
+          "flags": [
+            {
+              "flag": "--pr=<N>",
+              "desc": "PR number (default: resolved from current branch)"
+            },
+            {
+              "flag": "--sprint=<N>",
+              "desc": "Sprint number for review context"
+            },
+            {
+              "flag": "--type=<type>",
+              "desc": "architect, code, or both"
+            }
+          ]
+        },
+        {
+          "name": "status",
+          "desc": "Check PR closeout readiness",
+          "flags": [
+            {
+              "flag": "--pr=<N>",
+              "desc": "PR number (default: resolved from current branch)"
+            },
+            {
+              "flag": "--sprint=<N>",
+              "desc": "Sprint number for scorecard/review checks"
+            }
+          ]
+        },
+        {
+          "name": "issues",
+          "desc": "Print extracted issue refs from the branch commits"
         }
       ]
     }
@@ -1786,14 +2590,14 @@
     },
     {
       "name": "claim-required",
-      "description": "Warn when editing code without an active sprint claim",
+      "description": "Require sprint/claim workflow for implementation writes",
       "hookEvent": "PreToolUse",
       "toolCategories": [
         "write_file"
       ],
       "matcher": "Edit|Write",
       "level": "full",
-      "guardType": "advisory"
+      "guardType": "mixed"
     },
     {
       "name": "post-push",
@@ -1828,6 +2632,24 @@
         "enter_worktree"
       ],
       "matcher": "EnterWorktree",
+      "level": "full",
+      "guardType": "advisory"
+    },
+    {
+      "name": "roadmap-edit-shipped",
+      "description": "Block edits to roadmap.json that modify sprints with status:complete (paper-tickets)",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "write_file"
+      ],
+      "matcher": "Edit|Write",
+      "level": "full",
+      "guardType": "mechanical"
+    },
+    {
+      "name": "post-hole-enforcement",
+      "description": "Surface shipped sprints missing scorecards or roadmap status:complete at session end (advisory; set SLOPE_POST_HOLE_BLOCK=1 to block instead)",
+      "hookEvent": "Stop",
       "level": "full",
       "guardType": "advisory"
     }
@@ -2964,203 +3786,629 @@
     "status": "success",
     "entries": [
       {
-        "version": "Unreleased",
-        "date": "2026-04-04",
+        "version": "v1.61.0",
+        "date": "2026-07-10",
         "changes": [
           {
             "type": "chore",
-            "description": "bump version to 1.49.0 (#273)",
+            "description": "bump version to 1.61.0 (#588)",
             "breaking": false,
-            "hash": "6c315d760c64c37f327fa0d9ec775411bf42dead"
+            "hash": "40c1f3f3869caef6e259545957cbdb9a6654ce3c"
           },
           {
-            "type": "feat",
-            "scope": "S82",
-            "description": "testing polish — Pi/OpenCode integration tests + essential guard tier (#272)",
+            "type": "docs",
+            "scope": "S232",
+            "description": "close roadmap federation dogfood",
             "breaking": false,
-            "hash": "0b7107bddfb54b50044b77e71927c6aff2331789"
-          }
-        ]
-      },
-      {
-        "version": "v1.48.1",
-        "date": "2026-04-04",
-        "changes": [
+            "hash": "1c748eb7dce733df59cf678816dab17c4e63b428"
+          },
           {
-            "type": "chore",
-            "description": "bump version to 1.48.1 (#271)",
+            "type": "docs",
+            "scope": "S232-4",
+            "description": "record audited dogfood rollover",
             "breaking": false,
-            "hash": "03788bcd201719a5f62a75ae4e0528e9b63a0de6"
+            "hash": "43f58d468c72e4959b6f2b0d6f3aa4db78900c40"
+          },
+          {
+            "type": "docs",
+            "scope": "S232-3",
+            "description": "route sprint skills through focused context",
+            "breaking": false,
+            "hash": "49462f526ffc302005c6e21e856b0b2d7e3f0cf0"
+          },
+          {
+            "type": "fix",
+            "scope": "S232-2",
+            "description": "isolate legacy issue arrays",
+            "breaking": false,
+            "hash": "1475549c6e0bbb1f5a0ae56780ad9c5e1976dfa0"
           },
           {
             "type": "test",
-            "description": "add Codex CLI adapter tests (18 tests) (#269)",
+            "scope": "S232-2",
+            "description": "preserve legacy issue evidence",
             "breaking": false,
-            "hash": "d7f89d804a567de6cfef6a7ba8259bddf93ddeb6"
-          }
-        ]
-      },
-      {
-        "version": "v1.48.0",
-        "date": "2026-04-04",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.48.0 (#268)",
-            "breaking": false,
-            "hash": "fef679fe63d3ca28430ff83f2caabd19dec7d26b"
-          },
-          {
-            "type": "feat",
-            "scope": "S81",
-            "description": "universal adapter — Codex CLI, OpenCode, cross-agent support (#267)",
-            "breaking": false,
-            "hash": "eced249493ee54afadfdea875cc2f3fb518aef08"
-          }
-        ]
-      },
-      {
-        "version": "v1.47.2",
-        "date": "2026-04-04",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.47.2 (#266)",
-            "breaking": false,
-            "hash": "2c5a7afadf31407a931daab4c8ae608473b6488c"
+            "hash": "f3c686037bc16da8f21e72987102f848fe5c0821"
           },
           {
             "type": "fix",
-            "description": "scorecard scoring, stop hook loop, guard noise (#262, #264, #263) (#265)",
+            "scope": "S232-3",
+            "description": "discover sprint before focused context",
             "breaking": false,
-            "hash": "5a8e95a43d7361700fb4d38caf004219e18c7e8b"
-          }
-        ]
-      },
-      {
-        "version": "v1.47.1",
-        "date": "2026-04-01",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.47.1 (#261)",
-            "breaking": false,
-            "hash": "0858ed75201797f8f16d3d14a973db6c5e1d5b7d"
+            "hash": "2193660fdfaa005fafdc3839d608cf7a4fc00369"
           },
           {
             "type": "fix",
-            "description": "add README.md to package.json files array for npm display (#260)",
+            "scope": "S232-2",
+            "description": "preserve pre-federation compatibility",
             "breaking": false,
-            "hash": "68031c1d69895cb1bb3052666fec4236db30c55a"
-          }
-        ]
-      },
-      {
-        "version": "v1.47.0",
-        "date": "2026-04-01",
-        "changes": [
+            "hash": "13286b316b4affeae4a19a352317211a1e1d39d0"
+          },
           {
-            "type": "chore",
-            "description": "bump version to 1.47.0 (#259)",
+            "type": "docs",
+            "scope": "S232-3",
+            "description": "route agents through focused roadmap sources",
             "breaking": false,
-            "hash": "5fe24e8a3e9560759680eb2520d14d9cb7ac6232"
+            "hash": "cd267b4c1518dd18cc2cda63d4b080a065da8892"
+          },
+          {
+            "type": "test",
+            "scope": "S232-2",
+            "description": "lock source projection fidelity",
+            "breaking": false,
+            "hash": "376037834d03d673824e4ea69c28daabd44b1b34"
           },
           {
             "type": "feat",
-            "description": "pi.dev extension + cross-agent skills scaffolding (#258)",
+            "scope": "S232-1",
+            "description": "federate SLOPE roadmap sources",
             "breaking": false,
-            "hash": "747188138f147442500d7f39134bb3c46541359b"
-          }
-        ]
-      },
-      {
-        "version": "v1.46.1",
-        "date": "2026-03-30",
-        "changes": [
+            "hash": "1dc4121f8d2b9e3076639d2216cf5f540649a0dc"
+          },
           {
-            "type": "chore",
-            "description": "bump version to 1.46.1 (#257)",
+            "type": "docs",
+            "scope": "S231",
+            "description": "close audited rollover sprint",
             "breaking": false,
-            "hash": "753acbe3d4e8a3b84dbee02c6f46e7656ef75ba5"
+            "hash": "2fd935d71af73c8f3b55e1ed522e29942104ff09"
           },
           {
             "type": "fix",
-            "description": "stop-check guard — worktree merge ancestors + untracked files (#255) (#256)",
+            "scope": "S231-4",
+            "description": "enforce durable rollover lineage",
             "breaking": false,
-            "hash": "d5fb91459c1e50cd03f2b6a23a58543da2a8e198"
-          }
-        ]
-      },
-      {
-        "version": "v1.46.0",
-        "date": "2026-03-29",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.46.0 (#254)",
-            "breaking": false,
-            "hash": "792324cd00ac0c125e5180a0fda07aa5695d43f3"
-          },
-          {
-            "type": "feat",
-            "scope": "S80",
-            "description": "The Watchtower — worktree-aware guards (#249, #250, #251, #252) (#253)",
-            "breaking": false,
-            "hash": "32acc5bbe639cd11dd22a0f1b8c6fd45d568a9c2"
-          }
-        ]
-      },
-      {
-        "version": "v1.45.1",
-        "date": "2026-03-27",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.45.1 (#248)",
-            "breaking": false,
-            "hash": "a0a7dd0e33d688f323c4d03cfea0bcfdd3531919"
+            "hash": "95e49528ab5c2385a8cbae98aabe6be79ac424f1"
           },
           {
             "type": "fix",
-            "description": "stop hook suggestions non-blocking — don't interrupt background agents (#247)",
+            "scope": "S231-4",
+            "description": "preserve evolved rollover lineage",
             "breaking": false,
-            "hash": "2a17fb25c2974546e26c66175eece87f053ff0ff"
+            "hash": "660620966631680cce13eebe13c23dabbd94e944"
+          },
+          {
+            "type": "fix",
+            "scope": "S231-3",
+            "description": "close sprint rollover bypasses",
+            "breaking": false,
+            "hash": "f37e50dcac873ec899cd9339bed69703e34eedc0"
+          },
+          {
+            "type": "fix",
+            "scope": "S231-4",
+            "description": "harden rollover evidence boundaries",
+            "breaking": false,
+            "hash": "a1dda9a892417f3de500b338fd3eff510fd5e798"
+          },
+          {
+            "type": "fix",
+            "scope": "S231-2",
+            "description": "require rollover at sprint boundaries",
+            "breaking": false,
+            "hash": "26cebb41e781b00c53fe1823cb75ec3281ed16ae"
+          },
+          {
+            "type": "feat",
+            "scope": "S231-1",
+            "description": "add audited sprint rollover transaction",
+            "breaking": false,
+            "hash": "87415d33f5f5ca2a1326209c1995d2c1f6edb7ff"
+          },
+          {
+            "type": "docs",
+            "scope": "S230",
+            "description": "close replan-aware briefing sprint",
+            "breaking": false,
+            "hash": "22b780d55cb301c863f9853f67703030bff8dfbd"
+          },
+          {
+            "type": "fix",
+            "scope": "S230-3",
+            "description": "preserve dependency state hazards",
+            "breaking": false,
+            "hash": "bebe8816f0cecfbf91da80e192d005124ca29530"
+          },
+          {
+            "type": "fix",
+            "scope": "S230-3",
+            "description": "harden route premise relevance",
+            "breaking": false,
+            "hash": "07af96f6191ec2e115f4043a909291e10e611777"
+          },
+          {
+            "type": "fix",
+            "scope": "S230-3",
+            "description": "bound briefing dependency history",
+            "breaking": false,
+            "hash": "3a0df8549845f1a820317e285e73f498386bc2c7"
+          },
+          {
+            "type": "test",
+            "scope": "S230-4",
+            "description": "lock replanned hazard guidance",
+            "breaking": false,
+            "hash": "9ad645355f1e9936c13f43f49cd2f61ec0c2f80f"
+          },
+          {
+            "type": "feat",
+            "scope": "S230-1",
+            "description": "derive replan-aware briefing hazards",
+            "breaking": false,
+            "hash": "69605094a5fdd3fdc0df562c38e96be6a0ced4af"
+          },
+          {
+            "type": "docs",
+            "scope": "S229",
+            "description": "close modular roadmap federation sprint",
+            "breaking": false,
+            "hash": "62a11dfb5bb8fc4e8ef33f7e2ddf6c652743098b"
+          },
+          {
+            "type": "fix",
+            "scope": "S229-4",
+            "description": "harden modular roadmap trust boundaries",
+            "breaking": false,
+            "hash": "118b051d52c3b9ffc6cbcb9fd758d1c27ffc8829"
+          },
+          {
+            "type": "feat",
+            "scope": "S229-4",
+            "description": "archive modular roadmap phases safely",
+            "breaking": false,
+            "hash": "f090d695e4469374891f768de0faf3544ec1543b"
+          },
+          {
+            "type": "feat",
+            "scope": "S229-3",
+            "description": "validate modular roadmap federation",
+            "breaking": false,
+            "hash": "4ce7cbc2a93d1f0700d4488be45faeb7ce441b8f"
+          },
+          {
+            "type": "feat",
+            "scope": "S229-2",
+            "description": "compile modular roadmap sources",
+            "breaking": false,
+            "hash": "ccdef4dfadbf15d98e8aabd5435651aec3a66fc2"
+          },
+          {
+            "type": "feat",
+            "scope": "S229-1",
+            "description": "define modular roadmap source schema",
+            "breaking": false,
+            "hash": "68dadfc0fb3d05bfaeae7c3fa06a7fa00b2ef973"
+          },
+          {
+            "type": "docs",
+            "scope": "S228",
+            "description": "close focused roadmap context sprint",
+            "breaking": false,
+            "hash": "c2dc2d9ae7395b878a397204ab104d6739a8696e"
+          },
+          {
+            "type": "fix",
+            "scope": "S228-4",
+            "description": "preserve focused roadmap truth",
+            "breaking": false,
+            "hash": "e0433c9d0b0bba493c0e4b1d3b4c582f50f0e375"
+          },
+          {
+            "type": "test",
+            "scope": "S228-4",
+            "description": "lock bounded roadmap focus compatibility",
+            "breaking": false,
+            "hash": "6802954db6ba132aa4b850acac8cb327a5cb2c01"
+          },
+          {
+            "type": "feat",
+            "scope": "S228-3",
+            "description": "add bounded roadmap focus command",
+            "breaking": false,
+            "hash": "9d8f6c7598c5ab063bdfc018ef8b4db74298d4e5"
+          },
+          {
+            "type": "feat",
+            "scope": "S228-2",
+            "description": "build deterministic roadmap focus projection",
+            "breaking": false,
+            "hash": "67ae2a771f8c2f6dbfaa64787e354506841a3024"
+          },
+          {
+            "type": "feat",
+            "scope": "S228-1",
+            "description": "define bounded roadmap focus model",
+            "breaking": false,
+            "hash": "03a4a0d924ac93b66d530d363b2aef4c5282709e"
+          },
+          {
+            "type": "docs",
+            "scope": "S227",
+            "description": "close review output safety sprint",
+            "breaking": false,
+            "hash": "4775dad4545bbe4f02a3f9e93d0bb506a4cab25b"
+          },
+          {
+            "type": "fix",
+            "scope": "S227-2",
+            "description": "preserve sprint identity in review guards",
+            "breaking": false,
+            "hash": "f596bd09a5f2d08ded9521963ef9d0263d553fd6"
+          },
+          {
+            "type": "fix",
+            "scope": "S227-2",
+            "description": "scope review output consumers",
+            "breaking": false,
+            "hash": "ed897f4d975ece2d2638fea22c99aae91265e1f6"
+          },
+          {
+            "type": "fix",
+            "scope": "S227-1",
+            "description": "require explicit retrospective selection",
+            "breaking": false,
+            "hash": "7e108d8c5195804917a5eb167295ecc1e0f81c0c"
+          },
+          {
+            "type": "docs",
+            "scope": "S226",
+            "description": "close workflow and scorecard contract sprint",
+            "breaking": false,
+            "hash": "c8160360ee50c7a86303016ea8372aca59fc9672"
+          },
+          {
+            "type": "test",
+            "scope": "S226-2",
+            "description": "assert zero-count failure at phase transition",
+            "breaking": false,
+            "hash": "104193e56d5aebcd006214e88d1a8879559b5693"
+          },
+          {
+            "type": "fix",
+            "scope": "S226-2",
+            "description": "reject empty numeric ticket loops",
+            "breaking": false,
+            "hash": "3e3d3ae297f36f170bdea1aa7f639b0b7408c636"
+          },
+          {
+            "type": "fix",
+            "scope": "S226-4",
+            "description": "align MCP scorecard defaults with par",
+            "breaking": false,
+            "hash": "91e94e7ef43482fb405cd13eca278a0e00e2799a"
+          },
+          {
+            "type": "fix",
+            "scope": "S226-3",
+            "description": "normalize scorecard builder inputs",
+            "breaking": false,
+            "hash": "0afc3c525035a0859dc9a1376d33f2d156bc9cd8"
+          },
+          {
+            "type": "fix",
+            "scope": "S226-2",
+            "description": "size ticket loops from numeric counts",
+            "breaking": false,
+            "hash": "dff53b49789319bf8615265b0c8bf8925f5c36e9"
+          },
+          {
+            "type": "fix",
+            "scope": "S226-1",
+            "description": "make workflow ticket defaults deterministic",
+            "breaking": false,
+            "hash": "a675e120c2026cc079df307c4f3dd0953ca1f296"
+          },
+          {
+            "type": "docs",
+            "scope": "S224",
+            "description": "close review and guard honesty sprint",
+            "breaking": false,
+            "hash": "5d62a59cb9d24fa5d49749f4fc4e34e497e4ff3b"
+          },
+          {
+            "type": "fix",
+            "scope": "S224-4",
+            "description": "suppress stale ticket start after review decision",
+            "breaking": false,
+            "hash": "70fd066b2c9ecb66ac10406106b8b284407c4c9d"
+          },
+          {
+            "type": "feat",
+            "scope": "S224-4",
+            "description": "surface review downgrade next actions",
+            "breaking": false,
+            "hash": "eab397f826ff1ab7ca13f835bb32bcb1e77643b6"
+          },
+          {
+            "type": "feat",
+            "scope": "S224-3",
+            "description": "require explicit independent review waivers",
+            "breaking": false,
+            "hash": "ce4abd6c48436a4371077e3b7a96b04ea11e692c"
+          },
+          {
+            "type": "fix",
+            "scope": "S224-2",
+            "description": "separate claims from host permissions",
+            "breaking": false,
+            "hash": "18e8ab006522a614eca3ab942679d602074163b6"
+          },
+          {
+            "type": "fix",
+            "scope": "S224-1",
+            "description": "label non-blocking guard advisories",
+            "breaking": false,
+            "hash": "5147f71e86da966df2a1d02501d6c99c256c7c15"
+          },
+          {
+            "type": "docs",
+            "scope": "roadmap",
+            "description": "triage July trust recovery issues",
+            "breaking": false,
+            "hash": "a3827dec2999a8bd8d3ab330fc030c0f1b7a25a6"
+          },
+          {
+            "type": "docs",
+            "scope": "S223",
+            "description": "close agent dx trust polish sprint",
+            "breaking": false,
+            "hash": "f6d8f8e9440c83498d7f77da6c69390e6bef2f41"
+          },
+          {
+            "type": "fix",
+            "scope": "S223-3",
+            "description": "respect skipped planned roadmap sprint",
+            "breaking": false,
+            "hash": "fe406cb4df202342d698f428f66170e69d809252"
+          },
+          {
+            "type": "fix",
+            "scope": "S223-2",
+            "description": "polish next command help and date output",
+            "breaking": false,
+            "hash": "d35ca1e674f77934f1d5d819a8df8f893ba13e18"
+          },
+          {
+            "type": "fix",
+            "scope": "S223-1",
+            "description": "scope claim-required to project root",
+            "breaking": false,
+            "hash": "074d7e53bb1e9f9b0ecbcb1aba93ae2a8b8f0317"
+          },
+          {
+            "type": "docs",
+            "scope": "S223",
+            "description": "plan agent dx trust polish sprint",
+            "breaking": false,
+            "hash": "b8b1d13fe62b61cfa7540b969d16143b5c9fc3c9"
           }
         ]
       },
       {
-        "version": "v1.45.0",
-        "date": "2026-03-27",
+        "version": "v1.60.0",
+        "date": "2026-06-27",
         "changes": [
           {
-            "type": "chore",
-            "description": "bump version to 1.45.0 (#246)",
+            "type": "other",
+            "description": "Release v1.60.0 recovery train",
             "breaking": false,
-            "hash": "8dfff0e22cae6ee8a8a19ba4025c934c59c27e05"
+            "hash": "dd00f73294ca9edbb80b0b34937d483e730ad89e"
           },
           {
-            "type": "feat",
-            "description": "token budget cap + CODEBASE.md regen (#245)",
+            "type": "fix",
+            "scope": "S154",
+            "description": "roadmap and sprint status integrity",
             "breaking": false,
-            "hash": "8cec5107b379677f831b37b04f7e019190ea92fc"
+            "hash": "034869283a345779528f81b4ecde7d4b9e41479e"
+          },
+          {
+            "type": "fix",
+            "scope": "S153",
+            "description": "use slope evidence for version recommend",
+            "breaking": false,
+            "hash": "5265473fc963335df4811fca761fc1e477b52b2b"
+          },
+          {
+            "type": "docs",
+            "scope": "roadmap",
+            "description": "triage issue recovery sprints",
+            "breaking": false,
+            "hash": "f588ba6254c1c40d1639e5419f3c0d3b9a596e0c"
           }
         ]
       },
       {
-        "version": "v1.44.1",
-        "date": "2026-03-27",
+        "version": "v1.59.2",
+        "date": "2026-06-17",
         "changes": [
           {
             "type": "chore",
-            "description": "bump version to 1.44.1 (#244)",
+            "scope": "release",
+            "description": "bump version to 1.59.2",
             "breaking": false,
-            "hash": "26c0580cf9a239f33d64069f90f791292c107e61"
+            "hash": "e8b32f57884db868c4acaac22bdd5da6d70685a3"
           },
           {
-            "type": "feat",
-            "description": "context compression v2 — dedup explore + commit-nudge guards (#243)",
+            "type": "fix",
+            "scope": "codex-plugin",
+            "description": "normalize hook dispatchers",
             "breaking": false,
-            "hash": "80cb266fb33b1591547fcf4807a3e3496b746b57"
+            "hash": "8663cb3d363fd237d434af49147d2b4744d50487"
+          }
+        ]
+      },
+      {
+        "version": "v1.59.1",
+        "date": "2026-06-15",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.59.1",
+            "breaking": false,
+            "hash": "91291e237226b6c487c59180a6b524c70f29dcb3"
+          },
+          {
+            "type": "fix",
+            "description": "surface roadmap interview across harnesses",
+            "breaking": false,
+            "hash": "e56bbec51a20e8cf3c208587c25637aa5a434c23"
+          },
+          {
+            "type": "docs",
+            "scope": "S152",
+            "description": "record v1.59.0 release closeout",
+            "breaking": false,
+            "hash": "aa84f7b256a4bc8e7537dadd712ef6168d11c882"
+          }
+        ]
+      },
+      {
+        "version": "v1.59.0",
+        "date": "2026-06-08",
+        "changes": [
+          {
+            "type": "other",
+            "description": "Release v1.59.0",
+            "breaking": false,
+            "hash": "006f777e81be5cd2109bd40e0f979c6cdfeca646"
+          },
+          {
+            "type": "other",
+            "description": "Harden Windows git-backed test timing (#548)",
+            "breaking": false,
+            "hash": "fe589ef829a564767f819223636e5f6d8a44cb70"
+          },
+          {
+            "type": "other",
+            "description": "S151: add skill-first human cockpit commands (#545)",
+            "breaking": false,
+            "hash": "05f17aaa59e66487cf2532c07bc3545653c03eab"
+          },
+          {
+            "type": "other",
+            "description": "S150: add command audiences and bounded help (#543)",
+            "breaking": false,
+            "hash": "6ce86016605b354250542ef4f290253f78fe33aa"
+          },
+          {
+            "type": "other",
+            "description": "S149: repair roadmap signal and compact status view (#542)",
+            "breaking": false,
+            "hash": "7be44a2c7502baf456526079b7136fb94b87f6ae"
+          },
+          {
+            "type": "docs",
+            "scope": "S148",
+            "description": "plan human operating surface simplification",
+            "breaking": false,
+            "hash": "0ba59bd96e680db9749afae806807cd42c700445"
+          }
+        ]
+      },
+      {
+        "version": "v1.58.5",
+        "date": "2026-06-08",
+        "changes": [
+          {
+            "type": "chore",
+            "scope": "S146.5-release",
+            "description": "bump version to 1.58.5",
+            "breaking": false,
+            "hash": "e494cabae9680ddf60efcfaf7cccec2be2d142ba"
+          },
+          {
+            "type": "fix",
+            "scope": "roadmap",
+            "description": "validate sparse canonical sprint ids and terminal statuses",
+            "breaking": false,
+            "hash": "8ea23b4f0678b125e5e0fd31decbf7084adc75c8"
+          }
+        ]
+      },
+      {
+        "version": "v1.58.4",
+        "date": "2026-06-08",
+        "changes": [
+          {
+            "type": "chore",
+            "scope": "S146.4-release",
+            "description": "bump version to 1.58.4",
+            "breaking": false,
+            "hash": "4cf34df93a68570125190ee278c927a6c8a96f4d"
+          },
+          {
+            "type": "fix",
+            "scope": "S147-533",
+            "description": "tolerate roadmap sprints without tickets",
+            "breaking": false,
+            "hash": "400b422a2bca58dbc4c284a3c1d52fec6bd4e2bf"
+          }
+        ]
+      },
+      {
+        "version": "v1.58.3",
+        "date": "2026-06-07",
+        "changes": [
+          {
+            "type": "fix",
+            "description": "scope workflow step gate execution (#532)",
+            "breaking": false,
+            "hash": "6c316c0325398caaa00e4c1bb5d3631056fa3092"
+          }
+        ]
+      },
+      {
+        "version": "v1.58.2",
+        "date": "2026-06-07",
+        "changes": [
+          {
+            "type": "fix",
+            "description": "allow decimal post-merge retros (#530)",
+            "breaking": false,
+            "hash": "a3b188b3a926708c74c25a48d43995f8e644f340"
+          }
+        ]
+      },
+      {
+        "version": "v1.58.1",
+        "date": "2026-06-07",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "cut v1.58.1 release (#527)",
+            "breaking": false,
+            "hash": "81567930d219c53942907611308b062f8b46bdb9"
+          },
+          {
+            "type": "fix",
+            "description": "clean roadmap hygiene and decimal sprint artifacts (#523)",
+            "breaking": false,
+            "hash": "48c0cdb52d0531a24835e9ec4271cdd9ad912e94"
+          },
+          {
+            "type": "fix",
+            "description": "repair validation signal false positives (#521)",
+            "breaking": false,
+            "hash": "fbcee82a0a5c632c77b1aa40a4740795a9173a9f"
           }
         ]
       }
