@@ -1,15 +1,15 @@
 {
-  "version": "1.61.0",
-  "generatedAt": "2026-07-10T16:25:07.038Z",
-  "gitSha": "40c1f3f3869caef6e259545957cbdb9a6654ce3c",
+  "version": "2.0.0",
+  "generatedAt": "2026-07-28T22:57:37.356Z",
+  "gitSha": "9b0fb65537872864a5a44296bda35427c00c51c3",
   "checksums": {
-    "commands": "3ae22e2fb903b0c9281a8f27e1b6619966eee6011614e0de0a1982c06725b1ae",
-    "guards": "781559bd40817bd019ea95d5303f8471c5be60f528134ab113168e371b77bae9",
-    "mcpTools": "b0c415a0e33f6e15afb4d68d60c131dff5de70b344f994c7fd5a3d21593d1753",
+    "commands": "86672a0899b1185e4308f6c84c50dfae6b8fa6526af0de57f4d5cf9005bcb993",
+    "guards": "c2d34c6fc6d449e0dd65674a630e413a7f77f870ff0d350c92a9b963c3e83e05",
+    "mcpTools": "015b8381aae78c0fc1089a87fbaa4a4e43ffef01ac5b4bde96a9c3f75157f59e",
     "metaphors": "fbf85ac929a8738df5d6e26262029e4a1a1495eac6acd3c0316073f3bf1795f0",
     "roles": "ad096c5377dd772f8d1ecc7f4868196bf1045cd606b97eda368da4e6bd9dd102",
     "constants": "107d1a94e19454050bf16f8e246678fcb6b93044186a71b8acf6481c14a92569",
-    "changelog": "f99af254c94601a1f3a57330b5820d626bc8be85420bd0db8e6c540348c413ef"
+    "changelog": "1f0e088965038d8923a8e6b90ef534347a0fba799b58f53b4ac9319c43ede7b4"
   },
   "commands": [
     {
@@ -501,6 +501,10 @@
         {
           "flag": "--skills",
           "desc": "Check scorecard skill references against .slope/skills.json"
+        },
+        {
+          "flag": "--read-only",
+          "desc": "Validate without marking gates or reconciling roadmap sources"
         }
       ]
     },
@@ -583,12 +587,50 @@
               "desc": "Output as JSON for programmatic use"
             }
           ]
+        },
+        {
+          "name": "packet",
+          "desc": "Generate bounded review packet evidence",
+          "flags": [
+            {
+              "flag": "--lane=<lane>",
+              "desc": "Review lane: architect, code, security, ux, or ml-engineer"
+            },
+            {
+              "flag": "--sprint=<N>",
+              "desc": "Sprint number"
+            },
+            {
+              "flag": "--base=<sha>",
+              "desc": "Base commit for full review packet"
+            },
+            {
+              "flag": "--head=<sha>",
+              "desc": "Head commit for review packet"
+            },
+            {
+              "flag": "--rereview-from=<sha>",
+              "desc": "Create a delta-only re-review packet from this reviewed commit"
+            },
+            {
+              "flag": "--budget-tier=<tier>",
+              "desc": "focused, standard, deep, or exceptional"
+            },
+            {
+              "flag": "--exclude-path=<glob>",
+              "desc": "Exclude changed paths from the packet (repeatable)"
+            }
+          ]
         }
       ],
       "flags": [
         {
           "flag": "--metaphor=<id>",
           "desc": "Display theme override"
+        },
+        {
+          "flag": "--force",
+          "desc": "Overwrite an existing review that lacks the slope generation marker"
         },
         {
           "flag": "<path>",
@@ -1277,6 +1319,20 @@
           ]
         },
         {
+          "name": "migrate status",
+          "desc": "Open the store and show its schema version"
+        },
+        {
+          "name": "migrate doctor",
+          "desc": "Inspect migration readiness without changing the store",
+          "flags": [
+            {
+              "flag": "--json",
+              "desc": "Output as JSON"
+            }
+          ]
+        },
+        {
           "name": "backup",
           "desc": "Back up the store",
           "flags": [
@@ -1421,6 +1477,28 @@
           ]
         },
         {
+          "name": "migrate",
+          "desc": "Plan or apply transactional single-file federation migration",
+          "flags": [
+            {
+              "flag": "--path=<file>",
+              "desc": "Source roadmap (must match configured roadmapPath)"
+            },
+            {
+              "flag": "--source=<file>",
+              "desc": "Project manifest (default: docs/roadmap/project.yaml)"
+            },
+            {
+              "flag": "--mapping=<file>",
+              "desc": "Explicit ownership and legacy repair mapping"
+            },
+            {
+              "flag": "--dry-run",
+              "desc": "Print diagnostics and mapping template without writing"
+            }
+          ]
+        },
+        {
           "name": "compile",
           "desc": "Compile modular YAML sources to the compatibility roadmap",
           "flags": [
@@ -1435,6 +1513,28 @@
             {
               "flag": "--check",
               "desc": "Fail when the compatibility projection has drifted"
+            }
+          ]
+        },
+        {
+          "name": "complete",
+          "desc": "Mark a modular source sprint complete and compile projection",
+          "flags": [
+            {
+              "flag": "--sprint=<N>",
+              "desc": "Sprint number (required)"
+            },
+            {
+              "flag": "--source=<file>",
+              "desc": "Project manifest (default: docs/roadmap/project.yaml)"
+            },
+            {
+              "flag": "--scorecard=<path>",
+              "desc": "Override scorecard path recorded in source YAML"
+            },
+            {
+              "flag": "--dry-run",
+              "desc": "Preview source/projection changes without writing"
             }
           ]
         },
@@ -2388,6 +2488,17 @@
       "guardType": "advisory"
     },
     {
+      "name": "shell-write",
+      "description": "Warn when file content is written through a shell instead of the Write/Edit tools",
+      "hookEvent": "PreToolUse",
+      "toolCategories": [
+        "execute_command"
+      ],
+      "matcher": "Bash",
+      "level": "full",
+      "guardType": "advisory"
+    },
+    {
       "name": "compaction",
       "description": "Extract events before context compaction",
       "hookEvent": "PreCompact",
@@ -2719,25 +2830,34 @@
       "desc": "Claim a ticket or area for the current sprint",
       "params": [
         {
+          "name": "sessionId",
+          "type": "string",
+          "desc": "Session ID to associate with the claim",
+          "required": true
+        },
+        {
           "name": "target",
           "type": "string",
-          "desc": "File or directory to claim",
+          "desc": "Ticket key or area path to claim",
           "required": true
         },
         {
           "name": "scope",
-          "type": "string",
-          "desc": "Claim scope (file, directory, module, ticket)"
+          "type": "\"ticket\" | \"area\"",
+          "desc": "Claim scope",
+          "required": true
         },
         {
-          "name": "ticket",
-          "type": "string",
-          "desc": "Ticket key (e.g. S48-1)"
+          "name": "sprintNumber",
+          "type": "string | number",
+          "desc": "Canonical sprint ID; legacy numbers accepted",
+          "required": true
         },
         {
-          "name": "sprint",
-          "type": "number",
-          "desc": "Sprint number"
+          "name": "player",
+          "type": "string",
+          "desc": "Player name",
+          "required": true
         }
       ],
       "requiresStore": true
@@ -2747,9 +2867,9 @@
       "desc": "Detect overlapping and adjacent conflicts among active claims",
       "params": [
         {
-          "name": "sprint",
-          "type": "number",
-          "desc": "Filter to a specific sprint"
+          "name": "sprintNumber",
+          "type": "string | number",
+          "desc": "Canonical sprint ID filter; legacy numbers accepted"
         }
       ],
       "requiresStore": true
@@ -2771,8 +2891,8 @@
         },
         {
           "name": "sprint",
-          "type": "number",
-          "desc": "Sprint number"
+          "type": "string | number",
+          "desc": "Canonical sprint ID; legacy numbers accepted"
         }
       ],
       "requiresStore": true
@@ -3786,6 +3906,736 @@
     "status": "success",
     "entries": [
       {
+        "version": "v2.0.0",
+        "date": "2026-07-28",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 2.0.0 (#682)",
+            "breaking": false,
+            "hash": "9b0fb65537872864a5a44296bda35427c00c51c3"
+          },
+          {
+            "type": "feat",
+            "scope": "S267",
+            "description": "prepare sprint ID 2.0 release train (#681)",
+            "breaking": false,
+            "hash": "8a2ec743bd86f7252f5022ce1a6c47830662c9c3"
+          },
+          {
+            "type": "feat",
+            "scope": "S266",
+            "description": "canonicalize sprint identity APIs (#680)",
+            "breaking": false,
+            "hash": "397734f260692386ad0d9320efd5ea0dd8b730aa"
+          },
+          {
+            "type": "feat",
+            "description": "store canonical sprint IDs (#679)",
+            "breaking": false,
+            "hash": "c9a0853c12c88728fe10ea4c87a7fc2a8d7c96a8"
+          },
+          {
+            "type": "docs",
+            "scope": "S264.2",
+            "description": "define collaboration workflow contract (#678)",
+            "breaking": false,
+            "hash": "bd140617a11a38f393eb9bb90ea0d7b2651ad243"
+          },
+          {
+            "type": "docs",
+            "scope": "S264.1",
+            "description": "define coordination integrity contract (#677)",
+            "breaking": false,
+            "hash": "31daa52852250e1b6120d2b3a13aa5cabeb2de85"
+          },
+          {
+            "type": "docs",
+            "scope": "S264",
+            "description": "define Team Round domain contract (#676)",
+            "breaking": false,
+            "hash": "d50e2ead931c55864310dad6caa4180daee587c2"
+          },
+          {
+            "type": "fix",
+            "scope": "S263",
+            "description": "recover workflow execution scope (#675)",
+            "breaking": false,
+            "hash": "a6ae77804e52b69d9a93ff3eade30178db8c7cc1"
+          },
+          {
+            "type": "fix",
+            "scope": "S262",
+            "description": "make session and sprint status truthful (#674)",
+            "breaking": false,
+            "hash": "133626ba22c0ac514502f856fd465ac7c29e7748"
+          },
+          {
+            "type": "fix",
+            "scope": "S261",
+            "description": "unify worktree coordination state (#672)",
+            "breaking": false,
+            "hash": "0a0d9a056fc7d7297763ed6decd5269e9cb0e90f"
+          },
+          {
+            "type": "docs",
+            "scope": "S260.1",
+            "description": "incorporate Buzz multiplayer lessons into roadmap (#671)",
+            "breaking": false,
+            "hash": "92878bdbcbfd645f0f4441782bb872784505f6d6"
+          },
+          {
+            "type": "docs",
+            "scope": "S260",
+            "description": "triage late-July issue batch",
+            "breaking": false,
+            "hash": "b9f43452f2c3f86e676215a46782062fa46b5fde"
+          }
+        ]
+      },
+      {
+        "version": "v1.64.1",
+        "date": "2026-07-25",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.64.1 (#662)",
+            "breaking": false,
+            "hash": "87d720f0f6a6209c1e07e7b9f04fae8bcd968827"
+          },
+          {
+            "type": "fix",
+            "scope": "S259",
+            "description": "reconciliation status safety — stop rewriting authored sprint status from scorecards (#660) (#661)",
+            "breaking": false,
+            "hash": "7db08fcb2d2f92663ee84dba524ae8257f9c76de"
+          }
+        ]
+      },
+      {
+        "version": "v1.64.0",
+        "date": "2026-07-25",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.64.0 (#658)",
+            "breaking": false,
+            "hash": "5c7882360cac34de32ad2b0a87d12964ec501526"
+          },
+          {
+            "type": "docs",
+            "scope": "S258",
+            "description": "close Phase 60 with scorecard and review",
+            "breaking": false,
+            "hash": "a287efd6d0466709cb4a59d2e19f671a3bf44b53"
+          },
+          {
+            "type": "feat",
+            "scope": "S258-4,S258-5",
+            "description": "canonical scorecard paths, quote-to-preserve hint, string deps (#635)",
+            "breaking": false,
+            "hash": "769fba95f619820d1c2d9626de8d8364320fe20e"
+          },
+          {
+            "type": "feat",
+            "scope": "S258-2,S258-3",
+            "description": "accept and preserve canonical sprint ids through compile (#635)",
+            "breaking": false,
+            "hash": "9e80b7effb119ac7405217c5c5a58a0ddd5830d7"
+          },
+          {
+            "type": "feat",
+            "scope": "S258-1",
+            "description": "add a canonical sprint-id module preserving the exact suffix (#635)",
+            "breaking": false,
+            "hash": "d85045bb8a1d806af991767177b0a51c84ec7a96"
+          },
+          {
+            "type": "docs",
+            "scope": "S256",
+            "description": "close Phase 59 with scorecard and review",
+            "breaking": false,
+            "hash": "2a6a4acb98fbf2afafe04888d2a06a22da8e2024"
+          },
+          {
+            "type": "chore",
+            "scope": "S256",
+            "description": "gitignore .codex, consolidate claim-area matching, pin the no-ask invariant",
+            "breaking": false,
+            "hash": "43738a21ee16b0747a5e1c843ffced398df939c5"
+          },
+          {
+            "type": "chore",
+            "description": "normalize line endings to LF via .gitattributes (#655)",
+            "breaking": false,
+            "hash": "8b30eb341abecf04beed1d512c27f8cacc9e4fee"
+          },
+          {
+            "type": "docs",
+            "scope": "S254",
+            "description": "close Phase 58 with scorecard and review",
+            "breaking": false,
+            "hash": "dff35ce3ba2d1bf009f00025907e2f2ed27cd8e3"
+          },
+          {
+            "type": "feat",
+            "scope": "S254",
+            "description": "add a shell-write guard, and stop treating phase renames as content loss",
+            "breaking": false,
+            "hash": "45ccc28ba13338ff56ba4dc0d51586a66792bbb0"
+          },
+          {
+            "type": "fix",
+            "scope": "S254",
+            "description": "stop asking the operator to approve an agent-actionable fix (#650)",
+            "breaking": false,
+            "hash": "ba522b7870a822369cd4b4fbdd7807e8b53a6cb2"
+          },
+          {
+            "type": "docs",
+            "description": "never write file content through a shell (#653)",
+            "breaking": false,
+            "hash": "8ca8e67e3d43cc9863d72fa63fa456847b427727"
+          },
+          {
+            "type": "docs",
+            "scope": "S252,S253",
+            "description": "close Phase 57 with scorecards and reviews",
+            "breaking": false,
+            "hash": "905a39235c2ce9c922a4e816113db006053e68ef"
+          },
+          {
+            "type": "fix",
+            "scope": "S253",
+            "description": "name the failing audit field, and surface stacked-PR rules at creation (#646, #648)",
+            "breaking": false,
+            "hash": "ae255893ed0a505ef5a9b5f58d972d2112334dcd"
+          },
+          {
+            "type": "fix",
+            "scope": "S253",
+            "description": "make a whole-repo claim cover the repo, and stay silent when out of budget (#651)",
+            "breaking": false,
+            "hash": "f7a64ed989759db4193ef05c4a1f02ccddd8064e"
+          },
+          {
+            "type": "fix",
+            "scope": "S252",
+            "description": "reject sprint ids that cannot round-trip through a number (#635)",
+            "breaking": false,
+            "hash": "f1045b9607026085e0fe0fc90c3422363140bf3b"
+          },
+          {
+            "type": "chore",
+            "scope": "S252",
+            "description": "drop the unwired sprint-id ambiguity helper",
+            "breaking": false,
+            "hash": "d80100d5aeac814d7b0629dc2e6e1ec86cc1f96d"
+          },
+          {
+            "type": "docs",
+            "scope": "S252",
+            "description": "add a sprint state gate before implementation writes (#650)",
+            "breaking": false,
+            "hash": "69e537674db105080acaef3c299f3868b3c0ed25"
+          },
+          {
+            "type": "fix",
+            "scope": "S252",
+            "description": "hash rollover evidence with normalized line endings (#649)",
+            "breaking": false,
+            "hash": "9c6b38559e09a6b9d087649592de5c22bd988d8e"
+          },
+          {
+            "type": "other",
+            "description": "S246: Session and worktree isolation — end the worktree deadlock (#630, #631, #625, #624) (#638)",
+            "breaking": false,
+            "hash": "3226c881814c087f26a08cc6689fd6c927d09d24"
+          },
+          {
+            "type": "fix",
+            "scope": "S249",
+            "description": "drop workflow pnpm version pins now that packageManager is set (#645)",
+            "breaking": false,
+            "hash": "97d630b85eca4f897f2eae88b64567da68fbc909"
+          },
+          {
+            "type": "fix",
+            "scope": "S250",
+            "description": "make rollover audit expected_next optional (#646)",
+            "breaking": false,
+            "hash": "2b322fc5c19396f290a04f98719f0716bfd6ebab"
+          },
+          {
+            "type": "fix",
+            "scope": "S250",
+            "description": "stop requiring a pending successor for an explicit rollover target (#641)",
+            "breaking": false,
+            "hash": "53210e53dcfb5c20b9c336620525a5b0ce0a1893"
+          },
+          {
+            "type": "fix",
+            "scope": "S251",
+            "description": "mark the generated projection and add read-only validate (#644)",
+            "breaking": false,
+            "hash": "528dd87df7b47fa2dc005fe83bd14b2ea07b5d8a"
+          },
+          {
+            "type": "fix",
+            "scope": "S250",
+            "description": "unblock phase closeout and make claim state inspectable (#641, #642)",
+            "breaking": false,
+            "hash": "c976f4fbae27ed275b5be0baa5cce8de25f3fc15"
+          },
+          {
+            "type": "fix",
+            "scope": "S249",
+            "description": "pin pnpm, run CI on stacked PRs, stop adhoc permission prompts (#645, #643)",
+            "breaking": false,
+            "hash": "d84dd5534200d693152eaf2f9b5817c87d020b7e"
+          },
+          {
+            "type": "docs",
+            "scope": "S249",
+            "description": "triage self-reported dogfooding defects into Phase 56",
+            "breaking": false,
+            "hash": "0f76b4609ecf3174261a8d9ed9547f66bcbacd69"
+          },
+          {
+            "type": "chore",
+            "scope": "S248",
+            "description": "record the S247 to S248 rollover lineage",
+            "breaking": false,
+            "hash": "0cec3733525802ae2be18cf3de369dd7feef1bbe"
+          },
+          {
+            "type": "docs",
+            "scope": "S247",
+            "description": "add S247 scorecard, sprint review and rollover lineage",
+            "breaking": false,
+            "hash": "ece0be1c9026bca13d9e3eb9806776356f2bb015"
+          },
+          {
+            "type": "docs",
+            "scope": "S246",
+            "description": "add S246 scorecard and sprint review",
+            "breaking": false,
+            "hash": "00fde09a3c1987cdb7031cf01b5f1b5575d11b0a"
+          },
+          {
+            "type": "chore",
+            "scope": "S246",
+            "description": "record the S222 to S246 rollover lineage audit",
+            "breaking": false,
+            "hash": "2ad1eea8f1a13289087f453cac481f039554a23f"
+          },
+          {
+            "type": "docs",
+            "scope": "S246,S247,S248",
+            "description": "close Phase 55 with scorecards, reviews and review findings",
+            "breaking": false,
+            "hash": "f4c997ade53a885b127ebc731a85cd74f0d010f7"
+          },
+          {
+            "type": "fix",
+            "scope": "S247-3",
+            "description": "distinguish canonical roadmap source from generated projection (#636)",
+            "breaking": false,
+            "hash": "4d2b199ee88957a83c568df72b9e2728e2220cdf"
+          },
+          {
+            "type": "fix",
+            "scope": "S248-2,S248-3",
+            "description": "plan ticket detection and Closes-line precision (#634, #623)",
+            "breaking": false,
+            "hash": "bcaf584e80c83422ef0a48de69a6d6c8834b3a8f"
+          },
+          {
+            "type": "test",
+            "scope": "S247-5",
+            "description": "pin forward-planning sprint mentions as unshipped (#632)",
+            "breaking": false,
+            "hash": "fe97e2ccd71588bee6058aafb4eb1b4a5d8c8b30"
+          },
+          {
+            "type": "fix",
+            "scope": "S247-4",
+            "description": "use roadmap-aware sprint labels so S245 stops rendering as S24.5 (#635)",
+            "breaking": false,
+            "hash": "4f54d5ef1bfd9a9e7e7fa8f070054a525a47ff51"
+          },
+          {
+            "type": "fix",
+            "scope": "S247-1",
+            "description": "refuse to silently discard authored roadmap projection content (#637)",
+            "breaking": false,
+            "hash": "34b970478e304b92d139bc1d9ec9db6491e0de45"
+          },
+          {
+            "type": "fix",
+            "scope": "S246-5",
+            "description": "reconcile sprint phase across all worktrees on post-merge retro (#624)",
+            "breaking": false,
+            "hash": "fad5d45d81b4720354ebb74844b6d040b7938d9e"
+          },
+          {
+            "type": "fix",
+            "scope": "S246-1,S246-2,S246-3",
+            "description": "end worktree session deadlock (#630, #631)",
+            "breaking": false,
+            "hash": "566674061b163d49c54c04702e0590d2f7252df8"
+          },
+          {
+            "type": "fix",
+            "scope": "S246-4",
+            "description": "scope guard cwd inference to real workspaces (#625)",
+            "breaking": false,
+            "hash": "6d41b59b452f1236e6664aeb02876fac701ab028"
+          },
+          {
+            "type": "docs",
+            "scope": "S246",
+            "description": "triage late-July issue batch into Phase 55",
+            "breaking": false,
+            "hash": "4561ece5b130e4db714d3e024971d44c06d9eca8"
+          },
+          {
+            "type": "docs",
+            "scope": "S245",
+            "description": "supersede S245 and complete Phase 54 (#629)",
+            "breaking": false,
+            "hash": "02bc118970559bd5b609dfa829aa28865b183015"
+          },
+          {
+            "type": "other",
+            "description": "S244: Session wrap & standup substance — enriched standup, session-end defaults, /wrap-session (#619, #620) (#628)",
+            "breaking": false,
+            "hash": "968dceee18965853f35fd81cdc0e1b4225d96e27"
+          },
+          {
+            "type": "other",
+            "description": "S243: Stale state & guard scoping — dead-session reaping, repo-scoped gates, ledger staleness advisory (#621) (#627)",
+            "breaking": false,
+            "hash": "acc74dc4684d28b1b20204555b92a859ff65ac4c"
+          },
+          {
+            "type": "other",
+            "description": "S242: Closeout integrity — review overwrite protection, UTF-8 hygiene, merged-state status (#616, #611) (#626)",
+            "breaking": false,
+            "hash": "6eb7c1501153a059a1a6f2871b81405ecd5aba91"
+          },
+          {
+            "type": "other",
+            "description": "S241: Surgical roadmap reconciliation + Phase 54 triage (#615, #617, #618) (#622)",
+            "breaking": false,
+            "hash": "c7c4e062e2b49dd11f65adf767e240846496516e"
+          }
+        ]
+      },
+      {
+        "version": "v1.63.0",
+        "date": "2026-07-12",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.63.0 (#614)",
+            "breaking": false,
+            "hash": "135dd51e5d7aac0c36080591c51ada5a954c2e10"
+          },
+          {
+            "type": "docs",
+            "scope": "240",
+            "description": "add open issue sprint closeout",
+            "breaking": false,
+            "hash": "5405a6c938577ba81a471b3fc714fa23cc1b6b1a"
+          },
+          {
+            "type": "test",
+            "scope": "609",
+            "description": "register review packet internals",
+            "breaking": false,
+            "hash": "4c26a50f7285d2df0402bb2937d883be5ba1cec2"
+          },
+          {
+            "type": "feat",
+            "scope": "609",
+            "description": "add bounded review packets",
+            "breaking": false,
+            "hash": "87f6eca17dc4bb09da3ff6d777d8eeaacac6ccd1"
+          },
+          {
+            "type": "fix",
+            "scope": "610",
+            "description": "reconcile sprint lifecycle roadmap state",
+            "breaking": false,
+            "hash": "900868b5b68dd5e91a86fdbc14f2d2faa68867f9"
+          },
+          {
+            "type": "fix",
+            "scope": "608",
+            "description": "make codex init idempotent and portable",
+            "breaking": false,
+            "hash": "bbd75f5de41362c712109ea16035101dffcf3a7f"
+          },
+          {
+            "type": "fix",
+            "scope": "604",
+            "description": "enforce review gate verdicts",
+            "breaking": false,
+            "hash": "adc51ef73e57c54499b71a38a73ac0a7603c8e60"
+          }
+        ]
+      },
+      {
+        "version": "v1.62.4",
+        "date": "2026-07-11",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.62.4 (#607)",
+            "breaking": false,
+            "hash": "af861f7a8628ed6ca6da63f6b9d67ee36014954f"
+          },
+          {
+            "type": "docs",
+            "scope": "S239",
+            "description": "add canonical sprint identity closeout",
+            "breaking": false,
+            "hash": "09970f3fa85913c447da9911aa71e042ebe3600a"
+          },
+          {
+            "type": "fix",
+            "scope": "S239",
+            "description": "preserve canonical roadmap sprint labels",
+            "breaking": false,
+            "hash": "f013870d6384b0d90a8f15d79ba6d0d168a195d2"
+          }
+        ]
+      },
+      {
+        "version": "v1.62.3",
+        "date": "2026-07-11",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.62.3 (#603)",
+            "breaking": false,
+            "hash": "d710676c04e1dba2849174ffd2a0a43bc1b5745b"
+          },
+          {
+            "type": "docs",
+            "scope": "S238",
+            "description": "add stale sprint state closeout",
+            "breaking": false,
+            "hash": "d60b8649b0375d4fa3952c68b6344a7fd3edeb21"
+          },
+          {
+            "type": "fix",
+            "scope": "S238",
+            "description": "ignore stale local sprint state in next",
+            "breaking": false,
+            "hash": "838a8250dab3448b11094402b7649b97ef16de98"
+          }
+        ]
+      },
+      {
+        "version": "v1.62.2",
+        "date": "2026-07-11",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.62.2 (#600)",
+            "breaking": false,
+            "hash": "37f63898d351230d6f7aa571c7703f87924a9849"
+          },
+          {
+            "type": "docs",
+            "scope": "S237",
+            "description": "add open issue sprint closeout",
+            "breaking": false,
+            "hash": "16cf3edd0c9cb8a6bb87804c47e24c1814fcc30d"
+          },
+          {
+            "type": "fix",
+            "scope": "S237",
+            "description": "address roadmap sync and sprint status regressions",
+            "breaking": false,
+            "hash": "427bfebb44d1a00f6de83247e66a1664b09773c8"
+          }
+        ]
+      },
+      {
+        "version": "v1.62.1",
+        "date": "2026-07-10",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.62.1 (#596)",
+            "breaking": false,
+            "hash": "f6a1c02552e353bae9d47b09a5b80b4f4fd8eb6f"
+          },
+          {
+            "type": "fix",
+            "scope": "S237",
+            "description": "recognize codex guard shims",
+            "breaking": false,
+            "hash": "4e62227281c9fc29a1e773f4576a4bcbb48820aa"
+          }
+        ]
+      },
+      {
+        "version": "v1.62.0",
+        "date": "2026-07-10",
+        "changes": [
+          {
+            "type": "chore",
+            "description": "bump version to 1.62.0 (#593)",
+            "breaking": false,
+            "hash": "aa565d2b83a3556aa14edc127281e9448271000f"
+          },
+          {
+            "type": "docs",
+            "scope": "S236",
+            "description": "close transactional migration sprint",
+            "breaking": false,
+            "hash": "d68921b0868588e262396a050762f171279bbd76"
+          },
+          {
+            "type": "fix",
+            "scope": "S236",
+            "description": "harden migration fidelity receipts",
+            "breaking": false,
+            "hash": "21a45742d8dfc48794121b3edf6c8ba19add59ed"
+          },
+          {
+            "type": "docs",
+            "scope": "S236",
+            "description": "record audited sprint rollover",
+            "breaking": false,
+            "hash": "3b63ca7ce7e1a6682a1824a7c0e19a435341bd57"
+          },
+          {
+            "type": "docs",
+            "scope": "S235",
+            "description": "close migration planner sprint",
+            "breaking": false,
+            "hash": "ec28394958b1f0737df6e8ca96d7af8abdf0b878"
+          },
+          {
+            "type": "fix",
+            "scope": "S235",
+            "description": "normalize mapped evidence paths",
+            "breaking": false,
+            "hash": "974843eafcc17c2fa5317aeb0b13406275de2736"
+          },
+          {
+            "type": "fix",
+            "scope": "S235",
+            "description": "enforce migration target fidelity",
+            "breaking": false,
+            "hash": "e0b8b5cc35205a0016665e2c5fa84682f27d8ec8"
+          },
+          {
+            "type": "docs",
+            "scope": "S235",
+            "description": "record audited sprint rollover",
+            "breaking": false,
+            "hash": "75ed5ca495407e50c77bbc3f83ad9dcf1a9e2364"
+          },
+          {
+            "type": "feat",
+            "scope": "S236",
+            "description": "apply roadmap migrations transactionally",
+            "breaking": false,
+            "hash": "10497b7690f5101c94de8279d6a2555942d163fd"
+          },
+          {
+            "type": "docs",
+            "scope": "S234",
+            "description": "close bounded review runner sprint",
+            "breaking": false,
+            "hash": "7e333d0cd5abe8d4aaf0cb823b329b95c9479aa2"
+          },
+          {
+            "type": "fix",
+            "scope": "S234-4",
+            "description": "close review runner trust gaps",
+            "breaking": false,
+            "hash": "b406d53e2c3ac956ff2e5b388ac4dbb0af448617"
+          },
+          {
+            "type": "fix",
+            "scope": "S235",
+            "description": "preserve bounded migration fidelity",
+            "breaking": false,
+            "hash": "49b46af0003b18ff88e120fc21aa1bc32e011e3a"
+          },
+          {
+            "type": "feat",
+            "scope": "S235",
+            "description": "add deterministic roadmap migration planner",
+            "breaking": false,
+            "hash": "724cf78a8133dc1600268a08f579f44021c1f789"
+          },
+          {
+            "type": "fix",
+            "scope": "S234-3",
+            "description": "harden bounded review inputs",
+            "breaking": false,
+            "hash": "b40630fc25401f2358c8e02773ee5cf4680d2294"
+          },
+          {
+            "type": "fix",
+            "scope": "S234-2",
+            "description": "forward bounded review scope",
+            "breaking": false,
+            "hash": "7ee264b6e93c9f140cfeee119e14aa764c31743c"
+          },
+          {
+            "type": "fix",
+            "scope": "S234-1",
+            "description": "bound and scope large PR reviews",
+            "breaking": false,
+            "hash": "7d010d5a8c402dc6b425c44e9562b3c0be1edf60"
+          },
+          {
+            "type": "docs",
+            "scope": "S234",
+            "description": "record audited sprint rollover",
+            "breaking": false,
+            "hash": "a97828a181e94aa127e9c3d5409fe102716f5716"
+          },
+          {
+            "type": "docs",
+            "scope": "S233",
+            "description": "close CRLF projection sprint",
+            "breaking": false,
+            "hash": "d537b0aa7fdd8fc1ef63deef30a15a9525b0024d"
+          },
+          {
+            "type": "docs",
+            "scope": "S233",
+            "description": "record audited sprint rollover",
+            "breaking": false,
+            "hash": "20fde1ca1e5325054217c3afcd1bd2406b8ab6dd"
+          },
+          {
+            "type": "fix",
+            "scope": "S233",
+            "description": "tolerate CRLF projection checkouts",
+            "breaking": false,
+            "hash": "0101b200b5109881c8f9dc74a52da4b14ed0e4b7"
+          },
+          {
+            "type": "docs",
+            "scope": "roadmap",
+            "description": "triage post-1.61 adoption issues",
+            "breaking": false,
+            "hash": "bd210bccb0978d09c1e586c3731e78cad74da0ca"
+          }
+        ]
+      },
+      {
         "version": "v1.61.0",
         "date": "2026-07-10",
         "changes": [
@@ -4200,215 +5050,6 @@
             "description": "plan agent dx trust polish sprint",
             "breaking": false,
             "hash": "b8b1d13fe62b61cfa7540b969d16143b5c9fc3c9"
-          }
-        ]
-      },
-      {
-        "version": "v1.60.0",
-        "date": "2026-06-27",
-        "changes": [
-          {
-            "type": "other",
-            "description": "Release v1.60.0 recovery train",
-            "breaking": false,
-            "hash": "dd00f73294ca9edbb80b0b34937d483e730ad89e"
-          },
-          {
-            "type": "fix",
-            "scope": "S154",
-            "description": "roadmap and sprint status integrity",
-            "breaking": false,
-            "hash": "034869283a345779528f81b4ecde7d4b9e41479e"
-          },
-          {
-            "type": "fix",
-            "scope": "S153",
-            "description": "use slope evidence for version recommend",
-            "breaking": false,
-            "hash": "5265473fc963335df4811fca761fc1e477b52b2b"
-          },
-          {
-            "type": "docs",
-            "scope": "roadmap",
-            "description": "triage issue recovery sprints",
-            "breaking": false,
-            "hash": "f588ba6254c1c40d1639e5419f3c0d3b9a596e0c"
-          }
-        ]
-      },
-      {
-        "version": "v1.59.2",
-        "date": "2026-06-17",
-        "changes": [
-          {
-            "type": "chore",
-            "scope": "release",
-            "description": "bump version to 1.59.2",
-            "breaking": false,
-            "hash": "e8b32f57884db868c4acaac22bdd5da6d70685a3"
-          },
-          {
-            "type": "fix",
-            "scope": "codex-plugin",
-            "description": "normalize hook dispatchers",
-            "breaking": false,
-            "hash": "8663cb3d363fd237d434af49147d2b4744d50487"
-          }
-        ]
-      },
-      {
-        "version": "v1.59.1",
-        "date": "2026-06-15",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "bump version to 1.59.1",
-            "breaking": false,
-            "hash": "91291e237226b6c487c59180a6b524c70f29dcb3"
-          },
-          {
-            "type": "fix",
-            "description": "surface roadmap interview across harnesses",
-            "breaking": false,
-            "hash": "e56bbec51a20e8cf3c208587c25637aa5a434c23"
-          },
-          {
-            "type": "docs",
-            "scope": "S152",
-            "description": "record v1.59.0 release closeout",
-            "breaking": false,
-            "hash": "aa84f7b256a4bc8e7537dadd712ef6168d11c882"
-          }
-        ]
-      },
-      {
-        "version": "v1.59.0",
-        "date": "2026-06-08",
-        "changes": [
-          {
-            "type": "other",
-            "description": "Release v1.59.0",
-            "breaking": false,
-            "hash": "006f777e81be5cd2109bd40e0f979c6cdfeca646"
-          },
-          {
-            "type": "other",
-            "description": "Harden Windows git-backed test timing (#548)",
-            "breaking": false,
-            "hash": "fe589ef829a564767f819223636e5f6d8a44cb70"
-          },
-          {
-            "type": "other",
-            "description": "S151: add skill-first human cockpit commands (#545)",
-            "breaking": false,
-            "hash": "05f17aaa59e66487cf2532c07bc3545653c03eab"
-          },
-          {
-            "type": "other",
-            "description": "S150: add command audiences and bounded help (#543)",
-            "breaking": false,
-            "hash": "6ce86016605b354250542ef4f290253f78fe33aa"
-          },
-          {
-            "type": "other",
-            "description": "S149: repair roadmap signal and compact status view (#542)",
-            "breaking": false,
-            "hash": "7be44a2c7502baf456526079b7136fb94b87f6ae"
-          },
-          {
-            "type": "docs",
-            "scope": "S148",
-            "description": "plan human operating surface simplification",
-            "breaking": false,
-            "hash": "0ba59bd96e680db9749afae806807cd42c700445"
-          }
-        ]
-      },
-      {
-        "version": "v1.58.5",
-        "date": "2026-06-08",
-        "changes": [
-          {
-            "type": "chore",
-            "scope": "S146.5-release",
-            "description": "bump version to 1.58.5",
-            "breaking": false,
-            "hash": "e494cabae9680ddf60efcfaf7cccec2be2d142ba"
-          },
-          {
-            "type": "fix",
-            "scope": "roadmap",
-            "description": "validate sparse canonical sprint ids and terminal statuses",
-            "breaking": false,
-            "hash": "8ea23b4f0678b125e5e0fd31decbf7084adc75c8"
-          }
-        ]
-      },
-      {
-        "version": "v1.58.4",
-        "date": "2026-06-08",
-        "changes": [
-          {
-            "type": "chore",
-            "scope": "S146.4-release",
-            "description": "bump version to 1.58.4",
-            "breaking": false,
-            "hash": "4cf34df93a68570125190ee278c927a6c8a96f4d"
-          },
-          {
-            "type": "fix",
-            "scope": "S147-533",
-            "description": "tolerate roadmap sprints without tickets",
-            "breaking": false,
-            "hash": "400b422a2bca58dbc4c284a3c1d52fec6bd4e2bf"
-          }
-        ]
-      },
-      {
-        "version": "v1.58.3",
-        "date": "2026-06-07",
-        "changes": [
-          {
-            "type": "fix",
-            "description": "scope workflow step gate execution (#532)",
-            "breaking": false,
-            "hash": "6c316c0325398caaa00e4c1bb5d3631056fa3092"
-          }
-        ]
-      },
-      {
-        "version": "v1.58.2",
-        "date": "2026-06-07",
-        "changes": [
-          {
-            "type": "fix",
-            "description": "allow decimal post-merge retros (#530)",
-            "breaking": false,
-            "hash": "a3b188b3a926708c74c25a48d43995f8e644f340"
-          }
-        ]
-      },
-      {
-        "version": "v1.58.1",
-        "date": "2026-06-07",
-        "changes": [
-          {
-            "type": "chore",
-            "description": "cut v1.58.1 release (#527)",
-            "breaking": false,
-            "hash": "81567930d219c53942907611308b062f8b46bdb9"
-          },
-          {
-            "type": "fix",
-            "description": "clean roadmap hygiene and decimal sprint artifacts (#523)",
-            "breaking": false,
-            "hash": "48c0cdb52d0531a24835e9ec4271cdd9ad912e94"
-          },
-          {
-            "type": "fix",
-            "description": "repair validation signal false positives (#521)",
-            "breaking": false,
-            "hash": "fbcee82a0a5c632c77b1aa40a4740795a9173a9f"
           }
         ]
       }
